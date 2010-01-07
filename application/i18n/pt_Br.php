@@ -1,14 +1,24 @@
 <?php
 
-// Tradução para o Português por Nivaldo Arruda - nivaldo@gmail.com
+/**
+ * Tradução para o Português por Nivaldo Arruda - nivaldo@gmail.com
+ * 
+ * @version $Id$
+ * 
+ */
+
 $portugues = array();
 $portugues['isEmpty']= 'Este campo não pode ser vazio';
 $portugues['stringEmpty'] = "'%value%' é uma string vazia";
 
-// Email
+/*
+ * Email
+ */
 $portugues['emailAddressInvalid'] = 'Não é um email válido no formato nome@servidor';
 
-//hostname
+/*
+ * Hostname
+ */
 $portugues['hostnameIpAddressNotAllowed']  = "'%value%' Parece ser um endereço de IP, mas endereços de IP não são permitidos";
 $portugues['hostnameUnknownTld'] = "'%value%' parece ser um DNS, mas não foi possivel validar o TLD";
 $portugues['hostnameDashCharacter'] = "'%value%' parece ser um DNS, mas contém um 'dash' (-) em uma posição inválida";
@@ -18,27 +28,38 @@ $portugues['hostnameInvalidHostname'] = "'%value% não é compatível com a estrutu
 $portugues['hostnameInvalidLocalName'] = "'%value%' não parece ser uma rede local válida";
 $portugues['hostnameLocalNameNotAllowed'] = "'%value%' parece ser o nome de uma rede local, mas nome de rede local não são permitido";
 
-//identical
-
+/*
+ * Identico
+ */
 $portugues['notSame'] = "Comparação não bate";
 $portugues['missingToken'] = "Não foi fornecido parâmetros para teste";
 
-//greater then
+/*
+ * Maior que
+ */
 $portugues['notGreaterThan'] = "'%value%' não é maior que '%min%'";
 
-//float
+/*
+ * Ponto flutuante
+ */
 //$portugues['notFloat'] = "'%value%' não é do tipo float";
 $portugues['notFloat'] = "'%value%' não é do tipo float (utilizar . para separacao decimal)";
 
-//date
+/*
+ * Data
+ */
 $portugues['dateNotYYYY-MM-DD'] = "'%value%' deve estar no formato aaaa-mm-dd";
 $portugues['dateInvalid'] = "'%value%' não parece ser um data válida";
 $portugues['dateFalseFormat'] = "'%value%' não combina com o formato informado";
 
-//digits
+/*
+ * Digitos
+ */
 $portugues['notDigits'] = "'%value%' não contém apenas dígitos";
 
-//between
+/*
+ * Entre
+ */
 $portugues['notBetween'] = "'%value%' não está entre '%min%' e '%max%', inclusive";
 $portugues['notBetweenStrict'] = "'%value%' não está estritamente entre '%min%' e '%max%'";
 

@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * 
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ *
+ * @version: $Id$
+ * 
+ */
+
 class Form_Lote extends Zend_Dojo_Form
 {
 

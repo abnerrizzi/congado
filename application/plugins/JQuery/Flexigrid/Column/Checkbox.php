@@ -6,10 +6,13 @@
  * @author Tales Augusto <tales.augusto.santos@gmail.com>
  * 
  * @uses Plugin_JQuery_Column_Abstract
+ *
+ * @version: $Id$
  * 
  * @filesource
  * 
  */
+
 class Plugin_JQuery_Flexigrid_Column_Checkbox extends Plugin_JQuery_Flexigrid_Column_Abstract
 {
 	/**
