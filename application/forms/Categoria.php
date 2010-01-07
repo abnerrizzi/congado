@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * 
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ *
+ * @version: $Id$
+ * 
+ */
+
 class Form_Categoria extends Zend_Form
 {
 

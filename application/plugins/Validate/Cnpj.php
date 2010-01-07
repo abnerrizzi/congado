@@ -1,10 +1,15 @@
 <?php
 
 /**
+ * 
  * Validador para fazer a validação de CNPJ (Cadastro Nacional da Pessoa Jurídica)
  *
  * @author Diego Tremper <diegotremper@gmail.com>
+ * 
+ * @version: $Id$
+ * 
  */
+
 class Plugin_Validate_Cnpj extends Zend_Validate_Abstract
 {
 	const INVALID_DIGITS = 'i_number';
