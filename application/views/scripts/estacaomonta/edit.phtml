@@ -1,0 +1,16 @@
+<?php
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/menu.js')
+	->appendFile($this->baseUrl() . '/scripts/jquery-1.3.2.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.maskedinput.js')
+	->appendFile($this->baseUrl() . '/scripts/library/estacaomonta.js')
+	->appendScript('var baseUrl = "' . $this->baseUrl() . '";')
+	;
+	
+$this->headLink()
+	->appendStylesheet($this->baseUrl() . '/styles/jquery-ui-1.7.2.custom.css')
+	;
+
+echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
+?>

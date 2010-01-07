@@ -1,0 +1,15 @@
+<span style="tooltip">
+<?if ($this->content):?>
+<b>Filhos</b><br/>
+<?php
+foreach ($this->content as $filho) {
+	print '<a href="' . $this->baseUrl() . '/fichario/genealogia/id/' . $filho['id'] .'">';
+	print $filho['cod'] .' - '. $filho['nome'];
+	print "</a>";
+	print "<br/>\n";
+}
+?>
+</span>
+<?else:?>
+<b>Nenhuma filiação encontrada</b>
+<?endif;?>

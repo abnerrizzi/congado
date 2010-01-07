@@ -1,0 +1,249 @@
+<br/>
+
+<table border="0" align="center" cellpadding="0" cellspacing="0">
+
+	<tr>
+
+	  <td></td>
+	  <td width="10"></td>
+	  <td></td>
+	  <td width="10"></td>
+	  <td></td>
+	  <td width="10"></td>
+<?if (@$this->array['pai']['pai']['pai']['id']):?>
+	  <td class="animalm">(<?=$this->array['pai']['pai']['pai']['id'];?>) - <?=$this->array['pai']['pai']['pai']['cod'];?><br/><?=$this->array['pai']['pai']['pai']['nome'];?></td>
+<?else:?>
+	  <td class="vazio">&nbsp;</td>
+<?endif;?>
+
+	</tr>
+
+
+	<tr>
+
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+<?if (@$this->array['pai']['pai']['id']):?>
+	  <td class="animalm">(<?=$this->array['pai']['pai']['id'];?>) - <?=$this->array['pai']['pai']['cod'];?><br/><?=$this->array['pai']['pai']['nome'];?></td>
+<?else:?>
+	  <td class="vazio">&nbsp;</td>
+<?endif;?>
+
+	  <td></td>
+	  <td></td>
+
+	</tr>
+
+
+	<tr>
+
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+<?if (@$this->array['pai']['pai']['mae']['id']):?>
+	  <td class="animalf">(<?=$this->array['pai']['pai']['mae']['id'];?>) - <?=$this->array['pai']['pai']['mae']['cod'];?><br/><?=$this->array['pai']['pai']['mae']['nome'];?></td>
+<?else:?>
+	  <td class="vazio">&nbsp;</td>
+<?endif;?>
+
+
+	</tr>
+
+
+	<tr>
+
+      <td></td>
+	  <td></td>
+<?if (@$this->array['pai']['id'] != ""):?>
+	  <td class="animalm">(<?=$this->array['pai']['id'];?>) - <?=$this->array['pai']['cod'];?><br/><?=$this->array['pai']['nome'];?></td>
+<?else:?>
+	  <td class="vazio">&nbsp;</td>
+<?endif;?>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+
+	</tr>
+
+
+	<tr>
+
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+<?if (@$this->array['pai']['mae']['pai']['id']):?>
+	  <td class="animalm">(<?=$this->array['pai']['mae']['pai']['id'];?>) - <?=$this->array['pai']['mae']['pai']['cod'];?><br/><?=$this->array['pai']['mae']['pai']['nome'];?></td>
+<?else:?>
+	  <td class="vazio">&nbsp;</td>
+<?endif;?>
+
+
+	</tr>
+
+
+	<tr>
+
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+<?if (@$this->array['pai']['mae']['id'] != ""):?>
+	  <td class="animalf">(<?=$this->array['pai']['mae']['id'];?>) - <?=$this->array['pai']['mae']['cod'];?><br/><?=$this->array['pai']['mae']['nome'];?></td>
+<?else:?>
+	  <td class="vazio">&nbsp;</td>
+<?endif;?>
+
+	  <td></td>
+	  <td></td>
+
+	</tr>
+
+
+	<tr>
+
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+<?if (@$this->array['pai']['mae']['mae']['id']):?>
+	  <td class="animalf">(<?=$this->array['pai']['mae']['mae']['id'];?>) - <?=$this->array['pai']['mae']['mae']['cod'];?><br/><?=$this->array['pai']['mae']['mae']['nome'];?></td>
+<?else:?>
+	  <td class="vazio">&nbsp;</td>
+<?endif;?>
+
+
+	</tr>
+
+
+	<tr>
+
+<?if (@$this->array['id']):?>
+	  <td class="animal">(<?=$this->array['id'];?>) - <?=$this->array['cod'];?><br/><?=$this->array['nome'];?></td>
+<?else:?>
+	  <td class="vazio">&nbsp;</td>
+<?endif;?>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+
+	</tr>
+
+
+	<tr>
+
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td>BISAVO (M)</td>
+
+	</tr>
+
+
+	<tr>
+
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+<?if (@$this->array['mae']['pai']['id'] != ""):?>
+	  <td class="animalm">(<?=$this->array['mae']['pai']['id'];?>) - <?=$this->array['mae']['pai']['cod'];?><br/><?=$this->array['mae']['pai']['nome'];?></td>
+<?else:?>
+	  <td class="vazio">&nbsp;</td>
+<?endif;?>
+	  <td></td>
+	  <td></td>
+
+	</tr>
+
+
+	<tr>
+
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td>BISAVO (F)</td>
+
+	</tr>
+
+
+	<tr>
+
+	  <td></td>
+	  <td></td>
+<?if (@$this->array['mae']['id'] != ""):?>
+	  <td class="animalf">(<?=$this->array['mae']['id'];?>) - <?=$this->array['mae']['cod'];?><br/><?=$this->array['mae']['nome'];?></td>
+<?else:?>
+	  <td class="vazio">&nbsp;</td>
+<?endif;?>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+
+	</tr>
+
+
+	<tr>
+
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td>BISAVO (M)</td>
+
+	</tr>
+
+
+	<tr>
+
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+<?if (@$this->array['mae']['mae']['id'] != ""):?>
+	  <td class="animalf">(<?=$this->array['mae']['mae']['id'];?>) - <?=$this->array['mae']['mae']['cod'];?><br/><?=$this->array['mae']['mae']['nome'];?></td>
+<?else:?>
+	  <td class="vazio">&nbsp;</td>
+<?endif;?>
+
+	  <td></td>
+	  <td></td>
+
+	</tr>
+
+
+	<tr>
+
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td>BISAVO (F)</td>
+
+	</tr>
+
+
+</table>
