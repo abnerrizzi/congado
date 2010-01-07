@@ -1,0 +1,15 @@
+<?php
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/menu.js')
+	->appendFile($this->baseUrl() . '/scripts/jquery-1.3.2.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.maskedinput.js')
+	->appendFile($this->baseUrl() . '/scripts/library/criador.js')
+	->appendFile($this->baseUrl() . '/scripts/library/cpf_cnpj.js')
+	->appendScript('var baseUrl = "' . $this->baseUrl() . '";')
+	;
+
+$this->headLink()
+	->appendStylesheet($this->baseUrl() . '/styles/menu.css');
+
+echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
+?>
