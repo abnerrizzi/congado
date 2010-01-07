@@ -1,6 +1,13 @@
 <?php
-/*
+
+
+/**
  * @TODO: Calculo automatico de Grau de Sangue
+ * 
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ *
+ * @version: $Id$
+ * 
  */
 
 class FicharioController extends Zend_Controller_Action

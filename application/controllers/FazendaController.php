@@ -1,7 +1,12 @@
 <?php
 
-/*
+/**
  * @TODO: Verificar tipo do campo sisbov e nirf
+ * 
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ *
+ * @version: $Id$
+ * 
  */
 
 class FazendaController extends Zend_Controller_Action
