@@ -4,9 +4,10 @@
  * 
  * @author abner
  *
- * @version: $Id
+ * @version: $Id$
  * 
  */
+
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
 
