@@ -105,37 +105,37 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$front = Zend_Controller_Front::getInstance();
 		$front->registerPlugin(new Plugin_Auth());
 		$front->addModuleDirectory(APPLICATION_PATH . '/modules/admin/', 'admin');
-    }
+	}
 
-    protected function _initTranslation()
-    {
+	protected function _initTranslation()
+	{
 
-        $portugues = array();
-        include ('i18n/pt_Br.php');
-        $translate = new Zend_Translate('array', $portugues, 'pt_BR');
-        Zend_Registry::set('Zend_Translate', $translate);
+		$portugues = array();
+		include ('i18n/pt_Br.php');
+		$translate = new Zend_Translate('array', $portugues, 'pt_BR');
+		Zend_Registry::set('Zend_Translate', $translate);
 
-    }
+	}
 
-    protected function _initSession()
-    {
-        /*
-         * Set session timeout according application.ini
-         */
+	protected function _initSession()
+	{
+		/*
+		 * Set session timeout according application.ini
+		 */
 
-    	$__timeout = (self::$registry->configuration->resources->session->timeout->inactive * 60);
-    	$__remember = (self::$registry->configuration->resources->session->timeout->remember_me_seconds * 60);
-        $authNamespace = new Zend_Session_Namespace('Zend_Auth');
-        if ($authNamespace->rememberme == 1) {
-        	$authNamespace->setExpirationSeconds($__remember);
-        } else {
-        	$authNamespace->setExpirationSeconds($__timeout);
-        }
-    }
+		$__timeout = (self::$registry->configuration->resources->session->timeout->inactive * 60);
+		$__remember = (self::$registry->configuration->resources->session->timeout->remember_me_seconds * 60);
+		$authNamespace = new Zend_Session_Namespace('Zend_Auth');
+		if ($authNamespace->rememberme == 1) {
+			$authNamespace->setExpirationSeconds($__remember);
+		} else {
+			$authNamespace->setExpirationSeconds($__timeout);
+		}
+	}
 
-    protected function _initTimeZone()
-    {
-    	date_default_timezone_set('America/Sao_Paulo');
-    }
+	protected function _initTimeZone()
+	{
+		date_default_timezone_set('America/Sao_Paulo');
+	}
 
 }
