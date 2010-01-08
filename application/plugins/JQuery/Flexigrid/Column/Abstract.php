@@ -278,110 +278,110 @@ abstract class Plugin_JQuery_Flexigrid_Column_Abstract
 	}
 	
 	/**
-     * Seta o objeto de visualizao.
+	 * Seta o objeto de visualizao.
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
 	 * 
 	 * @access public
-     * 
-     * @param Zend_View_Interface $view 
-     * 
-     * @return Plugin_JQuery_Flexigrid
-     */
-    public function setView(Zend_View_Interface $view = null)
-    {
-        $this->_view = $view;
-        return $this;
-    }
+	 * 
+	 * @param Zend_View_Interface $view 
+	 * 
+	 * @return Plugin_JQuery_Flexigrid
+	 */
+	public function setView(Zend_View_Interface $view = null)
+	{
+		$this->_view = $view;
+		return $this;
+	}
 	
-    /**
-     * Seta o valor padr√£o
-     *
-     * @param string $value
-     * 
-     * @return Plugin_JQuery_Column_Abstract
-     */
-    public function setDefaultValue($value)
-    {
-    	$this->_defaultValue = (string) $value;
-    	return $this;
-    }
-    
-    /**
-     * Retorna o valor padr√£o
-     *
-     * @return String
-     */
-    public function getDefaultValue()
-    {
-    	return $this->_defaultValue;
-    }
-    
-    /**
-     * Retorna o objeto de renderiza√ß√£o
-     *
-     * Se n√£o estiver setada o objeto, cria-o.
+	/**
+	 * Seta o valor padr√£o
+	 *
+	 * @param string $value
+	 * 
+	 * @return Plugin_JQuery_Column_Abstract
+	 */
+	public function setDefaultValue($value)
+	{
+		$this->_defaultValue = (string) $value;
+		return $this;
+	}
+	
+	/**
+	 * Retorna o valor padr√£o
+	 *
+	 * @return String
+	 */
+	public function getDefaultValue()
+	{
+		return $this->_defaultValue;
+	}
+	
+	/**
+	 * Retorna o objeto de renderiza√ß√£o
+	 *
+	 * Se n√£o estiver setada o objeto, cria-o.
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
 	 * 
 	 * @access public
-     * 
-     * @return Zend_View_Interface
-     */
-    public function getView()
-    {
-        if ( null === $this->_view )
-        {
-            $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
-            $this->setView($viewRenderer->view);
-        }
+	 * 
+	 * @return Zend_View_Interface
+	 */
+	public function getView()
+	{
+		if ( null === $this->_view )
+		{
+			$viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
+			$this->setView($viewRenderer->view);
+		}
 
-        return $this->_view;
-    }
-    
-    /**
-     * Seta as informacoes da linha que esta sendo renderizada
-     *
-     * @param array $data
-     * @return Plugin_JQuery_Flexigrid_Column_Abstract
-     */
-    public function setRowData(array $data = array())
-    {
-    	$this->_rowData = $data;
-    	return $this;
-    }
-    
-    /**
-     * Retorna as informaÁıes da linha que está sendo renderizada.
-     *
-     * @return array
-     */
-    public function getRowData()
-    {
-    	return $this->_rowData;
-    }
-    
-    /**
-     * Retorna o array com as propriedados dos campos.
+		return $this->_view;
+	}
+	
+	/**
+	 * Seta as informacoes da linha que esta sendo renderizada
+	 *
+	 * @param array $data
+	 * @return Plugin_JQuery_Flexigrid_Column_Abstract
+	 */
+	public function setRowData(array $data = array())
+	{
+		$this->_rowData = $data;
+		return $this;
+	}
+	
+	/**
+	 * Retorna as informaÁıes da linha que está sendo renderizada.
+	 *
+	 * @return array
+	 */
+	public function getRowData()
+	{
+		return $this->_rowData;
+	}
+	
+	/**
+	 * Retorna o array com as propriedados dos campos.
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
 	 * 
 	 * @access public
-     * 
-     * @return array
-     */
-    public function __toArray()
-    {
-    	$array = array(
-    		'name' => $this->_name,
-    		'display' => $this->_label,
-    		'width' => $this->_width,
-    		'align' => $this->_align,
-    		'sortable' => $this->_sortable
-    	);
-    	
-    	return $array;
-    }
+	 * 
+	 * @return array
+	 */
+	public function __toArray()
+	{
+		$array = array(
+			'name' => $this->_name,
+			'display' => $this->_label,
+			'width' => $this->_width,
+			'align' => $this->_align,
+			'sortable' => $this->_sortable
+		);
+		
+		return $array;
+	}
 	
 	/**
 	 * Renderiza a coluna.

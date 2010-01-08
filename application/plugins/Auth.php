@@ -32,12 +32,12 @@ class Plugin_Auth extends Zend_Controller_Plugin_Abstract
 			$authNamespace->requestUri = substr($this->_request->getRequestUri(),
 				strlen(Zend_Controller_Front::getInstance()->getBaseUrl()));
 			$__timeout = (Zend_Registry::getInstance()->configuration->resources->session->timeout->inactive);
-    		$__remember = (Zend_Registry::getInstance()->configuration->resources->session->timeout->remember_me_seconds);
-	        if ($authNamespace->rememberme == 1) {
-	        	$authNamespace->setExpirationSeconds($__remember);
-	        } else {
-	        	$authNamespace->setExpirationSeconds($__timeout);
-	        }
+			$__remember = (Zend_Registry::getInstance()->configuration->resources->session->timeout->remember_me_seconds);
+			if ($authNamespace->rememberme == 1) {
+				$authNamespace->setExpirationSeconds($__remember);
+			} else {
+				$authNamespace->setExpirationSeconds($__timeout);
+			}
 		}
 
 	}

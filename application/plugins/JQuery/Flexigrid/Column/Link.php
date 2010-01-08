@@ -56,42 +56,42 @@ class Plugin_JQuery_Flexigrid_Column_Link extends Plugin_JQuery_Flexigrid_Column
 	}
 	
 	
-    /**
-     * Converte um array associativo para string de atributos de tags.
-     *
-     * @param array $attribs Array a ser convertido.
-     *
-     * @return string The XHTML for the attributes.
-     */
-    protected function _htmlAttribs($attribs)
-    {
-        $xhtml = '';
-        $view = $this->getView();
-        foreach ((array) $attribs as $key => $val) {
-            $key = $view->escape($key);
+	/**
+	 * Converte um array associativo para string de atributos de tags.
+	 *
+	 * @param array $attribs Array a ser convertido.
+	 *
+	 * @return string The XHTML for the attributes.
+	 */
+	protected function _htmlAttribs($attribs)
+	{
+		$xhtml = '';
+		$view = $this->getView();
+		foreach ((array) $attribs as $key => $val) {
+			$key = $view->escape($key);
 
-            if (('on' == substr($key, 0, 2)) || ('constraints' == $key)) {
-                // Don't escape event attributes; _do_ substitute double quotes with singles
-                if (!is_scalar($val)) {
-                    // non-scalar data should be cast to JSON first
-                    $val = Zend_Json::encode($val);
-                }
-                $val = preg_replace('/"([^"]*)":/', '$1:', $val);
-            } else {
-                if (is_array($val)) {
-                    $val = implode(' ', $val);
-                }
-                $val = $view->escape($val);
-            }
+			if (('on' == substr($key, 0, 2)) || ('constraints' == $key)) {
+				// Don't escape event attributes; _do_ substitute double quotes with singles
+				if (!is_scalar($val)) {
+					// non-scalar data should be cast to JSON first
+					$val = Zend_Json::encode($val);
+				}
+				$val = preg_replace('/"([^"]*)":/', '$1:', $val);
+			} else {
+				if (is_array($val)) {
+					$val = implode(' ', $val);
+				}
+				$val = $view->escape($val);
+			}
 
-            if ('id' == $key) {
-                $val = $this->_normalizeId($val);
-            }
+			if ('id' == $key) {
+				$val = $this->_normalizeId($val);
+			}
 
-            $xhtml .= " $key=\"$val\"";
-        }
-        return $xhtml;
-    }
+			$xhtml .= " $key=\"$val\"";
+		}
+		return $xhtml;
+	}
 	
 	/**
 	 * @see Plugin_JQuery_Column_Abstract::render
