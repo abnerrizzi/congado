@@ -33,23 +33,17 @@ class Plugin_Validate_CnpjCpf extends Zend_Validate_Abstract
 	public function isValid($value)
 	{
 
-		if (strlen($value) > self::NUM_DIGITOS_CPF) {
-			if ($this->isCnpf($value)) {
-				return true;
-			} elseif ($this->isCpf($value)) {
-				return true;
-			} else {
-				return false;
-			}
+		if (strlen(preg_replace("/[.-]/","",$value)) > self::NUM_DIGITOS_CPF) {
+			return $this->isCnpj(preg_replace("/[.-]/","",$value));
 		} else {
-			if ($this->isCpf($value)) {
-				return true;
-			} elseif ($this->isCnpf($value)) {
-				return true;
-			} else {
-				return false;
-			}
+			return $this->isCpf(preg_replace("/[.-]/","",$value));
 		}
+		$this->_setValue($value);
+		$this->_error(self::INVALID_FORMAT);
+		$this->_messageTemplates = array(
+			self::INVALID_FORMAT => "O valor informado '%value%' não é válido"
+		);
+		return false;
 //		if ($this->isCnpf($value)) {
 //			return true;
 //		} elseif ($this->isCpf($value)) {
