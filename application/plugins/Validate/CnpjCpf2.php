@@ -11,62 +11,62 @@
 class Plugin_Validate_CnpjCpf2 extends Zend_Validate_Abstract
 {
 
-    const NUM_DIGITOS_CPF  = 11;
-    const NUM_DIGITOS_CNPJ = 14;
-    const NUM_DGT_CNPJ_BASE = 8;
+	const NUM_DIGITOS_CPF  = 11;
+	const NUM_DIGITOS_CNPJ = 14;
+	const NUM_DGT_CNPJ_BASE = 8;
 
 	const INVALID_DIGITS = 'i_number';
 	const INVALID_FORMAT = 'i_format';
 
 
-    private $_skipFormat  = true;
-    private $_patternCpf  = '/(\d{2})\.(\d{3})\.(\d{3})\/(\d{4})-(\d{2})/i';
-    private $_patternCnpj = '/(\d{2})\.(\d{3})\.(\d{3})\/(\d{4})-(\d{2})/i';
+	private $_skipFormat  = true;
+	private $_patternCpf  = '/(\d{2})\.(\d{3})\.(\d{3})\/(\d{4})-(\d{2})/i';
+	private $_patternCnpj = '/(\d{2})\.(\d{3})\.(\d{3})\/(\d{4})-(\d{2})/i';
 
-    protected $_messageTemplates = array(
-    );
+	protected $_messageTemplates = array(
+	);
 
-    public function __construct($skipFormat = true) {
-        $this->_skipFormat = $skipFormat;
+	public function __construct($skipFormat = true) {
+		$this->_skipFormat = $skipFormat;
 	}
 
-    public function isValid($value)
-    {
+	public function isValid($value)
+	{
 
-        if ($this->isCnpf($value)) {
-	        return true;
-	    } elseif ($this->isCpf($value)) {
-	        return true;
-	    } else {
-	        $this->_setValue($value);
-	        $this->_error(self::INVALID_FORMAT);
-		    $this->_messageTemplates = array(
-                self::INVALID_FORMAT => "O valor informado '%value%' não é válido"
-            );
-            return false;
-	    }
+		if ($this->isCnpf($value)) {
+			return true;
+		} elseif ($this->isCpf($value)) {
+			return true;
+		} else {
+			$this->_setValue($value);
+			$this->_error(self::INVALID_FORMAT);
+			$this->_messageTemplates = array(
+				self::INVALID_FORMAT => "O valor informado '%value%' não é válido"
+			);
+			return false;
+		}
 
-    }
+	}
 
 	protected function isCpf($value)
 	{
-	    $this->_messageTemplates = array(
-    	    self::INVALID_DIGITS => "O CPF '%value%' não é válido",
-            self::INVALID_FORMAT => "O formato do CPF '%value%' não é válido"
-	    );
-	    
+		$this->_messageTemplates = array(
+			self::INVALID_DIGITS => "O CPF '%value%' não é válido",
+			self::INVALID_FORMAT => "O formato do CPF '%value%' não é válido"
+		);
+		
 		$this->_setValue ( $value );
 		if (!$this->_skipFormat && preg_match($this->_patternCpf, $value) == false) {
 			$this->_error(self::INVALID_FORMAT);
 			return false;
 		} elseif (strlen($value) < 9) {
-		    $this->_error(self::INVALID_FORMAT);
-		    $this->_messageTemplates = array(
-                self::INVALID_FORMAT => "O valor informado '%value%' não é válido"
-            );
-            return false;
+			$this->_error(self::INVALID_FORMAT);
+			$this->_messageTemplates = array(
+				self::INVALID_FORMAT => "O valor informado '%value%' não é válido"
+			);
+			return false;
 		} elseif (intval($value) < 1) {
-		    $this->_error(self::INVALID_FORMAT);
+			$this->_error(self::INVALID_FORMAT);
 			return false;
 		}
 
@@ -96,72 +96,72 @@ class Plugin_Validate_CnpjCpf2 extends Zend_Validate_Abstract
 		return true;
 	}
 
-    protected function isCnpf($value)
+	protected function isCnpf($value)
 	{
 
-        $soma1 = ($value[0] * 5) + ($value[1] * 4) + ($value[3] * 3) + ($value[4] * 2) + 
-    ($value[5] * 9) + 
-    ($value[7] * 8) + 
-    ($value[8] * 7) + 
-    ($value[9] * 6) + 
-    ($value[11] * 5) + 
-    ($value[12] * 4) + 
-    ($value[13] * 3) + 
-    ($value[14] * 2); 
-    die($soma1);
-	    
+		$soma1 = ($value[0] * 5) + ($value[1] * 4) + ($value[3] * 3) + ($value[4] * 2) + 
+	($value[5] * 9) + 
+	($value[7] * 8) + 
+	($value[8] * 7) + 
+	($value[9] * 6) + 
+	($value[11] * 5) + 
+	($value[12] * 4) + 
+	($value[13] * 3) + 
+	($value[14] * 2); 
+	die($soma1);
+		
 
 /*
 function validaCNPJ($cnpj) { 
-    if (strlen($cnpj) <> 18) return 0; 
-    $soma1 = ($cnpj[0] * 5) + 
+	if (strlen($cnpj) <> 18) return 0; 
+	$soma1 = ($cnpj[0] * 5) + 
 
-    ($cnpj[1] * 4) + 
-    ($cnpj[3] * 3) + 
-    ($cnpj[4] * 2) + 
-    ($cnpj[5] * 9) + 
-    ($cnpj[7] * 8) + 
-    ($cnpj[8] * 7) + 
-    ($cnpj[9] * 6) + 
-    ($cnpj[11] * 5) + 
-    ($cnpj[12] * 4) + 
-    ($cnpj[13] * 3) + 
-    ($cnpj[14] * 2); 
-    $resto = $soma1 % 11; 
-    $digito1 = $resto < 2 ? 0 : 11 - $resto; 
-    $soma2 = ($cnpj[0] * 6) + 
+	($cnpj[1] * 4) + 
+	($cnpj[3] * 3) + 
+	($cnpj[4] * 2) + 
+	($cnpj[5] * 9) + 
+	($cnpj[7] * 8) + 
+	($cnpj[8] * 7) + 
+	($cnpj[9] * 6) + 
+	($cnpj[11] * 5) + 
+	($cnpj[12] * 4) + 
+	($cnpj[13] * 3) + 
+	($cnpj[14] * 2); 
+	$resto = $soma1 % 11; 
+	$digito1 = $resto < 2 ? 0 : 11 - $resto; 
+	$soma2 = ($cnpj[0] * 6) + 
 
-    ($cnpj[1] * 5) + 
-    ($cnpj[3] * 4) + 
-    ($cnpj[4] * 3) + 
-    ($cnpj[5] * 2) + 
-    ($cnpj[7] * 9) + 
-    ($cnpj[8] * 8) + 
-    ($cnpj[9] * 7) + 
-    ($cnpj[11] * 6) + 
-    ($cnpj[12] * 5) + 
-    ($cnpj[13] * 4) + 
-    ($cnpj[14] * 3) + 
-    ($cnpj[16] * 2); 
-    $resto = $soma2 % 11; 
-    $digito2 = $resto < 2 ? 0 : 11 - $resto; 
-    return (($cnpj[16] == $digito1) && ($cnpj[17] == $digito2)); 
+	($cnpj[1] * 5) + 
+	($cnpj[3] * 4) + 
+	($cnpj[4] * 3) + 
+	($cnpj[5] * 2) + 
+	($cnpj[7] * 9) + 
+	($cnpj[8] * 8) + 
+	($cnpj[9] * 7) + 
+	($cnpj[11] * 6) + 
+	($cnpj[12] * 5) + 
+	($cnpj[13] * 4) + 
+	($cnpj[14] * 3) + 
+	($cnpj[16] * 2); 
+	$resto = $soma2 % 11; 
+	$digito2 = $resto < 2 ? 0 : 11 - $resto; 
+	return (($cnpj[16] == $digito1) && ($cnpj[17] == $digito2)); 
 } 
 */
 
 
 
-	    $this->_messageTemplates = array(
-    	    self::INVALID_DIGITS => "O CNPJ '%value%' não é válido",
-            self::INVALID_FORMAT => "O formato do CNPJ '%value%' não é válido"
-	    );
+		$this->_messageTemplates = array(
+			self::INVALID_DIGITS => "O CNPJ '%value%' não é válido",
+			self::INVALID_FORMAT => "O formato do CNPJ '%value%' não é válido"
+		);
 		$this->_setValue ( $value );
 		if (!$this->_skipFormat && preg_match($this->_patternCnpj, $value) == false) {
 			$this->_error(self::INVALID_FORMAT);
 			return false;
 		} elseif (strlen($value) < 14) {
-		    $value = str_repeat('0', (self::NUM_DIGITOS_CNPJ - strlen($value)));
-		    $this->_setValue ( $value );
+			$value = str_repeat('0', (self::NUM_DIGITOS_CNPJ - strlen($value)));
+			$this->_setValue ( $value );
 		}
 		$digits = preg_replace('/[^\d]+/i', '', $value);
 		$firstSum = 0;

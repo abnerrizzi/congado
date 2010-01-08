@@ -15,9 +15,9 @@ class Plugin_Validate_Cnpj extends Zend_Validate_Abstract
 	const INVALID_DIGITS = 'i_number';
 	const INVALID_FORMAT = 'i_format';
 	protected $_messageTemplates = array (
-        self::INVALID_DIGITS => "O CNPJ '%value%' não é válido",
-        self::INVALID_FORMAT => "O formato do CNPJ '%value%' não é válido"
-    );
+		self::INVALID_DIGITS => "O CNPJ '%value%' não é válido",
+		self::INVALID_FORMAT => "O formato do CNPJ '%value%' não é válido"
+	);
 	private $_pattern = '/(\d{2})\.(\d{3})\.(\d{3})\/(\d{4})-(\d{2})/i';
 	private $_skipFormat = false;
 

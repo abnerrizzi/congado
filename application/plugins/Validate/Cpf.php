@@ -11,16 +11,16 @@
 class Plugin_Validate_Cpf extends Zend_Validate_Abstract
 {
 
-    const INVALID_DIGITS = 'i_number';
-    const INVALID_FORMAT = 'i_format';
+	const INVALID_DIGITS = 'i_number';
+	const INVALID_FORMAT = 'i_format';
 
-    protected $_messageTemplates = array(
-        self::INVALID_DIGITS => "O cpf '%value%' não é válido",
-        self::INVALID_FORMAT => "O formato de cpf '%value%' não é válido",
-    );
+	protected $_messageTemplates = array(
+		self::INVALID_DIGITS => "O cpf '%value%' não é válido",
+		self::INVALID_FORMAT => "O formato de cpf '%value%' não é válido",
+	);
 
-    private $_pattern = '/(\d{3})\.(\d{3})\.(\d{3})-(\d{2})/i';
-    private $_skipFormat = false;
+	private $_pattern = '/(\d{3})\.(\d{3})\.(\d{3})-(\d{2})/i';
+	private $_skipFormat = false;
 
 	/**
 	 * Inicializa a instância do validador
@@ -28,7 +28,7 @@ class Plugin_Validate_Cpf extends Zend_Validate_Abstract
 	 * @param bool $skipFormat fazer validação no formato?
 	 */
 	public function __construct($skipFormat = false) {
-        $this->_skipFormat = $skipFormat;
+		$this->_skipFormat = $skipFormat;
 	}
 
 
