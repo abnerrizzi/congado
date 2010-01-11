@@ -9,13 +9,26 @@ $(document).ready(function() {
 				method : 'post'
 			},
 			// styles: cream, dark, green, light, red, blue
-			style : 'light',
+			style : {
+					name: 'cream',
+					border: {
+						width: 2,
+						radius: 4
+					},
+					tip: 'topMiddle'
+				},
 			hide : {
 				when : {
 					event : 'inactive'
 				},
 				delay : 2000
-			}
+			},
+			position: {
+				corner: {
+					target: 'bottomMiddle',
+					tooltip: 'topMiddle'
+				}
+			},
 		});
 	});
 });
