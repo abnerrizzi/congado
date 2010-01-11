@@ -1,17 +1,3 @@
-<?php
-$this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/menu.js')
-	->appendFile($this->baseUrl() . '/scripts/jquery-1.3.2.js')
-	->appendScript('var baseUrl = "' . $this->baseUrl() . '";')
-	;
-
-$this->headLink()
-	->appendStylesheet($this->baseUrl() . '/styles/menu.css');
-
-//echo $this->FormEditGroup($this->form, $this->baseUrl(), $this->elements);
-?>
-
-
 <br/><br/>
 <form name="racas" id="racas" action="<?=$this->baseUrl . $this->form->getAction();?>" method="post">
  

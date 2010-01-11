@@ -1,15 +1,11 @@
 <?php
-$this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/menu.js');
-
-$this->headLink()
-	->appendStylesheet($this->baseUrl() . '/styles/menu.css');
 
 if ($this->error) {
     $bgcolor = '#ffdddd';
 } else {
     $bgcolor = '#ddffdd';
 }
+
 ?>
 <br/><br/>
 <center>

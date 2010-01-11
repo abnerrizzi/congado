@@ -1,15 +1,8 @@
 <?php
+
 $this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/menu.js')
-	->appendFile($this->baseUrl() . '/scripts/jquery-1.3.2.js')
-	->appendFile($this->baseUrl() . '/scripts/library/acompanhamento.js')
-	->appendScript('var baseUrl = "' . $this->baseUrl() . '";')
-	;
+	->appendFile($this->baseUrl() . '/scripts/library/acompanhamento.js');
 
-$this->headLink()
-	->appendStylesheet($this->baseUrl() . '/styles/menu.css');
-
-//echo $this->FormEditGroup($this->form, $this->baseUrl(), $this->elements);
 ?>
 
 
