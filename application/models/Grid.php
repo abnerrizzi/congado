@@ -19,9 +19,10 @@ class Model_Grid
 	private $edit		= false;
 	private $delete		= false;
 	private $add		= false;
+	private $search		= false;
+	private $genealogia	= false;
 	private $orderby	= false;
 	private $order		= false;
-	private $genealogia	= false;
 
 	public function __construct($name)
 	{
@@ -103,6 +104,18 @@ class Model_Grid
 		} else {
 			$this->genealogia = $genealogia;
 		}
+	}
+
+	public function setSearch($search)
+	{
+		$this->search = $search;
+	}
+
+
+
+	public function getSearch()
+	{
+		return $this->search;
 	}
 
 

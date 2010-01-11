@@ -27,18 +27,18 @@ class Zend_View_Helper_Grid
 
 	<tr>
 	  <td align="left"><h3>'.$grid->getName().'</h3></td>
-	  <td align="right"><h4>';
+	  <td align="right" width="1">';
 		if ($grid->getAdd()) {
 			$add = $grid->getAdd();
 			$addModule = $add['module'];
 			$addAction = $add['action'];
-			$output .= '<a href="'.$grid->getBaseUrl().'/'.$addModule.'/'.$addAction.'"><img src="'.$grid->getBaseUrl().'/images/button/add.gif" alt=""/></a>'."\n";
+			$output .= '<a id="add" href="'.$grid->getBaseUrl().'/'.$addModule.'/'.$addAction.'"><img src="'.$grid->getBaseUrl().'/images/button/add.gif" alt="" height="32" width="66"/></a>'."\n";
 		}
-$output .= '</h4></td>
+$output .= '</td>
 	</tr>
 
   <tr>
-	<td align="center" colspan="2">
+	<td align="center" colspan="3">
 	  <table border="0" align="center" cellpadding="0" cellspacing="0" style="border-right: 1px solid #CCCCCC; border-left: 1px solid #919191;" bgcolor="#F7F6F1">
 
 <!-- START OF TABLE HEAD -->

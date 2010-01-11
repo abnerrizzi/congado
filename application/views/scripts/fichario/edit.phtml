@@ -1,7 +1,6 @@
 <?php
+
 $this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/menu.js')
-	->appendFile($this->baseUrl() . '/scripts/jquery-1.3.2.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.center.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.dimensions.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.core.js')
@@ -9,11 +8,9 @@ $this->headScript()
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.tabs.js')
 	->appendFile($this->baseUrl() . '/scripts/library/fichario.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
-	->appendScript('var baseUrl = "' . $this->baseUrl() . '";')
 	;
 
 $this->headLink()
-	->appendStylesheet($this->baseUrl() . '/styles/menu.css')
 	->appendStylesheet($this->baseUrl() . '/styles/flexigrid.css')
 	->appendStylesheet($this->baseUrl() . '/styles/jquery-ui-1.7.2.custom.css')
 	;

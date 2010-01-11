@@ -67,6 +67,10 @@ class FicharioController extends Zend_Controller_Action
 			'module'	=> 'fichario',
 			'action'	=> 'add',
 		));
+		$gridModel->setSearch(array(
+			'module'	=> 'fichario',
+			'action'	=> 'search',
+		), true);
 		$gridModel->setGenealogia(array(
 			'module'	=> 'fichario',
 			'action'	=> 'genealogia',

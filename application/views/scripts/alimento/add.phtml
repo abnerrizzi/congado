@@ -1,9 +1,5 @@
 <?php
-$this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/menu.js');
-
-$this->headLink()
-	->appendStylesheet($this->baseUrl() . '/styles/menu.css');
 
 echo $this->FormEdit($this->form, $this->baseUrl(), array('cod', 'dsc'));
+
 ?>

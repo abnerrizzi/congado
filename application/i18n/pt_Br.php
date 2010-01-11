@@ -72,10 +72,14 @@ $portugues['notAlpha'] = "'%value%' não possuí apenas letras";
 //in array
 $portugues['notInArray'] = "'%value%' não foi encontrado na lista";
 
-//int
+/*
+ * Inteiro
+ */
 $portugues['notInt'] = "'%value%' não parece ser um inteiro";
 
-//ip
+/*
+ * IP
+ */
 $portugues['notIpAddress'] = "'%value%' não parece ser um endereço ip válido";
 
 //lessthan
@@ -84,16 +88,22 @@ $portugues['notLessThan'] = "'%value%' não é menor que '%max%'";
 //notempty
 $portugues['isEmpty'] = "Campo vazio, mas um valor diferente de vazio é esperado";
 
-//regex
+/*
+ * Regex
+ */
 $portugues['regexNotMatch'] = "'%value%' não foi validado na expressão '%pattern%'";
 
-//stringlength
+/*
+ * String Length
+ */
 $portugues['stringLengthTooShort'] = "'%value%' é menor que %min% (tamanho mínimo desse campo)";
 $portugues['stringLengthTooLong'] = "'%value%' é maior que  %max% (tamanho maximo desse campo)";
 
 //$portugues[''] = "";
 
-//db
+/*
+ * DataBase
+ */
 $portugues['noRecordFound'] = "Nenhum registro contendo '%value%' foi encontrado";  
 $portugues['recordFound'] = "Um registro contendo '%value%' foi encontrado";
 

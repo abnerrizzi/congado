@@ -91,6 +91,10 @@
 	background-color: #ffffaa;
 }
 
+#grid td {
+	vertical-align: middle;
+}
+
 fieldset {
 	width: 500px;
 }
