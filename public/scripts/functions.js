@@ -91,4 +91,8 @@ $(document).ready(function() {
 			return false;
 		}
 	});
+	// Caso exista o campo codigo, o focus eh setado automaticamente.
+	if ($("#cod").length > 0) {
+		$("#cod").focus();
+	}
 });
