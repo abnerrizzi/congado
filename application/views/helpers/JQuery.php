@@ -4,8 +4,8 @@
  * Gera o script que sera executado no carregamento da página
  *
  * @author Tales Augusto <tales.augusto.santos@gmail.com>
- * 
  * @filesource
+ * @version $Id$
  * 
  */
 class Zend_View_Helper_JQuery extends Zend_View_Helper_Abstract

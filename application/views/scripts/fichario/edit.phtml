@@ -1,12 +1,13 @@
 <?php
 
 $this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.center.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.dimensions.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.center.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.dimensions.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.core.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.tabs.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.draggable.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.dialog.js')
 	->appendFile($this->baseUrl() . '/scripts/library/fichario.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
 	;
@@ -419,14 +420,7 @@ $this->headLink()
 </table>
 </form>
 
-<script type="text/javascript">
-$("#tabs").tabs();
-</script>
-
-<div id="filter">
-  <div style="right: 0px; position: absolute; z-index: 8000; font-size: 11px;">
-    <a title="Fechar" class="" href="javascript:void(0);" onclick="hide_filter();">Fechar X</a>
-  </div>
-  <div id="filter-grid"></div>
+<div id="dlg" style="display: none;">
+  <div id="dlg-grid" style="padding: 0px; margin: 0px"></div>
 </div>
-<div id="filter-bg"></div>
+
