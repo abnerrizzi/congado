@@ -189,7 +189,7 @@ class Model_Db_Fichario extends Model_Db
 			'pai_id'			=> $post['pai_id'],
 			'mae_id'			=> $post['mae_id'],
 			'receptora_id'		=> $post['receptora_id'],
-			'obs'				=> utf8_encode($post['obs']),
+			'obs'				=> $post['obs'],
 		);
 
 		foreach ($posts as $key => $val) {
