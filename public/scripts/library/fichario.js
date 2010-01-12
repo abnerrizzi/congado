@@ -1,4 +1,9 @@
 $(document).ready(function() {
+
+	$('#dlg').bind('dialogclose', function(event, ui) {
+		hide_filter();
+	});
+
 	$("#criador_cod, #pelagem_cod, #raca_cod, #rebanho_cod, #categoria_cod, #local_cod, #grausangue_cod").change(changeSelect);
 	$("#pai_cod, #mae_cod, #receptora_cod").change(changeSelectAnimal);
 	$("#grausangue_manual").click(changeGrauSangue);
@@ -6,6 +11,13 @@ $(document).ready(function() {
 	$("#fichario:form").submit(function() { toggleFields(false); });
 	toggleFields(true);
 	changeGrauSangue();
+
+	// if fazenda_id changed, local fields be empty
+	$("#fazenda_id").change(function(){
+		$("#local_id").val('');
+		$("#local").val('');
+		$("#local_cod").val('');
+	});
 
 	$("#dt_nascimento").datepicker({
 
@@ -37,6 +49,8 @@ $(document).ready(function() {
 	        }
 	});
 
+	$("#tabs").tabs();
+
 });
 
 /*
@@ -64,7 +78,7 @@ function toggleFields(opt) {
 		$(objs[i]).attr('readonly', opt);
 	}
 
-	if ($("#fichario").attr('action').split('/')[4] == 'add') {
+	if ($("#fichario").length > 0 && $("#fichario").attr('action').split('/')[4] == 'add') {
 		$("#fazenda_id").attr('disabled', false);
 		$("#fazenda_id").attr('readonly', false);
 	}
@@ -203,11 +217,11 @@ function changeField(row, input) {
 	$(__fId).val(row.attr("id").substr(3));
 	$(__fCod).val(__cod);
 	$(__fSel).val(__dsc);
-	$("#filter, #filter-bg").fadeOut(200);
+	$("#dlg").dialog('close');
 	setTimeout(function(){
 		$(".flexigrid").remove();
 	}, 200);
-	$("#filter").append('<div id="filter-grid"></div>');
+	$("#dlg").append('<div id="dlg-grid"></div>');
 	return false;
 }
 
@@ -225,26 +239,20 @@ function changeGrauSangue() {
 }
 
 function hide_filter() {
-	$("#filter").fadeOut(200);
-	$("#filter-bg").fadeOut(175);
+	$("#dlg").fadeOut(200);
 	setTimeout(function(){
 		$(".flexigrid").remove();
 	}, 200);
-	$("#filter").append('<div id="filter-grid"></div>');
+	$("#dlg-grid").dialog( 'destroy' );
+	$("#dlg").append('<div id="dlg-grid"></div>');
 }
-
-//jQuery.fn.centerx = function () {
-//    this.css("position","absolute");
-//    this.css("top", ( $(window).height() - this.height() ) / 2+$(window).scrollTop() + "px");
-//    this.css("left", ( $(window).width() - this.width() ) / 2+$(window).scrollLeft() + "px");
-//    return this;
-//};
 
 function showfilter_criador(url, input)
 {
-	$("#filter-bg").show();
-	if ($("#filter").length) {
-		$("#filter-grid").flexigrid(
+	createDialog('Criador');
+
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
 		{
 			url: url,
 			dataType: 'json',
@@ -272,30 +280,27 @@ function showfilter_criador(url, input)
 			sortname: "cod",
 			sortorder: "asc",
 			usepager: true,
-			title: 'Criador',
+			title: false,
 			useRp: true,
 			rp: 10,
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 285,
+			height: 240,
 			onSelect: function(row) {
 				changeField(row, input);
 			}
 		});
-		$("#filter").fadeIn(200);
+		$("#dlg").fadeIn(200);
 	}
-	$("#filter").centerx();
-	$(window).bind('resize', function() {$("#filter").centerx();});
-	$(window).bind('scroll', function() {$("#filter").centerx();});
 }
 
 
 function showfilter_pelagem(url, input)
 {
-	$("#filter-bg").show();
-	if ($("#filter").length) {
-		$("#filter-grid").flexigrid(
+	createDialog('Pelagem');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
 		{
 			url: url,
 			dataType: 'json',
@@ -323,29 +328,26 @@ function showfilter_pelagem(url, input)
 			sortname: "cod",
 			sortorder: "asc",
 			usepager: true,
-			title: 'Pelagem',
+			title: false,
 			useRp: true,
 			rp: 10,
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 285,
+			height: 240,
 			onSelect: function(row) {
 				changeField(row, input);
 			}
 		});
-		$("#filter").fadeIn(200);
+		$("#dlg").fadeIn(200);
 	}
-	$("#filter").centerx();
-	$(window).bind('resize', function() {$("#filter").centerx();});
-	$(window).bind('scroll', function() {$("#filter").centerx();});
 }
 
 function showfilter_raca(url, input)
 {
-	$("#filter-bg").show();
-	if ($("#filter").length) {
-		$("#filter-grid").flexigrid(
+	createDialog('Raça');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
 		{
 			url: url,
 			dataType: 'json',
@@ -373,29 +375,26 @@ function showfilter_raca(url, input)
 			sortname: "cod",
 			sortorder: "asc",
 			usepager: true,
-			title: 'Raça',
+			title: false,
 			useRp: true,
 			rp: 10,
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 285,
+			height: 240,
 			onSelect: function(row) {
 				changeField(row, input);
 			}
 		});
-		$("#filter").fadeIn(200);
+		$("#dlg").fadeIn(200);
 	}
-	$("#filter").centerx();
-	$(window).bind('resize', function() {$("#filter").centerx();});
-	$(window).bind('scroll', function() {$("#filter").centerx();});
 }
 
 function showfilter_rebanho(url, input)
 {
-	$("#filter-bg").show();
-	if ($("#filter").length) {
-		$("#filter-grid").flexigrid(
+	createDialog('Rebanho');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
 		{
 			url: url,
 			dataType: 'json',
@@ -423,29 +422,26 @@ function showfilter_rebanho(url, input)
 			sortname: "cod",
 			sortorder: "asc",
 			usepager: true,
-			title: 'Raça',
+			title: false,
 			useRp: true,
 			rp: 10,
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 285,
+			height: 240,
 			onSelect: function(row) {
 				changeField(row, input);
 			}
 		});
-		$("#filter").fadeIn(200);
+		$("#dlg").fadeIn(200);
 	}
-	$("#filter").centerx();
-	$(window).bind('resize', function() {$("#filter").centerx();});
-	$(window).bind('scroll', function() {$("#filter").centerx();});
 }
 
 function showfilter_categoria(url, input)
 {
-	$("#filter-bg").show();
-	if ($("#filter").length) {
-		$("#filter-grid").flexigrid(
+	createDialog('Categoria');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
 		{
 			url: url,
 			dataType: 'json',
@@ -473,22 +469,19 @@ function showfilter_categoria(url, input)
 			sortname: "cod",
 			sortorder: "asc",
 			usepager: true,
-			title: 'Categoria',
+			title: false,
 			useRp: true,
 			rp: 10,
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 285,
+			height: 240,
 			onSelect: function(row) {
 				changeField(row, input);
 			}
 		});
-		$("#filter").fadeIn(200);
+		$("#dlg").fadeIn(200);
 	}
-	$("#filter").centerx();
-	$(window).bind('resize', function() {$("#filter").centerx();});
-	$(window).bind('scroll', function() {$("#filter").centerx();});
 }
 
 function showfilter_local(url, input)
@@ -503,9 +496,9 @@ function showfilter_local(url, input)
 		return false;
 	}
 
-	$("#filter-bg").show();
-	if ($("#filter").length) {
-		$("#filter-grid").flexigrid(
+	createDialog('Local');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
 		{
 			url: url,
 			dataType: 'json',
@@ -539,13 +532,13 @@ function showfilter_local(url, input)
 			sortname: "local",
 			sortorder: "asc",
 			usepager: true,
-			title: 'Local',
+			title: false,
 			useRp: true,
 			rp: 10,
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 285,
+			height: 240,
 			onSelect: function(row) {
 				changeField(row, input);
 			},
@@ -553,19 +546,16 @@ function showfilter_local(url, input)
 			          {name: 'fazenda_id', value: $("#fazenda_id").val()}
 			        ]
 		});
-		$("#filter").fadeIn(200);
+		$("#dlg").fadeIn(200);
 	}
-	$("#filter").centerx();
-	$(window).bind('resize', function() {$("#filter").centerx();});
-	$(window).bind('scroll', function() {$("#filter").centerx();});
 }
 
 function showfilter_grausangue(url, input)
 {
 
-	$("#filter-bg").show();
-	if ($("#filter").length) {
-		$("#filter-grid").flexigrid(
+	createDialog('Grau Sangue');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
 		{
 			url: url,
 			dataType: 'json',
@@ -593,13 +583,13 @@ function showfilter_grausangue(url, input)
 			sortname: "cod",
 			sortorder: "asc",
 			usepager: true,
-			title: 'Grau Sangue',
+			title: false,
 			useRp: true,
 			rp: 10,
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 285,
+			height: 240,
 			onSelect: function(row) {
 				changeField(row, input);
 			},
@@ -607,18 +597,15 @@ function showfilter_grausangue(url, input)
 			          {name: 'fazenda_id', value: $("#fazenda_id").val()}
 			        ]
 		});
-		$("#filter").fadeIn(200);
+		$("#dlg").fadeIn(200);
 	}
-	$("#filter").centerx();
-	$(window).bind('resize', function() {$("#filter").centerx();});
-	$(window).bind('scroll', function() {$("#filter").centerx();});
 }
 
-function showfilter_animal(url, input)
+function showfilter_animal_OLD(url, input)
 {
 
 	$("#filter-bg").show();
-	if ($("#filter").length) {
+	if ($("#dlg").length) {
 		$("#filter-grid").flexigrid(
 		{
 			url: url,
@@ -679,14 +666,113 @@ function showfilter_animal(url, input)
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 285,
+			height: 240,
 			onSelect: function(row) {
 				changeField(row, input);
 			}
 		});
-		$("#filter").fadeIn(200);
+		$("#dlg").fadeIn(200);
 	}
-	$("#filter").centerx();
-	$(window).bind('resize', function() {$("#filter").centerx();});
-	$(window).bind('scroll', function() {$("#filter").centerx();});
+	$("#dlg").centerx();
+	$(window).bind('resize', function() {$("#dlg").centerx();});
+	$(window).bind('scroll', function() {$("#dlg").centerx();});
+}
+
+
+
+
+function showfilter_animal(url, input)
+{
+
+	createDialog('Animal');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
+		{
+			url: url,
+			dataType: 'json',
+			colModel : [{
+					display: 'Animal',
+					name : 'cod',
+					width : 80,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Nome',
+					name : 'nome',
+					width : 160,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'RGN',
+					name : 'rgn',
+					width : 80,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'SISBOV',
+					name : 'sisbov',
+					width : 80,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Sexo',
+					name : 'sexo',
+					width : 40,
+					sortable : true,
+					align: 'left'
+				}],
+			searchitems : [{
+					display: 'Animal',
+					name : 'fichario.cod'
+				}, {
+					display: 'Nome',
+					name : 'nome',
+					isdefault: true
+				}, {
+					display: 'RGN',
+					name : 'rgn',
+					isdefault: true
+				}, {
+					display: 'SISBOV',
+					name : 'sisbov',
+					isdefault: true
+				}],
+			sortname: "nome",
+			sortorder: "asc",
+			usepager: true,
+			title: 'Animal',
+			useRp: true,
+			rp: 10,
+			showTableToggleBtn: false,
+			pagestat: 'Mostrando {from} até {to} de {total} itens',
+			width: 600,
+			height: 260,
+			onSelect: function(row) {
+				changeField(row, input);
+			}
+		});
+		$("#dlg").fadeIn(200);
+	}
+
+}
+
+function createDialog(title, w, h)
+{
+	// Setting default values
+	w = typeof(w) != 'undefined' ? w : 620;
+	h = typeof(h) != 'undefined' ? h : 400;
+
+	$("#dlg").dialog({
+		modal: true,
+		autoOpen: false,
+		title: title,
+		width: w,
+		height: h
+	});
+
+	$("#dlg").dialog('open');
+
+	// Workaround to set title forced
+	$('#ui-dialog-title-dlg').html(title);
+
 }

@@ -8,7 +8,9 @@ $(document).ready(function() {
 			{
 				modal: true,
 				draggable: true,
-				closeOnEscape: true
+				closeOnEscape: true,
+				width: 600,
+				height: 300,
 //				buttons : {
 //					"Ok" : function() {
 //						$(this).dialog("close");
