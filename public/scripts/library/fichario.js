@@ -51,6 +51,12 @@ $(document).ready(function() {
 
 	$("#tabs").tabs();
 
+	// if obs exists Dialogs appers
+	if ($('#obs').val() != '') {
+		createDialog('Animal com observação', 400, 300);
+		$('#dlg').html($('#obs').val());
+	};
+
 });
 
 /*
