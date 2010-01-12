@@ -9976,7 +9976,7 @@ CREATE TABLE `categoria` (
   `unidade` float DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cod` (`cod`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `categoria`
@@ -10032,7 +10032,7 @@ CREATE TABLE `criador` (
   KEY `fk_criador_corresp_cidades` (`corresp_cidades_id`),
   CONSTRAINT `fk_criador_cidades` FOREIGN KEY (`cidades_id`) REFERENCES `aux_cidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_criador_corresp_cidades` FOREIGN KEY (`corresp_cidades_id`) REFERENCES `aux_cidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `criador`
@@ -10204,7 +10204,8 @@ INSERT INTO `criador` (`id`,`cod`,`dsc`,`cpf_cnpj`,`rg`,`fazenda`,`cidades_id`,`
  (162,'VL','VALTUIRES LAUREANO MARQUES',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
  (163,'WB','WILMAR BENEDITO DE SÁ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
  (164,'WM','WILSOM MARQUES',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
- (165,'WX','WALDENIR XAVIER',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+ (165,'WX','WALDENIR XAVIER',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+ (166,'HP','HAILE S. G. PINHEIRO',332402134,NULL,NULL,2135,'AV. DOS ALPES, 450 - SETOR UNIÃO',2120,74313760,6232871200,NULL,NULL);
 /*!40000 ALTER TABLE `criador` ENABLE KEYS */;
 
 
@@ -10232,6 +10233,81 @@ INSERT INTO `destino` (`id`,`cod`,`dsc`) VALUES
  (3,'PR','PREVENTIVO'),
  (4,'TR','TRATAMENTO');
 /*!40000 ALTER TABLE `destino` ENABLE KEYS */;
+
+
+--
+-- Definition of table `doenca`
+--
+
+DROP TABLE IF EXISTS `doenca`;
+CREATE TABLE `doenca` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cod` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  `dsc` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `jan` tinyint(1) NOT NULL DEFAULT '0',
+  `fev` tinyint(1) NOT NULL DEFAULT '0',
+  `mar` tinyint(1) NOT NULL DEFAULT '0',
+  `abr` tinyint(1) NOT NULL DEFAULT '0',
+  `mai` tinyint(1) NOT NULL DEFAULT '0',
+  `jun` tinyint(1) NOT NULL DEFAULT '0',
+  `jul` tinyint(1) NOT NULL DEFAULT '0',
+  `ago` tinyint(1) NOT NULL DEFAULT '0',
+  `set` tinyint(1) NOT NULL DEFAULT '0',
+  `out` tinyint(1) NOT NULL DEFAULT '0',
+  `nov` tinyint(1) NOT NULL DEFAULT '0',
+  `dez` tinyint(1) NOT NULL DEFAULT '0',
+  `macho` tinyint(1) NOT NULL DEFAULT '0',
+  `femea` tinyint(1) NOT NULL DEFAULT '0',
+  `idadeInicio` int(11) DEFAULT NULL,
+  `idadeFinal` int(11) DEFAULT NULL,
+  `dia` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cod` (`cod`)
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `doenca`
+--
+
+/*!40000 ALTER TABLE `doenca` DISABLE KEYS */;
+INSERT INTO `doenca` (`id`,`cod`,`dsc`,`jan`,`fev`,`mar`,`abr`,`mai`,`jun`,`jul`,`ago`,`set`,`out`,`nov`,`dez`,`macho`,`femea`,`idadeInicio`,`idadeFinal`,`dia`) VALUES 
+ (1,'01','AFTOSA',0,0,0,0,1,0,0,0,0,0,1,0,1,1,0,200,NULL),
+ (2,'99','VACINA AFTOSA',1,1,1,1,1,1,1,1,1,1,1,1,1,1,NULL,NULL,NULL),
+ (3,'AR','AVALIAÇÃO REPRODUTIVA',0,0,0,0,0,0,0,0,0,0,0,0,0,1,NULL,NULL,NULL),
+ (4,'BR','BRUCELOSE',0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,8,NULL),
+ (5,'CA','CASQUIAMENTO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (6,'CB','CIRUGIA UMBIGO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (7,'CE','CERATO/CONJUNTIVITE',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (8,'CI','CIOSIN',0,0,0,0,0,0,0,0,0,0,0,0,0,1,NULL,NULL,NULL),
+ (9,'CJ','CASQUIAMENTO- JOAQUIM CORDEIRO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (10,'CL','CLOSTRIDIOSE',0,1,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (11,'CM','IBR/BVD/LEPTOSPIROSE',0,1,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (12,'CO','CORPO LUTEO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (13,'CP','CASQUEAMENTO PREVENTIVO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (14,'CS','CISTO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (15,'CT','CONTEUDO UTERINO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (16,'CZ','CASQUIAMENTO -- ZÉ GANCHO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (17,'DI','DIARREIA',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (18,'DS','DIARREIA DE SANGUE',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (19,'FR','FRAQUEZA',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (20,'IC','IMPLANTE PARA CIO',0,0,0,0,0,0,0,0,0,0,0,0,0,1,NULL,NULL,NULL),
+ (21,'IF','INFECÇÃO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (22,'IN','INTOXICAÇÃO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (23,'IP','INFECÇÃO PÉ',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (24,'IT','INFECÇÃO UTERINA',0,0,0,0,0,0,0,0,0,0,0,0,0,1,NULL,NULL,NULL),
+ (25,'IU','INFECÇÃO NO UMBIGO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (26,'MD','MAO DESLOCADA',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (27,'MI','MÃO INCHADA',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (28,'PC','PICADA CARCARÁ',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (29,'PE','PERNAS E REGIAO VENTRAL INCHAD',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (30,'PH','MUDANÇA PH UTERINO',0,0,0,0,0,0,0,0,0,0,0,0,0,1,NULL,NULL,NULL),
+ (31,'PI','PE INCHADO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (32,'PN','PNEUMONIA',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (33,'PO','CIRURGIA DE PROLÓPIO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (34,'RP','RETENÇÃO PLACENTA',0,0,0,0,0,0,0,0,0,0,0,0,0,1,NULL,NULL,NULL),
+ (35,'TR','TRISTEZINHA',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL),
+ (36,'UI','UMBIGO INCHADO',0,0,0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `doenca` ENABLE KEYS */;
 
 
 --
@@ -10286,64 +10362,101 @@ INSERT INTO `fazenda` (`id`,`descricao`,`proprietario`,`endereco`,`cidades_id`,`
  (1,'HAILE S. GOIAS PINHEIRO - FAZ. SANTO ANTÔNIO - NELOREHP','HAILE S. DE GOIAS PINHEIRO','RODOVIA GO-070 KM 49',2135,332402134,'','',''),
  (2,'FAZENDA SANTO ANTONIO - 3R','HAILÉ SELASSIE DE GOIAS PINHEIRO','RODOVIA GO-070 KM - 49 , ZONA RURAL',2135,332402134,'','',''),
  (3,'AGROPECUÁRIA DAS GOIABEIRAS LTDA','HAILE SELASSIE DE GOIAS PINHEIRO','AV. DOS ALPES,450-SETOR UNIAO - END. FAZ. ROD.GO070 KM50',2120,3995547000168,'IE103491384','',''),
- (4,'HAILE SELASSIE DE GOIAS PINHEIRO','PAULO ROGERIO DE CARVALHO PINHEIRO','ROD. GO-070, KM 49',2135,NULL,'','','');
+ (4,'HAILE SELASSIE DE GOIAS PINHEIRO','PAULO ROGERIO DE CARVALHO PINHEIRO','ROD. GO-070, KM 49',2135,1082569000106,'','','');
 /*!40000 ALTER TABLE `fazenda` ENABLE KEYS */;
 
 
 --
--- Definition of table `fazenda_full`
+-- Definition of table `fichario`
 --
 
-DROP TABLE IF EXISTS `fazenda_full`;
-CREATE TABLE `fazenda_full` (
+DROP TABLE IF EXISTS `fichario`;
+CREATE TABLE `fichario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `proprietario` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `endereco` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cidades_id` int(11) NOT NULL,
-  `CPF_CGC` bigint(20) DEFAULT NULL,
-  `RG` int(11) DEFAULT NULL,
-  `CodigoSISBOV` int(10) DEFAULT NULL,
-  `NIRF` int(8) DEFAULT NULL,
-  `XXX_Estado_XXX` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ControleRaca` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ControleGrSangue` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `RgdABCZ` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `CodigoNucleo` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `CodigoUSP` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `RGDRepetido` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UltimaCDC` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UltimaCDN` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UltimaTE` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UltimaCDCMN` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `CodigoAutomatico` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `CodigoLetra` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `CodigoNumero` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UltimoGrContemporaneo` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UltimaRDP` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UltimaADT` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `CampoAuxiliar` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `PesquisaAnimais` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `CodigoPardoSuico` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UltimoAnimal` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UltimaCDCPardo` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UltimaCDNPardo` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UltimaCDCTEPardo` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `CodigoProprietario` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `BalancaOnLine` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Transponder` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `PesquisaAnimaisMTVD` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `CampoTouro` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`,`cidades_id`),
-  KEY `fk_fazenda_aux_cidades` (`cidades_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `fazenda_id` int(11) NOT NULL,
+  `cod` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
+  `nome` varchar(21) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `rgn` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sisbov` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dt_nascimento` date NOT NULL,
+  `criador_id` int(11) DEFAULT NULL,
+  `pelagem_id` int(11) DEFAULT NULL,
+  `raca_id` int(11) NOT NULL,
+  `rebanho_id` int(11) NOT NULL,
+  `categoria_id` int(11) NOT NULL,
+  `local_id` int(11) DEFAULT NULL,
+  `grausangue_id` int(11) DEFAULT NULL,
+  `grausangue_manual` tinyint(4) DEFAULT NULL,
+  `sexo` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
+  `origem` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
+  `pai_id` int(11) DEFAULT NULL,
+  `mae_id` int(11) DEFAULT NULL,
+  `receptora_id` int(11) DEFAULT NULL,
+  `obs` blob,
+  PRIMARY KEY (`id`),
+  KEY `fk_fichario_categoria` (`categoria_id`),
+  KEY `fk_fichario_criador` (`criador_id`),
+  KEY `fk_fichario_fazenda` (`fazenda_id`),
+  KEY `fk_fichario_fichario_mae` (`mae_id`),
+  KEY `fk_fichario_fichario_pai` (`pai_id`),
+  KEY `fk_fichario_fichario_receptora` (`receptora_id`),
+  KEY `fk_fichario_grausangue` (`grausangue_id`),
+  KEY `fk_fichario_local` (`local_id`),
+  KEY `fk_fichario_pelagem` (`pelagem_id`),
+  KEY `fk_fichario_raca` (`raca_id`),
+  KEY `fk_fichario_rebanho` (`rebanho_id`),
+  CONSTRAINT `fk_fichario_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_fichario_criador` FOREIGN KEY (`criador_id`) REFERENCES `criador` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_fichario_fazenda` FOREIGN KEY (`fazenda_id`) REFERENCES `fazenda` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_fichario_fichario_mae` FOREIGN KEY (`mae_id`) REFERENCES `fichario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_fichario_fichario_pai` FOREIGN KEY (`pai_id`) REFERENCES `fichario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_fichario_fichario_receptora` FOREIGN KEY (`receptora_id`) REFERENCES `fichario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_fichario_grausangue` FOREIGN KEY (`grausangue_id`) REFERENCES `grausangue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_fichario_local` FOREIGN KEY (`local_id`) REFERENCES `local` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_fichario_pelagem` FOREIGN KEY (`pelagem_id`) REFERENCES `pelagem` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_fichario_raca` FOREIGN KEY (`raca_id`) REFERENCES `raca` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_fichario_rebanho` FOREIGN KEY (`rebanho_id`) REFERENCES `rebanho` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `fazenda_full`
+-- Dumping data for table `fichario`
 --
 
-/*!40000 ALTER TABLE `fazenda_full` DISABLE KEYS */;
-/*!40000 ALTER TABLE `fazenda_full` ENABLE KEYS */;
+/*!40000 ALTER TABLE `fichario` DISABLE KEYS */;
+INSERT INTO `fichario` (`id`,`fazenda_id`,`cod`,`nome`,`rgn`,`sisbov`,`dt_nascimento`,`criador_id`,`pelagem_id`,`raca_id`,`rebanho_id`,`categoria_id`,`local_id`,`grausangue_id`,`grausangue_manual`,`sexo`,`origem`,`pai_id`,`mae_id`,`receptora_id`,`obs`) VALUES 
+ (1,1,'C6912','BANGUELA',NULL,NULL,'1980-01-01',83,3,35,6,8,NULL,NULL,NULL,'F','E',NULL,NULL,NULL,NULL),
+ (2,1,'D1883','CARTOMANTE',NULL,NULL,'1980-01-01',83,3,35,6,8,NULL,NULL,NULL,'F','E',NULL,1,NULL,NULL),
+ (3,1,'R3172','DAHI','R3172',NULL,'1980-01-01',83,3,35,6,8,NULL,NULL,NULL,'F','E',NULL,2,NULL,NULL),
+ (4,1,'C23','GIM DE GARCA',NULL,NULL,'1980-01-01',83,3,35,6,15,NULL,NULL,NULL,'M','E',5,3,NULL,NULL),
+ (5,1,'9637','DUMU','9637',NULL,'1970-01-01',83,NULL,35,6,8,NULL,NULL,NULL,'M','E',NULL,NULL,NULL,NULL),
+ (6,1,'024163R',NULL,'024163R','024163','1980-01-01',166,1,17,8,21,16,3,NULL,'F','C',NULL,NULL,NULL,NULL),
+ (7,1,'024260R',NULL,'024260R','024260','1980-01-01',166,1,17,8,21,16,NULL,NULL,'F','C',NULL,NULL,NULL,NULL),
+ (8,1,'024336R',NULL,'024336R','024336','1980-01-01',166,1,17,8,18,16,3,NULL,'F','C',NULL,NULL,NULL,NULL),
+ (9,1,'C5655','CORA IMP','C5655',NULL,'1980-01-01',83,2,35,6,8,NULL,6,NULL,'F','E',NULL,NULL,NULL,NULL),
+ (10,1,'TAJ MAHAL','TAJ MAHAL I','3050',NULL,'1980-01-01',83,2,35,6,8,NULL,6,0,'M','E',NULL,9,NULL,0xC38920C387C3834F20C38020564F4C5441522E),
+ (11,1,'F1741','CHILLARA II',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,6,NULL,'F','E',NULL,NULL,NULL,NULL),
+ (12,1,'3984','RASTÃ IMP',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,6,0,'M','E',NULL,NULL,NULL,NULL),
+ (13,1,'F5353','CHALLANI PO',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,5,NULL,'F','E',NULL,NULL,NULL,NULL),
+ (14,1,'P2797','FARMANA DA SC','P2797',NULL,'1980-01-01',83,2,35,6,8,NULL,5,NULL,'F','E',12,13,NULL,NULL),
+ (15,1,'3987','KAVARDI IMP',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,6,NULL,'M','E',NULL,NULL,NULL,NULL),
+ (16,1,'J8351','FILLARA DA SC',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,6,NULL,'F','E',15,11,NULL,NULL),
+ (17,1,'7955','FAULAD DA SC',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,5,0,'M','E',21,20,NULL,NULL),
+ (18,1,'B2699','SANOBAR',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,5,NULL,'F','E',NULL,NULL,NULL,NULL),
+ (19,1,'B388','LANGRI IMP',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,6,NULL,'F','E',NULL,NULL,NULL,NULL),
+ (20,1,'B395','CHINTALADEVI IMP',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,5,NULL,'F','E',NULL,NULL,NULL,NULL),
+ (21,1,'3981','GOLIAS IMP',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,6,NULL,'M','E',NULL,NULL,NULL,NULL),
+ (22,1,'7447','CHUMMAK POI VR',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,6,NULL,'M','E',15,19,NULL,NULL),
+ (23,1,'E4668','BAETA',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,5,NULL,'F','E',NULL,NULL,NULL,NULL),
+ (24,1,'Z874','IETA','Z874',NULL,'1980-01-01',83,2,35,6,8,NULL,5,0,'F','E',15,23,NULL,NULL),
+ (25,1,'D72','TABADA POI ZEB VR',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,6,NULL,'M','E',10,16,NULL,NULL),
+ (26,1,'AO546','NIPUNAN ZEB',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,6,NULL,'F','E',17,14,NULL,NULL),
+ (27,1,'SC6683','NIPUNAN ZEB',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,6,NULL,'F','E',17,14,NULL,NULL),
+ (28,1,'AV186',NULL,NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,5,NULL,'F','E',22,24,NULL,NULL),
+ (29,1,'D5488','BHAJOL POI DA ZEB',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,6,NULL,'M','E',25,26,NULL,NULL),
+ (30,1,'ZEB8368','RUMA DA ZEB VR TE','ZEB8368',NULL,'1997-08-04',166,2,35,7,9,16,5,0,'F','N',29,32,NULL,NULL),
+ (31,1,'SC6683','EVARU DA SC','SC6683',NULL,'1980-01-01',83,2,35,6,8,NULL,5,NULL,'M','E',15,18,NULL,NULL),
+ (32,1,'CA3537','CALIFORNIA DA ZEB VR',NULL,NULL,'1980-01-01',83,2,35,6,8,NULL,NULL,0,'F','E',31,28,NULL,NULL);
+/*!40000 ALTER TABLE `fichario` ENABLE KEYS */;
 
 
 --
@@ -10357,7 +10470,7 @@ CREATE TABLE `grausangue` (
   `dsc` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cod` (`cod`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `grausangue`
@@ -10424,8 +10537,8 @@ CREATE TABLE `local` (
   `area` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`,`fazenda_id`),
   UNIQUE KEY `fazenda_id-local` (`fazenda_id`,`local`),
-  KEY `fk_local_fazenda1` (`fazenda_id`),
-  CONSTRAINT `fk_local_fazenda1` FOREIGN KEY (`fazenda_id`) REFERENCES `fazenda` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_local_fazenda` (`fazenda_id`),
+  CONSTRAINT `fk_local_fazenda` FOREIGN KEY (`fazenda_id`) REFERENCES `fazenda` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -10476,8 +10589,8 @@ CREATE TABLE `lote` (
   `dsc` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`,`fazenda_id`),
   UNIQUE KEY `fazenda_id-cod` (`fazenda_id`,`cod`),
-  KEY `fk_lote_fazenda1` (`fazenda_id`),
-  CONSTRAINT `fk_lote_fazenda1` FOREIGN KEY (`fazenda_id`) REFERENCES `fazenda` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_lote_fazenda` (`fazenda_id`),
+  CONSTRAINT `fk_lote_fazenda` FOREIGN KEY (`fazenda_id`) REFERENCES `fazenda` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -10509,6 +10622,42 @@ INSERT INTO `lote` (`id`,`fazenda_id`,`cod`,`dsc`) VALUES
  (24,2,'TS','TOURO SEMEM'),
  (25,4,'RE','RECEPTORA');
 /*!40000 ALTER TABLE `lote` ENABLE KEYS */;
+
+
+--
+-- Definition of table `matrizgr`
+--
+
+DROP TABLE IF EXISTS `matrizgr`;
+CREATE TABLE `matrizgr` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `raca_id` int(11) DEFAULT NULL,
+  `pai_id` int(11) DEFAULT NULL,
+  `mae_id` int(11) DEFAULT NULL,
+  `cria_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_matrizgr_cria` (`cria_id`),
+  KEY `fk_matrizgr_mae` (`mae_id`),
+  KEY `fk_matrizgr_pai` (`pai_id`),
+  KEY `fk_matrizgr_raca` (`raca_id`),
+  CONSTRAINT `fk_matrizgr_cria` FOREIGN KEY (`cria_id`) REFERENCES `grausangue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_matrizgr_mae` FOREIGN KEY (`mae_id`) REFERENCES `grausangue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_matrizgr_pai` FOREIGN KEY (`pai_id`) REFERENCES `grausangue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_matrizgr_raca` FOREIGN KEY (`raca_id`) REFERENCES `raca` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `matrizgr`
+--
+
+/*!40000 ALTER TABLE `matrizgr` DISABLE KEYS */;
+INSERT INTO `matrizgr` (`id`,`raca_id`,`pai_id`,`mae_id`,`cria_id`) VALUES 
+ (1,35,5,5,5),
+ (2,35,5,6,5),
+ (3,35,6,5,5),
+ (4,35,6,6,6),
+ (5,41,5,5,5);
+/*!40000 ALTER TABLE `matrizgr` ENABLE KEYS */;
 
 
 --
@@ -10584,6 +10733,34 @@ CREATE TABLE `motivolactacao` (
 
 
 --
+-- Definition of table `movimento`
+--
+
+DROP TABLE IF EXISTS `movimento`;
+CREATE TABLE `movimento` (
+  `fazenda_id` int(11) NOT NULL,
+  `fichario_id` int(11) NOT NULL,
+  `tipo` tinyint(4) NOT NULL,
+  `old` int(11) DEFAULT NULL,
+  `new` int(11) DEFAULT NULL,
+  `unidade` int(11) DEFAULT NULL,
+  `local` int(11) DEFAULT NULL,
+  PRIMARY KEY (`fazenda_id`,`fichario_id`),
+  KEY `fk_movimento_fazenda` (`fazenda_id`),
+  KEY `fk_movimento_fichario` (`fichario_id`),
+  CONSTRAINT `fk_movimento_fazenda` FOREIGN KEY (`fazenda_id`) REFERENCES `fazenda` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movimento_fichario` FOREIGN KEY (`fichario_id`) REFERENCES `fichario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='tipo de movimentacao:\n1 - CATEGORIA\n4 - LOCAL\n5 - LOTE';
+
+--
+-- Dumping data for table `movimento`
+--
+
+/*!40000 ALTER TABLE `movimento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `movimento` ENABLE KEYS */;
+
+
+--
 -- Definition of table `parto`
 --
 
@@ -10624,7 +10801,7 @@ CREATE TABLE `pelagem` (
   `dsc` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cod` (`cod`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `pelagem`
@@ -10646,36 +10823,95 @@ INSERT INTO `pelagem` (`id`,`cod`,`dsc`) VALUES
 
 DROP TABLE IF EXISTS `raca`;
 CREATE TABLE `raca` (
-  `id` int(11) NOT NULL,
-  `cod` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `dsc` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `sisbov` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `gestacao` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `gestacao_min` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `gestacao_max` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `idade_repro` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `peso_repro` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `pesof1` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `pesof2` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `pesof3` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `pesof4` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `pesof5` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `pesom1` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `pesom2` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `pesom3` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `pesom4` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `pesom5` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `compsanguinea` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `grupo` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `MANDATORY` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cod` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
+  `dsc` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `sisbov` varchar(8) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gestacao_med` int(11) NOT NULL,
+  `gestacao_min` int(11) NOT NULL,
+  `gestacao_max` int(11) NOT NULL,
+  `idade_repro` int(11) NOT NULL,
+  `peso_repro` int(11) NOT NULL,
+  `pesof1` int(11) NOT NULL,
+  `pesof2` int(11) DEFAULT NULL,
+  `pesof3` int(11) DEFAULT NULL,
+  `pesof4` int(11) DEFAULT NULL,
+  `pesof5` int(11) DEFAULT NULL,
+  `pesom1` int(11) NOT NULL,
+  `pesom2` int(11) DEFAULT NULL,
+  `pesom3` int(11) DEFAULT NULL,
+  `pesom4` int(11) DEFAULT NULL,
+  `pesom5` int(11) DEFAULT NULL,
+  `compsanguinea` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `grupo` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cod` (`cod`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `raca`
 --
 
 /*!40000 ALTER TABLE `raca` DISABLE KEYS */;
+INSERT INTO `raca` (`id`,`cod`,`dsc`,`sisbov`,`gestacao_med`,`gestacao_min`,`gestacao_max`,`idade_repro`,`peso_repro`,`pesof1`,`pesof2`,`pesof3`,`pesof4`,`pesof5`,`pesom1`,`pesom2`,`pesom3`,`pesom4`,`pesom5`,`compsanguinea`,`grupo`) VALUES 
+ (1,'AAG','ABERDEEN ANGUS',NULL,282,254,310,365,300,32,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S','B'),
+ (2,'ADA','ADAPTADA',NULL,282,254,310,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','A'),
+ (3,'AFR','AFRICANDER',NULL,292,263,321,730,300,30,NULL,NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,'S',NULL),
+ (4,'BBB','BELGIUM BLUE',NULL,282,254,310,730,330,32,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S','C'),
+ (5,'BDA','BLOND\'AQUITANE',NULL,282,254,310,550,300,32,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S','C'),
+ (6,'BLR','BELLMONT RED',NULL,282,254,310,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','A'),
+ (7,'BRA','BRAHMAN',NULL,292,263,321,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','N'),
+ (8,'BRF','BRAFORD',NULL,285,256,314,730,300,32,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S',NULL),
+ (9,'BRG','BRANGUS',NULL,285,256,314,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S',NULL),
+ (10,'BRI','BRITANICA',NULL,282,254,310,550,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','B'),
+ (11,'BRN','BORAN',NULL,285,256,314,550,300,32,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S','N'),
+ (12,'BSM','BOSMARA',NULL,285,256,314,730,300,30,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S',NULL),
+ (13,'CAN','CANCHIM',NULL,285,256,314,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S',NULL),
+ (14,'CAR','CARACU',NULL,282,254,310,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','A'),
+ (15,'CHA','CHAROLÊS',NULL,282,254,310,550,300,34,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S','C'),
+ (16,'CHI','CHIANINA',NULL,282,254,310,730,300,34,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S','C'),
+ (17,'CI','CRUZAMENTO INDUSTRIAL',NULL,285,256,314,365,300,32,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S',NULL),
+ (18,'CON','CONTINENTAL',NULL,282,254,310,550,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','C'),
+ (19,'CRU','CRUZADO',NULL,300,280,305,365,300,35,NULL,NULL,NULL,NULL,35,NULL,NULL,NULL,NULL,NULL,NULL),
+ (20,'DES','DESCONHECIDA',NULL,285,256,314,730,300,30,NULL,NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,'S',NULL),
+ (21,'EUR','EUROPÉIA',NULL,282,254,310,550,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S',NULL),
+ (22,'FLA','FLAMENGO',NULL,282,254,310,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','C'),
+ (23,'GHL','GIROLANDA',NULL,285,256,314,550,330,34,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S',NULL),
+ (24,'GIR','GIR',NULL,292,263,321,730,300,30,NULL,NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,'S','N'),
+ (25,'GLB','GELBVIEH',NULL,282,254,310,550,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','C'),
+ (26,'GUZ','GUZERÁ',NULL,292,263,321,730,300,30,NULL,NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,'S','N'),
+ (27,'HER','HEREFORD',NULL,282,254,310,365,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','B'),
+ (28,'HOL','HOLANDÊS',NULL,282,254,310,365,350,38,NULL,NULL,NULL,NULL,42,NULL,NULL,NULL,NULL,'S',NULL),
+ (29,'IND','INDUBRASIL',NULL,292,263,321,730,300,30,NULL,NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,'S','N'),
+ (30,'JER','JERSEY',NULL,282,254,310,365,350,38,NULL,NULL,NULL,NULL,42,NULL,NULL,NULL,NULL,'S',NULL),
+ (31,'LIM','LIMOSIN',NULL,282,254,310,550,330,36,NULL,NULL,NULL,NULL,38,NULL,NULL,NULL,NULL,'S','C'),
+ (32,'MAJ','MAINE-ANJOU',NULL,282,254,310,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','C'),
+ (33,'MAR','MARCHIGIANA',NULL,282,254,310,730,300,34,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S','C'),
+ (34,'MON','MONTANA',NULL,292,263,321,730,300,30,NULL,NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,'S','H'),
+ (35,'NEL','NELORE PADRÃO',NULL,292,285,312,730,300,30,NULL,NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,'S','N'),
+ (36,'NEM','NELORE MOCHO',NULL,292,263,321,730,300,30,NULL,NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,'S','N'),
+ (37,'NOR','NORMANDA',NULL,282,254,310,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S',NULL),
+ (38,'PIE','PIEMONTÊS',NULL,282,254,310,730,300,34,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S','C'),
+ (39,'PIN','PINZGAUER',NULL,282,254,310,550,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','C'),
+ (40,'PIT','PITANGUEIRAS',NULL,285,256,314,730,300,30,NULL,NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,'S',NULL),
+ (41,'RED','RED ANGUS',NULL,282,254,310,365,330,32,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S','B'),
+ (42,'RMG','ROMAGNOLIA',NULL,282,254,310,730,300,30,NULL,NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,'S','C'),
+ (43,'RMK','RANGE MAKER',NULL,282,254,310,550,300,34,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S',NULL),
+ (44,'RPL','RED POLL',NULL,282,254,310,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','B'),
+ (45,'RSN','ROMO-SINUANO',NULL,285,256,314,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','C'),
+ (46,'SAL','SALLERS',NULL,282,254,310,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','C'),
+ (47,'SDE','SOUTH DEVON',NULL,282,254,310,365,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','B'),
+ (48,'SEG','SENEGUS',NULL,285,256,314,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S',NULL),
+ (49,'SEP','SENEPOL',NULL,285,256,314,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S',NULL),
+ (50,'SGT','SANTA GERTRUDES',NULL,285,256,314,365,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S',NULL),
+ (51,'SIB','SIMBRAH',NULL,285,256,314,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S',NULL),
+ (52,'SIM','SIMENTAL',NULL,282,254,310,550,330,36,NULL,NULL,NULL,NULL,38,NULL,NULL,NULL,NULL,'S','C'),
+ (53,'STB','STABILIZER',NULL,282,254,310,550,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S',NULL),
+ (54,'SUI','PARDO SUIÇO',NULL,282,254,310,550,300,34,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S',NULL),
+ (55,'TAB','TABAPUÃ',NULL,292,263,321,730,300,30,NULL,NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,'S','N'),
+ (56,'TAR','TARANTAISE',NULL,282,254,310,730,300,34,NULL,NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,'S','C'),
+ (57,'TUL','TULI',NULL,282,254,310,730,300,32,NULL,NULL,NULL,NULL,34,NULL,NULL,NULL,NULL,'S','A'),
+ (58,'ZEB','ZEBÚ',NULL,292,263,321,730,300,30,NULL,NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,'S','N');
 /*!40000 ALTER TABLE `raca` ENABLE KEYS */;
 
 
@@ -10690,7 +10926,7 @@ CREATE TABLE `rebanho` (
   `dsc` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cod` (`cod`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `rebanho`
@@ -10817,6 +11053,8 @@ CREATE TABLE `user` (
   `login` varchar(16) CHARACTER SET latin1 NOT NULL,
   `password` varchar(32) CHARACTER SET latin1 NOT NULL,
   `admin` tinyint(1) NOT NULL,
+  `perpage` int(11) DEFAULT NULL,
+  `lastlogin` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -10826,8 +11064,8 @@ CREATE TABLE `user` (
 --
 
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id`,`name`,`login`,`password`,`admin`) VALUES 
- (1,'Abner Souza','bacteria_','1956c40fe1e1d897c048a81e6dc84753',1);
+INSERT INTO `user` (`id`,`name`,`login`,`password`,`admin`,`perpage`,`lastlogin`) VALUES 
+ (1,'Abner Souza','bacteria_','1956c40fe1e1d897c048a81e6dc84753',1,NULL,'2010-01-12 15:10:59');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 
