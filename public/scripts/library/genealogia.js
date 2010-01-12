@@ -6,6 +6,8 @@ $(document).ready(function() {
 				data : {
 					id : $(this).attr('id')
 				},
+				prerender: false,
+				text: 'Carregando...               ',
 				method : 'post'
 			},
 			// styles: cream, dark, green, light, red, blue
@@ -15,7 +17,8 @@ $(document).ready(function() {
 						width: 2,
 						radius: 4
 					},
-					tip: 'topMiddle'
+					tip: 'topMiddle',
+					width: 240
 				},
 			hide : {
 				when : {
@@ -29,6 +32,13 @@ $(document).ready(function() {
 					tooltip: 'topMiddle'
 				}
 			},
+			target: {
+				dimensions: {
+					height: 100,
+					width: 100
+				}
+			}
+			
 		});
 	});
 });
