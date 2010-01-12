@@ -1,4 +1,23 @@
 $(document).ready(function() {
-//	window.alert(baseUrl);
-	$("#add").parent().before('<td width="1"><a href="#" title="Pesquisar"><img src="' + baseUrl + '/images/search.png" alt="Pesquisar"/></a></td>');
+	$("#add")
+			.parent()
+			.before(
+					'<td width="2%" align="right"><a href="#" id="search" title="Pesquisar"><img src="' + baseUrl + '/images/search.png" alt="Pesquisar"/></a></td>');
+
+	$('#dialog').dialog(
+			{
+				modal: true,
+				draggable: true,
+				closeOnEscape: true
+//				buttons : {
+//					"Ok" : function() {
+//						$(this).dialog("close");
+//					}
+//				}
+			});
+
+	$("#search").click(function(){$("#dialog").dialog('open');});
+
+
 });
+
