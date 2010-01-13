@@ -7,7 +7,9 @@ $this->headScript()
 	;
 	
 $this->headLink()
-	->appendStylesheet($this->baseUrl() . '/styles/jquery-ui-1.7.2.custom.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.core.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.datepicker.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.theme.css')
 	;
 
 echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
