@@ -7,16 +7,14 @@ $this->headScript()
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.dialog.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.resizable.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.bgiframe.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
 	;
 
 $this->headLink()
 	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.all.css')
+	->appendStylesheet($this->baseUrl() . '/styles/flexigrid.css')
 	;
 
 echo $this->grid($this->grid);
 
 ?>
-
-<div id="dialog" title="Basic dialog" style="font-size: 12px;"> 
-	<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p> 
-</div>
