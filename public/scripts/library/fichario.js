@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	$('#dlg').bind('dialogclose', function(event, ui) {
+	$('#dlg').bind('dialogbeforeclose', function(event, ui) {
 		hide_filter();
 	});
 
@@ -249,7 +249,8 @@ function hide_filter() {
 	setTimeout(function(){
 		$(".flexigrid").remove();
 	}, 200);
-	$("#dlg-grid").dialog( 'destroy' );
+	$('#dlg').dialog('destroy');
+	$("#dlg-grid").remove();
 	$("#dlg").append('<div id="dlg-grid"></div>');
 }
 
@@ -762,15 +763,25 @@ function showfilter_animal(url, input)
 
 }
 
-function createDialog(title, w, h)
+/**
+ * 
+ * @param title
+ * @param w
+ * @param h
+ * @param modal
+ * @return
+ */
+function createDialog(title, w, h, modal)
 {
 	// Setting default values
 	w = typeof(w) != 'undefined' ? w : 620;
 	h = typeof(h) != 'undefined' ? h : 400;
+	modal = typeof(modal) != 'undefined' ? modal : true;
 
 	$("#dlg").dialog({
-		modal: true,
+		modal: modal,
 		autoOpen: false,
+		resizable: false,
 		title: title,
 		width: w,
 		height: h
@@ -780,5 +791,39 @@ function createDialog(title, w, h)
 
 	// Workaround to set title forced
 	$('#ui-dialog-title-dlg').html(title);
+
+}
+
+
+
+/**
+ * Mostra a genealogia de um animal dentro de um 'Dialog'
+ * 
+ * @param id int
+ * @return
+ */
+function showGenealogia(id)
+{
+	$.post(
+		baseUrl+"/fichario/genealogia",
+		{
+			id: id,
+			onlyHTML: true
+		},
+		function(data) {
+
+			createDialog('Filtro de Animal', 800, 540);
+			if ($("#dlg").length) {
+				$("#dlg-grid").html(data);
+				$('#dlg-grid table a').each(function() {
+					$(this).after($(this).html()).remove();
+				});
+//				$("#dlg").fadeIn(200);
+				$("#dlg #menu").css('display', 'none');
+			}
+
+		},
+		"html"
+	);
 
 }

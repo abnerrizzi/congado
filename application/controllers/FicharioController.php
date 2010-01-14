@@ -203,6 +203,12 @@ class FicharioController extends Zend_Controller_Action
 	public function genealogiaAction()
 	{
 
+		if ($this->getRequest()->getParam('onlyHTML') == true) {
+			Zend_Layout::startMvc(array(
+				'layout' => 'empty'
+			));
+		}
+
 		$id = (int)$this->getRequest()->getParam('id', false);
 		if ($id > 0) {
 			$ficharioModel = new Model_Db_Fichario();
@@ -343,7 +349,11 @@ class FicharioController extends Zend_Controller_Action
 		
 
 		$this->view->array = $array;
-		$this->render('genealogia-01');
+		if ($this->getRequest()->getParam('onlyHTML') == true) {
+			$this->render('genealogia-compact');
+		} else {
+			$this->render('genealogia-compact');
+		}
 	}
 
 }

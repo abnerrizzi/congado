@@ -32,7 +32,7 @@ class Zend_View_Helper_Grid
 <table id="null" border="0" width="800" cellpadding="5" style="border:0px; background-color: #fff;">
 
 	<tr>
-	  <td align="left" width="90%"><h3>'.$grid->getName().'</h3></td>
+	  <td align="left" width="780"><h3>'.$grid->getName().'</h3></td>
 	  <td align="right" width="10" colspan="1">';
 		if ($grid->getAdd()) {
 			$add = $grid->getAdd();
@@ -213,7 +213,7 @@ $output .= '</td>
 </table>
 </td>
   </tr>
-<tr><td colspan="2" align="center">
+<tr><td colspan="3" align="center">
 
 <div class="pagination">
 ' . $this->view->paginationControl(
