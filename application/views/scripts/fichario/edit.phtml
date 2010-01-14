@@ -6,6 +6,7 @@ $this->headScript()
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.tabs.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.draggable.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.dialog.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.resizable.js')
 	->appendFile($this->baseUrl() . '/scripts/library/fichario.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
 	;
@@ -54,8 +55,9 @@ $this->headLink()
   <tr>
     <td width="20"></td>
     <td class="toolbar" colspan="7" align="left" style="vertical-align: middle;" valign="middle">
-      <a href="<?=$this->baseUrl();?>/fichario/genealogia/id/<?=$this->form->id->getValue();?>" title="Genealogia"><img src="<?=$this->baseUrl();?>/images/genealogia_small.gif" alt="Genealogia"/></a>
-      <a title="aisudhaiushdasuid"><img src="<?=$this->baseUrl();?>/images/search.png" alt=""/></a>
+<!--      <a href="<?=$this->baseUrl();?>/fichario/genealogia/id/<?=$this->form->id->getValue();?>" title="Exibe a Genealogia deste Animal"><img src="<?=$this->baseUrl();?>/images/genealogia_small.gif" alt="genealogia"/></a>-->
+	  <a href="javascript:void(0);" onclick="showGenealogia($('#id').val());"><img src="<?=$this->baseUrl();?>/images/genealogia_small.gif" alt="genealogia"/></a>
+      <a title="Pesquisar"><img src="<?=$this->baseUrl();?>/images/search.png" alt=""/></a>
     </td>
     <td width="50"></td>
   </tr>

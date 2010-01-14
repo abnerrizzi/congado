@@ -1,0 +1,215 @@
+<?php
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.qtip.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.core.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.draggable.js')
+	->appendFile($this->baseUrl() . '/scripts/library/genealogia.js')
+	;
+?>
+<br/>
+
+<table border="0" align="center" cellpadding="0" cellspacing="0">
+
+
+	<!-- 001 -->
+	<tr>
+
+	  <td></td>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""></img></td>
+<?if (@$this->array['pai']['pai']['pai']['id']):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['pai']['pai']['id'];?>" id="a<?=$this->array['pai']['pai']['pai']['id'];?>"><?=$this->array['pai']['pai']['pai']['cod'];?><br/><?=$this->array['pai']['pai']['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+	</tr>
+
+
+	<!-- 002 -->
+	<tr>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""style="filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test.png', sizingMethod='scale');"></img></td>
+<?if (@$this->array['pai']['pai']['id']):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['pai']['id'];?>" id="a<?=$this->array['pai']['pai']['id'];?>"><?=$this->array['pai']['pai']['cod'];?><br/><?=$this->array['pai']['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 003 -->
+	<tr>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+<?if (@$this->array['pai']['pai']['mae']['id']):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['pai']['mae']['id'];?>" id="a<?=$this->array['pai']['pai']['mae']['id'];?>"><?=$this->array['pai']['pai']['mae']['cod'];?><br/><?=$this->array['pai']['pai']['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+	</tr>
+
+
+	<!-- 004 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""></img></td>
+<?if (@$this->array['pai']['id'] != ""):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['id'];?>" id="a<?=$this->array['pai']['id'];?>"><?=$this->array['pai']['cod'];?><br/><?=$this->array['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 005 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""></img></td>
+
+<?if (@$this->array['pai']['mae']['pai']['id']):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['mae']['pai']['id'];?>" id="a<?=$this->array['pai']['mae']['pai']['id'];?>"><?=$this->array['pai']['mae']['pai']['cod'];?><br/><?=$this->array['pai']['mae']['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+
+	</tr>
+
+
+	<!-- 006 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+<?if (@$this->array['pai']['mae']['id'] != ""):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['mae']['id'];?>" id="a<?=$this->array['pai']['mae']['id'];?>"><?=$this->array['pai']['mae']['cod'];?><br/><?=$this->array['pai']['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 007 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+
+<?if (@$this->array['pai']['mae']['mae']['id']):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['mae']['mae']['id'];?>" id="a<?=$this->array['pai']['mae']['mae']['id'];?>"><?=$this->array['pai']['mae']['mae']['cod'];?><br/><?=$this->array['pai']['mae']['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+	</tr>
+
+
+	<!-- 008 -->
+	<tr>
+<?if (@$this->array['id']):?>
+	  <td class="animal"><a href="javascript:void(0);" id="a<?=$this->array['id'];?>"><?=$this->array['cod'];?><br/><?=$this->array['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 009 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""></img></td>
+<?if (@$this->array['mae']['pai']['pai']['id']):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['pai']['pai']['id'];?>" id="a<?=$this->array['mae']['pai']['pai']['id'];?>"><?=$this->array['mae']['pai']['pai']['cod'];?><br/><?=$this->array['mae']['pai']['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+
+	</tr>
+
+
+	<!-- 010 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""></img></td>
+<?if (@$this->array['mae']['pai']['id'] != ""):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['pai']['id'];?>" id="a<?=$this->array['mae']['pai']['id'];?>"><?=$this->array['mae']['pai']['cod'];?><br/><?=$this->array['mae']['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 011 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+<?if (@$this->array['mae']['pai']['mae']['id']):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['pai']['mae']['id'];?>" id="a<?=$this->array['mae']['pai']['mae']['id'];?>"><?=$this->array['mae']['pai']['mae']['cod'];?><br/><?=$this->array['mae']['pai']['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+	</tr>
+
+
+	<!-- 012 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+<?if (@$this->array['mae']['id'] != ""):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['id'];?>" id="a<?=$this->array['mae']['id'];?>"><?=$this->array['mae']['cod'];?><br/><?=$this->array['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 013-->
+	<tr>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""></img></td>
+
+<?if (@$this->array['mae']['mae']['pai']['id']):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['mae']['pai']['id'];?>" id="a<?=$this->array['mae']['mae']['pai']['id'];?>"><?=$this->array['mae']['mae']['pai']['cod'];?><br/><?=$this->array['mae']['mae']['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	  
+
+
+	</tr>
+
+
+	<!-- 014 -->
+	<tr>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+<?if (@$this->array['mae']['mae']['id'] != ""):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['mae']['id'];?>" id="a<?=$this->array['mae']['mae']['id'];?>"><?=$this->array['mae']['mae']['cod'];?><br/><?=$this->array['mae']['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 015 -->
+	<tr>
+	  <td></td>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+
+<?if (@$this->array['mae']['mae']['mae']['id']):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['mae']['mae']['id'];?>" id="a<?=$this->array['mae']['mae']['mae']['id'];?>"><?=$this->array['mae']['mae']['mae']['cod'];?><br/><?=$this->array['mae']['mae']['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+	</tr>
+
+</table>
+

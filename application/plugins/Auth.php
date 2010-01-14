@@ -35,6 +35,7 @@ class Plugin_Auth extends Zend_Controller_Plugin_Abstract
 			$__remember = (Zend_Registry::getInstance()->configuration->resources->session->timeout->remember_me_seconds);
 			if ($authNamespace->rememberme == 1) {
 				$authNamespace->setExpirationSeconds($__remember);
+				Zend_Session::rememberMe($__remember);
 			} else {
 				$authNamespace->setExpirationSeconds($__timeout);
 			}
