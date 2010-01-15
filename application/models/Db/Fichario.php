@@ -78,7 +78,11 @@ class Model_Db_Fichario extends Model_Db
 				if ($key == $col_id) {
 					continue;
 				} else {
-					$current['cell'][] = ($val);
+					if ($val == null) {
+						$current['cell'][] = '';
+					} else {
+						$current['cell'][] = ($val);
+					}
 				}
 			}
 			$return['rows'][] = $current;

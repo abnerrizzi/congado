@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('#main table a').each(function() {
+	$('#genealogia a').each(function() {
 		$(this).qtip( {
 			content : {
 				url : baseUrl + '/json/filhos/',

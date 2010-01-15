@@ -747,13 +747,13 @@ function showfilter_animal(url, input)
 			sortname: "nome",
 			sortorder: "asc",
 			usepager: true,
-			title: 'Animal',
+			title: false,
 			useRp: true,
 			rp: 10,
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 260,
+			height: 240,
 			onSelect: function(row) {
 				changeField(row, input);
 			}
@@ -775,7 +775,7 @@ function createDialog(title, w, h, modal)
 {
 	// Setting default values
 	w = typeof(w) != 'undefined' ? w : 620;
-	h = typeof(h) != 'undefined' ? h : 400;
+	h = typeof(h) != 'undefined' ? h : 390;
 	modal = typeof(modal) != 'undefined' ? modal : true;
 
 	$("#dlg").dialog({
@@ -812,14 +812,75 @@ function showGenealogia(id)
 		},
 		function(data) {
 
-			createDialog('Filtro de Animal', 800, 540);
+			createDialog('Genealogia', 800, 540);
 			if ($("#dlg").length) {
 				$("#dlg-grid").html(data);
+
+				// Remove all links in genealogia
+				/*
 				$('#dlg-grid table a').each(function() {
 					$(this).after($(this).html()).remove();
 				});
-//				$("#dlg").fadeIn(200);
+				*/
+
+				// Hide menu
 				$("#dlg #menu").css('display', 'none');
+
+
+
+
+
+
+
+				$('#genealogia a').each(function() {
+					$(this).qtip( {
+						content : {
+							url : baseUrl + '/json/filhos/',
+							data : {
+								id : $(this).attr('id')
+							},
+							prerender: false,
+							text: 'Carregando...               ',
+							method : 'post'
+						},
+						// styles: cream, dark, green, light, red, blue
+						style : {
+								name: 'cream',
+								border: {
+									width: 2,
+									radius: 4
+								},
+								tip: 'topMiddle',
+								width: 240
+							},
+						hide : {
+							when : {
+								event : 'inactive'
+							},
+							delay : 2000
+						},
+						position: {
+							corner: {
+								target: 'bottomMiddle',
+								tooltip: 'topMiddle'
+							}
+						},
+						target: {
+							dimensions: {
+								height: 100,
+								width: 100
+							}
+						}
+						
+					});
+				});
+
+
+
+
+
+
+
 			}
 
 		},

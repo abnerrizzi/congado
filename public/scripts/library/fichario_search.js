@@ -1,8 +1,4 @@
 $(document).ready(function() {
-	$("#add").parent().before(
-		'<td width="2%" align="right"><a href="javascript:void(0);" id="search" title="Pesquisar"><img src="' + baseUrl + '/images/search.png" alt="Pesquisar"/></a></td>'
-	);
-
 	var $dialog = $('<div></div>').dialog(
 			{
 				modal: true,
@@ -12,13 +8,13 @@ $(document).ready(function() {
 				resizable: false,
 				title: 'Pesquisar Animal',
 				width: 620,
-				height: 420
-			}).attr('id', 'dlg');
-	$dialog.html('<div id="dlg-grid"></div>');
+				height: 390
+			}).attr('id', 'search');
+	$dialog.html('<div id="search-grid"></div>');
 
 	$("#search").click(function(){
 		$dialog.dialog('open');
-		$("#dlg-grid").flexigrid(
+		$("#search-grid").flexigrid(
 		{
 			url: baseUrl + '/json/animal',
 			dataType: 'json',
@@ -72,13 +68,13 @@ $(document).ready(function() {
 			sortname: "nome",
 			sortorder: "asc",
 			usepager: true,
-			title: 'Animal',
+			title: false,
 			useRp: true,
 			rp: 10,
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 260,
+			height: 240,
 			onSelect: function(row) {
 				getFichario(row);
 			}
@@ -93,6 +89,6 @@ function getFichario(row) {
 	__id = row.attr("id").substr(3);
 	url = baseUrl + '/fichario/edit/id/' + __id;
 	$(location).attr('href', url);
-	$("#dlg").dialog('close');
+	$("#search").dialog('close');
 }
 
