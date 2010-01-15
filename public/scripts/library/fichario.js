@@ -57,6 +57,15 @@ $(document).ready(function() {
 		$('#dlg').html($('#obs').val());
 	};
 
+	// workaround to adjust size in mozilla
+	$.each($.browser, function(i) {
+		if ($.browser.mozilla) {
+			var _Height = parseInt(20);
+		} else {
+			var _Height = parseInt(0);
+		}
+	});
+
 });
 
 /*
@@ -293,7 +302,7 @@ function showfilter_criador(url, input)
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 240,
+			height: (240 + _Height),
 			onSelect: function(row) {
 				changeField(row, input);
 			}
@@ -388,7 +397,7 @@ function showfilter_raca(url, input)
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 240,
+			height: (240 + _Height),
 			onSelect: function(row) {
 				changeField(row, input);
 			}
@@ -435,7 +444,7 @@ function showfilter_rebanho(url, input)
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 240,
+			height: (240 + _Height),
 			onSelect: function(row) {
 				changeField(row, input);
 			}
@@ -482,7 +491,7 @@ function showfilter_categoria(url, input)
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 240,
+			height: (240 + _Height),
 			onSelect: function(row) {
 				changeField(row, input);
 			}
@@ -545,7 +554,7 @@ function showfilter_local(url, input)
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 240,
+			height: (240 + _Height),
 			onSelect: function(row) {
 				changeField(row, input);
 			},
@@ -596,7 +605,7 @@ function showfilter_grausangue(url, input)
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 240,
+			height: (240 + _Height),
 			onSelect: function(row) {
 				changeField(row, input);
 			},
@@ -673,7 +682,7 @@ function showfilter_animal_OLD(url, input)
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 240,
+			height: (240 + _Height),
 			onSelect: function(row) {
 				changeField(row, input);
 			}
@@ -753,7 +762,7 @@ function showfilter_animal(url, input)
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 240,
+			height: (240 + _Height),
 			onSelect: function(row) {
 				changeField(row, input);
 			}
@@ -773,9 +782,18 @@ function showfilter_animal(url, input)
  */
 function createDialog(title, w, h, modal)
 {
+	$.each($.browser, function(i) {
+		if ($.browser.mozilla) {
+			_Height = parseInt(20);
+		} else {
+			_Height = parseInt(0);
+		}
+	});
+
 	// Setting default values
 	w = typeof(w) != 'undefined' ? w : 620;
-	h = typeof(h) != 'undefined' ? h : 390;
+	h = typeof(h) != 'undefined' ? h : (390 + _Height);
+
 	modal = typeof(modal) != 'undefined' ? modal : true;
 
 	$("#dlg").dialog({

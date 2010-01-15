@@ -91,7 +91,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	protected function _initDbprofile()
 	{
 		if ($this->getEnvironment() == 'development') {
-			$profiler = new Zend_Db_Profiler_Firebug('MySQL Queries');
+			$profiler = new Zend_Db_Profiler_Firebug('SQL Queries');
 			$db = $this->getPluginResource('db');
 			$db = $db->getDbAdapter();
 			$profiler->setEnabled(true);

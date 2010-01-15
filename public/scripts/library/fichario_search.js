@@ -1,4 +1,7 @@
 $(document).ready(function() {
+
+	var _Height = checkBrowser();
+
 	var $dialog = $('<div></div>').dialog(
 			{
 				modal: true,
@@ -8,7 +11,7 @@ $(document).ready(function() {
 				resizable: false,
 				title: 'Pesquisar Animal',
 				width: 620,
-				height: 390
+				height: parseInt(390 + _Height)
 			}).attr('id', 'search');
 	$dialog.html('<div id="search-grid"></div>');
 
@@ -74,7 +77,7 @@ $(document).ready(function() {
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 240,
+			height: (240 + _Height),
 			onSelect: function(row) {
 				getFichario(row);
 			}
@@ -92,3 +95,11 @@ function getFichario(row) {
 	$("#search").dialog('close');
 }
 
+function checkBrowser()
+{
+	if ($.browser.mozilla) {
+		return parseInt(20);
+	} else {
+		return parseInt(0);
+	}
+}
