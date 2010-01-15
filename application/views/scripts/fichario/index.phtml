@@ -1,18 +1,7 @@
 <?php
 
 $this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/library/fichario_search.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.core.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.draggable.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.dialog.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.resizable.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.bgiframe.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
-	;
-
-$this->headLink()
-	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.all.css')
-	->appendStylesheet($this->baseUrl() . '/styles/flexigrid.css')
+	->appendFile($this->baseUrl() . '/scripts/library/fichario_index.js')
 	;
 
 echo $this->grid($this->grid);

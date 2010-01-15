@@ -78,8 +78,9 @@ class Model_Db_Raca extends Model_Db
 	 * @param $limit (int) numero de registros por pagina
 	 * @param $qtype (string) nome do campo
 	 * @param $query (string) valor a ser procurado
+	 * @param $type (string) {flexigrid|jqgrid} tipo de formatacao utilizada para retornar
 	 */
-	public function listRacasJson($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false)
+	public function listRacasJson($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $type = 'flexigrid')
 	{
 
 		// se for string convert para array
@@ -126,22 +127,26 @@ class Model_Db_Raca extends Model_Db
 		}
 
 		$array = $this->fetchAll($this->_select)->toArray();
-		for ($i=0; $i < count($array); $i++)
-		{
-			$row = $array[$i];
-
-			$current = array(
-				'id' => $row[$col_id]
-			);
-			foreach ($row as $key => $val)
+		if ($type == 'flexigrid') {
+			for ($i=0; $i < count($array); $i++)
 			{
-				if ($key == $col_id) {
-					continue;
-				} else {
-					$current['cell'][] = ($val);
+				$row = $array[$i];
+	
+				$current = array(
+					'id' => $row[$col_id]
+				);
+				foreach ($row as $key => $val)
+				{
+					if ($key == $col_id) {
+						continue;
+					} else {
+						$current['cell'][] = ($val);
+					}
 				}
+				$return['rows'][] = $current;
 			}
-			$return['rows'][] = $current;
+		} else {
+			throw new Exception('erro inesperado no Model_Db_Raca');
 		}
 		return $return;
 

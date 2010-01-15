@@ -182,6 +182,30 @@ class JsonController extends Zend_Controller_Action
 	public function animalAction()
 	{
 		$animalModel = new Model_Db_Fichario();
+		if ($this->getRequest()->getParam('sortname', false)) {
+			$sortname = $this->getRequest()->getParam('sortname', false);
+		} elseif ($this->getRequest()->getParam('sidx', false)) {
+			$sortname = $this->getRequest()->getParam('sidx', false);
+		} else {
+			$sortname = false;
+		}
+
+		if ($this->getRequest()->getParam('sortorder', false)) {
+			$sortorder = $this->getRequest()->getParam('sortorder', false);
+		} elseif ($this->getRequest()->getParam('sord', false)) {
+			$sortorder = $this->getRequest()->getParam('sord', false);
+		} else {
+			$sortorder = 'asc';
+		}
+
+		if ($this->getRequest()->getParam('rp', false)) {
+			$rp = $this->getRequest()->getParam('rp');
+		} elseif ($this->getRequest()->getParam('rows', false)) {
+			$rp = $this->getRequest()->getParam('rows');
+		} else {
+			$rp = 10;
+		}
+
 		$animais = $animalModel->listFichariosJson(
 			array(
 				'id',
@@ -194,10 +218,10 @@ class JsonController extends Zend_Controller_Action
 				'raca',
 				'grsangue',
 			),
-			$this->getRequest()->getParam('sortname', false),
-			$this->getRequest()->getParam('sortorder','asc'),
+			$sortname,
+			$sortorder,
 			$this->getRequest()->getParam('page','1'),
-			$this->getRequest()->getParam('rp'),
+			$rp,
 			$this->getRequest()->getParam('qtype'),
 			$this->getRequest()->getParam('query'),
 			$this->getRequest()->getParam('like', false),
