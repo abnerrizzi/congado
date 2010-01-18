@@ -1,6 +1,6 @@
 #filter {
 	z-index: 7000;
-	font: 75%/1.5 Arial, sans-serif;
+	font: 75%/ 1.5 Arial, sans-serif;
 	color: #000000;
 	background-color: #00ff00;
 	display: none;
@@ -15,12 +15,11 @@
 	border: 5px solid;
 }
 
-
 #filter-bg {
 	z-index: 6999;
 	position: fixed;
 	min-width: 999px;
-	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+	filter: progid : DXImageTransform.Microsoft.Alpha ( Opacity = 60 );
 	width: 100%;
 	height: 100%;
 	background: #333333;
@@ -29,10 +28,6 @@
 	opacity: .6;
 	display: none;
 }
-
-
-
-
 
 .errors {
 	color: red;
@@ -106,7 +101,7 @@ table .label {
 	padding-right: 10px;
 }
 
-.input, .readonly {
+.input,.readonly {
 	border-color: #9E9E9E #FFFFFF #FFFFFF #9E9E9E;
 	border-width: 1px;
 	border-style: solid;
@@ -114,7 +109,7 @@ table .label {
 	font-size: 11px;
 }
 
-.input_num, .readonly_num {
+.input_num,.readonly_num {
 	border-color: #9E9E9E #FFFFFF #FFFFFF #9E9E9E;
 	border-width: 1px;
 	border-style: solid;
@@ -176,9 +171,6 @@ h3 {
 	font-weight: bold;
 }
 
-
-
-
 #ajax_loader {
 	background-color: #ffaaaa;
 	border: 1px solid #ff0000;
@@ -195,8 +187,7 @@ h3 {
 	padding: 10px;
 }
 
-
-.animal, .animalf, .animalm, .vazio {
+.animal,.animalf,.animalm,.vazio {
 	text-align: center;
 	width: 160px;
 	padding: 1px;
@@ -209,6 +200,7 @@ h3 {
 	font-size: 12px;
 	font-weight: bold;
 }
+
 .animal {
 	background-color: #eee;
 }
