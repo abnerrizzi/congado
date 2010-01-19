@@ -8,26 +8,20 @@
  * 
  */
 
-class Model_Db_Backup extends Zend_Db_Table_Abstract
+class Model_Db_Backup extends Model_Db
 {
-
-	public function init()
-	{
-		$db = Zend_Registry::get('database');
-		$db = $db->getConfig();
-		$this->_schema = $db['dbname'];
-	}
 
 	public function export()
 	{
 
-		$__return = '';
+		$db = Zend_Registry::get('database');
+		$db = $db->getConfig();
 
-		$query = $this->select()
-			->set
-		;
-		print $query;
-		
+		$__fileName = $db['dbname'] ."-". date('YmdHi') . ".sql";
+
+		$__commandLine = "mysqldump " . $db['dbname'] . " --user=" . $db['username'] . " --password=" . $db['password'];
+		$__commandLine .= " > " . $__fileName;
+		print $__commandLine;
 	}
 
 }
