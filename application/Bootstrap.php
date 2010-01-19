@@ -74,6 +74,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		);
 		$db->query("SET NAMES 'utf8'");
 		$db->query("SET CHARSET 'utf8'");
+        $db->query('SET character_set_connection=utf8');
+        $db->query('SET character_set_client=utf8');
+        $db->query('SET character_set_results=utf8');
 		self::$registry->database = $db;
 		Zend_Db_Table::setDefaultAdapter($db);
 	}
