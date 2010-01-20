@@ -14,6 +14,26 @@ class Model_Db_Fichario extends Model_Db
 	protected $_name = 'fichario';
 	protected $_select = false;
 
+	public function getPaginatorAdapter($orderby = null, $order = null)
+	{
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('f' => $this->_name), array(
+				'id',
+				'cod',
+				'nome',
+				'dt_nascimento' => new Zend_Db_Expr("DATE_FORMAT(dt_nascimento, '%d/%m/%Y')"),
+			), $this->_schema)
+			->joinLeft('raca', 'f.raca_id = raca.id', array('raca_dsc' => 'dsc'), $this->_schema)
+			->joinLeft('local', 'f.local_id = local.id', array('local_dsc' => 'dsc'), $this->_schema)
+			->joinLeft('fazenda', 'f.fazenda_id = fazenda.id', array('fazenda_dsc' => new Zend_Db_Expr("SUBSTRING(descricao, 1, 30)")), $this->_schema)
+			->order($orderby .' '. $order)
+			;
+
+		return $this->_select;
+		
+	}
+
 	/**
 	 * Retorna uma array no formato exigido pelo flexigrid
 	 * 

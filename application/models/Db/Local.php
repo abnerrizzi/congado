@@ -14,6 +14,17 @@ class Model_Db_Local extends Model_Db
 	protected $_name = 'local';
 	protected $_select = false;
 
+	public function getPaginatorAdapter($orderby = null, $order = null)
+	{
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('l' => $this->_name), array('id', 'local', 'dsc', 'area'), $this->_schema)
+			->join(array('f' => 'fazenda'), 'f.id = l.fazenda_id', array('fazenda' => 'descricao'), $this->_schema)
+			->order($orderby .' '. $order)
+			;
+		return $this->_select;
+	}
+
 	public function getLocais($orderby = null, $order = null)
 	{
 		$query = $this->select()

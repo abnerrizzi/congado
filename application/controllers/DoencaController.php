@@ -28,7 +28,7 @@ class DoencaController extends Zend_Controller_Action
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'cod');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $doencaModel->getDoencas($_by, $_order);
+		$result	= $doencaModel->getPaginatorAdapter($_by, $_order, array('id', 'cod', 'dsc'));
 
 		/*
 		 * Paginator

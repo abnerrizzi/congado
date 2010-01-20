@@ -14,6 +14,30 @@ class Model_Db_EstacaoMonta extends Model_Db
 	protected $_name = 'estacaomonta';
 	protected $_select = false;
 
+	public function getPaginatorAdapter($orderby = null, $order = null, $cols = '*')
+	{
+
+		if (!is_array($cols)) {
+			$cols = array($cols);
+		}
+
+		$this->_select = $this->select()
+			->from($this->_name, array(
+				'id',
+				'cod',
+				'dsc',
+				'dt_inicio' => "date_format(dt_inicio, '%d/%m/%Y')",
+				'dt_fim' => "date_format(dt_fim, '%d/%m/%Y')",
+			));
+
+		if ($orderby != null && $order != null) {
+			$this->_select->order($orderby .' '. $order);
+		}
+
+		return $this->_select;
+
+	}
+
 	public function getEstacaoMontas($orderby = null, $order = null)
 	{
 		$this->_select = $this->select()

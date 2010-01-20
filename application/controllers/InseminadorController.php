@@ -28,8 +28,8 @@ class InseminadorController extends Zend_Controller_Action
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $inseminadorModel->getInseminadores($_by, $_order);
-		
+		$result	= $inseminadorModel->getPaginatorAdapter($_by, $_order, array('id', 'cod', 'dsc'));
+
 		/*
 		 * Paginator
 		 */

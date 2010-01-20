@@ -28,7 +28,7 @@ class SituacaoPesagemController extends Zend_Controller_Action
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $situacaopesagemModel->getSituacaoPesagems($_by, $_order);
+		$result	= $situacaopesagemModel->getPaginatorAdapter($_by, $_order, array('id', 'cod', 'dsc'));
 
 		/*
 		 * Paginator

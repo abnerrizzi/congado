@@ -15,6 +15,19 @@ class Model_Db_Fazenda extends Model_Db
 	protected $_select = false;
 	protected $_dependentTables = array('aux_cidades');
 
+	public function getPaginatorAdapter($orderby = null, $order = null)
+	{
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('f' => $this->_name), array('id', 'descricao'), $this->_schema)
+			->join(array('c' => 'aux_cidades'), 'f.cidades_id = c.id', array('cidade' => 'nome'), $this->_schema)
+			->join(array('e' => 'aux_estados'), 'c.estado_id = e.id', array('uf'), $this->_schema)
+			->order('f.'.$orderby .' '. $order)
+			;
+
+		return $this->_select;
+	}
+
 	public function getFazendas($orderby = null, $order = null)
 	{
 		$query = $this->select()

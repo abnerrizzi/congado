@@ -29,7 +29,7 @@ class FazendaController extends Zend_Controller_Action
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $fazendaModel->getFazendas($_by, $_order);
+		$result	= $fazendaModel->getPaginatorAdapter($_by, $_order);
 
 		/*
 		 * Paginator

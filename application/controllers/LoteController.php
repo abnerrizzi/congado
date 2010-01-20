@@ -28,7 +28,7 @@ class LoteController extends Zend_Controller_Action
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $loteModel->getLotes($_by, $_order);
+		$result	= $loteModel->getPaginatorAdapter($_by, $_order);
 
 		/*
 		 * Paginator
