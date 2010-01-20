@@ -28,7 +28,8 @@ class MatrizgrController extends Zend_Controller_Action
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $matrizgrModel->getMatrizGrauSangues($_by, $_order);
+		$result	= $matrizgrModel->getPaginatorAdapter($_by, $_order, array('raca_dsc', 'pai_dsc', 'mae_dsc', 'cria_dsc'));
+		
 
 		/*
 		 * Paginator

@@ -14,6 +14,32 @@ class Model_Db_Raca extends Model_Db
 	protected $_name = 'raca';
 	protected $_select = false;
 
+//	public function getPaginatorAdapter($orderby = null, $order = null)
+//	{
+//
+//		$select = $this->select()
+//			->from($this->_name, array('id', 'cod', 'dsc'), $this->_schema);
+//
+//		if ($orderby != null && $order != null) {
+//			$select->order($orderby .' '. $order);
+//		}
+//
+//		return $select;
+//
+//	}
+//
+//	public function getTotalRowCount()
+//	{
+//
+//		$this->_select = $this->select()
+//			->from($this->_name, array(Zend_Paginator_Adapter_DbSelect::ROW_COUNT_COLUMN => 'id'));
+//
+//		$result = ($this->fetchRow($this->_select)->toArray());
+//
+//		return (int)$result[Zend_Paginator_Adapter_DbSelect::ROW_COUNT_COLUMN];
+//
+//	}
+
 	public function getRacas($orderby = null, $order = null)
 	{
 		$query = $this->select()

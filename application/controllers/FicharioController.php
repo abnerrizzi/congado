@@ -29,7 +29,7 @@ class FicharioController extends Zend_Controller_Action
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order = $this->_getParam('sort', 'asc');
-		$result = $ficharioModel->getFicharios($_by, $_order);
+		$result = $ficharioModel->getPaginatorAdapter($_by, $_order);
 
 		/*
 		 * Paginator

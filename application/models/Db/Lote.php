@@ -14,6 +14,19 @@ class Model_Db_Lote extends Model_Db
 	protected $_name = 'lote';
 	protected $_select = false;
 
+	public function getPaginatorAdapter($orderby, $order)
+	{
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('l' => $this->_name), array('id', 'cod', 'dsc'), $this->_schema)
+			->join(array('f' => 'fazenda'), 'f.id = l.fazenda_id', array('fazenda' => 'descricao'), $this->_schema)
+			->order($orderby .' '. $order)
+			;
+//			print '<pre>'.$this->_select;
+//			die();
+		return $this->_select;
+	}
+
 	public function getLotes($orderby = null, $order = null)
 	{
 		$this->_select = $this->select()

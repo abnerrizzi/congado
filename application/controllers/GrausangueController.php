@@ -27,7 +27,7 @@ class GrausangueController extends Zend_Controller_Action
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $grausangueModel->getGrausangues($_by, $_order);
+		$result	= $grausangueModel->getPaginatorAdapter($_by, $_order, array('id', 'cod', 'dsc'));
 		
 		/*
 		 * Paginator

@@ -28,7 +28,7 @@ class DestinoController extends Zend_Controller_Action
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $destinoModel->getDestinos($_by, $_order);
+		$result	= $destinoModel->getPaginatorAdapter($_by, $_order, array('id', 'cod', 'dsc'));
 
 		/*
 		 * Paginator

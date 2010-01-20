@@ -28,7 +28,7 @@ class RacaController extends Zend_Controller_Action
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'cod');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $racaModel->getRacas($_by, $_order);
+		$result = $racaModel->getPaginatorAdapter($_by, $_order, array('id', 'cod', 'dsc'));
 
 		/*
 		 * Paginator
