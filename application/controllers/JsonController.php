@@ -34,7 +34,7 @@ class JsonController extends Zend_Controller_Action
 	public function racaAction()
 	{
 		$racaModel = new Model_Db_Raca();
-		$racas = $racaModel->listRacasJson(
+		$racas = $racaModel->listJson(
 			array(
 				'id',
 				'cod',
@@ -55,7 +55,7 @@ class JsonController extends Zend_Controller_Action
 	public function criadorAction()
 	{
 		$criadorModel = new Model_Db_Criador();
-		$criadores = $criadorModel->listCriadoresJson(
+		$criadores = $criadorModel->listJson(
 			array(
 				'id',
 				'cod',
@@ -76,7 +76,7 @@ class JsonController extends Zend_Controller_Action
 	public function pelagemAction()
 	{
 		$pelagemModel = new Model_Db_Pelagem();
-		$pelagens = $pelagemModel->listRacasJson(
+		$pelagens = $pelagemModel->listJson(
 			array(
 				'id',
 				'cod',
@@ -97,7 +97,7 @@ class JsonController extends Zend_Controller_Action
 	public function rebanhoAction()
 	{
 		$rebanhoModel = new Model_Db_Rebanho();
-		$rebanhos = $rebanhoModel->listRebanhosJson(
+		$rebanhos = $rebanhoModel->listJson(
 			array(
 				'id',
 				'cod',
@@ -118,7 +118,7 @@ class JsonController extends Zend_Controller_Action
 	public function categoriaAction()
 	{
 		$categoriaModel = new Model_Db_Categoria();
-		$categorias = $categoriaModel->listCategoriasJson(
+		$categorias = $categoriaModel->listJson(
 			array(
 				'id',
 				'cod',
@@ -139,7 +139,7 @@ class JsonController extends Zend_Controller_Action
 	public function grausangueAction()
 	{
 		$grausangueModel = new Model_Db_Grausangue();
-		$graus = $grausangueModel->listGrauSangueJson(
+		$graus = $grausangueModel->listJson(
 			array(
 				'id',
 				'cod',
@@ -160,7 +160,7 @@ class JsonController extends Zend_Controller_Action
 	public function localAction()
 	{
 		$localModel = new Model_Db_Local();
-		$locais = $localModel->listLocaisJson(
+		$locais = $localModel->listJsonLocal(
 			array(
 				'id',
 				'local',
@@ -206,7 +206,7 @@ class JsonController extends Zend_Controller_Action
 			$rp = 10;
 		}
 
-		$animais = $animalModel->listFichariosJson(
+		$animais = $animalModel->listJsonFicharios(
 			array(
 				'id',
 				'cod',
@@ -253,28 +253,6 @@ class JsonController extends Zend_Controller_Action
 		
 	}
 
-
-
-
-	public function grsangueAction()
-	{
-		$racaModel = new Model_Db_Grausangue();
-		$racas = $racaModel->listGrauSangueJson(
-			array(
-				'id',
-				'cod',
-				'dsc',
-			),
-			$this->getRequest()->getParam('sortname','cod'),
-			$this->getRequest()->getParam('sortorder','asc'),
-			$this->getRequest()->getParam('page','1'),
-			$this->getRequest()->getParam('rp'),
-			$this->getRequest()->getParam('qtype'),
-			$this->getRequest()->getParam('query')
-		);
-		$this->view->content = utf8_encode(json_encode($racas));
-		$this->render('index');
-	}
 
 	private function _getFlexigrid()
 	{

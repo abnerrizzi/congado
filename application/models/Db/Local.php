@@ -92,7 +92,7 @@ class Model_Db_Local extends Model_Db
 	 * @param $qtype (string) nome do campo
 	 * @param $query (string) valor a ser procurado
 	 */
-	public function listLocaisJson($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $fazenda_id = false, $like = false)
+	public function listJsonLocal($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $fazenda_id = false, $like = false)
 	{
 
 		// se for string convert para array

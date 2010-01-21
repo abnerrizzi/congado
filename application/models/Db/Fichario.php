@@ -45,7 +45,7 @@ class Model_Db_Fichario extends Model_Db
 	 * @param $qtype (string) nome do campo
 	 * @param $query (string) valor a ser procurado
 	 */
-	public function listFichariosJson($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
+	public function listJsonFicharios($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
 	{
 
 		$col_id = $this->_name.'.id';
