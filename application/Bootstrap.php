@@ -38,7 +38,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	{
 		$config = new Zend_Config_Ini(
 			self::$root . '/application/configs/application.ini',
-			'production'
+			APPLICATION_ENV
 		);
 		self::$registry->configuration = $config;
 	}
