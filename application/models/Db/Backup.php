@@ -44,42 +44,62 @@ final class Model_Db_Backup extends Model_Db
 			}
 		}
 
-		$this->backupDir = realpath($this->backupDir);
-
-//		$this->fileName = $this->config->params->dbname
-//					. date("-Ymd_His") . '.sql';
-
 		$this->fileNameFullPath = '"'.$this->backupDir . '/' . $this->fileName .'"';
 
-		$backupCommand = "mysqldump"
-			. " -h ".$this->host
-			. " --user=".$this->user
-			. " --password=".$this->pass
-			. " ".$this->db
-			. " > ".$this->fileNameFullPath
-		;
+		$this->DumpFileCreate($this->backupDir .'/'. $this->fileName);
 
-		// Execute backup command
-		system($backupCommand);
+		$this->DumpFileCompact($this->backupDir . '/' . $this->fileName);
 
-		
-		if (!@file_exists($this->backupDir . '/' . $this->fileName)) {
-			throw new Zend_Exception('Erro criando arquivo de backup');
-		} else {
-
-			// Put backup content into string
-			$handle = fopen($this->backupDir . '/' . $this->fileName, 'r');
-			$backupContent = file_get_contents($this->backupDir .'/'. $this->fileName);
-			fclose($handle);
-
-			$zp = gzopen($this->backupDir .'/'. $this->fileName .'.gz', "w");
-			gzwrite($zp, $backupContent);
-			gzclose($zp);
-
-		}
-		
 		return $this->backupDir .'/'. $this->fileName;
 		
 	}
+
+	private function DumpFileCompact($fileName = false)
+	{
+
+		if ($fileName) {
+			$handle = @fopen($fileName, 'r');
+			if (!$handle) {
+				throw new Zend_Exception("Erro criando arquivo de backup: ($fileName)");
+			} else {
+				$zp = gzopen($fileName . ".gz", "w");
+				if (!$zp) {
+					throw new Zend_Exception("Erro compactado dados do backup: ($fileName)");
+				} else {
+					fclose($handle);
+					if (gzwrite($zp, file_get_contents($fileName)) && gzclose($zp)) {
+						unlink($fileName);
+					}
+				}
+			}
+			return true;
+		}
+	}
+
+	private function DumpFileCreate($fileName = false)
+	{
+		if ($fileName) {
+			$handle = @fopen($fileName, 'w');
+			if (!$handle) {
+				throw new Zend_Exception("Erro criando arquivo para geracao do Backup: ($fileName)");
+			} else {
+				fclose($handle);
+				unlink($fileName);
+				$backupCommand = "mysqldump"
+					. " -h ".$this->host
+					. " --user=".$this->user
+					. " --password=".$this->pass
+					. " ".$this->db
+					. " > ".$this->fileNameFullPath
+				;
+		
+				// Execute backup command
+				system($backupCommand);
+
+			}
+			return true;
+		}
+	}
+
 
 }
