@@ -17,7 +17,8 @@ class BackupController extends Zend_Controller_Action
 	{
 
 		$bkp = new Model_Db_Backup();
-		$bkp->export();
+		$file = $bkp->export();
+		print $file;
 
 	}
 
