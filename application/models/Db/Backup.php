@@ -8,66 +8,78 @@
  * 
  */
 
-class Model_Db_Backup extends Model_Db
+final class Model_Db_Backup extends Model_Db
 {
 
-	private $config;
+	protected $config;
+	protected $host;
+	protected $user;
+	protected $pass;
+	protected $db;
+	protected $path;
+	protected $fileName;
+	protected $backupDir;
 
 	public function init()
 	{
-		$this->config = Zend_Registry::get('configuration')->resources->db;
-		$backupDir = $this->config->backup->path;
 
-		if (!is_dir($backupDir)) {
-			if (!@mkdir($backupDir)) {
-				$msg = "Erro criando/acessando diretório de backup\n";
-				$msg .= $backupDir;
+		$config = Zend_Registry::get('configuration')->resources->db;
+
+		$this->host = $config->params->host;
+		$this->user = $config->params->username;
+		$this->pass = $config->params->password;
+		$this->db = $config->params->dbname;
+		$this->fileName = $this->db .'-'. date('YmdHis') . ".sql";
+		$this->backupDir = '../scripts/backup';
+
+	}
+
+	public function export()
+	{
+
+		if (!is_dir($this->backupDir)) {
+			if (!@mkdir($this->backupDir)) {
+				$msg = "Erro criando/acessando diretório de backup: (".$this->backupDir.")";
 				throw new Zend_Exception($msg);
 			}
 		}
 
-		$backupDir = realpath($backupDir);
-		print '<pre>';
-		if ($this->config->backup->enable == 1) {
-			print_r($this->config->params);
-			$backupFile = '"'.$backupDir . $this->config->params->dbname
-						. date("-Ymd_His") . '.sql"';
-			$backupCommand = "mysqldump"
-				. " -h ".$this->config->params->host
-				. " --user=".$this->config->params->username
-				. " --password=".$this->config->params->password
-				. " ".$this->config->params->dbname
-				. " > ".$backupFile
-			;
+		$this->backupDir = realpath($this->backupDir);
 
-			// Execute backup command
-			system($backupCommand);
-			$backupFile = str_replace('\\', '/', $backupFile);
-			print $backupFile;
-			var_dump(is_file($backupFile));
-			die();
-		} else {
-			die('nao vai fazer');
-		}
-		print $backupDir;
-		die();
+//		$this->fileName = $this->config->params->dbname
+//					. date("-Ymd_His") . '.sql';
+
+		$this->fileNameFullPath = '"'.$this->backupDir . '/' . $this->fileName .'"';
+
+		$backupCommand = "mysqldump"
+			. " -h ".$this->host
+			. " --user=".$this->user
+			. " --password=".$this->pass
+			. " ".$this->db
+			. " > ".$this->fileNameFullPath
+		;
+
+		// Execute backup command
+		system($backupCommand);
+
 		
-	}
-	public function export()
-	{
+		if (!@file_exists($this->backupDir . '/' . $this->fileName)) {
+			throw new Zend_Exception('Erro criando arquivo de backup');
+		} else {
 
-		$db = Zend_Registry::get('database');
-		$db = $db->getConfig();
-		$config = Zend_Registry::get('resources');
-		print '<pre>';
-		print_r($config);
+			// Put backup content into string
+			$handle = fopen($this->backupDir . '/' . $this->fileName, 'r');
+			$backupContent = file_get_contents($this->backupDir .'/'. $this->fileName);
+			fclose($handle);
 
-		$__fileName  = dirname(dirname(__FILE__)); 
-		$__fileName .= $db['dbname'] ."-". date('YmdHi') . ".sql";
+			$zp = gzopen($this->backupDir .'/'. $this->fileName .'.gz', "w");
+			gzwrite($zp, $backupContent);
+			gzclose($zp);
 
-		$__commandLine = "mysqldump " . $db['dbname'] . " --user=" . $db['username'] . " --password=" . $db['password'];
-		$__commandLine .= " > " . $__fileName;
-		print $__commandLine;
+		}
+		
+		return $this->backupDir .'/'. $this->fileName;
+		
 	}
 
 }
