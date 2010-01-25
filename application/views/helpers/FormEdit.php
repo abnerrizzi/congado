@@ -15,9 +15,14 @@ class Zend_View_Helper_FormEdit
 	public function FormEdit(Zend_Form $form, $baseUrl = false, array $elements)
 	{
 
+		if ($form->getAttrib('enctype')) {
+			$__enctype = ' enctype="'.$form->getAttrib('enctype').'"';
+		} else {
+			$__enctype = '';
+		}
 		$output = '
 <br/><br/>
-<form name="'.$form->getName().'" id="'.$form->getId().'" action="'. $baseUrl . $form->getAction().'" method="'.$form->getMethod().'">
+<form name="'.$form->getName().'" id="'.$form->getId().'" action="'. $baseUrl . $form->getAction().'" method="'.$form->getMethod().'" '.$__enctype.'>
 ';
 		for ($i=0; $i < count($elements); $i++)
 		{
