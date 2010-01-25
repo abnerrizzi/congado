@@ -9,6 +9,7 @@
  * 
  * @filesource
  * 
+ * @version: $Id$
  */
 class Plugin_JQuery_Flexigrid_Column_Text extends Plugin_JQuery_Flexigrid_Column_Abstract
 {

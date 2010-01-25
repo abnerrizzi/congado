@@ -6,6 +6,9 @@
  * @author Tales Augusto <tales.augusto.santos@gmail.com>
  * 
  * @filesource
+ * 
+ * @version: $Id$
+ * 
  */
 class Plugin_JQuery_Flexigrid_Column_Link extends Plugin_JQuery_Flexigrid_Column_Abstract
 {
