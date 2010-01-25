@@ -9,6 +9,8 @@
  * 
  * @filesource
  * 
+ * @version: $Id$
+ * 
  */
 class Plugin_JQuery_Flexigrid_Column_Select extends Plugin_JQuery_Flexigrid_Column_Abstract
 {
