@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * 
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ *
+ * @version: $Id: AuthController.php 9 2010-01-08 12:59:43Z bacteria_ $
+ * 
+ */
+
 class BackupController extends Zend_Controller_Action
 {
 
