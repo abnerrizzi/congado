@@ -29,7 +29,7 @@ final class Model_Db_Backup extends Model_Db
 		$this->user = $config->params->username;
 		$this->pass = $config->params->password;
 		$this->db = $config->params->dbname;
-		$this->fileName = $this->db .'-'. date('YmdHis') . ".sql";
+		$this->fileName = base64_encode($this->db .'-'. date('YmdHis')) . ".sql";
 		$this->backupDir = '../scripts/backup';
 
 	}
@@ -48,9 +48,7 @@ final class Model_Db_Backup extends Model_Db
 
 		$this->DumpFileCreate($this->backupDir .'/'. $this->fileName);
 
-		$this->DumpFileCompact($this->backupDir . '/' . $this->fileName);
-
-		return $this->backupDir .'/'. $this->fileName;
+		return $this->DumpFileCompact($this->backupDir . '/' . $this->fileName);
 		
 	}
 
@@ -72,7 +70,7 @@ final class Model_Db_Backup extends Model_Db
 					}
 				}
 			}
-			return true;
+			return base64_encode($fileName . ".gz");
 		}
 	}
 
@@ -92,7 +90,7 @@ final class Model_Db_Backup extends Model_Db
 					. " ".$this->db
 					. " > ".$this->fileNameFullPath
 				;
-		
+
 				// Execute backup command
 				system($backupCommand);
 
