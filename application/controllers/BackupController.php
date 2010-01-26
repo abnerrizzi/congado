@@ -36,6 +36,7 @@ class BackupController extends Zend_Controller_Action
 		$backupForm = new Form_Backup();
 		$backupForm->setMethod('post');
 		$backupForm->setAction('/backup/import');
+		$backupModel = new Model_Db_Backup();
 		$this->view->form = $backupForm;
 		$this->view->elements = array('backupfile');
 		$adapter = new Zend_File_Transfer_Adapter_Http();
@@ -43,32 +44,28 @@ class BackupController extends Zend_Controller_Action
 		if ($this->getRequest()->isPost()) {
 			// Returns all known internal file information
 			$files = $adapter->getFileInfo();
-			print_r($files);
 	
 			foreach ($files as $file => $info) {
-			// file uploaded ?
-			if (!$adapter->isUploaded($file)) {
-				print "Why havn't you uploaded the file ?";
-				continue;
-			}
+				// file uploaded ?
+				if (!$adapter->isUploaded($file)) {
+					print "Why havn't you uploaded the file ?";
+					continue;
+				}
 	
-			// validators are ok ?
-			if (!$adapter->isValid($file)) {
-				print "Sorry but $file is not what we wanted";
-				continue;
-			}
+				// validators are ok ?
+				if (!$adapter->isValid($file)) {
+					print "Sorry but $file is not what we wanted";
+					continue;
+				}
 
-			$adapter->receive();
+				$adapter->receive();
 
-			$names = $adapter->getFileName();
-			$mime = $adapter->getMimeType();
-			if ($adapter->getMimeType() == 'application/x-gzip') {
-				die('arquivo esperado');
+				$backupModel->importDump($adapter);
+				print 'deu o importDump';
+
 			}
 
 		}
-
-	}
  
 	}
 
