@@ -79,8 +79,7 @@ class PelagemController extends Zend_Controller_Action
 			->setAttrib('class', 'readonly')
 			->removeValidator('NoRecordExists')
 			;
-		
-		
+
 		if ($request->isPost()) {
 
 			if ($pelagemForm->isValid($request->getPost())) {
