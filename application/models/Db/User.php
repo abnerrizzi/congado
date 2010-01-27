@@ -37,4 +37,19 @@ class Model_Db_User extends Model_Db
 		print $this->getDefinition();
 		return $row['lastlogin'];
 	}
+
+	public function getUser($id)
+	{
+		$id = (int)$id;
+		$row = $this->fetchRow('id = ' . $id);
+		if (!$row) {
+			throw new Exception("Count not find row $id");
+		}
+		$array = $row->toArray();
+		foreach ($array as $key => $val) {
+			$return[$key] = utf8_decode($val);
+		}
+		return $return;
+	}
+
 }
