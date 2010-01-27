@@ -55,21 +55,28 @@ class Form_User extends Zend_Dojo_Form
 		$this->setName('configuracoes_de_usuario');
 		$this->addElement('hidden', 'id');
 
-		$this->addElement('text', 'nome', array(
+		$this->addElement('text', 'login', array(
+			'label' => 'Login',
+			'required' => true,
+			'filters' => array('StringTrim'),
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'name', array(
 			'label' => 'Nome de usuário',
 			'required' => true,
-			'filters' => array('StringTrim', 'StringToUpper'),
-			'validators' => array(new Zend_Validate_Db_NoRecordExists('tecnico','cod')),
-			'maxlength' => 2,
-			'size' => 16,
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 32,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('password', 'newpass', array(
 			'label' => 'Nova Senha',
 			'value' => false,
-			'required' => true,
-			'filters' => array('StringTrim', 'StringToUpper'),
+			'required' => false,
+			'filters' => array('StringTrim'),
 			'maxlength' => 32,
 			'size' => 32,
 			'class'	=> 'input',
@@ -78,8 +85,8 @@ class Form_User extends Zend_Dojo_Form
 		$this->addElement('password', 'oldpass', array(
 			'label' => 'Senha Atual',
 			'value' => false,
-			'required' => true,
-			'filters' => array('StringTrim', 'StringToUpper'),
+			'required' => false,
+			'filters' => array('StringTrim'),
 			'maxlength' => 32,
 			'size' => 32,
 			'class'	=> 'input',
@@ -88,8 +95,8 @@ class Form_User extends Zend_Dojo_Form
 		$this->addElement('password', 'confirmpass', array(
 			'label' => 'Confirmação da Senha',
 			'value' => false,
-			'required' => true,
-			'filters' => array('StringTrim', 'StringToUpper'),
+			'required' => false,
+			'filters' => array('StringTrim'),
 			'maxlength' => 32,
 			'size' => 32,
 			'class'	=> 'input',

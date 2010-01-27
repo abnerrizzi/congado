@@ -52,4 +52,26 @@ class Model_Db_User extends Model_Db
 		return $return;
 	}
 
+	public function updateUser(Form_User $form)
+	{
+
+		$post = $form->getValues();
+		$userData = $this->getUser($post['id']);
+
+		if (!array_key_exists('id', $post)) {
+			return false;
+		// verifica se o mesmo usuario do banco de dados
+		// eh o mesmo que esta sendo alterado
+		}
+		if ($userData['id'] != $post['id']) {
+			return false;
+		}
+
+		if ($post['newpass'] != ($post['confirmpass'])) {
+			$form->getElement('newpass')->setErrors(array('As senhas não conferem'));
+			$form->getElement('confirmpass')->setErrors(array('As senhas não conferem'));
+			return $form;
+		}
+	}
+
 }

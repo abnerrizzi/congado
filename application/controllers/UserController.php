@@ -27,19 +27,24 @@ class UserController extends Zend_Controller_Action
 		$request		= $this->getRequest();
 		$userId			= (int)$auth->id;
 		$userForm		= new Form_User();
-		$userForm->setAction('/user/profile');
+		$userForm->setAction('/user/index');
 		$userForm->setMethod('post');
 		$userModel		= new Model_Db_User();
 
-		$userForm->getElement('nome')
+		$userForm->getElement('login')
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')
 			;
 
 		if ($request->isPost()) {
 			if ($userForm->isValid($request->getPost())) {
-				$userModel->updateuser($userForm->getValues());
-				$this->_redirect('user/index');
+				$updateReturn = $userModel->updateUser($userForm);
+				if (!$updateReturn) {
+					throw new Zend_Exception('Erro atualizando dados do usuário');
+					$this->_redirect('user/index');
+				} else {
+					$userForm = $updateReturn;
+				}
 			}
 		} else {
 			if ($userId > 0) {
@@ -49,16 +54,11 @@ class UserController extends Zend_Controller_Action
 				throw new Exception("invalid record number.");
 			}
 		}
-		$this->view->elements = array('id', 'nome', 'oldpass', 'newpass', 'confirmpass', 'perpage');
+//		print '<pre>';print_r($result);die();
+		$this->view->elements = array('id', 'login', 'name', 'oldpass', 'newpass', 'confirmpass', 'perpage');
 		$this->view->form = $userForm;
 
 	}
-
-	public function profileAction()
-	{
-		// action body
-	}
-
 
 }
 
