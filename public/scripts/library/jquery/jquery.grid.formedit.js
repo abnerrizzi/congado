@@ -1,6 +1,3 @@
-
-<!-- saved from url=(0065)http://github.com/tonytomov/jqGrid/raw/master/js/grid.formedit.js -->
-<HTML><BODY><PRE style="word-wrap: break-word; white-space: pre-wrap;">;(function($){
 /**
  * jqGrid extension for form editing Grid Data
  * Tony Tomov tony@trirand.com

@@ -3,6 +3,8 @@
 /**
  * Tradução para o Português por Nivaldo Arruda - nivaldo@gmail.com
  * 
+ * Atualizador por Abner Rizzi - abner.rizzi@gmail.com
+ * 
  * @version $Id$
  * 
  */
@@ -43,7 +45,9 @@ $portugues['notGreaterThan'] = "'%value%' não é maior que '%min%'";
  * Ponto flutuante
  */
 //$portugues['notFloat'] = "'%value%' não é do tipo float";
-$portugues['notFloat'] = "'%value%' não é do tipo float (utilizar . para separacao decimal)";
+//$portugues['notFloat'] = "'%value%' não é do tipo float (utilizar ',' para separacao decimal)";
+$portugues['notFloat'] = "'%value%' não é do tipo float (utilizar '.' para separacao decimal)";
+
 
 /*
  * Data
@@ -63,10 +67,14 @@ $portugues['notDigits'] = "'%value%' não contém apenas dígitos";
 $portugues['notBetween'] = "'%value%' não está entre '%min%' e '%max%', inclusive";
 $portugues['notBetweenStrict'] = "'%value%' não está estritamente entre '%min%' e '%max%'";
 
-//alnum
+/*
+ * Alfanumerico
+ */
 $portugues['notAlnum'] = "'%value%' não possuí apenas letras e dígitos";
 
-//alpha
+/*
+ * Alfabetico
+ */
 $portugues['notAlpha'] = "'%value%' não possuí apenas letras";
 
 //in array
@@ -82,10 +90,14 @@ $portugues['notInt'] = "'%value%' não parece ser um inteiro";
  */
 $portugues['notIpAddress'] = "'%value%' não parece ser um endereço ip válido";
 
-//lessthan
+/*
+ * Menor que
+ */
 $portugues['notLessThan'] = "'%value%' não é menor que '%max%'";
 
-//notempty
+/*
+ * Não vazio
+ */
 $portugues['isEmpty'] = "Campo vazio, mas um valor diferente de vazio é esperado";
 
 /*

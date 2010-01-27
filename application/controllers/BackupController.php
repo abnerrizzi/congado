@@ -61,14 +61,19 @@ class BackupController extends Zend_Controller_Action
 				$adapter->receive();
 
 				$backupModel->importDump($adapter);
-				print 'deu o importDump';
 
+				$this->view->msg = "Importação realizada com sucesso.";
 			}
 
 		}
  
 	}
 
+	/**
+	 * Funcao de intervencao de download retirada da internet
+	 * 
+	 * ! funcao suporta resume
+	 */
 	public function downloadAction()
 	{
 		$file = base64_decode($this->getRequest()->getParam('file'));
@@ -100,7 +105,6 @@ class BackupController extends Zend_Controller_Action
 		//This will set the Content-Type to the appropriate setting for the file
 		switch($file_extension)
 		{
-			case 'exe': $ctype='application/octet-stream'; break;
 			case 'zip': $ctype='application/zip'; break;
 			case 'mp3': $ctype='audio/mpeg'; break;
 			case 'mpg': $ctype='video/mpeg'; break;
