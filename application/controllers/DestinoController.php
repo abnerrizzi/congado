@@ -34,7 +34,11 @@ class DestinoController extends Zend_Controller_Action
 		 * Paginator
 		 */
 		$paginator = Zend_Paginator::factory($result);
-		$paginator->setItemCountPerPage(Zend_Registry::get('configuration')->pagination->itemCoutPerPage);
+		if (intval(Zend_Auth::getInstance()->getIdentity()->perpage) > 0) {
+			$paginator->setItemCountPerPage(intval(Zend_Auth::getInstance()->getIdentity()->perpage));
+		} else {
+			$paginator->setItemCountPerPage(Zend_Registry::get('configuration')->pagination->itemCoutPerPage);
+		}
 		$paginator->setCurrentPageNumber($_page);
 
 		/*

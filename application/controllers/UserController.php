@@ -39,11 +39,12 @@ class UserController extends Zend_Controller_Action
 		if ($request->isPost()) {
 			if ($userForm->isValid($request->getPost())) {
 				$updateReturn = $userModel->updateUser($userForm);
-				if (!$updateReturn) {
+				if ($updateReturn == 0) {
+					var_dump($updateReturn);
+					die();
 					throw new Zend_Exception('Erro atualizando dados do usuário');
-					$this->_redirect('user/index');
 				} else {
-					$userForm = $updateReturn;
+					$this->_redirect('/');
 				}
 			}
 		} else {
@@ -51,15 +52,19 @@ class UserController extends Zend_Controller_Action
 				$result = $userModel->getUser($userId);
 				$userForm->populate( $result );
 			} else {
-				throw new Exception("invalid record number.");
+				throw new Zend_Exception("invalid record number.");
 			}
 		}
-//		print '<pre>';print_r($result);die();
-		$this->view->elements = array('id', 'login', 'name', 'oldpass', 'newpass', 'confirmpass', 'perpage');
+		$this->view->elements = array('id', 'login', 'name', 'perpage');
 		$this->view->form = $userForm;
 
 	}
 
+	public function changepassAction()
+	{
+		print 'vai trocar a senha';
+		die();
+	}
 }
 
 

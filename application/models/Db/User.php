@@ -57,21 +57,34 @@ class Model_Db_User extends Model_Db
 
 		$post = $form->getValues();
 		$userData = $this->getUser($post['id']);
+		$passOld = $post['oldpass'];
+		$passNew = $post['newpass'];
+		$passConfirm = $post['confirmpass'];
+		$data = false;
 
 		if (!array_key_exists('id', $post)) {
 			return false;
+		}
+
+		if ($post['name'] != $userData['name']) {
+			$data['name'] = $post['name'];
+		}
+
 		// verifica se o mesmo usuario do banco de dados
 		// eh o mesmo que esta sendo alterado
-		}
 		if ($userData['id'] != $post['id']) {
 			return false;
 		}
 
-		if ($post['newpass'] != ($post['confirmpass'])) {
-			$form->getElement('newpass')->setErrors(array('As senhas não conferem'));
-			$form->getElement('confirmpass')->setErrors(array('As senhas não conferem'));
-			return $form;
+		if ((int)$post['perpage'] > 0 && ($post['perpage'] != $userData['perpage'])) {
+			$data['perpage'] = $post['perpage'];
 		}
+
+		if (is_array($data)) {
+			$where = array('id' => $post['id']);
+			return $this->update($data, 'id = '.(int)$post['id']);
+		}
+
 	}
 
 }
