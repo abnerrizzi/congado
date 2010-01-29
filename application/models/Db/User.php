@@ -81,8 +81,10 @@ class Model_Db_User extends Model_Db
 		}
 
 		if (is_array($data)) {
-			$where = array('id' => $post['id']);
-			return $this->update($data, 'id = '.(int)$post['id']);
+			$where = $this->getAdapter()->quoteInto('id = ?', (int)$post['id']); 
+			if ($this->update($data, 'id = '.(int)$post['id'])) {
+				return true;
+			}
 		}
 
 	}
