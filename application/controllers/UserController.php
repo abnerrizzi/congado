@@ -39,6 +39,42 @@ class UserController extends Zend_Controller_Action
 		if ($request->isPost()) {
 			if ($userForm->isValid($request->getPost())) {
 				$updateReturn = $userModel->updateUser($userForm);
+				if ($updateReturn != 0) {
+					$this->render('warning');
+				}
+			}
+		} else {
+			if ($userId > 0) {
+				$result = $userModel->getUser($userId);
+				$userForm->populate( $result );
+			} else {
+				throw new Zend_Exception("invalid record number.");
+			}
+		}
+		$this->view->elements = array('id', 'login', 'name', 'perpage');
+		$this->view->form = $userForm;
+
+	}
+
+	public function changepassAction()
+	{
+		$auth = Zend_Auth::getInstance()->getStorage()->read();
+
+		$request		= $this->getRequest();
+		$userId			= (int)$auth->id;
+		$userForm		= new Form_User();
+		$userForm->setAction('/user/index');
+		$userForm->setMethod('post');
+		$userModel		= new Model_Db_User();
+
+		$userForm->getElement('login')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			;
+
+		if ($request->isPost()) {
+			if ($userForm->isValid($request->getPost())) {
+				$updateReturn = $userModel->updateUser($userForm);
 				if ($updateReturn == 0) {
 					var_dump($updateReturn);
 					die();
@@ -57,13 +93,11 @@ class UserController extends Zend_Controller_Action
 		}
 		$this->view->elements = array('id', 'login', 'name', 'perpage');
 		$this->view->form = $userForm;
-
 	}
 
-	public function changepassAction()
+	public function warningAction()
 	{
-		print 'vai trocar a senha';
-		die();
+		
 	}
 }
 
