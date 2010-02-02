@@ -146,6 +146,9 @@
           <actionMethod actionName="export"/>
           <actionMethod actionName="import"/>
         </controllerFile>
+        <controllerFile controllerName="delicious">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory/>
@@ -431,6 +434,9 @@
           <viewControllerScriptsDirectory forControllerName="backup">
             <viewScriptFile forActionName="import"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="delicious">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -462,6 +468,7 @@
       <testApplicationDirectory>
         <testApplicationBootstrapFile/>
         <testApplicationControllerDirectory>
+          <testApplicationControllerFile/>
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>
