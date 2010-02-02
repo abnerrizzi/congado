@@ -23,6 +23,7 @@ class Model_Grid
 	private $genealogia	= false;
 	private $orderby	= false;
 	private $order		= false;
+	private $action		= false;
 
 	public function __construct($name)
 	{
@@ -111,13 +112,20 @@ class Model_Grid
 		$this->search = $search;
 	}
 
+	public function setAction($action)
+	{
+		$this->action = $action;
+	}
 
+	public function getAction()
+	{
+		return $this->action;
+	}
 
 	public function getSearch()
 	{
 		return $this->search;
 	}
-
 
 	public function getPaginator()
 	{

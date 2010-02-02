@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * 
+ * fichario listagem
+ * selecionar c/ clique
+ * 
+ */
+
 /**
  * @TODO: Calculo automatico de Grau de Sangue
  * 
@@ -48,8 +55,8 @@ class FicharioController extends Zend_Controller_Action
 		$fields[] = new Model_Grid_Fields('cod', 'Animal', 65);
 		$fields[] = new Model_Grid_Fields('nome','Nome', 120);
 		$fields[] = new Model_Grid_Fields('dt_nascimento','Dt Nasc.', 60);
-		$fields[] = new Model_Grid_Fields('raca_dsc','Raça', 140);
-		$fields[] = new Model_Grid_Fields('fazenda_dsc','Fazenda', 170);
+		$fields[] = new Model_Grid_Fields('rgn','RGN', 80);
+		$fields[] = new Model_Grid_Fields('fazenda_dsc','Fazenda', 320);
 
 		/*
 		 * Grid Model
@@ -57,6 +64,7 @@ class FicharioController extends Zend_Controller_Action
 		$gridModel->setBaseUrl($this->view->baseUrl);
 		$gridModel->setSorting(true);
 		$gridModel->setPaginator($paginator);
+		$gridModel->setAction(false);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
 			'module'	=> 'fichario',
@@ -70,15 +78,6 @@ class FicharioController extends Zend_Controller_Action
 			'module'	=> 'fichario',
 			'action'	=> 'add',
 		));
-		$gridModel->setSearch(array(
-			'module'	=> 'fichario',
-			'action'	=> 'search',
-		), true);
-		$gridModel->setGenealogia(array(
-			'module'	=> 'fichario',
-			'action'	=> 'genealogia',
-		), true);
-
 		$this->view->sort = $this->_getParam('sort', 'id');
 		$this->view->grid = $gridModel;
 
@@ -364,4 +363,5 @@ class FicharioController extends Zend_Controller_Action
 	{
 
 	}
+
 }
