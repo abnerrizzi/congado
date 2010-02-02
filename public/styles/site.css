@@ -104,7 +104,7 @@
 }
 
 #grid .selected {
-	background-color: #3333ff;
+	background-color: #002288;
 	color: #dfdfdf;
 }
 
@@ -112,8 +112,8 @@
 	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	font-weight: normal;
-	background-color: #333;
-	color: #ccc;
+	background-color: #666666;
+	color: #eeeeee;
 }
 
 #grid td {
