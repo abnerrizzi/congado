@@ -1,12 +1,5 @@
 <?php
 
-/*
- * 
- * fichario listagem
- * selecionar c/ clique
- * 
- */
-
 /**
  * @TODO: Calculo automatico de Grau de Sangue
  * 
