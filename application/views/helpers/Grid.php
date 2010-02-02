@@ -21,10 +21,21 @@ class Zend_View_Helper_Grid
 //	public function grid($name, $fields = array(), $paginator = null, $sorting = false, $baseUrl = null, $edit = array(), $delete = array())
 	public function grid(Model_Grid $grid)
 	{
+
+		if ($grid->getEdit()) {
+			$edit = $grid->getEdit();
+			$editModule = $edit['module'];
+			$editAction = $edit['action'];
+			$this->view->headScript()->prependScript("var editUrl = '/$editModule/$editAction';");
+		}
+		
+		// Add default script for grid
+		$this->view->headScript()->appendFile($grid->getBaseUrl() . '/scripts/grid.js');
+
 		// talking value of sort using Front controller getRequest() method.
 		$_sort = Zend_Controller_Front::getInstance()->getRequest()->getParam('sort', 'asc');
 		$_by = Zend_Controller_Front::getInstance()->getRequest()->getParam('by', 'id');
-		$_colSpan = (count($grid->getFields())*3)+1;
+		$_colSpan = (count($grid->getFields())*3);
 		
 		// start constructing the grid.
 		$output  = '<div id="grid">'."\n";
@@ -72,24 +83,28 @@ $output .= '</td>
 				$title = $__fields[$i]['title'];
 			}
 			$output .= ' 
-		  <td width="20" height="20" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');" onclick="">
+		  <td width="20" height="20" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');">
 			<img src="'.$arrow.'" alt=""/>
 		  </td>
 
-		  <td width="'.$__fields->getSize().'" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');" onclick="">
+		  <td width="'.$__fields->getSize().'" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');">
 			'.$title.'
 		  </td>
 
-		  <td onclick="" width="0" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');">
+		  <td width="0" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');">
 			<img src="'.$grid->getBaseUrl().'/images/grid/divisor_title.gif" alt=""/>
 		  </td>
 
 '."\n";
 		}
-		$output .= '
+		if ($grid->getAction()) {
+			$output .= '
 		  <td align="center" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');" width="65" >
 			A&ccedil;&otilde;es
 		  </td>
+';
+		}
+		$output .= '
 
 		</tr>
 <!-- END OF TABLE HEAD -->
@@ -116,7 +131,6 @@ $output .= '</td>
 			}
 		}
 		$output .= '
-		  <td height="2" bgcolor="#BFBDB3"></td>
 		</tr>
 		';
 
@@ -134,30 +148,32 @@ $output .= '</td>
 <tr class="content">
   <td height="3" colspan="'.$_colSpan.'"></td>
 </tr>
-<tr class="'.$class.'">
+<tr class="'.$class.'" id="id'.$post['id'].'">
 ';
 			for ($x = 0; $x < count($grid->getFields()); $x++)
 			{
 				$_colum = $grid->getFields();
 				$_colum = $_colum[$x]->getColum();
 				$output .= '
-  <td align="center"
-	onmouseover="highligth(this, \'rowon\');"
-	onmouseout="highligth(this, \''.$class.'\');"></td>
+  <td align="center">
+	</td>
+	';
+				if ($x != count($grid->getFields())-1) { 
+					$output .='
   <td
-	onmouseover="highligth(this, \'rowon\');"
-	onmouseout="highligth(this, \''.$class.'\');">'.utf8_decode($post[$_colum]).'</td>
+	>'.utf8_decode($post[$_colum]).'</td>
   <td style="background: url(\''.$grid->getBaseUrl().'/images/grid/divisor_content.gif\');"></td>
-				
 ';
+				} else {
+					$output .='
+  <td colspan="2">'.utf8_decode($post[$_colum]).'</td>
+';
+				}
 			}
+			if ($grid->getAction()) {
 			$output .= '
 
-
-  <td
-	align="center"
-	onmouseover="highligth(this, \'rowon\');"
-	onmouseout="highligth(this, \''.$class.'\');">';
+  <td align="center">';
 
 			if ($grid->getEdit()) {
 				$edit = $grid->getEdit();
@@ -182,8 +198,10 @@ $output .= '</td>
 
 			$output .= '
   </td>
-</tr>
 ';
+			}
+			$output .= '</tr>
+			';
 
 
 
