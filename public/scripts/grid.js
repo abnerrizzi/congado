@@ -14,9 +14,7 @@ $(document).ready(function() {
 
 	$("#null table tr[class*='row'] td").dblclick(function(){
 		id = $(this).parent().attr('id').substr(2);
-		params = new Array();
-		params['id'] = id;
-		postToURL(baseUrl + editUrl + '/id/'+id, '', 'get');
+		window.location = (baseUrl + editUrl + '/id/'+ id);
 	});
 
 	$("#null table tr[class*='row'] td").click(function(){

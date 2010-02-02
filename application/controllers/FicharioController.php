@@ -55,7 +55,7 @@ class FicharioController extends Zend_Controller_Action
 		$fields[] = new Model_Grid_Fields('cod', 'Animal', 65);
 		$fields[] = new Model_Grid_Fields('nome','Nome', 120);
 		$fields[] = new Model_Grid_Fields('dt_nascimento','Dt Nasc.', 60);
-		$fields[] = new Model_Grid_Fields('rgn','RGN', 80);
+		$fields[] = new Model_Grid_Fields('rgn','RGN', 60);
 		$fields[] = new Model_Grid_Fields('fazenda_dsc','Fazenda', 320);
 
 		/*
@@ -179,6 +179,7 @@ class FicharioController extends Zend_Controller_Action
 
 		$this->view->elements = array('id' , 'cod' , 'dsc');
 		$this->view->form = $ficharioForm;
+		$this->view->array = $this->getGenealogia($ficharioId);
 
 	}
 
@@ -221,6 +222,34 @@ class FicharioController extends Zend_Controller_Action
 			throw new Exception("Animal invalido($id)");
 		}
 
+		$array = $this->getGenealogia($animal['id']);
+		
+
+		$filhos = $ficharioModel->getFilhos($id);
+		if ($filhos) {
+			$array['filhos'] = $filhos;
+		} else {
+			$array['filhos'] = false;
+		}
+		
+
+		$this->view->array = $array;
+		if ($this->getRequest()->getParam('onlyHTML') == true) {
+			$this->render('genealogia-compact');
+		} else {
+			$this->render('genealogia-compact');
+		}
+	}
+
+	public function jqgridAction()
+	{
+
+	}
+
+	private function getGenealogia($id)
+	{
+		$ficharioModel = new Model_Db_Fichario();
+		$animal = $ficharioModel->getFichario($id);
 		$array = array();
 
 		// Animal
@@ -342,26 +371,6 @@ class FicharioController extends Zend_Controller_Action
 				}
 			}
 		}
-
-		$filhos = $ficharioModel->getFilhos($id);
-		if ($filhos) {
-			$array['filhos'] = $filhos;
-		} else {
-			$array['filhos'] = false;
-		}
-		
-
-		$this->view->array = $array;
-		if ($this->getRequest()->getParam('onlyHTML') == true) {
-			$this->render('genealogia-compact');
-		} else {
-			$this->render('genealogia-compact');
-		}
+		return $array;
 	}
-
-	public function jqgridAction()
-	{
-
-	}
-
 }
