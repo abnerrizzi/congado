@@ -366,4 +366,5 @@ class FicharioController extends Zend_Controller_Action
 		}
 		return $array;
 	}
+
 }
