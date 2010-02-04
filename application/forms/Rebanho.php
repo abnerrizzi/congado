@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Rebanho extends Zend_Dojo_Form
+class Form_Rebanho extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(

@@ -4,11 +4,11 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version: $Id$
+ * @version: $Id: Acompanhamento.php 9 2010-01-08 12:59:43Z bacteria_ $
  * 
  */
 
-class Form_Alimento extends Form_Default
+class Form_Default extends Zend_Dojo_Form
 {
 
 	protected $_standardElementDecorator = array(
@@ -52,40 +52,29 @@ class Form_Alimento extends Form_Default
 	public function __construct()
 	{
 		parent::__construct();
-		$this->setName('regime_alimentar');
+		$this->setName('tipos_de_acompanhamentos_reprod');
 		$this->addElement('hidden', 'id');
-
-		$this->addElement('text', 'cod', array(
-			'label' => 'Código',
-			'required' => true,
-			'filters' => array('StringTrim', 'StringToUpper'),
-			'validators' => array('Alnum', new Zend_Validate_Db_NoRecordExists('alimento','cod')),
-			'maxlength' => 4,
-			'size' => 4,
-			'class'	=> 'input',
-		));
-
-		$this->addElement('text', 'dsc', array(
-			'label' => 'Descrição',
-			'required' => true,
-			'filters' => array('StringTrim', 'StringToUpper'),
-			'maxlength' => 32,
-			'size' => 32,
-			'class'	=> 'input',
-		));
-
-		$this->addElement('image', 'submit', array(
-			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/save.gif',
-		));
-		$this->getElement('submit')
-			->removeDecorator('Label')
-			->removeDecorator('Tag')
-		;
 
 		$this->addElement('image', 'cancel', array(
 			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/cancel.gif',
 		));
 		$this->getElement('cancel')
+			->removeDecorator('Label')
+			->removeDecorator('Tag')
+		;
+
+		$this->addElement('image', 'delete', array(
+			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/delete.gif',
+		));
+		$this->getElement('delete')
+			->removeDecorator('Label')
+			->removeDecorator('Tag')
+		;
+
+		$this->addElement('image', 'submit', array(
+			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/save.gif',
+		));
+		$this->getElement('submit')
 			->removeDecorator('Label')
 			->removeDecorator('Tag')
 		;

@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Matrizgr extends Zend_Dojo_Form
+class Form_Matrizgr extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(

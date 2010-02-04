@@ -98,7 +98,7 @@ class PelagemController extends Zend_Controller_Action
 				throw new Exception("invalid record number.");
 			}
 		}
-		$this->view->elements = array('id', 'cod', 'dsc');
+		$this->view->elements = array('id', 'cod', 'dsc', 'delete');
 		$this->view->form = $pelagemForm;
 	}
 

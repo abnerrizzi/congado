@@ -91,7 +91,7 @@ class UserController extends Zend_Controller_Action
 				throw new Zend_Exception("invalid record number.");
 			}
 		}
-		$this->view->elements = array('id', 'login', 'name', 'perpage');
+		$this->view->elements = array('id', 'login', 'oldpass', 'newpass', 'confirmpass');
 		$this->view->form = $userForm;
 	}
 
@@ -99,7 +99,5 @@ class UserController extends Zend_Controller_Action
 	{
 		
 	}
+
 }
-
-
-

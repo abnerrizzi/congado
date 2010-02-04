@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Categoria extends Zend_Form
+class Form_Categoria extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(

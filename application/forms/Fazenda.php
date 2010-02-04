@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Fazenda extends Zend_Dojo_Form
+class Form_Fazenda extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(
@@ -127,22 +127,6 @@ class Form_Fazenda extends Zend_Dojo_Form
 			'class'	=> 'input',
 		));
 
-
-		$this->addElement('image', 'submit', array(
-			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/save.gif',
-		));
-		$this->getElement('submit')
-			->removeDecorator('Label')
-			->removeDecorator('Tag')
-		;
-
-		$this->addElement('image', 'cancel', array(
-			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/cancel.gif',
-		));
-		$this->getElement('cancel')
-			->removeDecorator('Label')
-			->removeDecorator('Tag')
-		;
 
 	}
 

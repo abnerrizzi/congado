@@ -102,7 +102,7 @@ class CategoriaController extends Zend_Controller_Action
 			}
 		}
 
-		$this->view->elements = array('id', 'cod', 'dsc', 'unidade');
+		$this->view->elements = array('id', 'cod', 'dsc', 'unidade', 'delete');
 		$this->view->form = $categoriaForm;
 	}
 

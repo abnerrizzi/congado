@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Grausangue extends Zend_Form
+class Form_Grausangue extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(

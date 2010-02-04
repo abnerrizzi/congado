@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_SituacaoPesagem extends Zend_Dojo_Form
+class Form_SituacaoPesagem extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(

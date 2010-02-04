@@ -130,7 +130,7 @@ class SituacaoCriaController extends Zend_Controller_Action
 			}
 		}
 
-		$this->view->elements = array('id' , 'cod' , 'dsc');
+		$this->view->elements = array('id' , 'cod' , 'dsc', 'delete');
 		$this->view->form = $situacaocriaForm;
 
 	}

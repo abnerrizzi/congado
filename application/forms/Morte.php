@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Morte extends Zend_Dojo_Form
+class Form_Morte extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(
