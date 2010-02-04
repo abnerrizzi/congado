@@ -164,7 +164,7 @@ class LoteController extends Zend_Controller_Action
 			}
 		}
 
-		$this->view->elements = array('id' , 'fazenda_id' , 'cod' , 'dsc');
+		$this->view->elements = array('id' , 'fazenda_id' , 'cod' , 'dsc', 'delete');
 		$this->view->form = $loteForm;
 	}
 

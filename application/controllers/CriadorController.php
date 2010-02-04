@@ -182,6 +182,7 @@ class CriadorController extends Zend_Controller_Action
 			'corresp_endereco',
 			'corresp_cidades_id',
 			'corresp_cep',
+			'delete',
 		);
 
 		$this->view->form = $criadorForm;

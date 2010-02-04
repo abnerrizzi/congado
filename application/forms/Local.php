@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Local extends Zend_Dojo_Form
+class Form_Local extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(

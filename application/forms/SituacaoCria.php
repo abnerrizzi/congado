@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_SituacaoCria extends Zend_Dojo_Form
+class Form_SituacaoCria extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(

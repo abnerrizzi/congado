@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Ativagricola extends Zend_Dojo_Form
+class Form_Ativagricola extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(

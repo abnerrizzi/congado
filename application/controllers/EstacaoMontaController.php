@@ -134,7 +134,7 @@ class EstacaoMontaController extends Zend_Controller_Action
 			}
 		}
 
-		$this->view->elements = array('id' , 'cod' , 'dsc', 'dt_inicio', 'dt_fim');
+		$this->view->elements = array('id' , 'cod' , 'dsc', 'dt_inicio', 'dt_fim', 'delete');
 		$this->view->form = $estacaomontaForm;
 
 	}

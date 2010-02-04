@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Acompanhamento extends Zend_Dojo_Form
+class Form_Acompanhamento extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(

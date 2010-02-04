@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Inseminador extends Zend_Dojo_Form
+class Form_Inseminador extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(

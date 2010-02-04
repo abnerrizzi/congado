@@ -151,7 +151,6 @@ class MatrizgrController extends Zend_Controller_Action
 			;
 		$matrizgrForm->getElement('raca')
 			->setAttribs(array(
-				'readonly'	=> 'readonly',
 				'disabled'	=> 'disabled',
 				'class'		=> 'readonly',
 			))
@@ -166,7 +165,6 @@ class MatrizgrController extends Zend_Controller_Action
 			;
 		$matrizgrForm->getElement('pai')
 			->setAttribs(array(
-				'readonly'	=> 'readonly',
 				'disabled'	=> 'disabled',
 				'class'		=> 'readonly',
 			))
@@ -181,7 +179,6 @@ class MatrizgrController extends Zend_Controller_Action
 			;
 		$matrizgrForm->getElement('mae')
 			->setAttribs(array(
-				'readonly'	=> 'readonly',
 				'disabled'	=> 'disabled',
 				'class'		=> 'readonly',
 			))

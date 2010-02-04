@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Raca extends Zend_Dojo_Form
+class Form_Raca extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(

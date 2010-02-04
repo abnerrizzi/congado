@@ -119,7 +119,7 @@ class LocalController extends Zend_Controller_Action
 			}
 		}
 
-		$this->view->elements = array('id' , 'fazenda_id' , 'local' , 'dsc' , 'area');
+		$this->view->elements = array('id' , 'fazenda_id' , 'local' , 'dsc' , 'area', 'delete');
 		$this->view->form = $localForm;
 	}
 

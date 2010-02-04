@@ -55,23 +55,23 @@ function check_delete(id, param, action)
 
 function createFormDeleteAndSubmit(id, param, action)
 {
-	submitForm = document.createElement("FORM");
-	document.body.appendChild(submitForm);
-	submitForm.action = action;
-	submitForm.method = 'POST';
-
-	el_id = document.createElement("input");
-		el_id.setAttribute("type", "hidden");
-		el_id.setAttribute("name", "id");
-		el_id.setAttribute("value", id);
-	submitForm.appendChild(el_id);
-	el_param = document.createElement("input");
-		el_param.setAttribute("type", "hidden");
-		el_param.setAttribute("name", "param");
-		el_param.setAttribute("value", param);
-	submitForm.appendChild(el_param);
-
-	submitForm.submit();
+	if ($("#deleteform").length == 0) {
+		submitForm = $('<form id="deleteform"></form>');
+		$("#main").append(submitForm);
+		el_id = document.createElement('input');
+			el_id.setAttribute("type", "hidden");
+			el_id.setAttribute("name", "id");
+			el_id.setAttribute("value", id);
+		el_param = document.createElement("input");
+			el_param.setAttribute("type", "hidden");
+			el_param.setAttribute("name", "param");
+			el_param.setAttribute("value", param);
+		$("#deleteform").append(el_id);
+		$("#deleteform").append(el_param);
+		$("#deleteform").attr('method', 'post');
+		$("#deleteform").attr('action', action);
+		$("#deleteform").submit();
+	}
 }
 
 $(document).ready(function() {

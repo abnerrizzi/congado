@@ -662,9 +662,9 @@ $this->headScript()
   </tr>
   <tr>
     <td width="20"></td>
-    <td align="center"><?=$this->form->submit;?></td>
+    <td align="center"><?=$this->form->getElement('delete')->setAttrib('onclick', "check_delete(".$this->form->getElement('id')->getValue().", '".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."', '".$this->baseUrl()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."/delete');return false");?></td>
     <td width="10"></td>
-    <td align="center"><?=$this->form->getElement('cancel')->setAttrib('onclick', "location.href = '".$this->baseUrl()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."'; return false;");?></td>
+    <td align="center"><?=$this->form->submit;?><?=$this->form->getElement('cancel')->setAttrib('onclick', "location.href = '".$this->baseUrl()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."'; return false;");?></td>
     <td width="50"></td>
   </tr>
 

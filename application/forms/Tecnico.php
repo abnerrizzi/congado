@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Tecnico extends Zend_Dojo_Form
+class Form_Tecnico extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(

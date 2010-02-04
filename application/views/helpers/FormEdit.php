@@ -64,7 +64,7 @@ class Zend_View_Helper_FormEdit
 		for ($i=0; $i < count($elements); $i++)
 		{
 			$_el = $form->getElement($elements[$i]);
-			if ($_el->getType() == 'Zend_Form_Element_Hidden') {
+			if ($_el->getType() == 'Zend_Form_Element_Hidden' || $_el->getName() == 'delete') {
 				continue;
 			}
 
@@ -104,9 +104,16 @@ class Zend_View_Helper_FormEdit
 
   <tr>
 	<td width="20"></td>
-	<td align="center">'.$form->getElement('cancel')->setAttrib('onclick', "location.href = '".$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."'; return false;").'</td>
+';
+		if (in_array('delete', $elements)) {
+			$excluir = $form->getElement('delete')->setAttrib('onclick', "check_delete(".$form->getElement('id')->getValue().", '".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."', '".$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."/delete');return false");
+		} else {
+			$excluir = '';
+		}
+	$output .= '
+	<td align="center">'.$excluir.'</td>
 	<td width="10"></td>
-	<td align="center">'.$form->submit.'</td>
+	<td align="center">'.$form->submit.$form->getElement('cancel')->setAttrib('onclick', "location.href = '".$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."'; return false;").'</td>
 	<td width="50"></td>
   </tr>
 

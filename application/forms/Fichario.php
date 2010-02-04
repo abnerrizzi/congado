@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Fichario extends Zend_Dojo_Form
+class Form_Fichario extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(
@@ -292,32 +292,6 @@ class Form_Fichario extends Zend_Dojo_Form
 		));
 
 
-
-
-
-
-
-
-
-
-
-
-
-		$this->addElement('image', 'submit', array(
-			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/save.gif',
-		));
-		$this->getElement('submit')
-			->removeDecorator('Label')
-			->removeDecorator('Tag')
-		;
-
-		$this->addElement('image', 'cancel', array(
-			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/cancel.gif',
-		));
-		$this->getElement('cancel')
-			->removeDecorator('Label')
-			->removeDecorator('Tag')
-		;
 
 	}
 

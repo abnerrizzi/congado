@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_User extends Zend_Dojo_Form
+class Form_User extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(
@@ -111,6 +111,9 @@ class Form_User extends Zend_Dojo_Form
 			'class' => 'input'
 		));
 
+		$this->addElement('image', 'delete', array(
+			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/delete.gif',
+		));
 		$this->addElement('image', 'submit', array(
 			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/save.gif',
 		));
@@ -127,6 +130,10 @@ class Form_User extends Zend_Dojo_Form
 			->removeDecorator('Tag')
 		;
 
+		$this->getElement('delete')
+			->removeDecorator('Label')
+			->removeDecorator('Tag')
+		;
 	}
 
 }

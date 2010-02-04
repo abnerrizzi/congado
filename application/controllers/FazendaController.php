@@ -142,6 +142,7 @@ class FazendaController extends Zend_Controller_Action
 			'rg',
 			'sisbov',
 			'nirf',
+			'delete',
 		);
 
 		$this->view->form = $fazendaForm;

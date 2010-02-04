@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_MotivoLactacao extends Zend_Dojo_Form
+class Form_MotivoLactacao extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(

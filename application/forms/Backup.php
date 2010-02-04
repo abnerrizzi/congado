@@ -8,7 +8,7 @@
  * 
  */
 
-class Form_Backup extends Zend_Form
+class Form_Backup extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(
