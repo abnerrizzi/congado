@@ -18,16 +18,20 @@ $(document).ready(function() {
 	});
 
 	$("#null table tr[class*='row'] td").click(function(){
-		/*
-		 * Seleciona e deseleciona as linhas quando sao clicadas
-		 * caso a linha ja tenha sido selecionada, ao clicar novamente
-		 * a mesma perdera a selecao
-		 */
 		rows = $(this).parent().parent().find("tr[class*='selected']");
+		/*
+		 * Se a linha clicada ja estiver selecionada,
+		 * mantem a mesma selecionada
+		 */
+		if (rows.attr('id') == $(this).parent().attr('id')) {
+			return;
+		}
 		$(this).parent().toggleClass('rowon');
 		$(this).parent().addClass('selected');
 		rows.each(function(i){
-			$(rows[i]).removeClass('selected');
+			if (rows.attr('id') != $(this).parent().attr('id')) {
+				$(rows[i]).removeClass('selected');
+			}
 		});
 	})
 	;

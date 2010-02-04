@@ -104,9 +104,9 @@ class Zend_View_Helper_FormEdit
 
   <tr>
 	<td width="20"></td>
-	<td align="center">'.$form->submit.'</td>
-	<td width="10"></td>
 	<td align="center">'.$form->getElement('cancel')->setAttrib('onclick', "location.href = '".$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."'; return false;").'</td>
+	<td width="10"></td>
+	<td align="center">'.$form->submit.'</td>
 	<td width="50"></td>
   </tr>
 
