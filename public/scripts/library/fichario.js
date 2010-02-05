@@ -66,6 +66,60 @@ $(document).ready(function() {
 		}
 	});
 
+	$('#genealogia a').each(function() {
+		$(this).qtip( {
+			content : {
+				url : baseUrl + '/json/filhos/',
+				data : {
+					id : $(this).attr('id')
+					/*
+					 * coloar atributo a ser passado para o json para
+					 * montar a url de acordo com os parametros passados
+					 * mais isso tem q ser feito no php, para nao permitir
+					 * injecao de codigo malicioso
+					 * 
+					 */
+				},
+				prerender: false,
+				text: 'Carregando...               ',
+				method : 'post'
+			},
+			// styles: cream, dark, green, light, red, blue
+			style : {
+					name: 'cream',
+					border: {
+						width: 2,
+						radius: 4
+					},
+					tip: 'topMiddle',
+					width: 240
+				},
+			hide : {
+				when : {
+					event : 'inactive'
+				},
+				delay : 2000
+			},
+			position: {
+				corner: {
+					target: 'bottomMiddle',
+					tooltip: 'topMiddle'
+				}
+			},
+			target: {
+				dimensions: {
+					height: 100,
+					width: 100
+				}
+			}
+			
+		});
+	});
+
+	// Remover todos os links da genealogia
+	$("#main #fichario #genealogia a:href[id*='a']").each(function(i){
+		$("#main #fichario #genealogia a:href[id*='a']").attr('href', 'javascript:void(0);');
+	});
 });
 
 /*
@@ -844,18 +898,13 @@ function showGenealogia(id)
 				// Hide menu
 				$("#dlg #menu").css('display', 'none');
 
-
-
-
-
-
-
 				$('#genealogia a').each(function() {
 					$(this).qtip( {
 						content : {
 							url : baseUrl + '/json/filhos/',
 							data : {
-								id : $(this).attr('id')
+								id : $(this).attr('id'),
+								link : true
 							},
 							prerender: false,
 							text: 'Carregando...               ',
@@ -892,12 +941,6 @@ function showGenealogia(id)
 						
 					});
 				});
-
-
-
-
-
-
 
 			}
 

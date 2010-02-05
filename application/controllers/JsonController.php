@@ -238,6 +238,9 @@ class JsonController extends Zend_Controller_Action
 	{
 		$__id = (int)substr($this->getRequest()->getParam('id', false),1);
 		$__method = $this->getRequest()->getParam('method', 'html');
+		if ($this->getRequest()->getParam('link', false) != false) {
+			$this->view->link = true;
+		}
 		if ($__id > 0) {
 			$ficharioModel = new Model_Db_Fichario();
 			$_return = $ficharioModel->getFilhos($__id);
