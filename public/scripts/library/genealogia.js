@@ -4,7 +4,15 @@ $(document).ready(function() {
 			content : {
 				url : baseUrl + '/json/filhos/',
 				data : {
-					id : $(this).attr('id')
+					id : $(this).attr('id'),
+					/*
+					 * coloar atributo a ser passado para o json para
+					 * montar a url de acordo com os parametros passados
+					 * mais isso tem q ser feito no php, para nao permitir
+					 * injecao de codigo malicioso
+					 * 
+					 */
+					link : true
 				},
 				prerender: false,
 				text: 'Carregando...               ',

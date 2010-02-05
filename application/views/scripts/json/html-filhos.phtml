@@ -3,9 +3,13 @@
 <b>Filhos</b><br/>
 <?php
 foreach ($this->content as $filho) {
+	if ($this->link):
 	print '<a href="' . $this->baseUrl() . '/fichario/genealogia/id/' . $filho['id'] .'">';
+	endif;
 	print $filho['cod'] .' - '. $filho['nome'];
+	if ($this->link):
 	print "</a>";
+	endif;
 	print "<br/>\n";
 }
 ?>

@@ -1,7 +1,9 @@
 <?php
 
 /**
- * @TODO: Calculo automatico de Grau de Sangue
+ * 
+ * @TODO Calculo automatico de Grau de Sangue
+ * @TODO Link na genealogia, onde mostrar e pra onde apontar (fichario/genealogia)
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * 
