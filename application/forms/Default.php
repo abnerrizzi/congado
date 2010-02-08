@@ -52,7 +52,6 @@ class Form_Default extends Zend_Dojo_Form
 	public function __construct()
 	{
 		parent::__construct();
-		$this->setName('tipos_de_acompanhamentos_reprod');
 		$this->addElement('hidden', 'id');
 
 		$this->addElement('image', 'cancel', array(
