@@ -83,6 +83,8 @@ class AuthController extends Zend_Controller_Action
 					$this->view->render('index');
 				}
 			}
+		} elseif (Zend_Auth::getInstance()->getIdentity()) {
+			$this->_redirect('/');
 		}
 	}
 
