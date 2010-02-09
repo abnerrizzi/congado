@@ -53,7 +53,13 @@ class Form_User extends Form_Default
 	{
 		parent::__construct();
 		$this->setName('configuracoes_de_usuario');
+		$this->setAttrib('enctype', 'multipart/form-data');
 		$this->addElement('hidden', 'id');
+
+		$this->addElement('file', 'background', array(
+			'label' => 'Papel de parede',
+			'validators' => array('IsImage'),
+		));
 
 		$this->addElement('text', 'login', array(
 			'label' => 'Login',

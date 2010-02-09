@@ -149,6 +149,10 @@
         <controllerFile controllerName="delicious">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="system">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="wallpaper"/>
+        </controllerFile>
       </controllersDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory/>
@@ -437,6 +441,12 @@
           <viewControllerScriptsDirectory forControllerName="delicious">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="system">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="system">
+            <viewScriptFile forActionName="wallpaper"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -468,6 +478,7 @@
       <testApplicationDirectory>
         <testApplicationBootstrapFile/>
         <testApplicationControllerDirectory>
+          <testApplicationControllerFile/>
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>
