@@ -23,6 +23,7 @@ class UserController extends Zend_Controller_Action
 	{
 
 		$auth = Zend_Auth::getInstance()->getStorage()->read();
+		$adapter = new Zend_File_Transfer_Adapter_Http();
 
 		$request		= $this->getRequest();
 		$userId			= (int)$auth->id;

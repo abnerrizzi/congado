@@ -1,5 +1,8 @@
 <?
 
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/library/user.js')
+	;
 echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
 
 ?>
