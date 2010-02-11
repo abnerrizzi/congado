@@ -119,4 +119,10 @@ $portugues['stringLengthTooLong'] = "'%value%' é maior que  %max% (tamanho maxim
 $portugues['noRecordFound'] = "Nenhum registro contendo '%value%' foi encontrado";  
 $portugues['recordFound'] = "Um registro contendo '%value%' foi encontrado";
 
+/*
+ * IsImage
+ */
+$portugues['fileIsImageFalseType'] = "O arquivo '%value%' não é uma imagem, '%type%' detectado";
+$portugues['fileIsImageNotDetected'] = "O mimetype do arquivo '%value%' não foi detectado";
+$portugues['fileIsImageNotReadable'] = "O arquivo '%value%' não pode ser lido";
 ?>
