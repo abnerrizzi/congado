@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-	$("input#cod").focus();
-
 	$("input#area").blur(function() {
 		if (this.value.length > 0) {
 			this.value = parseFloat(this.value.replace(",", "."));

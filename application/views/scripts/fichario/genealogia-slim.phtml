@@ -17,7 +17,7 @@ $this->headScript()
 	  <td></td>
 	  <td></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""/></td>
 <?if (@$this->array['pai']['pai']['pai']['id']):?>
 	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['pai']['pai']['id'];?>" id="a<?=$this->array['pai']['pai']['pai']['id'];?>"><?=$this->array['pai']['pai']['pai']['cod'];?><br/><?=$this->array['pai']['pai']['pai']['nome'];?></a></td>
 <?else:?>
@@ -32,13 +32,13 @@ $this->headScript()
 	  <td></td>
 	  <td></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""style="filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test.png', sizingMethod='scale');"></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""style="filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test.png', sizingMethod='scale');"/></td>
 <?if (@$this->array['pai']['pai']['id']):?>
 	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['pai']['id'];?>" id="a<?=$this->array['pai']['pai']['id'];?>"><?=$this->array['pai']['pai']['cod'];?><br/><?=$this->array['pai']['pai']['nome'];?></a></td>
 <?else:?>
 	  <td class="vazio">Desconhecido</td>
 <?endif;?>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""/></td>
 	  <td></td>
 	</tr>
 
@@ -48,9 +48,9 @@ $this->headScript()
 	  <td></td>
 	  <td></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
 <?if (@$this->array['pai']['pai']['mae']['id']):?>
 	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['pai']['mae']['id'];?>" id="a<?=$this->array['pai']['pai']['mae']['id'];?>"><?=$this->array['pai']['pai']['mae']['cod'];?><br/><?=$this->array['pai']['pai']['mae']['nome'];?></a></td>
 <?else:?>
@@ -63,24 +63,24 @@ $this->headScript()
 	<!-- 004 -->
 	<tr>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""/></td>
 <?if (@$this->array['pai']['id'] != ""):?>
 	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['id'];?>" id="a<?=$this->array['pai']['id'];?>"><?=$this->array['pai']['cod'];?><br/><?=$this->array['pai']['nome'];?></a></td>
 <?else:?>
 	  <td class="vazio">Desconhecido</td>
 <?endif;?>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""/></td>
 	</tr>
 
 
 	<!-- 005 -->
 	<tr>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""/></td>
 
 <?if (@$this->array['pai']['mae']['pai']['id']):?>
 	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['mae']['pai']['id'];?>" id="a<?=$this->array['pai']['mae']['pai']['id'];?>"><?=$this->array['pai']['mae']['pai']['cod'];?><br/><?=$this->array['pai']['mae']['pai']['nome'];?></a></td>
@@ -95,27 +95,27 @@ $this->headScript()
 	<!-- 006 -->
 	<tr>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
 <?if (@$this->array['pai']['mae']['id'] != ""):?>
 	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['mae']['id'];?>" id="a<?=$this->array['pai']['mae']['id'];?>"><?=$this->array['pai']['mae']['cod'];?><br/><?=$this->array['pai']['mae']['nome'];?></a></td>
 <?else:?>
 	  <td class="vazio">Desconhecido</td>
 <?endif;?>
 
-	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""/></td>
 	</tr>
 
 
 	<!-- 007 -->
 	<tr>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
 	  <td></td>
 	  <td></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
 
 <?if (@$this->array['pai']['mae']['mae']['id']):?>
 	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['pai']['mae']['mae']['id'];?>" id="a<?=$this->array['pai']['mae']['mae']['id'];?>"><?=$this->array['pai']['mae']['mae']['cod'];?><br/><?=$this->array['pai']['mae']['mae']['nome'];?></a></td>
@@ -133,18 +133,18 @@ $this->headScript()
 <?else:?>
 	  <td class="vazio">Desconhecido</td>
 <?endif;?>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""/></td>
 	</tr>
 
 
 	<!-- 009 -->
 	<tr>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
 	  <td></td>
 	  <td></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""/></td>
 <?if (@$this->array['mae']['pai']['pai']['id']):?>
 	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['pai']['pai']['id'];?>" id="a<?=$this->array['mae']['pai']['pai']['id'];?>"><?=$this->array['mae']['pai']['pai']['cod'];?><br/><?=$this->array['mae']['pai']['pai']['nome'];?></a></td>
 <?else:?>
@@ -158,26 +158,26 @@ $this->headScript()
 	<!-- 010 -->
 	<tr>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""/></td>
 <?if (@$this->array['mae']['pai']['id'] != ""):?>
 	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['pai']['id'];?>" id="a<?=$this->array['mae']['pai']['id'];?>"><?=$this->array['mae']['pai']['cod'];?><br/><?=$this->array['mae']['pai']['nome'];?></a></td>
 <?else:?>
 	  <td class="vazio">Desconhecido</td>
 <?endif;?>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""/></td>
 	</tr>
 
 
 	<!-- 011 -->
 	<tr>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
 <?if (@$this->array['mae']['pai']['mae']['id']):?>
 	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['pai']['mae']['id'];?>" id="a<?=$this->array['mae']['pai']['mae']['id'];?>"><?=$this->array['mae']['pai']['mae']['cod'];?><br/><?=$this->array['mae']['pai']['mae']['nome'];?></a></td>
 <?else:?>
@@ -190,13 +190,13 @@ $this->headScript()
 	<!-- 012 -->
 	<tr>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
 <?if (@$this->array['mae']['id'] != ""):?>
 	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['id'];?>" id="a<?=$this->array['mae']['id'];?>"><?=$this->array['mae']['cod'];?><br/><?=$this->array['mae']['nome'];?></a></td>
 <?else:?>
 	  <td class="vazio">Desconhecido</td>
 <?endif;?>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""/></td>
 	</tr>
 
 
@@ -205,9 +205,9 @@ $this->headScript()
 	  <td></td>
 	  <td></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""/></td>
 
 <?if (@$this->array['mae']['mae']['pai']['id']):?>
 	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['mae']['pai']['id'];?>" id="a<?=$this->array['mae']['mae']['pai']['id'];?>"><?=$this->array['mae']['mae']['pai']['cod'];?><br/><?=$this->array['mae']['mae']['pai']['nome'];?></a></td>
@@ -225,13 +225,13 @@ $this->headScript()
 	  <td></td>
 	  <td></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
 <?if (@$this->array['mae']['mae']['id'] != ""):?>
 	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['mae']['id'];?>" id="a<?=$this->array['mae']['mae']['id'];?>"><?=$this->array['mae']['mae']['cod'];?><br/><?=$this->array['mae']['mae']['nome'];?></a></td>
 <?else:?>
 	  <td class="vazio">Desconhecido</td>
 <?endif;?>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/central.gif" alt=""/></td>
 	</tr>
 
 
@@ -242,7 +242,7 @@ $this->headScript()
 	  <td></td>
 	  <td></td>
 	  <td></td>
-	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""></img></td>
+	  <td><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
 
 <?if (@$this->array['mae']['mae']['mae']['id']):?>
 	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/genealogia/id/" . $this->array['mae']['mae']['mae']['id'];?>" id="a<?=$this->array['mae']['mae']['mae']['id'];?>"><?=$this->array['mae']['mae']['mae']['cod'];?><br/><?=$this->array['mae']['mae']['mae']['nome'];?></a></td>

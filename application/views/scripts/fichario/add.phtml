@@ -1,9 +1,10 @@
 <?php
 
+$this->javascript();
+
 $this->headScript()
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.tabs.js')
-	->appendFile($this->baseUrl() . '/scripts/library/fichario.js')
 	;
 
 ?>
@@ -72,8 +73,8 @@ $this->headScript()
 
 <div id="tabs" style=" font-size: 12px; width: 850px;">
     <ul>
-        <li><a href="#fragment-1"><span>Dados Básicos</span></a></li>
-        <li><a href="#fragment-2"><span>Filiação / Obs.</span></a></li>
+        <li><a href="#fragment-1"><span>Dados Bï¿½sicos</span></a></li>
+        <li><a href="#fragment-2"><span>Filiaï¿½ï¿½o / Obs.</span></a></li>
     </ul>
     <div id="fragment-1">
     <table
