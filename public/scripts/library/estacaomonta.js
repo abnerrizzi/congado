@@ -8,16 +8,16 @@ $(document).ready(function() {
 
 		dateFormat: 'dd/mm/yy',
 		autoSize: true,
-		dayNames: ['Domingo', 'Segunda', 'Terï¿½a', 'Quarta', 'Quinta', 'Sexta', 'Sï¿½bado'],
+		dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
 		dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
 		dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-		monthNames: ['Janeiro', 'Fevereiro', 'Marï¿½o', 'Abril', 'Maio', 'Junho',
+		monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
 		             'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
 		],
         monthNames: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
                      'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
         ],
-        nextText: 'Prï¿½ximo',
+        nextText: 'Próximo',
         prevText: 'Anterior',
         beforeShow: customRange
 	});
