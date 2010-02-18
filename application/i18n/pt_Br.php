@@ -125,4 +125,13 @@ $portugues['recordFound'] = "Um registro contendo '%value%' foi encontrado";
 $portugues['fileIsImageFalseType'] = "O arquivo '%value%' não é uma imagem, '%type%' detectado";
 $portugues['fileIsImageNotDetected'] = "O mimetype do arquivo '%value%' não foi detectado";
 $portugues['fileIsImageNotReadable'] = "O arquivo '%value%' não pode ser lido";
+
+/*
+ * Size
+ */
+$portugues['fileSizeTooBig'] = "Tamanho máximo permitido para o arquivo '%value%' é '%max%' mas '%size%' foi detectado";
+$portugues['fileSizeTooSmall'] = "Tamanho mínimo esperado para o  arquivo '%value%' é '%min%' mas '%size%' foi detectado";
+$portugues['fileSizeNotFound'] = "Arquivo '%value%' não pôde ser encontrado";
+
+
 ?>
