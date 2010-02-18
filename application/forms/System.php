@@ -59,7 +59,7 @@ class Form_System extends Form_Default
 		$this->addElement('file', 'background', array(
 			'label' => 'Papel de parede',
 			'validators' => array('IsImage'),
-			'validators' => array('Size', false, 102400)
+			'validators' => array(array('Size', false, 4194304)) // maximo de 4 MB
 		));
 
 	}
