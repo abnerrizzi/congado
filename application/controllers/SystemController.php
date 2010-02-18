@@ -34,19 +34,27 @@ class SystemController extends Zend_Controller_Action
 
 			if ($systemForm->isValid($request->getPost())) {
 
+				$systemModel = new Model_Db_System();
 				$adapter = new Zend_File_Transfer_Adapter_Http();
 				$files = $adapter->getFileInfo();
 				$backgroundFile = $files['background']['tmp_name'];
 				$backgroundType = $files['background']['type'];
-				if ($files['background']['size'] > 1024*1024*1) {
-					die('arquivo maior que 1GB');
+				if (strpos(strtolower($backgroundType), 'bmp')) {
+					if ($systemModel->imageCreateFromBmp($files['background']['tmp_name'])) {
+						$dir = realpath(APPLICATION_PATH . '/../scripts');
+						$file = "wallpaper";
+						$backgroundFile = $dir . '/' . $file;
+						$handle = fopen($backgroundFile, 'r');
+					}
+				} else {
+					$handle = fopen($backgroundFile, 'r');
 				}
-				$handle = fopen($backgroundFile, 'r');
+
 				$backgroundData = fread($handle, filesize($backgroundFile));
 
-				$systemModel = new Model_Db_System();
-				$systemModel->setBackupground($backgroundData, $backgroundType);
+				$systemModel->setBackupground($backgroundData, $backgroundType, $backgroundFile);
 
+				$this->_redirect('/');
 			}
 		}
 
