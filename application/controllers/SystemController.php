@@ -45,6 +45,10 @@ class SystemController extends Zend_Controller_Action
 						$file = "wallpaper";
 						$backgroundFile = $dir . '/' . $file;
 						$handle = fopen($backgroundFile, 'r');
+
+						// Buscando informacoes do mime type atravez do arquivo temporario
+						$backgroundType = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $backgroundFile);
+						$backgroundType = mime_content_type($backgroundFile);
 					}
 				} else {
 					$handle = fopen($backgroundFile, 'r');
