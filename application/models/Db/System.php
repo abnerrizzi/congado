@@ -265,4 +265,8 @@ class Model_Db_System extends Model_Db
 		return false;
 	}
 
+	public function getFilePath()
+	{
+		return self::$filePath;
+	}
 }
