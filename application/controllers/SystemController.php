@@ -71,7 +71,7 @@ class SystemController extends Zend_Controller_Action
     	$systemModel = new Model_Db_System();
     	if ($systemModel->cacheBackground()) {
 			$this->view->mime = $systemModel->getBackupgroundMimeType();
-			$this->view->file = $systemModel::$filePath;
+			$this->view->file = $systemModel->getFilePath();
 			$this->view->img = true;
     	} else {
     		die('else');
