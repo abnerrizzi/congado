@@ -114,7 +114,7 @@ class UserController extends Zend_Controller_Action
 			}
 		}
 		if ($userId != $auth->id) {
-			$this->view->elements = array('id', 'login', 'name', 'admin', 'delete');
+			$this->view->elements = array('id', 'login', 'name', 'admin', 'newpass', 'delete');
 		} else {
 			$this->view->elements = array('id', 'login', 'name', 'perpage');
 		}
