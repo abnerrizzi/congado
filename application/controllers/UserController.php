@@ -19,9 +19,15 @@ class UserController extends Zend_Controller_Action
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
+	/*
+	 * @TODO: implementar tela de aviso para quando o usuario nao tiver permissao de admin
+	 */
 	public function indexAction()
 	{
 
+		if (!Zend_Auth::getInstance()->getIdentity()->admin) {
+			throw new Zend_Controller_Action_Exception('Acesso negado');
+		}
 		$gridModel = new Model_Grid($this->view->title);
 		$userModel = new Model_Db_User();
 
