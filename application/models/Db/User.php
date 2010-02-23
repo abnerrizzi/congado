@@ -80,11 +80,10 @@ class Model_Db_User extends Model_Db
 		if ($userData['id'] != $post['id'] || !Zend_Auth::getInstance()->getIdentity()->id || !Zend_Auth::getInstance()->getIdentity()->admin) {
 			die('x');
 			return false;
-		} else {
-			print '<pre>';
-			print_r($userData);
-			print_r($post);
-			die('carai');
+		} elseif (Zend_Auth::getInstance()->getIdentity()->admin == 1) {
+			if (md5($post['newpass']) != '') {
+				$data['password'] = new Zend_Db_Expr("MD5('".$post['newpass']."')");
+			}
 		}
 
 		if ((int)$post['perpage'] > 0 && ($post['perpage'] != $userData['perpage'])) {
