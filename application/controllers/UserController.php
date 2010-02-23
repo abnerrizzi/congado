@@ -26,6 +26,10 @@ class UserController extends Zend_Controller_Action
 	{
 
 		if (!Zend_Auth::getInstance()->getIdentity()->admin) {
+			$writer = new Zend_Log_Writer_Firebug();
+			$logger = new zend_log($writer);
+
+			$logger->log("Usuario sem permissao de admin para esta funcionalidade de listar usuarios", Zend_Log::CRIT);
 			throw new Zend_Controller_Action_Exception('Acesso negado');
 		}
 		$gridModel = new Model_Grid($this->view->title);
