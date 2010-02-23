@@ -89,4 +89,26 @@ class Model_Db_User extends Model_Db
 
 	}
 
+	public function addUser($post)
+	{
+
+		$data = array(
+			'login' => $post['login'],
+			'name' => utf8_encode($post['name']),
+			'password' => md5($post['newpass']),
+			'admin' => $post['admin']
+		);
+
+		if ($this->insert($data)) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	public function deleteUser($id)
+	{
+		$this->delete('id = ' . intval($id));
+	}
 }

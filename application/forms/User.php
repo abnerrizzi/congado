@@ -56,15 +56,11 @@ class Form_User extends Form_Default
 		$this->setAttrib('enctype', 'multipart/form-data');
 		$this->addElement('hidden', 'id');
 
-		$this->addElement('file', 'background', array(
-			'label' => 'Papel de parede',
-			'validators' => array('IsImage'),
-		));
-
 		$this->addElement('text', 'login', array(
 			'label' => 'Login',
 			'required' => true,
 			'filters' => array('StringTrim'),
+			'validators' => array(new Zend_Validate_Db_NoRecordExists('user','login')),
 			'size' => 16,
 			'class'	=> 'input',
 		));
@@ -115,6 +111,10 @@ class Form_User extends Form_Default
 			'maxlength' => 3,
 			'size' => 4,
 			'class' => 'input'
+		));
+
+		$this->addElement('checkbox', 'admin', array(
+			'label' => 'Administrador',
 		));
 
 		$this->addElement('image', 'delete', array(
