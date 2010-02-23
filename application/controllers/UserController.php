@@ -26,11 +26,18 @@ class UserController extends Zend_Controller_Action
 	{
 
 		if (!Zend_Auth::getInstance()->getIdentity()->admin) {
+			$this->view->msg = 'Seu usuário não possui permissão para esta funcionalidade de listar usuários!';
+			$this->view->msg .= '<br/><br/>';
+			$this->view->msg .= 'Para maiores informações, <br/> consulte o administrador do sistema.';
+			$this->render('noauth');
+//			exit;
+			/*
 			$writer = new Zend_Log_Writer_Firebug();
 			$logger = new zend_log($writer);
 
 			$logger->log("Usuario sem permissao de admin para esta funcionalidade de listar usuarios", Zend_Log::CRIT);
 			throw new Zend_Controller_Action_Exception('Acesso negado');
+			*/
 		}
 		$gridModel = new Model_Grid($this->view->title);
 		$userModel = new Model_Db_User();
