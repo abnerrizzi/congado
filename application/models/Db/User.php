@@ -66,7 +66,7 @@ class Model_Db_User extends Model_Db
 			return false;
 		}
 
-		if ($post['name'] != $userData['name']) {
+		if ($post['name'] != $userData['name'] && $post['name'] != '') {
 			$data['name'] = $post['name'];
 		}
 
@@ -74,15 +74,13 @@ class Model_Db_User extends Model_Db
 			$data['admin'] = $post['admin'];
 		}
 
-		// verifica se o mesmo usuario do banco de dados
-		// eh o mesmo que esta sendo alterado
-		// ou se o usuario atual tem acesso de amdin
-		if ($userData['id'] != $post['id'] || !Zend_Auth::getInstance()->getIdentity()->id || !Zend_Auth::getInstance()->getIdentity()->admin) {
-			die('x');
-			return false;
-		} elseif (Zend_Auth::getInstance()->getIdentity()->admin == 1) {
-			if (md5($post['newpass']) != '') {
+		if ($post['newpass'] != '' && $post['newpass'] == $post['confirmpass'] && md5($post['oldpass']) == $userData['password']) {
+			if ($userData['id'] != $post['id'] && Zend_Auth::getInstance()->getIdentity()->admin == 1) {
 				$data['password'] = new Zend_Db_Expr("MD5('".$post['newpass']."')");
+			} elseif ($userData['id'] == $post['id']) {
+				$data['password'] = new Zend_Db_Expr("MD5('".$post['newpass']."')");
+			} else {
+				throw new Zend_Exception('Erro processando alteracoes de usuario');
 			}
 		}
 
@@ -121,4 +119,5 @@ class Model_Db_User extends Model_Db
 	{
 		$this->delete('id = ' . intval($id));
 	}
+
 }
