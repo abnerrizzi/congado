@@ -19,17 +19,15 @@ class UserController extends Zend_Controller_Action
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
-	/*
-	 * @TODO: implementar tela de aviso para quando o usuario nao tiver permissao de admin
-	 */
 	public function indexAction()
 	{
 
 		if (!Zend_Auth::getInstance()->getIdentity()->admin) {
-			$this->view->msg = 'Seu usuário não possui permissão para esta funcionalidade de listar usuários!';
-			$this->view->msg .= '<br/><br/>';
-			$this->view->msg .= 'Para maiores informações, <br/> consulte o administrador do sistema.';
-			$this->render('noauth');
+//			$this->view->msg = 'Seu usuário não possui permissão para esta funcionalidade de listar usuários!';
+//			$this->view->msg .= '<br/><br/>';
+//			$this->view->msg .= 'Para maiores informações, <br/> consulte o administrador do sistema.';
+//			$this->render('noauth');
+			$this->_redirect($this->getRequest()->getControllerName() . '/editprofile');
 //			exit;
 			/*
 			$writer = new Zend_Log_Writer_Firebug();
@@ -176,26 +174,93 @@ class UserController extends Zend_Controller_Action
 		$request		= $this->getRequest();
 		$userId			= (int)$auth->id;
 		$userForm		= new Form_User();
-		$userForm->setAction('/user/index');
+		$userForm->setAction('/user/changepass');
 		$userForm->setMethod('post');
 		$userModel		= new Model_Db_User();
 
 		$userForm->getElement('login')
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')
+			->removeValidator('NoRecordExists')
 			;
+		$userForm->getElement('name')
+			->setRequired(false);
+
+		// Adicionar validadores para os campos
+		$userForm->getElement('oldpass')->setRequired(true);
+		$userForm->getElement('newpass')->setRequired(true);
+		$userForm->getElement('confirmpass')->setRequired(true);
 
 		if ($request->isPost()) {
-			if ($userForm->isValid($request->getPost())) {
-				$updateReturn = $userModel->updateUser($userForm);
-				if ($updateReturn == 0) {
-					var_dump($updateReturn);
-					die();
-					throw new Zend_Exception('Erro atualizando dados do usuário');
-				} else {
+			$userData = $userModel->getUser($userId);
+			$formData = $request->getPost();
+			if ($userForm->isValid($formData)) {
+				if ($formData['oldpass'] != '') {
+					if ($formData['newpass'] == $formData['confirmpass']) {
+						if (md5($formData['oldpass']) != $userData['password']) {
+							$userForm->getElement('oldpass')->addError('As senhas não coincide com a senha atual');
+						}
+					} else {
+						$userForm->getElement('newpass')->addError('As senhas não coincidem');
+						$userForm->getElement('confirmpass')->addError('As senhas não coincidem');
+					}
+				}
+				print 'ok';
+				if ($userForm->isValid($request->getPost())) {
+					$userModel->updateUser($userForm);
 					$this->_redirect('/');
 				}
 			}
+//			$userForm->populate($request->getParams());
+			/*
+			$userData = $userModel->getUser($userId);
+			$formData = $userForm->getValues();
+			if ($userForm->isValid($request->getPost())) {
+				if ($formData['newpass'] != '') {
+					 if ($formData['newpass'] == $formData['confirmpass']) {
+					 	if (md5($formData['oldpass']) == $userData['password']) {
+					 		$userForm->getElement('oldpass')
+					 		->setErrorMessages('ahuidahsuidhasihda')
+					 		;
+					 		$userForm->populate($userData);
+					 	}
+					 	die('if1');
+					 }
+					die('if');
+				} else {
+					die('else');
+				}
+				die();
+				$updateReturn = $userModel->updateUser($userForm);
+				if ($updateReturn == 0) {
+//					var_dump($updateReturn);
+//					die();
+//					throw new Zend_Exception('Erro atualizando dados do usuário');
+				} else {
+					$this->_redirect('/');
+				}
+			} else {
+				if (md5($formData['oldpass']) != $userData['password']) {
+					$userForm->getElement('oldpass')
+					->setErrorMessages(array('ahsuidhaisuhdasd'))
+					;
+				}
+				if ($formData['newpass'] != '') {
+					 if ($formData['newpass'] == $formData['confirmpass']) {
+					 	if (md5($formData['oldpass']) == $userData['password']) {
+					 		$userForm->getElement('oldpass')
+					 		->setErrorMessages('ahuidahsuidhasihda')
+					 		;
+					 		$userForm->populate($userData);
+					 	}
+					 	die('if1');
+					 }
+					die('if');
+				}
+				Zend_Debug::dump($formData);
+				$userForm->populate($formData);
+			}
+			*/
 		} else {
 			if ($userId > 0) {
 				$result = $userModel->getUser($userId);
