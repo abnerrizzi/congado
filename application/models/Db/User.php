@@ -43,7 +43,7 @@ class Model_Db_User extends Model_Db
 		$id = (int)$id;
 		$row = $this->fetchRow('id = ' . $id);
 		if (!$row) {
-			throw new Exception("Count not find row $id");
+			throw new Zend_Exception("Count not find row $id");
 		}
 		$array = $row->toArray();
 		foreach ($array as $key => $val) {
@@ -82,6 +82,8 @@ class Model_Db_User extends Model_Db
 			} else {
 				throw new Zend_Exception('Erro processando alteracoes de usuario');
 			}
+		} elseif ($post['newpass'] != '' && md5($post['newpass']) != $userData['password'] && Zend_Auth::getInstance()->getIdentity()->admin == 1) {
+			$data['password'] = new Zend_Db_Expr("MD5('".$post['newpass']."')");
 		}
 
 		if ((int)$post['perpage'] > 0 && ($post['perpage'] != $userData['perpage'])) {
@@ -120,4 +122,14 @@ class Model_Db_User extends Model_Db
 		$this->delete('id = ' . intval($id));
 	}
 
+	public function checkUser($id)
+	{
+		$id = (int)$id;
+		$row = $this->fetchRow('id = ' . $id);
+		if (!$row) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

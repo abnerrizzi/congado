@@ -124,10 +124,18 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$__timeout = (self::$registry->configuration->resources->session->timeout->inactive * 60);
 		$__remember = (self::$registry->configuration->resources->session->timeout->remember_me_seconds * 60);
 		$authNamespace = new Zend_Session_Namespace('Zend_Auth');
-		if ($authNamespace->rememberme == 1) {
-			$authNamespace->setExpirationSeconds($__remember);
+
+		$userModel = new Model_Db_User();
+		if (Zend_Auth::getInstance()->getIdentity() && !$userModel->checkUser(Zend_Auth::getInstance()->getIdentity()->id)) {
+			Zend_Auth::getInstance()->clearIdentity();
 		} else {
-			$authNamespace->setExpirationSeconds($__timeout);
+		
+			if ($authNamespace->rememberme == 1) {
+				$authNamespace->setExpirationSeconds($__remember);
+			} else {
+				$authNamespace->setExpirationSeconds($__timeout);
+			}
+
 		}
 	}
 
