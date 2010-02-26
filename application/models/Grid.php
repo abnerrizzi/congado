@@ -1,13 +1,17 @@
 <?php
 
 /**
+ * @package Model
+ */
+
+/**
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
+ * @package Model
+ * @subpackage Model_Grid
  * @version $Id$
  * 
  */
-
 class Model_Grid
 {
 
@@ -35,23 +39,38 @@ class Model_Grid
 	/**
 	 * Set true to enable colum sorting
 	 * 
-	 * @param $sorting boolean
+	 * @param boolean $sorting
 	 */
 	public function setSorting($sorting)
 	{
 		$this->sorting = $sorting;
 	}
 
+	/**
+	 * Set the default baseUrl to use in grid links
+	 * 
+	 * @param string $baseUrl
+	 */
 	public function setBaseUrl($baseUrl)
 	{
 		$this->baseUrl = $baseUrl;
 	}
 
-	public function setPaginator($paginator)
+	/**
+	 * Set paginator resource to be used in grid paggin
+	 * 
+	 * @param Zend_Paginator $paginator
+	 */
+	public function setPaginator(Zend_Paginator $paginator)
 	{
 		$this->paginator = $paginator;
 	}
 
+	/**
+	 * Setting the fields
+	 * 
+	 * @param array of Model_Grid_Fields $fields
+	 */
 	public function setFields(array $fields)
 	{
 		switch (is_array($fields))
@@ -71,6 +90,11 @@ class Model_Grid
 		$this->fields = $fields;
 	}
 
+	/**
+	 * Setting the edit module and action
+	 * 
+	 * @param array $edit
+	 */
 	public function setEdit(array $edit)
 	{
 		if (!array_key_exists('module', $edit) || !array_key_exists('action', $edit)) {
@@ -80,6 +104,11 @@ class Model_Grid
 		}
 	}
 
+	/**
+	 * Setting the delete module and action
+	 * 
+	 * @param array $delete
+	 */
 	public function setDelete(array $delete)
 	{
 		if (!array_key_exists('module', $delete) || !array_key_exists('action', $delete)) {
@@ -89,6 +118,11 @@ class Model_Grid
 		}
 	}
 
+	/**
+	 * Setting the add module and action
+	 * 
+	 * @param array $add
+	 */
 	public function setAdd(array $add)
 	{
 		if (!array_key_exists('module', $add) || !array_key_exists('action', $add)) {
@@ -98,7 +132,13 @@ class Model_Grid
 		}
 	}
 
-	public function setGenealogia($genealogia, $show = false)
+	/**
+	 * Setting the genealogia module and action and option to show the icon
+	 * 
+	 * @param array $genealogia
+	 * @param boolean $show
+	 */
+	public function setGenealogia(array $genealogia, $show = false)
 	{
 		if (!array_key_exists('module', $genealogia) || !array_key_exists('action', $genealogia)) {
 			throw new Exception("Invalid Array model for genealogia");
@@ -107,6 +147,11 @@ class Model_Grid
 		}
 	}
 
+	/**
+	 * Set true or false to show icon search
+	 * 
+	 * @param boolean $search
+	 */
 	public function setSearch($search)
 	{
 		$this->search = $search;

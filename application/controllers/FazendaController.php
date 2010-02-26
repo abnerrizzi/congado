@@ -8,7 +8,7 @@
  * 
  * Controla requisições de manipulação de fazendas.
  *
- * @TODO Verificar tipo do campo sisbov e nirf
+ * @todo Verificar tipo do campo sisbov e nirf
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
  * @version $Id$

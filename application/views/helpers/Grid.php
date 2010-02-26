@@ -1,24 +1,40 @@
 <?php
 
 /**
+ * @package Helper
+ */
+
+/**
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Helper
+ * @subpackage Helper_Grid
  * @version $Id$
  * 
  */
 
-//class Zend_View_Helper_Grid extends Zend_View_Helper_Abstract
 class Zend_View_Helper_Grid
 {
 
 	public $view;
 
+	/**
+	 * setView() - set view interface
+	 * 
+	 * @param Zend_View_Interface $view
+	 * @return void
+	 */
 	public function setView(Zend_View_Interface $view)
 	{
 		$this->view = $view;
 		return $this;
 	}
 
-//	public function grid($name, $fields = array(), $paginator = null, $sorting = false, $baseUrl = null, $edit = array(), $delete = array())
+	/**
+	 * grid() - set grid model
+	 * 
+	 * @param Model_Grid $grid
+	 * @return string
+	 */
 	public function grid(Model_Grid $grid)
 	{
 
