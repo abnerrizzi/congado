@@ -50,6 +50,7 @@ class Model_Db extends Zend_Db_Table_Abstract
 	 * @param $limit (int) numero de registros por pagina
 	 * @param $qtype (string) nome do campo
 	 * @param $query (string) valor a ser procurado
+	 * @return array
 	 */
 	public function listJson($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false)
 	{

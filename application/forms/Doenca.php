@@ -1,13 +1,16 @@
 <?php
 
 /**
+ * @package Form
+ */
+
+/**
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
+ * @package Form
  * @version $Id$
  * 
  */
-
 class Form_Doenca extends Form_Default
 {
 
