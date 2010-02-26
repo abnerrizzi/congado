@@ -74,6 +74,12 @@ class Model_Db_Alimento extends Model_Db
 		$this->delete('id = ' . (int)$id);
 	}
 
+	/**
+	 * Check if cod exists
+	 * 
+	 * @param string $cod
+	 * @return boolean
+	 */
 	private function checkCodAlimento($cod)
 	{
 		$query = $this->select()

@@ -18,6 +18,13 @@ class Model_Db_Acompanhamento extends Model_Db
 	protected $_name = 'acompanhamento';
 	protected $_select = false;
 
+	/**
+	 * Retorna uma array com todos os resultados
+	 * 
+	 * @param string $orderby
+	 * @param string $order
+	 * @return array
+	 */
 	public function getAcompanhamentos($orderby = null, $order = null)
 	{
 		$query = $this->select()
@@ -28,6 +35,12 @@ class Model_Db_Acompanhamento extends Model_Db
 		return $result->toArray();
 	}
 
+	/**
+	 * Retorna uma array com o resultado do id informado
+	 * 
+	 * @param int $id
+	 * @return array
+	 */
 	public function getAcompanhamento($id)
 	{
 		$id = (int)$id;
@@ -42,7 +55,12 @@ class Model_Db_Acompanhamento extends Model_Db
 		return $return;
 	}
 
-	public function updateAcompanhamento($post)
+	/**
+	 * Atualiza o registro
+	 * 
+	 * @param array $post
+	 */
+	public function updateAcompanhamento(array $post)
 	{
 		$data = array(
 			'cod'=> utf8_encode($post['cod']),
@@ -52,6 +70,12 @@ class Model_Db_Acompanhamento extends Model_Db
 		$this->update($data , $where );
 	}
 
+	/**
+	 * Adiciona um registro
+	 * 
+	 * @param string $cod
+	 * @param string $dsc
+	 */
 	public function addAcompanhamento($cod, $dsc)
 	{
 
@@ -68,6 +92,11 @@ class Model_Db_Acompanhamento extends Model_Db
 
 	}
 
+	/**
+	 * Deleta o registro
+	 * 
+	 * @param integer $id
+	 */
 	public function deleteAcompanhamento($id)
 	{
 		$this->delete('id = ' . intval($id));
