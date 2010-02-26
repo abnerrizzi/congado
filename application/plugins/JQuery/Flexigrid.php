@@ -1,12 +1,14 @@
 <?php
+/**
+ * @package Plugin
+ */
 
 /**
  * Classe para gerar tabela estilizada pelo plugin Flexigrid do jQuery
  *
  * @author Tales Santos <tales.augusto.santos@gmail.com>
- * 
- * @filesource
- * 
+ * @package Plugin
+ * @subpackage Plugin_JQuery
  * @version $Id$
  * 
  */
@@ -497,11 +499,7 @@ class Plugin_JQuery_Flexigrid
 	 * Retorna o objeto de renderização
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
-	 * 
 	 * @access public
-	 *
-	 * Se não estiver setada o objeto, cria-o
-	 * 
 	 * @return Zend_View_Interface
 	 */
 	public function getView()
