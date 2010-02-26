@@ -1,13 +1,17 @@
 <?php
 
 /**
+ * @package Model
+ */
+
+/**
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
+ * @package Model
+ * @subpackage Model_Grid
  * @version $Id$
  * 
  */
-
 class Model_Grid_Fields
 {
 

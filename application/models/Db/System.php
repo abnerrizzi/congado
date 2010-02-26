@@ -1,13 +1,17 @@
 <?php
 
 /**
- * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
- * @version $Id: Parto.php 10 2010-01-08 13:06:35Z bacteria_ $
- * 
+ * @package Model
  */
 
+/**
+ * 
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Model
+ * @subpackage Model_Db
+ * @version $Id: Backup.php 96 2010-02-26 14:08:59Z bacteria_ $
+ * 
+ */
 class Model_Db_System extends Model_Db
 {
 

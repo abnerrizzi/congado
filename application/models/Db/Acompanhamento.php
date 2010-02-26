@@ -1,13 +1,17 @@
 <?php
 
 /**
+ * @package Model
+ */
+
+/**
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- * @category Model_Db
+ * @package Model
+ * @subpackage Model_Db
  * @version $Id$
  * 
  */
-
 class Model_Db_Acompanhamento extends Model_Db
 {
 
