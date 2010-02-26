@@ -1,14 +1,19 @@
  <?php
 
 /**
- * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
- * @version $Id$
- * 
+ * @package Controller
  */
 
-class DoencaController extends Zend_Controller_Action
+/**
+ * DoencaController
+ * 
+ * Controla requisições de manipulação de doenças.
+ *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
+ * @version $Id$
+ */
+ class DoencaController extends Zend_Controller_Action
 {
 
 	public function init()

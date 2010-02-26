@@ -1,12 +1,17 @@
 <?php
+/**
+ * @package Controller
+ */
 
 /**
- * @TODO: Verificar tipo do campo sisbov e nirf
+ * FazendaController
  * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * Controla requisições de manipulação de fazendas.
  *
+ * @TODO Verificar tipo do campo sisbov e nirf
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
  * @version $Id$
- * 
  */
 
 class FazendaController extends Zend_Controller_Action

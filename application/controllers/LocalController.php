@@ -1,11 +1,17 @@
 <?php
 
 /**
+ * @package Controller
+ */
+
+/**
+ * LocalController
  * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * Controla requisições de manipulação de locais.
  *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
  * @version $Id$
- * 
  */
 
 class LocalController extends Zend_Controller_Action

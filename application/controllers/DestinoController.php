@@ -1,13 +1,18 @@
 <?php
 
 /**
- * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
- * @version $Id$
- * 
+ * @package Controller
  */
 
+/**
+ * DestinoController
+ * 
+ * Controla requisições de manipulação de destino.
+ *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
+ * @version $Id$
+ */
 class DestinoController extends Zend_Controller_Action
 {
 

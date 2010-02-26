@@ -1,15 +1,20 @@
 <?php
+/**
+ * @package Controller
+ */
 
 /**
+ * FicharioController
  * 
+ * Controla requisições de manipulação de doenças.
+ *
  * @TODO Calculo automatico de Grau de Sangue
  * @TODO Link na genealogia, onde mostrar e pra onde apontar (fichario/genealogia)
- * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- * 
+ * @package Controller
  * @version $Id$
- * 
  */
+
 
 class FicharioController extends Zend_Controller_Action
 {

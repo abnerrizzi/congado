@@ -1,13 +1,18 @@
 <?php
 
 /**
- * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
- * @version $Id$
- * 
+ * @package Controller
  */
 
+/**
+ * AuthController
+ * 
+ * Controla requisições de relacionadas a autenticação dos usuários no sistema.
+ *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
+ * @version $Id$
+ */
 class AuthController extends Zend_Controller_Action
 {
 

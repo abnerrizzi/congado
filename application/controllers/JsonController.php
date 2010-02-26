@@ -1,11 +1,20 @@
 <?php
 
 /**
+ * @package Controller
+ */
+
+/**
+ * JsonController
  * 
+ * Controla requisições JSON.
+ * 
+ * Faz a interface de comunicação entre aplicações que utilizam JSON
+ * e o banco de dados, transformando os dados necessários no formato JSON.
+ *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- * 
+ * @package Controller
  * @version $Id$
- * 
  */
 
 class JsonController extends Zend_Controller_Action
@@ -24,6 +33,14 @@ class JsonController extends Zend_Controller_Action
 		));
 	}
 
+	/**
+	 * cidadesAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de cidades referente ao
+	 * estado informado atraves do parametro 'id'
+	 * 
+	 * @return (string|JSON)
+	 */
 	public function cidadesAction()
 	{
 		$cidadesModel = new Model_Db_Estado_Cidades();
@@ -32,6 +49,14 @@ class JsonController extends Zend_Controller_Action
 		$this->render('index');
 	}
 
+	/**
+	 * racaAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de racas com o padrao
+	 * jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
 	public function racaAction()
 	{
 		$racaModel = new Model_Db_Raca();
@@ -53,6 +78,14 @@ class JsonController extends Zend_Controller_Action
 		$this->render('index');
 	}
 
+	/**
+	 * criadorAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de criadores com o padrao
+	 * jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
 	public function criadorAction()
 	{
 		$criadorModel = new Model_Db_Criador();
@@ -74,6 +107,14 @@ class JsonController extends Zend_Controller_Action
 		$this->render('index');
 	}
 
+	/**
+	 * pelagemAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de pelagens com o padrao
+	 * jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
 	public function pelagemAction()
 	{
 		$pelagemModel = new Model_Db_Pelagem();
@@ -95,6 +136,14 @@ class JsonController extends Zend_Controller_Action
 		$this->render('index');
 	}
 
+	/**
+	 * rebanhoAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de rebanhos com o padrao
+	 * jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
 	public function rebanhoAction()
 	{
 		$rebanhoModel = new Model_Db_Rebanho();
@@ -116,6 +165,14 @@ class JsonController extends Zend_Controller_Action
 		$this->render('index');
 	}
 
+	/**
+	 * categoriaAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de categorias com o padrao
+	 * jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
 	public function categoriaAction()
 	{
 		$categoriaModel = new Model_Db_Categoria();
@@ -137,6 +194,14 @@ class JsonController extends Zend_Controller_Action
 		$this->render('index');
 	}
 
+	/**
+	 * grausangueAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de graus de sangue com
+	 * o padrao jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
 	public function grausangueAction()
 	{
 		$grausangueModel = new Model_Db_Grausangue();
@@ -158,6 +223,14 @@ class JsonController extends Zend_Controller_Action
 		$this->render('index');
 	}
 
+	/**
+	 * localAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de locais com o padrao
+	 * jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
 	public function localAction()
 	{
 		$localModel = new Model_Db_Local();
@@ -180,6 +253,14 @@ class JsonController extends Zend_Controller_Action
 		$this->render('index');
 	}
 
+	/**
+	 * animalAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de animais com o padrao
+	 * jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
 	public function animalAction()
 	{
 		$animalModel = new Model_Db_Fichario();
@@ -234,6 +315,14 @@ class JsonController extends Zend_Controller_Action
 		$this->render('index');
 	}
 
+	/**
+	 * filhosAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de filhos do animal com\
+	 * o padrao jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
 	public function filhosAction()
 	{
 		$__id = (int)substr($this->getRequest()->getParam('id', false),1);
@@ -258,6 +347,12 @@ class JsonController extends Zend_Controller_Action
 	}
 
 
+	/**
+	 * _getFlexigrid
+	 * 
+	 * Função experimental em desuso
+	 * 
+	 */
 	private function _getFlexigrid()
 	{
 		$front = $this->getFrontController();
