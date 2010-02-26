@@ -4,7 +4,6 @@
  * Gera o script que sera executado no carregamento da página
  *
  * @author Tales Augusto <tales.augusto.santos@gmail.com>
- * @filesource
  * @version $Id$
  * 
  */

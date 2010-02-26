@@ -1,20 +1,20 @@
 <?php
 
 /**
+ * @package Plugin
+ * @subpackage Plugin_JQuery_Column
+ */
+
+/**
  * Classe para gerar o checkbox nas colunas do Flexigrid.
  *
  * @author Tales Augusto <tales.augusto.santos@gmail.com>
- * 
  * @uses Plugin_JQuery_Column_Abstract
- *
- * @version $Id$
- * 
- * @filesource
- * 
+ * @package Plugin
+ * @subpackage Plugin_JQuery_Column
  * @version $Id$
  * 
  */
-
 class Plugin_JQuery_Flexigrid_Column_Checkbox extends Plugin_JQuery_Flexigrid_Column_Abstract
 {
 	/**

@@ -1,11 +1,13 @@
 <?php
+/**
+ * @package Plugin
+ */
 
 /**
  * 
- * Validador para fazer a validação de CNPJ (Cadastro Nacional da Pessoa Jurídica)
- *
- * @author Diego Tremper <diegotremper@gmail.com>
- * 
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Plugin
+ * @subpackage Plugin_Validate
  * @version $Id$
  * 
  */

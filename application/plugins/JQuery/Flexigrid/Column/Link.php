@@ -1,12 +1,16 @@
 <?php
 
 /**
+ * @package Plugin
+ * @subpackage Plugin_JQuery_Column
+ */
+
+/**
  * Classe para gerar link na coluna do FlexGrid
  *
  * @author Tales Augusto <tales.augusto.santos@gmail.com>
- * 
- * @filesource
- * 
+ * @package Plugin
+ * @subpackage Plugin_JQuery_Column
  * @version $Id$
  * 
  */
