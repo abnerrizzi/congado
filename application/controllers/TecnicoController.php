@@ -1,11 +1,16 @@
 <?php
+/**
+ * @package Controller
+ */
 
 /**
+ * TecnicoController
  * 
+ * Controla requisições de manipulação de tecnicos.
+ *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
  * @version $Id$
- * 
  */
 
 class TecnicoController extends Zend_Controller_Action

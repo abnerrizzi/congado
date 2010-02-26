@@ -1,4 +1,17 @@
 <?php
+/**
+ * @package Controller
+ */
+
+/**
+ * SystemController
+ * 
+ * Controla requisições de manipulação de configurações do sistema.
+ *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
+ * @version $Id: FicharioController.php 97 2010-02-26 14:55:11Z bacteria_ $
+ */
 
 class SystemController extends Zend_Controller_Action
 {

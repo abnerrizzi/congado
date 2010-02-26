@@ -14,14 +14,6 @@
  * @version $Id$
  */
 
-/**
- * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
- * @version $Id$
- * 
- */
-
 class LoteController extends Zend_Controller_Action
 {
 

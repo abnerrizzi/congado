@@ -1,11 +1,16 @@
 <?php
+/**
+ * @package Controller
+ */
 
 /**
+ * InseminadorController
  * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * Controla requisições de manipulação de inseminadores.
  *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
  * @version $Id$
- * 
  */
 
 class InseminadorController extends Zend_Controller_Action

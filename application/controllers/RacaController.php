@@ -1,11 +1,16 @@
 <?php
+/**
+ * @package Controller
+ */
 
 /**
+ * RacaController
  * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * Controla requisições de manipulação de racas.
  *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
  * @version $Id$
- * 
  */
 
 class RacaController extends Zend_Controller_Action

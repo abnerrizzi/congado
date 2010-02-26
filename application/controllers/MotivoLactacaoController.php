@@ -1,11 +1,16 @@
 <?php
+/**
+ * @package Controller
+ */
 
 /**
+ * MotivoLactacaoController
  * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * Controla requisições de manipulação de motivos de lactação.
  *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
  * @version $Id$
- * 
  */
 
 class MotivoLactacaoController extends Zend_Controller_Action
