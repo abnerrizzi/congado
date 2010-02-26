@@ -7,7 +7,7 @@
 /**
  * AtividadeagricolaController
  * 
- * Controla requisições relacionadas ao tipo de atividade agricola.
+ * Controla requisições de manipulação do tipo de atividade agricola.
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller

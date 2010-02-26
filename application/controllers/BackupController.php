@@ -1,13 +1,18 @@
 <?php
 
 /**
- * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
- * @version $Id$
- * 
+ * @package Controller
  */
 
+/**
+ * BackupController
+ * 
+ * Controla requisições de manipulação relacionada ao sistema de backup.
+ *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
+ * @version $Id$
+ */
 class BackupController extends Zend_Controller_Action
 {
 

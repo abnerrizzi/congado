@@ -1,13 +1,18 @@
 <?php
 
 /**
- * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
- * @version $Id$
- * 
+ * @package Controller
  */
 
+/**
+ * CriadorController
+ * 
+ * Controla requisições de manipulação dos criadores.
+ *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
+ * @version $Id$
+ */
 class CriadorController extends Zend_Controller_Action
 {
 

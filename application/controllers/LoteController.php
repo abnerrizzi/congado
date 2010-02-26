@@ -1,6 +1,20 @@
 <?php
 
 /**
+ * @package Controller
+ */
+
+/**
+ * LoteController
+ * 
+ * Controla requisições de manipulação de lotes.
+ *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
+ * @version $Id$
+ */
+
+/**
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *

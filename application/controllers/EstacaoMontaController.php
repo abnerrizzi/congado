@@ -1,11 +1,17 @@
 <?php
 
 /**
+ * @package Controller
+ */
+
+/**
+ * EstacaoController
  * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * Controla requisições de manipulação de estaçoes de monta.
  *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
  * @version $Id$
- * 
  */
 
 class EstacaoMontaController extends Zend_Controller_Action

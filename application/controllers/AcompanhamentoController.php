@@ -7,7 +7,7 @@
 /**
  * AcompanhamentoController
  * 
- * Controla requisições relacionadas ao tipo de acompanhamento.
+ * Controla requisições de manipulação do tipo de acompanhamento.
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller

@@ -7,7 +7,7 @@
 /**
  * AlimentoController
  * 
- * Controla requisições relacionadas ao tipo de alimento.
+ * Controla requisições de manipulação do tipo de alimento.
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
