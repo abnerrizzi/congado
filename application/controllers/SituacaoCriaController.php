@@ -1,11 +1,16 @@
 <?php
+/**
+ * @package Controller
+ */
 
 /**
+ * SituacaoCriaController
  * 
+ * Controla requisições de manipulação de situação das crias ao nascimento.
+ *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
  * @version $Id$
- * 
  */
 
 class SituacaoCriaController extends Zend_Controller_Action

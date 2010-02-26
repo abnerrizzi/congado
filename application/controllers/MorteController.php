@@ -1,11 +1,16 @@
 <?php
+/**
+ * @package Controller
+ */
 
 /**
+ * MorteController
  * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * Controla requisições de manipulação de causas mortis.
  *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
  * @version $Id$
- * 
  */
 
 class MorteController extends Zend_Controller_Action

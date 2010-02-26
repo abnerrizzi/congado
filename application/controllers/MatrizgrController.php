@@ -1,11 +1,17 @@
 <?php
 
 /**
+ * @package Controller
+ */
+
+/**
+ * MatrizgrController
  * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * Controla requisições de manipulação de matriz de graus de sangue.
  *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
  * @version $Id$
- * 
  */
 
 class MatrizgrController extends Zend_Controller_Action

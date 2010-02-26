@@ -1,12 +1,18 @@
 <?php
+/**
+ * @package Controller
+ */
 
 /**
+ * UserController
  * 
+ * Controla requisições de manipulação de usuários.
+ *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
  * @version $Id$
- * 
  */
+
 class UserController extends Zend_Controller_Action
 {
 

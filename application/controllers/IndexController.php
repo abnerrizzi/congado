@@ -1,11 +1,16 @@
 <?php
+/**
+ * @package Controller
+ */
 
 /**
+ * IndexController
  * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * Mostra a pagina inicial do sistema.
  *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
  * @version $Id$
- * 
  */
 
 class IndexController extends Zend_Controller_Action

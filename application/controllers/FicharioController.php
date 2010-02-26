@@ -15,7 +15,6 @@
  * @version $Id$
  */
 
-
 class FicharioController extends Zend_Controller_Action
 {
 
