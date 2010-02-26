@@ -10,7 +10,7 @@
  * 
  * @filesource
  * 
- * @version: $Id$
+ * @version $Id$
  * 
  */
 class Plugin_JQuery_Flexigrid_Column_Date extends Plugin_JQuery_Flexigrid_Column_Abstract

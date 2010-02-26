@@ -3,11 +3,10 @@
 /**
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
- * @version: $Id$
+ * @package Controller
+ * @version $Id$
  * 
  */
-
 class UserController extends Zend_Controller_Action
 {
 

@@ -1,13 +1,18 @@
 <?php
 
 /**
- * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
- * @version: $Id$
- * 
+ * @package Controller
  */
 
+/**
+ * AlimentoController
+ * 
+ * Controla requisições relacionadas ao tipo de alimento.
+ *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
+ * @version $Id$
+ */
 class AlimentoController extends Zend_Controller_Action
 {
 

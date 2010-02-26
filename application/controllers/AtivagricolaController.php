@@ -1,13 +1,18 @@
 <?php
 
 /**
- * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
- * @version: $Id$
- * 
+ * @package Controller
  */
 
+/**
+ * AtividadeagricolaController
+ * 
+ * Controla requisições relacionadas ao tipo de atividade agricola.
+ *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
+ * @version $Id$
+ */
 class AtivagricolaController extends Zend_Controller_Action
 {
 

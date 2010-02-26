@@ -2,7 +2,7 @@
 
 /**
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- * @version: $Id$
+ * @version $Id$
  * 
  */
 
