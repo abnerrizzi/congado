@@ -7,11 +7,11 @@
  * 
  * @uses Plugin_JQuery_Column_Abstract
  *
- * @version: $Id$
+ * @version $Id$
  * 
  * @filesource
  * 
- * @version: $Id$
+ * @version $Id$
  * 
  */
 

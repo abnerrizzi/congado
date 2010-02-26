@@ -9,7 +9,7 @@
  * 
  * @filesource
  * 
- * @version: $Id$
+ * @version $Id$
  * 
  */
 abstract class Plugin_JQuery_Flexigrid_Column_Abstract

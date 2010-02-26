@@ -1,13 +1,18 @@
 <?php
 
 /**
- * 
- * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- *
- * @version: $Id$
- * 
+ * @package Controller
  */
 
+/**
+ * AcompanhamentoController
+ * 
+ * Controla requisições relacionadas ao tipo de acompanhamento.
+ *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
+ * @version $Id$
+ */
 class AcompanhamentoController extends Zend_Controller_Action
 {
 

@@ -6,7 +6,7 @@
  *
  * @author Diego Tremper <diegotremper@gmail.com>
  * 
- * @version: $Id$
+ * @version $Id$
  * 
  */
 

@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version: $Id: Tecnico.php 9 2010-01-08 12:59:43Z bacteria_ $
+ * @version $Id: Tecnico.php 9 2010-01-08 12:59:43Z bacteria_ $
  * 
  */
 

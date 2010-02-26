@@ -9,7 +9,7 @@
  * 
  * @filesource
  * 
- * @version: $Id$
+ * @version $Id$
  * 
  */
 class Plugin_JQuery_Exception extends Plugin_Exception
