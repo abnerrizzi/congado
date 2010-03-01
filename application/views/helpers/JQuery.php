@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Gera o script que sera executado no carregamento da pÃ¡gina
+ * Gera o script que sera executado no carregamento da página
  *
  * @author Tales Augusto <tales.augusto.santos@gmail.com>
  * @version $Id$

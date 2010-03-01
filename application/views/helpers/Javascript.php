@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package Helpers
+ */
 
+/**
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Helpers
+ */
 class Zend_View_Helper_Javascript extends Zend_View_Helper_Abstract
 {
 

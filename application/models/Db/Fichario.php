@@ -8,7 +8,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Model
- * @subpackage Model_Db
+ * @subpackage Db
  * @version $Id$
  * 
  */
@@ -31,6 +31,7 @@ class Model_Db_Fichario extends Model_Db
 			), $this->_schema)
 //			->joinLeft('raca', 'f.raca_id = raca.id', array('raca_dsc' => 'dsc'), $this->_schema)
 			->joinLeft('local', 'f.local_id = local.id', array('local_dsc' => 'dsc'), $this->_schema)
+//			faz o join recortando/delimitando a quantidade de caracteres
 //			->joinLeft('fazenda', 'f.fazenda_id = fazenda.id', array('fazenda_dsc' => new Zend_Db_Expr("SUBSTRING(descricao, 1, 30)")), $this->_schema)
 			->joinLeft('fazenda', 'f.fazenda_id = fazenda.id', array('fazenda_dsc' => 'descricao'), $this->_schema)
 			->order($orderby .' '. $order)
@@ -43,13 +44,17 @@ class Model_Db_Fichario extends Model_Db
 	/**
 	 * Retorna uma array no formato exigido pelo flexigrid
 	 * 
-	 * @param $cols (array|string) colunas a serem retornadas
-	 * @param $orderby (string) nome da coluna a ser ordenada
-	 * @param $order (string) tipo de ordenacao asc ou desc
-	 * @param $page (int) numero da pagina atual
-	 * @param $limit (int) numero de registros por pagina
-	 * @param $qtype (string) nome do campo
-	 * @param $query (string) valor a ser procurado
+	 * @param array|string $cols colunas a serem retornadas
+	 * @param string $orderby nome da coluna a ser ordenada
+	 * @param string $ordertipo de ordenacao asc ou desc
+	 * @param int $page numero da pagina atual
+	 * @param int $limit numero de registros por pagina
+	 * @param string $qtype nome do campo
+	 * @param string $query valor a ser procurado
+	 * @param boolean $order true or false for ASC or DESC
+	 * @param boolean $like true of false to enable like '%%'
+	 * @param array $params
+	 * @return array
 	 */
 	public function listJsonFicharios($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
 	{
