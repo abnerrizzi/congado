@@ -1,7 +1,6 @@
 <?php
 /**
  * @package Plugin
- * @subpackage Plugin_JQuery_Flexigrid
  */
 
 /**
@@ -9,7 +8,7 @@
  * 
  * @author Tales Augusto <tales.augusto.santos@gmail.com>
  * @package Plugin
- * @subpackage Plugin_JQuery_Flexigrid
+ * @subpackage JQuery
  * @version $Id$
  * 
  */
