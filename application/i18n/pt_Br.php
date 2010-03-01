@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package Translation
+ */
 
 /**
  * Tradução para o Português por Nivaldo Arruda - nivaldo@gmail.com
@@ -6,6 +9,7 @@
  * Atualizador por Abner Rizzi - abner.rizzi@gmail.com
  * 
  * @version $Id$
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * 
  */
 

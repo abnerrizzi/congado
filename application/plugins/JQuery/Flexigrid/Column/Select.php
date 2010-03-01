@@ -1,14 +1,16 @@
 <?php
 
 /**
+ * @package Plugin
+ */
+
+/**
  * Classe para gerar o select nas colunas do Flexigrid.
  *
  * @author Tales Augusto <tales.augusto.santos@gmail.com>
- * 
  * @uses Plugin_JQuery_Column_Abstract
- * 
- * @filesource
- * 
+ * @package Plugin
+ * @subpackage JQuery
  * @version $Id$
  * 
  */
