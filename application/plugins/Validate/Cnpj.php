@@ -7,7 +7,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Plugin
- * @subpackage Plugin_Validate
+ * @subpackage Validate
  * @version $Id$
  * 
  */

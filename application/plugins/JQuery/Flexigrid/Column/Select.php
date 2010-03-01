@@ -2,7 +2,6 @@
 
 /**
  * @package Plugin
- * @subpackage Plugin_JQuery_Column
  */
 
 /**
@@ -11,7 +10,7 @@
  * @author Tales Augusto <tales.augusto.santos@gmail.com>
  * @uses Plugin_JQuery_Column_Abstract
  * @package Plugin
- * @subpackage Plugin_JQuery_Column
+ * @subpackage JQuery
  * @version $Id$
  * 
  */

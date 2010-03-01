@@ -8,7 +8,7 @@
  *
  * @author Tales Santos <tales.augusto.santos@gmail.com>
  * @package Plugin
- * @subpackage Plugin_JQuery
+ * @subpackage JQuery
  * @version $Id$
  * 
  */

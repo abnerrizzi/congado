@@ -9,7 +9,7 @@
  * @author Tales Augusto <tales.augusto.santos@gmail.com>
  * @uses Zend_Exception
  * @package Plugin
- * @subpackage Plugin_JQuery
+ * @subpackage JQuery
  * @version $Id$
  * 
  */
