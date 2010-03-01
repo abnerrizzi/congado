@@ -1,6 +1,15 @@
 <?php
-
+/**
+ * @package Helper
+ */
+/**
+ * @package Helper
+ */
 //class Zend_View_Helper_Grid extends Zend_View_Helper_Abstract
+/**
+ * @package Helper
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ */
 class Zend_View_Helper_FormEdit
 {
 

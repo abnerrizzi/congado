@@ -8,7 +8,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Model
- * @subpackage Model_Grid
+ * @subpackage Grid
  * @version $Id$
  * 
  */
