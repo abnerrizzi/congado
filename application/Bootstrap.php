@@ -1,7 +1,10 @@
 <?php
+/**
+ * @package Bootstrap
+ */
 
 /**
- * 
+ * @package Bootstrap
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @version $Id$
  * 

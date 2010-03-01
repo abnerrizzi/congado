@@ -1,8 +1,10 @@
 <?php
-
+/**
+ * @package Helper
+ */
 /**
  * Gera o HTML da tabela do flexgrid
- *
+ * @package Helper
  * @uses Zend_View_Helper_HtmlElement 
  */
 class Zend_View_Helper_Flexigrid extends Zend_View_Helper_HtmlElement

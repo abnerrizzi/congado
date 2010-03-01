@@ -1,8 +1,12 @@
 <?php
+/**
+ * @package Helper
+ */
 
 /**
  * Gera o script que sera executado no carregamento da página
  *
+ * @package Helper
  * @author Tales Augusto <tales.augusto.santos@gmail.com>
  * @version $Id$
  * 
