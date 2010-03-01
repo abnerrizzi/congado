@@ -1,11 +1,11 @@
 <?php
 /**
- * @package Helpers
+ * @package Helper
  */
 
 /**
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
- * @package Helpers
+ * @package Helper
  */
 class Zend_View_Helper_Javascript extends Zend_View_Helper_Abstract
 {
