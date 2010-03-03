@@ -29,10 +29,14 @@ class SystemController extends Zend_Controller_Action
         // action body
     }
 
+    /**
+     * Controlador responsavel pela atualizacao do papel de parede no banco de dados.
+     */
     public function wallpaperAction()
     {
     	$auth = Zend_Auth::getInstance()->getStorage()->read();
 
+    	// se o usuario nao for administrador nao permite a troca do papel de parede
         if (!$auth->admin) {
         	$this->view->msg = 'Somente administradores do sistema pode trocar o papel de parede.';
         	$this->render('warning');
@@ -52,6 +56,8 @@ class SystemController extends Zend_Controller_Action
 				$files = $adapter->getFileInfo();
 				$backgroundFile = $files['background']['tmp_name'];
 				$backgroundType = $files['background']['type'];
+
+				// Caso o arquivo seja do tipo BMP, ira ser convertido para JPG
 				if (strpos(strtolower($backgroundType), 'bmp')) {
 					if ($systemModel->imageCreateFromBmp($files['background']['tmp_name'])) {
 						$dir = realpath(APPLICATION_PATH . '/../scripts');
@@ -79,6 +85,9 @@ class SystemController extends Zend_Controller_Action
         $this->view->form = $systemForm;
     }
 
+    /**
+     * Busca os dados no banco de dados e faz um cache em arquivo do papel de parede
+     */
     public function backgroundAction()
     {
     	$systemModel = new Model_Db_System();
@@ -87,7 +96,7 @@ class SystemController extends Zend_Controller_Action
 			$this->view->file = $systemModel->getFilePath();
 			$this->view->img = true;
     	} else {
-    		die('else');
+    		throw new Zend_Controller_Exception('Erro inesperado gerando cache do papel de parede');
     	}
     	$this->_helper->layout()->disableLayout();
     }
