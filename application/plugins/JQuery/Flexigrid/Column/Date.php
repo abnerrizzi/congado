@@ -32,7 +32,7 @@ class Plugin_JQuery_Flexigrid_Column_Date extends Plugin_JQuery_Flexigrid_Column
 	protected $_format = Zend_Date::DATES;
 
 	/**
-	 * Retorna o objeto de localizaÃ§Ã£o
+	 * Retorna o objeto de localização
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
 	 * 
@@ -50,7 +50,7 @@ class Plugin_JQuery_Flexigrid_Column_Date extends Plugin_JQuery_Flexigrid_Column
 	}
 
 	/**
-	 * Seta o objeto de localizaÃ§Ã£o
+	 * Seta o objeto de localização
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
 	 * 
