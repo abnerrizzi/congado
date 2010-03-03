@@ -16,9 +16,7 @@
  */
 abstract class Plugin_JQuery_Flexigrid_Column_Abstract
 {
-	/**
-	 * Alinhamento das colunas
-	 */
+
 	const ALIGN_LEFT   = 'left';
 	const ALIGN_CENTER = 'center';
 	const ALIGN_RIGHT  = 'right';
@@ -51,7 +49,7 @@ abstract class Plugin_JQuery_Flexigrid_Column_Abstract
 	protected $_width = 100;
 	
 	/**
-	 * Coluna Ã© ordenavel?
+	 * Coluna é ordenavel?
 	 * 
 	 * @access protected
 	 *
@@ -98,14 +96,14 @@ abstract class Plugin_JQuery_Flexigrid_Column_Abstract
 	protected $_elementAttribs = array();
 	
 	/**
-	 * Valor a ser mostrado como padrÃ£o
+	 * Valor a ser mostrado como padrão
 	 *
 	 * @var string
 	 */
 	protected $_defaultValue = '-';
 	
 	/**
-	 * ContŽm as informacoes da linha que est‡ sendo renderizada
+	 * ContŽm as informacoes da linha que está sendo renderizada
 	 *
 	 * @var array
 	 */
@@ -129,13 +127,13 @@ abstract class Plugin_JQuery_Flexigrid_Column_Abstract
 	}
 	
 	/**
-	 * Seta as configuraÃ§Ãµes.
+	 * Seta as configurações.
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
 	 * 
 	 * @access public
 	 *
-	 * @param array $options OpÃ§Ãµes da coluna
+	 * @param array $options Opções da coluna
 	 * 
 	 * @return Plugin_JQuery_Flexigrid
 	 * 
@@ -299,7 +297,7 @@ abstract class Plugin_JQuery_Flexigrid_Column_Abstract
 	}
 	
 	/**
-	 * Seta o valor padrÃ£o
+	 * Seta o valor padrão
 	 *
 	 * @param string $value
 	 * 
@@ -312,7 +310,7 @@ abstract class Plugin_JQuery_Flexigrid_Column_Abstract
 	}
 	
 	/**
-	 * Retorna o valor padrÃ£o
+	 * Retorna o valor padrão
 	 *
 	 * @return String
 	 */
@@ -322,9 +320,9 @@ abstract class Plugin_JQuery_Flexigrid_Column_Abstract
 	}
 	
 	/**
-	 * Retorna o objeto de renderizaÃ§Ã£o
+	 * Retorna o objeto de renderização
 	 *
-	 * Se nÃ£o estiver setada o objeto, cria-o.
+	 * Se não estiver setada o objeto, cria-o.
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
 	 * 
@@ -356,7 +354,7 @@ abstract class Plugin_JQuery_Flexigrid_Column_Abstract
 	}
 	
 	/**
-	 * Retorna as informações da linha que est‡ sendo renderizada.
+	 * Retorna as informações da linha que está sendo renderizada.
 	 *
 	 * @return array
 	 */

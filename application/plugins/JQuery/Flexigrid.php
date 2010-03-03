@@ -15,19 +15,25 @@
 class Plugin_JQuery_Flexigrid
 {
 	/**
-	 * Tipos de ordenacao das colunas
+	 * Tipos de ordenacao das colunas ASCendente
 	 */
 	const SORT_ASC  = 'asc';
+	/**
+	 * Tipos de ordenacao das colunas DESCendente
+	 */
 	const SORT_DESC = 'desc';
 	
 	/**
-	 * Tipos de retorno do ajax
+	 * Tipos de retorno do ajax JSON
 	 */
 	const DATA_TYPE_JSON = 'json';
+	/**
+	 * Tipos de retorno do ajax XML
+	 */
 	const DATA_TYPE_XML = 'xml';
 	
 	/**
-	 * Array com as op√ß√µes do Flexigrid
+	 * Array com as opÁıes do Flexigrid
 	 * 
 	 * @access private
 	 *
@@ -65,7 +71,7 @@ class Plugin_JQuery_Flexigrid
 	private $_search = array();
 	
 	/**
-	 * Objeto de renderiza√ß√£o
+	 * Objeto de renderizaÁ„o
 	 * 
 	 * @access private
 	 *
@@ -137,11 +143,11 @@ class Plugin_JQuery_Flexigrid
 	}
 	
 	/**
-	 * Seta as configura√ß√µes
+	 * Seta as configuraÁıes
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
 	 * 
-	 * @param array $options Op√ß√µes do flexigrid
+	 * @param array $options OpÁıes do flexigrid
 	 * 
 	 * @return Plugin_JQuery_Flexigrid
 	 */
@@ -230,7 +236,7 @@ class Plugin_JQuery_Flexigrid
 	}
 
 	/**
-	 * Seta as dimens√µes do Flexigrid
+	 * Seta as dimensıes do Flexigrid
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
 	 * 
@@ -249,7 +255,7 @@ class Plugin_JQuery_Flexigrid
 	}
 
 	/**
-	 * Configura a pagina√ß√£o do Flexigrid
+	 * Configura a paginaÁ„o do Flexigrid
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
 	 * 
@@ -306,7 +312,7 @@ class Plugin_JQuery_Flexigrid
 	 * @param string $name Nome da coluna
 	 * @param string $display Display da coluna
 	 * @param integer $width Largura da coluna
-	 * @param boolean $sorteable Ser√° orden√°vel?
+	 * @param boolean $sorteable Ser· orden·vel?
 	 * @param string $align Alinhamento da coluna
 	 * 
 	 * @return Plugin_JQuery_Flexigrid
@@ -317,9 +323,7 @@ class Plugin_JQuery_Flexigrid
 		{
 			$column = $type;
 			unset($type);
-		}
-		elseif ( is_string($name) )
-		{
+		} elseif ( is_string($name) ) {
 			$class_name = 'Plugin_JQuery_Flexigrid_Column_' . ucfirst($type);
 			$column = new $class_name($name, $options);
 		}
@@ -386,7 +390,7 @@ class Plugin_JQuery_Flexigrid
 	}
 	
 	/**
-	 * Adiciona um bot√£o ao grid
+	 * Adiciona um bot„o ao grid
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
 	 * 
@@ -496,7 +500,7 @@ class Plugin_JQuery_Flexigrid
 	}
 	
 	/**
-	 * Retorna o objeto de renderiza√ß√£o
+	 * Retorna o objeto de renderizaÁ„o
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
 	 * @access public
@@ -660,7 +664,7 @@ class Plugin_JQuery_Flexigrid
 	 * @access public
 	 *
 	 * @param mixed $data Registro a ser listado
-	 * @param string $pk Nome da coluna que √© chave primaria
+	 * @param string $pk Nome da coluna que È chave primaria
 	 * 
 	 * @return string Json codificado
 	 */
