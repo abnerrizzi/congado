@@ -17,7 +17,7 @@
 class Plugin_JQuery_Flexigrid_Column_Select extends Plugin_JQuery_Flexigrid_Column_Abstract
 {
 	/**
-	 * OpÃ§Ãµes do select
+	 * Opções do select
 	 * 
 	 * @access private
 	 *
@@ -26,7 +26,7 @@ class Plugin_JQuery_Flexigrid_Column_Select extends Plugin_JQuery_Flexigrid_Colu
 	private $_multiOptions = array();
 
 	/**
-	 * Seta as opÃ§Ãµes do select.
+	 * Seta as opções do select.
 	 * 
 	 * @author Tales Augusto <tales.augusto.santos@gmail.com>
 	 * 
