@@ -197,8 +197,7 @@ class JsonController extends Zend_Controller_Action
 	/**
 	 * grausangueAction
 	 * 
-	 * Retorna uma string no formato JSON com a lista de graus de sangue com
-	 * o padrao jqGrid
+	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
 	 *  
 	 * @return (string|JSON)
 	 */
@@ -318,8 +317,7 @@ class JsonController extends Zend_Controller_Action
 	/**
 	 * filhosAction
 	 * 
-	 * Retorna uma string no formato JSON com a lista de filhos do animal com\
-	 * o padrao jqGrid
+	 * Retorna uma string no formato JSON com a lista de filhos do animal com o padrao jqGrid
 	 *  
 	 * @return (string|JSON)
 	 */
