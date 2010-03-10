@@ -106,7 +106,7 @@ class Plugin_Validate_CnpjCpf extends Zend_Validate_Abstract
 		return true;
 	}
 
-	protected function isCnpf($value)
+	protected function isCnpj($value)
 	{
 		$this->_messageTemplates = array(
 			self::INVALID_DIGITS => "O CNPJ '%value%' não é válido",
