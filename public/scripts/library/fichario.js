@@ -724,7 +724,7 @@ function showfilter_animal_OLD(url, input)
 					isdefault: true
 				}, {
 					display: 'SISBOV',
-					name : 'sisbov',
+					name : 'fichario.sisbov',
 					isdefault: true
 				}],
 			sortname: "nome",
@@ -804,7 +804,7 @@ function showfilter_animal(url, input)
 					isdefault: true
 				}, {
 					display: 'SISBOV',
-					name : 'sisbov',
+					name : 'fichario.sisbov',
 					isdefault: true
 				}],
 			sortname: "nome",
