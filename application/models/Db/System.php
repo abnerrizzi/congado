@@ -124,6 +124,10 @@ class Model_Db_System extends Model_Db
 			$time = $this->getBackupgroundTime();
 		}
 		$dir = realpath(APPLICATION_PATH . '/../scripts');
+		if (!$dir && !is_dir(APPLICATION_PATH . '/../scripts')) {
+			mkdir(APPLICATION_PATH . '/../scripts');
+			$dir = realpath(APPLICATION_PATH . '/../scripts');
+		}
 		$file = "wallpaper";
 		$filePath = $dir . '/' . $file;
 		self::$filePath = $filePath;
