@@ -42,7 +42,7 @@ final class Model_Db_Backup extends Model_Db
 	{
 
 		if (!is_dir($this->backupDir)) {
-			if (!@mkdir($this->backupDir, null, true)) {
+			if (!@mkdir($this->backupDir, 0777, true)) {
 				$msg = "Erro criando/acessando diretório de backup: (".$this->backupDir.")";
 				throw new Zend_Exception($msg);
 			}
