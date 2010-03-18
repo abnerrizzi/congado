@@ -1,26 +1,28 @@
 <pre>
 <?
+print_r(get_defined_functions());
+die();
 $link = mysql_connect('localhost', 'root', '') or die(mysql_error());
-$file = 'scripts/moviment.csv';
+$file = 'scripts/simple_congado.csv';
 $handle = fopen ($file, 'r');
 $z=0;
 
 while (!feof($handle))
 {
 
-	$atual = fgetcsv($handle, 10240, '|', "'");
+	$atual = fgetcsv($handle, 10240, '|', '@');
 
-	print "insert into `import`.`moviment` values (NULL, ";
+	print "insert into `import`.`fichario` values (";
 
 	$cols = count($atual);
 	for ($i=0; $i < $cols; $i++)
 	{
 		// dt_nascimento
-		if ($i == 3) {
-			print "'" . converte_data($atual[$i]) . "', ";
+		if ($i == 6) {
+			$date = substr($atual[$i], 6) ."-". substr($atual[$i], 3, 2) ."-". substr($atual[$i], 0, 2);
+			print "'" . $date . "', ";
 			continue;
 		}
-		/*
 		// criador_id
 		if ($i == 7) {
 			if ($atual[$i] != "") {
@@ -97,7 +99,6 @@ while (!feof($handle))
 				continue;
 			}
 		}
-		*/
 
 
 
@@ -132,14 +133,6 @@ while (!feof($handle))
 	
 }
 fclose($handle);
-
-
-
-
-
-function converte_data($date) {
-	return substr($date, 6) ."-". substr($date, 3, 2) ."-". substr($date, 0, 2);
-}
 
 ?>
 
