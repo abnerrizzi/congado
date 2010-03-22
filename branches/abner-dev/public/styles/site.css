@@ -1,0 +1,269 @@
+.ok, .warning {
+	font-size: 14px;
+	width: 320px;
+	padding: 15px;
+	text-align: center;
+}
+
+.ok {
+	border: 2px solid #3f3;
+	background-color: #cfc;
+}
+
+.warning {
+	border: 2px solid #ff3;
+	background-color: #ffc;
+}
+
+#list {
+	font-size: 11px;
+}
+
+#filter {
+	z-index: 7000;
+	font: 75%/ 1.5 Arial, sans-serif;
+	color: #000000;
+	background-color: #00ff00;
+	display: none;
+}
+
+#filter H3 {
+	line-height: 1.12;
+	font-size: 1.5em;
+	font-weight: normal;
+	padding: 16px 15px 17px 0px;
+	margin: 0px;
+	border: 5px solid;
+}
+
+#filter-bg {
+	z-index: 6999;
+	position: fixed;
+	min-width: 999px;
+	filter: progid : DXImageTransform.Microsoft.Alpha ( Opacity = 60 );
+	width: 100%;
+	height: 100%;
+	background: #333333;
+	top: 0px;
+	left: 0px;
+	opacity: .6;
+	display: none;
+}
+
+.errors {
+	color: red;
+	font-weight: bold;
+}
+
+.pagination {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+#grid {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+
+#grid table {
+	padding: 0px;
+	border-spacing: 0px;
+	border: 0px;
+	background-color: #f7f6f1;
+	text-align: left;
+	border-left: 1px solid rgb(145, 145, 145);
+	border-right: 1px solid rgb(204, 204, 204);
+}
+
+#grid #null {
+	cursor: default;
+}
+
+#grid .head {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	background-color: #CCCCCC;
+	cursor: pointer;
+}
+
+#grid .row1 {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+}
+
+#grid .row0 {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+}
+
+#grid .selected {
+	background-color: #002288;
+	color: #dfdfdf;
+}
+
+#grid .rowon {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	background-color: #666666;
+	color: #eeeeee;
+}
+
+#grid td {
+	vertical-align: middle;
+}
+
+fieldset {
+	width: 500px;
+}
+
+table .label {
+	text-align: right;
+	font-weight: bold;
+	background-color: #ddd;
+	padding-right: 10px;
+}
+
+.input,.readonly {
+	border-color: #9E9E9E #FFFFFF #FFFFFF #9E9E9E;
+	border-width: 1px;
+	border-style: solid;
+	font-family: Tahoma, Verdana;
+	font-size: 11px;
+}
+
+.input_num,.readonly_num {
+	border-color: #9E9E9E #FFFFFF #FFFFFF #9E9E9E;
+	border-width: 1px;
+	border-style: solid;
+	font-family: Tahoma, Verdana;
+	font-size: 11px;
+	text-align: right;
+}
+
+.readonly_num {
+	background-color: ThreeDFace;
+	color: GrayText;
+	cursor: inherit;
+	-moz-user-input: disabled;
+	disabled: true;
+}
+
+.readonly {
+	background-color: ThreeDFace;
+	color: GrayText;
+	cursor: inherit;
+	-moz-user-input: disabled;
+	disabled: true;
+}
+
+a,a:visited {
+	color: #0000ff;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+img {
+	border: 0;
+}
+
+body {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+
+.button {
+	font-weight: bold;
+	font-size: 12px;
+	border: 2px solid #333333;
+	background-color: #cccccc;
+}
+
+h1 {
+	font-size: 18pt;
+}
+
+h2 {
+	font-size: 16pt;
+}
+
+h3 {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#ajax_loader {
+	background-color: #ffaaaa;
+	border: 1px solid #ff0000;
+	color: #333333;
+	text-align: center;
+	width: auto;
+	align: center;
+	position: fixed;
+	top: 50px;
+	right: 50px;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.animal,.animalf,.animalm,.vazio {
+	text-align: center;
+	width: 160px;
+	padding: 1px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #333;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.animal {
+	background-color: #eee;
+}
+
+.animalf {
+	background-color: #fee;
+}
+
+.animalm {
+	background-color: #eef;
+}
+
+.vazio {
+	background-color: #999;
+	border-color: #999;
+	font-color: #bbb;
+}
+
+.toolbar img {
+	border: 1px solid #ccc;
+	padding: 2px;
+}
+
+.qtip {
+	font-size: 12px;
+}
+
+.ui-widget {
+	font-size: 12px;
+}
+
+.ui-dialog-title {
+	font-size: 12px;
+}
+
+
