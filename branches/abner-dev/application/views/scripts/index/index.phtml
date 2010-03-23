@@ -1,9 +1,0 @@
-<?php 
-?>
-<div id="welcome" align="center">
-    <p>
-Olá <b><?=$this->identity->name;?></b>,<br/>
-Seu último acesso ao sistema foi em: <?=date('d/m/Y H:i', strtotime($this->identity->lastlogin));?>
-    </p>
-    <img src="<?=$this->baseUrl();?>/system/background" alt=""/>
-</div>
