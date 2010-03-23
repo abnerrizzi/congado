@@ -1,6 +1,5 @@
 <pre>
 <?
-x
 $link = mysql_connect('localhost', 'root', '') or die(mysql_error());
 $file = 'scripts/moviment.csv';
 $handle = fopen ($file, 'r');
