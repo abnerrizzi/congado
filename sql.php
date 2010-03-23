@@ -1,8 +1,5 @@
 <pre>
 <?
-
-die('teste');
-
 $link = mysql_connect('localhost', 'root', '') or die(mysql_error());
 $file = 'scripts/simple_congado.csv';
 $handle = fopen ($file, 'r');
