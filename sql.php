@@ -1,77 +1,145 @@
-<?php $start = microtime(true);?>
 <pre>
 <?
-
 $link = mysql_connect('localhost', 'root', '') or die(mysql_error());
+$file = 'scripts/moviment.csv';
+$handle = fopen ($file, 'r');
+$z=0;
 
-$query = "select * from import.moviment_tipo order by id";
-$result = mysql_query($query);
-
-$tipo = array();
-while ($row = mysql_fetch_assoc($result))
+while (!feof($handle))
 {
-	$tipo[$row['id']] = strtoupper($row['dsc']);
-}
 
+	$atual = fgetcsv($handle, 10240, '|', "'");
 
-$query = "select * from import.moviment limit 10";
-$result = mysql_query($query);
-while ($row = mysql_fetch_assoc($result))
-{
-	// desmama
-	if ($row['tipo'] == 0) {
-		print_r($row);
+	print "insert into `import`.`moviment` values (NULL, ";
 
-		// animal
-		$_sql = "select * from congado.fichario where cod = $row[animal]";
-		$_result = mysql_query($_sql);
-		$_row = mysql_fetch_assoc($_result);
-		print_r($_row['id']);
-		print "\n";
+	$cols = count($atual);
+	for ($i=0; $i < $cols; $i++)
+	{
+		// dt_nascimento
+		if ($i == 3) {
+			print "'" . converte_data($atual[$i]) . "', ";
+			continue;
+		}
+		/*
+		// criador_id
+		if ($i == 7) {
+			if ($atual[$i] != "") {
+				$query = "SELECT id FROM congado.criador WHERE cod = '".$atual[$i]."'";
+				$result = mysql_query($query);
+				$row = mysql_fetch_row($result);
+				print $row[0] . ', ';
+				continue;
+			}
+		}
+		// pelagem_id
+		if ($i == 8) {
+			if ($atual[$i] != "") {
+				$query = "SELECT id FROM congado.pelagem WHERE cod = '".$atual[$i]."'";
+				$result = mysql_query($query);
+				$row = mysql_fetch_row($result);
+				print $row[0] . ', ';
+				continue;
+			}
+		}
 		
-		// old
-		$_sql = "select id, cod from congado.categoria where cod = '$row[old]'";
-		$_result = mysql_query($_sql);
-		$_row = mysql_fetch_assoc($_result);
-		print_r($_row['id']);
-		print "\n";
+		// raca_id
+		if ($i == 9) {
+			if ($atual[$i] != "") {
+				$query = "SELECT id FROM congado.raca WHERE cod = '".$atual[$i]."'";
+				$result = mysql_query($query);
+				$row = mysql_fetch_row($result);
+				print $row[0] . ', ';
+				continue;
+			}
+		}
+		// rebanho_id
+		if ($i == 10) {
+			if ($atual[$i] != "") {
+				$query = "SELECT id FROM congado.rebanho WHERE cod = '".$atual[$i]."'";
+				$result = mysql_query($query);
+				$row = mysql_fetch_row($result);
+				print $row[0] . ', ';
+				continue;
+			}
+		}
+		// categoria_id
+		if ($i == 11) {
+			if ($atual[$i] != "") {
+				$query = "SELECT id FROM congado.categoria WHERE cod = '".$atual[$i]."'";
+				$result = mysql_query($query);
+				$row = mysql_fetch_row($result);
+				print $row[0] . ', ';
+				continue;
+			}
+		}
+		// local_id
+		if ($i == 12) {
+			if ($atual[$i] != "") {
+				$query = "SELECT id FROM congado.local WHERE local = '".$atual[$i]."' and fazenda_id = $atual[1]";
+				$result = mysql_query($query);
+				
+				$row = mysql_fetch_row($result);
+				if (!$row) {
+					print 'NULL, ';
+					continue;
+				}
+				print $row[0] . ', ';
+				continue;
+			}
+		}
+		// grausangue_id
+		if ($i == 13) {
+			if ($atual[$i] != "") {
+				$query = "SELECT id FROM congado.grausangue WHERE cod = '".$atual[$i]."'";
+				$result = mysql_query($query);
+				$row = mysql_fetch_row($result);
+				print $row[0] . ', ';
+				continue;
+			}
+		}
+		*/
 
-		// new
-		$_sql = "select id, cod from congado.categoria where cod = '$row[new]'";
-		$_result = mysql_query($_sql);
-		$_row = mysql_fetch_assoc($_result);
-		print_r($_row['id']);
-		print "\n";
-		
-		
-		die();
-	// categoria
-	} elseif ($row['tipo'] == 1) {
-	// local
-	} elseif ($row['tipo'] == 4) {
-	// lote
-	} elseif ($row['tipo'] == 5) {
-	// venda
-	} elseif ($row['tipo'] == 6) {
-	// fazenda
-	} elseif ($row['tipo'] == 7) {
-	// rebanho
-	} elseif ($row['tipo'] == 8) {
-//	} else {
-//		die('tipo inesperado');
+
+
+
+		if ($atual[$i] == "") {
+			$atual[$i] = "NULL";
+		} elseif ($atual[$i] == "FALSO") {
+			$atual[$i] = "FALSE";
+		} elseif ($atual[$i] == "VERDADEIRO") {
+			$atual[$i] = "TRUE";
+		}
+		if ($i < $cols-1) {
+			if ($atual[$i] == "NULL" || $atual[$i] == "FALSE" || $atual[$i] == "TRUE") {
+				print $atual[$i] . ", ";
+			} else {
+				print "'" . $atual[$i] . "', ";
+			}
+		} else {
+			if ($atual[$i] == "NULL") {
+				print $atual[$i];
+			} else {
+				print "'" . $atual[$i] . "'";
+			}
+		}
 	}
-	$_sql = "select id from congado.local where `local` = '$row[local]'";
-	$_result = mysql_query($_sql) or die(mysql_error());
-	$_row = mysql_fetch_assoc($_result);
-	print_r($_row['id']);
-	print "\n";
+	print ");\n";
+	$z++;
+//	if ($z == 650) {
+//		die();
+//	}
+	continue;
 	
-//	print_r($row);
+}
+fclose($handle);
+
+
+
+
+
+function converte_data($date) {
+	return substr($date, 6) ."-". substr($date, 3, 2) ."-". substr($date, 0, 2);
 }
 
-
-mysql_close($link);
-
-print number_format(microtime(true) - $start, 4) . " s";
 ?>
 
