@@ -65,7 +65,7 @@ $(document).ready(function() {
 					isdefault: true
 				}, {
 					display: 'SISBOV',
-					name : 'sisbov',
+					name : 'fichario.sisbov',
 					isdefault: true
 				}],
 			sortname: "nome",
