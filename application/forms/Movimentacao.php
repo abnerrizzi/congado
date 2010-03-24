@@ -68,8 +68,6 @@ class Form_Movimentacao extends Form_Default
 			'class'	=> 'input',
 		));
 
-
-
 		// new
 		$this->addElement('hidden', 'new_id', array(
 			'required' => true
