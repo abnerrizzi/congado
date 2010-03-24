@@ -59,7 +59,7 @@ class Form_Movimentacao extends Form_Default
 		$this->addElement('hidden', 'id');
 
 		$this->addElement('text', 'date', array(
-			'label' => 'Tipo de Parto',
+			'label' => 'Movimentação',
 			'required' => true,
 			'filters' => array('StringTrim', 'StringToUpper'),
 			'validators' => array('Alnum', new Zend_Validate_Db_NoRecordExists('parto','cod')),
