@@ -1,5 +1,10 @@
 <?php
 
+$this->headScript()
+	->appendScript("\t__title = 'Inseminadores';\n")
+	->appendFile($this->baseUrl() . '/scripts/library/default_search.js')
+	;
+
 echo $this->grid($this->grid);
 
 ?>
