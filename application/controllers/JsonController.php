@@ -280,6 +280,230 @@ class JsonController extends Zend_Controller_Action
 	}
 
 	/**
+	 * acompanhamentoAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
+	public function acompanhamentoAction()
+	{
+		$grausangueModel = new Model_Db_Acompanhamento();
+		$graus = $grausangueModel->listJson(
+			array(
+				'id',
+				'cod',
+				'dsc',
+			),
+			$this->getRequest()->getParam('sortname','cod'),
+			$this->getRequest()->getParam('sortorder','asc'),
+			$this->getRequest()->getParam('page','1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($graus));
+		$this->render('index');
+	}
+
+	/**
+	 * tecnicoAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
+	public function tecnicoAction()
+	{
+		$grausangueModel = new Model_Db_Tecnico();
+		$graus = $grausangueModel->listJson(
+			array(
+				'id',
+				'cod',
+				'dsc',
+			),
+			$this->getRequest()->getParam('sortname','cod'),
+			$this->getRequest()->getParam('sortorder','asc'),
+			$this->getRequest()->getParam('page','1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($graus));
+		$this->render('index');
+	}
+
+	/**
+	 * doencaAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
+	public function doencaAction()
+	{
+		$grausangueModel = new Model_Db_Doenca();
+		$graus = $grausangueModel->listJson(
+			array(
+				'id',
+				'cod',
+				'dsc',
+			),
+			$this->getRequest()->getParam('sortname','cod'),
+			$this->getRequest()->getParam('sortorder','asc'),
+			$this->getRequest()->getParam('page','1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($graus));
+		$this->render('index');
+	}
+
+	/**
+	 * alimentoAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
+	public function alimentoAction()
+	{
+		$grausangueModel = new Model_Db_Alimento();
+		$graus = $grausangueModel->listJson(
+			array(
+				'id',
+				'cod',
+				'dsc',
+			),
+			$this->getRequest()->getParam('sortname','cod'),
+			$this->getRequest()->getParam('sortorder','asc'),
+			$this->getRequest()->getParam('page','1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($graus));
+		$this->render('index');
+	}
+
+	/**
+	 * destinoAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
+	public function destinoAction()
+	{
+		$grausangueModel = new Model_Db_Destino();
+		$graus = $grausangueModel->listJson(
+			array(
+				'id',
+				'cod',
+				'dsc',
+			),
+			$this->getRequest()->getParam('sortname','cod'),
+			$this->getRequest()->getParam('sortorder','asc'),
+			$this->getRequest()->getParam('page','1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($graus));
+		$this->render('index');
+	}
+
+	/**
+	 * ativagricolaAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
+	public function ativagricolaAction()
+	{
+		$grausangueModel = new Model_Db_Ativagricola();
+		$graus = $grausangueModel->listJson(
+			array(
+				'id',
+				'cod',
+				'dsc',
+			),
+			$this->getRequest()->getParam('sortname','cod'),
+			$this->getRequest()->getParam('sortorder','asc'),
+			$this->getRequest()->getParam('page','1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($graus));
+		$this->render('index');
+	}
+
+	/**
+	 * situacaocriaAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
+	public function situacaocriaAction()
+	{
+		$grausangueModel = new Model_Db_SituacaoCria();
+		$graus = $grausangueModel->listJson(
+			array(
+				'id',
+				'cod',
+				'dsc',
+			),
+			$this->getRequest()->getParam('sortname','cod'),
+			$this->getRequest()->getParam('sortorder','asc'),
+			$this->getRequest()->getParam('page','1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($graus));
+		$this->render('index');
+	}
+
+	/**
+	 * situacaopesagemAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
+	public function situacaopesagemAction()
+	{
+		$grausangueModel = new Model_Db_SituacaoPesagem();
+		$graus = $grausangueModel->listJson(
+			array(
+				'id',
+				'cod',
+				'dsc',
+			),
+			$this->getRequest()->getParam('sortname','cod'),
+			$this->getRequest()->getParam('sortorder','asc'),
+			$this->getRequest()->getParam('page','1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($graus));
+		$this->render('index');
+	}
+
+	/**
 	 * grausangueAction
 	 * 
 	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
