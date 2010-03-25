@@ -222,6 +222,63 @@ class JsonController extends Zend_Controller_Action
 		$this->view->content = utf8_encode(json_encode($categorias));
 		$this->render('index');
 	}
+
+	/**
+	 * inseminadorAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
+	public function inseminadorAction()
+	{
+		$grausangueModel = new Model_Db_Inseminador();
+		$graus = $grausangueModel->listJson(
+			array(
+				'id',
+				'cod',
+				'dsc',
+			),
+			$this->getRequest()->getParam('sortname','cod'),
+			$this->getRequest()->getParam('sortorder','asc'),
+			$this->getRequest()->getParam('page','1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($graus));
+		$this->render('index');
+	}
+
+	/**
+	 * partoAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
+	public function partoAction()
+	{
+		$grausangueModel = new Model_Db_Parto();
+		$graus = $grausangueModel->listJson(
+			array(
+				'id',
+				'cod',
+				'dsc',
+			),
+			$this->getRequest()->getParam('sortname','cod'),
+			$this->getRequest()->getParam('sortorder','asc'),
+			$this->getRequest()->getParam('page','1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($graus));
+		$this->render('index');
+	}
+
 	/**
 	 * grausangueAction
 	 * 
