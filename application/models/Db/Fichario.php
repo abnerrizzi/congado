@@ -330,6 +330,10 @@ class Model_Db_Fichario extends Model_Db
 		$result = $this->fetchAll($this->_select)->toArray();
 
 		if (count($result) > 0) {
+			for ($i=0; count < $result; $i++)
+			{
+				$result[$i]['nome'] = utf8_encode($result[$i]['nome']);
+			}
 			return $result;
 		} else {
 			return false;
