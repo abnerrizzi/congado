@@ -103,7 +103,7 @@ class UserController extends Zend_Controller_Action
 		$userForm		= new Form_User();
 		$userForm->setAction('/user/editprofile');
 		$userForm->setMethod('post');
-		
+
 		$userModel		= new Model_Db_User();
 
 		$userForm->getElement('login')
@@ -111,7 +111,6 @@ class UserController extends Zend_Controller_Action
 			->setAttrib('class', 'readonly')
 			->removeValidator('NoRecordExists')
 			;
-
 
 		$userForm->removeElement('background')
 			;
@@ -137,6 +136,7 @@ class UserController extends Zend_Controller_Action
 			$this->view->elements = array('id', 'login', 'name', 'admin', 'newpass', 'delete');
 		} else {
 			$this->view->elements = array('id', 'login', 'name', 'perpage');
+			$this->view->changepass = true;
 		}
 		$this->view->form = $userForm;
 
