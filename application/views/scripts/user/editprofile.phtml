@@ -4,9 +4,14 @@ $this->javascript();
 
 echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
 
+if ($this->changepass) {
 ?>
 
 <div align="center" style="font-size: 12px;">
   <br/>
   <a href="<?=$this->baseUrl();?>/user/changepass">Alterar Senha</a>
 </div>
+
+<?	
+}
+

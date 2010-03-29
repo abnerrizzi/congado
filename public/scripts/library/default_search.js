@@ -1,5 +1,11 @@
 $(document).ready(function() {
 
+	__action = editUrl.split("/")[1];
+
+	$("#add").parent().before(
+			'<td width="2%" align="right"><a href="javascript:void(0);" id="search" title="Pesquisar"><img src="' + baseUrl + '/images/search.png" alt="Pesquisar"/></a></td>'
+	);
+
 	var _Height = checkBrowser();
 
 	var $dialog = $('<div></div>').dialog(
@@ -9,66 +15,40 @@ $(document).ready(function() {
 				closeOnEscape: true,
 				autoOpen: false,
 				resizable: false,
-				title: 'Pesquisar Animal',
+				title: __title,
 				width: 620,
 				height: parseInt(390 + _Height)
 			}).attr('id', 'search');
-	$dialog.html('<div id="search-grid"></div>');
+	$dialog.html('<div id="search-default"></div>');
 
-	$("#search").click(function(){
+	$('a#search img').click(function(){
 		$dialog.dialog('open');
-		$("#search-grid").flexigrid(
+		$("#search-default").flexigrid(
 		{
-			url: baseUrl + '/json/animal',
+			url: baseUrl + '/json/'+__action+'',
 			dataType: 'json',
 			colModel : [{
-					display: 'Animal',
+					display: 'Codigo',
 					name : 'cod',
 					width : 80,
 					sortable : true,
 					align: 'left'
 				}, {
-					display: 'Nome',
+					display: 'Descrição',
 					name : 'nome',
 					width : 160,
 					sortable : true,
 					align: 'left'
-				}, {
-					display: 'RGN',
-					name : 'rgn',
-					width : 80,
-					sortable : true,
-					align: 'left'
-				}, {
-					display: 'SISBOV',
-					name : 'sisbov',
-					width : 80,
-					sortable : true,
-					align: 'left'
-				}, {
-					display: 'Sexo',
-					name : 'sexo',
-					width : 40,
-					sortable : true,
-					align: 'left'
 				}],
 			searchitems : [{
-					display: 'Animal',
-					name : 'fichario.cod'
+					display: 'Codigo',
+					name : 'cod'
 				}, {
-					display: 'Nome',
-					name : 'nome',
-					isdefault: true
-				}, {
-					display: 'RGN',
-					name : 'rgn',
-					isdefault: true
-				}, {
-					display: 'SISBOV',
-					name : 'fichario.sisbov',
+					display: 'Descrição',
+					name : 'dsc',
 					isdefault: true
 				}],
-			sortname: "nome",
+			sortname: "dsc",
 			sortorder: "asc",
 			usepager: true,
 			title: false,
@@ -90,7 +70,7 @@ $(document).ready(function() {
 
 function getFichario(row) {
 	__id = row.attr("id").substr(3);
-	url = baseUrl + '/fichario/edit/id/' + __id;
+	url = baseUrl + '/'+__action+'/edit/id/' + __id;
 	$(location).attr('href', url);
 	$("#search").dialog('close');
 }
