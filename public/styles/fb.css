@@ -1,0 +1,85 @@
+body{background:#fff;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-size:11px;color:#333;margin:0;padding:0;text-align:left;direction:ltr;unicode-bidi:embed}
+
+
+a{cursor:pointer;color:#3b5998;-moz-outline-style:none;text-decoration:none}
+
+
+
+.typeahead_list .typeahead_suggestion .with_pic small{padding-left:0}
+.UIButton{background-image:url(/congado/public/styles/images/fb-buttons.png);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px;vertical-align:bottom;white-space: nowrap;}
+.UIButton:hover,
+.UIButton:active{text-decoration:none}
+.UIButton:active{-moz-box-shadow:0 1px 0 rgba(0,0,0,.05);-webkit-box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.UIButton_Text{background-color:transparent;border:none;cursor:pointer;display:block;font-size:11px;font-weight:bold;line-height:14px;*line-height:13px;margin:0;overflow:visible;padding:0;*padding-bottom:1px;width:auto}
+.UIButton_Large{padding:4px 8px 5px}
+.UIButton_Large .UIButton_Text{font-size:13px;line-height:16px}
+.UIButton_CustomIcon .UIButton_Text{line-height:16px}
+.UIButton_Gray{background-color:#eee;border-color:#999 #999 #888;-moz-box-shadow:0 1px 0 rgba(0,0,0,.1);-webkit-box-shadow:0 1px 0 rgba(0,0,0,.1)}
+.UIButton_Gray:active{background-color:#ddd;background-image:none;border-color:#999}
+.UIButton_Gray .UIButton_Text{color:#333}
+.UIButton_Blue{background-color:#5b74a8;background-position:0 -48px;border-color:#29447e #29447e #1a356e;-moz-box-shadow:0 1px 0 rgba(0,0,0,.12);-webkit-box-shadow:0 1px 0 rgba(0,0,0,.12)}
+.UIButton_Blue:active{background-color:#4f6aa3;background-image:none;border-color:#29447e}
+.UIButton_Blue .UIButton_Text{color:#fff}
+.UIButton_Green{background-color:#69a74e;background-position:0 -96px;border-color:#3b6e22 #3b6e22 #2c5a15;-moz-box-shadow:0 1px 0 rgba(0,0,0,.12);-webkit-box-shadow:0 1px 0 rgba(0,0,0,.12)}
+.UIButton_Green:active{background-color:#609946;background-image:none;border-color:#3b6e22}
+.UIButton_Green .UIButton_Text{color:#fff}
+.UIButton_Suppressed{background:transparent;border-color:transparent;-moz-box-shadow:none;-webkit-box-shadow:none}
+.ie6 .UIButton_Suppressed,
+.UIButton_Suppressed:hover{background-image:url(/congado/public/styles/images/fb-buttons.png);border-color:#999 #999 #888;-moz-box-shadow:0 1px 0 rgba(0,0,0,.1);-webkit-box-shadow:0 1px 0 rgba(0,0,0,.1)}
+.UIButton_Suppressed:active{background-color:#ddd;background-image:none;border-color:#999;-moz-box-shadow:0 1px 0 rgba(0,0,0,.05);-webkit-box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.UIButton_Disabled,
+.UIButton_Disabled:active{background-color:#f2f2f2;background-image:none;border-color:#c8c8c8;cursor:default;-moz-box-shadow:none;-webkit-box-shadow:none}
+.UIButton_Disabled .UIButton_Text,
+.UIButton_Disabled:active .UIButton_Text{color:#b8b8b8;cursor:default}
+.UIButton_Depressed{background-color:#7d7d7d;background-image:none;border-color:#525252;-moz-box-shadow:0 1px 0 rgba(0,0,0,.05);-webkit-box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.UIButton_Depressed:active{background-color:#707070;border-color:#525252}
+.UIButton_Depressed .UIButton_Text{color:#fff}
+.UIActionButton{margin:5px}
+.UIActionButton_SuppressMargin{margin:0}
+.UIButton_Icon{display:block;height:16px;margin:-2px 5px 0 0;float:left;width:16px !important}
+span.UIButton_IconSmallMonochromatic{margin:-2px 1px 0 -4px;_margin-left:-1px}
+i.UIButton_Icon,
+img.UIButton_Icon{margin-top:0}
+span.UIButton_IconNoSpriteMap{background-image:url(/congado/public/styles/images/fb-buttons.png);margin-top:-1px;margin-bottom:-1px}
+.ff2 span.UIButton_IconNoSpriteMap{margin-top:-2px}
+a.UIActionButton_SuppressText{padding:3px 0 3px 4px}
+.UIActionButton_SuppressText .UIButton_Icon{margin:0}
+.UIActionButton .uiTooltipWrap{bottom:26px;margin-left:3px}
+
+
+.lfloat{float:left}
+.rfloat{float:right}
+
+
+
+
+#navSearch{background-color:#fff;border:1px solid #3b5998;}
+#navSearch button{background:#fff url(/congado/public/styles/images/fb-logo.png) no-repeat -1px 0;border:0;cursor:pointer;padding:0;}
+#navSearch button span{display:none}
+#navSearch .inputtext{border:0;border-right:1px solid #e5e5e5;outline:none;width:269px}
+#navSearch .inputsubmit{position:absolute;top:-1000px}
+#navSearch .uiTypeahead{border:0;width:290px}
+#navSearch .uiTypeahead .results{margin-left:-1px}
+
+
+
+
+.UIButton_Search {
+	background-image: url(/congado/public/styles/images/fb-chat.png);
+	border-style: solid;
+	border-width: 1px;
+	display: -moz-inline-box;
+	display: inline-block;
+	outline: none;
+	padding: 3px 6px;
+	vertical-align: bottom;
+	white-space: nowrap;
+	display:block;
+	height:11px;
+	margin:-2px 5px 0 0;
+	float:left;
+	width:16px !important;
+	      border: 0px;
+}
+
+span.UIButton_IconNoSpriteMap_Search{background-image:url(/congado/public/styles/images/fb-chat.png);margin-top:-1px;margin-bottom:-1px}
