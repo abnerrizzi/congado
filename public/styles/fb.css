@@ -79,7 +79,36 @@ a.UIActionButton_SuppressText{padding:3px 0 3px 4px}
 	margin:-2px 5px 0 0;
 	float:left;
 	width:16px !important;
-	      border: 0px;
+    border: 0px;
+    margin-top:-1px;margin-bottom:-1px
 }
 
 span.UIButton_IconNoSpriteMap_Search{background-image:url(/congado/public/styles/images/fb-chat.png);margin-top:-1px;margin-bottom:-1px}
+span.UIButton_IconNoSpriteMap_Icons{background-image:url(/congado/public/styles/images/fb-icons.png);margin-top:-1px;margin-bottom:-1px}
+
+
+
+.UIIcon{
+	height:16px;margin:-2px 5px 0 0;float:left;width:16px !important;
+background-image:url(/congado/public/styles/images/fb-icons.png);margin-top:-1px;margin-bottom:-1px;
+position: relative;
+top: 4px;
+height: 12px;
+}
+
+.UIIcon_Delete{
+	background-position: 0% -1757px;
+	}
+
+.UIIcon_Save{
+	background-position: 0 -1697px;
+	}
+
+.UIIcon_Cancel{
+	background-position: 0 -1805px;
+	}
+
+/*
+.UIIcon_Save{background-image:url(/congado/public/styles/images/fb-icons.png);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px;vertical-align:bottom;white-space: nowrap;background-position: 0% -216px;}
+.UIIcon_Cancel{background-image:url(/congado/public/styles/images/fb-icons.png);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px;vertical-align:bottom;white-space: nowrap;background-position: 0% -216px;}
+*/

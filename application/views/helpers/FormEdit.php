@@ -24,6 +24,9 @@ class Zend_View_Helper_FormEdit
 	public function FormEdit(Zend_Form $form, $baseUrl = false, array $elements)
 	{
 
+		// Add default fb style
+		$this->view->headLink()->appendStylesheet($baseUrl . '/styles/fb.css');
+
 		if ($form->getAttrib('enctype')) {
 			$__enctype = ' enctype="'.$form->getAttrib('enctype').'"';
 		} else {
@@ -120,9 +123,31 @@ class Zend_View_Helper_FormEdit
 			$excluir = '';
 		}
 	$output .= '
-	<td align="center">'.$excluir.'</td>
+	<td align="center">
+
+<span bindpoint="root" class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="'.$form->getElement('delete')->getAttrib('onclick').'">
+<span class="UIIcon UIIcon_Delete"></span>
+  <input class="UIButton_Text" type="button" value="Excluir" name="cancel" name="'.$form->getElement('submit')->getName().'" id="'.$form->getElement('submit')->getId().'" onclick="'.$form->getElement('delete')->getAttrib('onclick').'">
+</span>
+
+	</td>
 	<td width="10"></td>
-	<td align="center">'.$form->submit.$form->getElement('cancel')->setAttrib('onclick', "location.href = '".$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."'; return false;").'</td>
+	<td align="center">
+<span bindpoint="root" class="UIButton UIButton_Large UIFormButton  UIButton_Blue" onlick="this.submit();">
+<span class="UIIcon UIIcon_Save"></span>
+  <input class="UIButton_Text" type="submit" value="Salvar" name="'.$form->getElement('submit')->getName().'" id="'.$form->getElement('submit')->getId().'"/>
+</span>
+
+
+<span bindpoint="root" class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = \''.$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;">
+<span class="UIIcon UIIcon_Cancel"></span>
+  <input class="UIButton_Text" type="button" value="Cancelar" name="'.$form->getElement('cancel')->getName().'" id="'.$form->getElement('cancel')->getId().'"
+  onclick="location.href = \''.$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;"/>
+</span>
+
+<!--
+	'.$form->submit.$form->getElement('cancel')->setAttrib('onclick', "location.href = '".$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."'; return false;").'</td>
+-->
 	<td width="50"></td>
   </tr>
 
