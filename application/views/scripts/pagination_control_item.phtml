@@ -1,9 +1,16 @@
 <?php if ($this->pageCount): ?>
-<div class="paginationControl">
-<?php echo $this->firstItemNumber; ?> - <?php echo $this->lastItemNumber; ?> 
-of <?php echo $this->totalItemCount; ?>
- 
+<div class="UISearchSummaryBar">
+  <div class="UIWell">
+    <div class="UISearchSummaryBar_Pager clearfix" style="height: 24px;">
+      <span class="UIPager">
+        <span class="UIPager_PageNum">(mostrando <?=$this->firstItemNumber;?>-<?=$this->lastItemNumber;?> de <?=$this->totalItemCount;?> resultados)</span>
+        <span class="UIPager_PageNum">Página <?=$this->current;?> de <?=$this->pageCount;?>
+      </span>
+
+
+
 <!-- First page link -->
+<!--
 <?php if (isset($this->previous)): ?>
   <a href="<?php echo $this->url(array('page' => $this->first)); ?>">
     First
@@ -11,26 +18,23 @@ of <?php echo $this->totalItemCount; ?>
 <?php else: ?>
   <span class="disabled">First</span> |
 <?php endif; ?>
- 
+--> 
 <!-- Previous page link -->
 <?php if (isset($this->previous)): ?>
-  <a href="<?php echo $this->url(array('page' => $this->previous)); ?>">
-    &lt; Previous
-  </a> |
+        <span class="UIPager_ButtonWrapper"><a class="UIPager_Button UIPager_ButtonBack" href="<?=$this->url(array('page' => $this->previous));?>" title="Anterior" rel="prev"></a></span>
 <?php else: ?>
-  <span class="disabled">&lt; Previous</span> |
+        <span class="UIPager_ButtonWrapper UIPager_ButtonDisabled"><a class="UIPager_Button UIPager_ButtonBack"></a></span>
 <?php endif; ?>
  
 <!-- Next page link -->
 <?php if (isset($this->next)): ?>
-  <a href="<?php echo $this->url(array('page' => $this->next)); ?>">
-    Next &gt;
-  </a> |
+        <span class="UIPager_ButtonWrapper"><a class="UIPager_Button UIPager_ButtonForward" href="<?php echo $this->url(array('page' => $this->next)); ?>" title="Próxima" rel="next"></a></span>
 <?php else: ?>
-  <span class="disabled">Next &gt;</span> |
+        <span class="UIPager_ButtonWrapper UIPager_ButtonDisabled"><a class="UIPager_Button UIPager_ButtonForward"></a></span>
 <?php endif; ?>
  
 <!-- Last page link -->
+<!--
 <?php if (isset($this->next)): ?>
   <a href="<?php echo $this->url(array('page' => $this->last)); ?>">
     Last
@@ -38,6 +42,10 @@ of <?php echo $this->totalItemCount; ?>
 <?php else: ?>
   <span class="disabled">Last</span>
 <?php endif; ?>
- 
+-->
+
+</span>
+    </div>
+  </div>
 </div>
 <?php endif; ?>

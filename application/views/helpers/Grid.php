@@ -266,7 +266,7 @@ $output .= '</td>
 ' . $this->view->paginationControl(
 	$grid->getPaginator(),
 	'Elastic',
-	'/pagination_control.phtml'
+	'/pagination_control_item.phtml'
 );
 		$output .= '</div>
 </td></tr>

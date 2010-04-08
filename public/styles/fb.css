@@ -112,3 +112,38 @@ height: 12px;
 .UIIcon_Save{background-image:url(/congado/public/styles/images/fb-icons.png);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px;vertical-align:bottom;white-space: nowrap;background-position: 0% -216px;}
 .UIIcon_Cancel{background-image:url(/congado/public/styles/images/fb-icons.png);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px;vertical-align:bottom;white-space: nowrap;background-position: 0% -216px;}
 */
+
+
+
+
+
+
+.UISearchSummaryBar{padding-top:7px; margin-left: 10px;}
+.UISearchSummaryBar_Pager{padding:4px 6px}
+.UISearchSummaryBar_Pager .UIPager{float:right}
+.UIWell{background:#f2f2f2;border-top:1px solid #ccc;zoom:1}
+.UIPager_Button{background-image:url(/congado/public/styles/images/fb-arrows.png);background-repeat:no-repeat;float:left;height:23px;position:relative;width:43px;z-index:2}
+.UIPager_ButtonBack{margin-right:-1px}
+.UIPager_ButtonBack:active{background-position:0 -23px}
+.UIPager_ButtonForward{background-position:-43px 0}
+.UIPager_ButtonForward:active{background-position:-43px -23px}
+.UIPager_ButtonDisabled .UIPager_ButtonBack,
+.UIPager_ButtonDisabled .UIPager_ButtonBack:active{background-position:0 -46px;cursor:default;z-index:1}
+.UIPager_ButtonDisabled .UIPager_ButtonForward,
+.UIPager_ButtonDisabled .UIPager_ButtonForward:active{background-position:-43px -46px;cursor:default;z-index:1}
+.UIPager_Vertical .UIPager_ButtonBack{background-position:-86px 0}
+.UIPager_Vertical .UIPager_ButtonBack:active{background-position:-86px -23px}
+.UIPager_Vertical .UIPager_ButtonForward{background-position:-129px 0}
+.UIPager_Vertical .UIPager_ButtonForward:active{background-position:-129px -23px}
+.UIPager_Vertical .UIPager_ButtonDisabled .UIPager_ButtonBack,
+.UIPager_Vertical .UIPager_ButtonDisabled .UIPager_ButtonBack:active{background-position:-86px -46px}
+.UIPager_Vertical .UIPager_ButtonDisabled .UIPager_ButtonForward,
+.UIPager_Vertical .UIPager_ButtonDisabled .UIPager_ButtonForward:active{background-position:-129px -46px}
+.UIPager .UIPager_PageNum{color:#000;float:left;font-size:12px;line-height:22px;padding-right:10px}
+
+
+
+
+
+
+
