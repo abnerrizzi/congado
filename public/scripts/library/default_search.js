@@ -65,7 +65,7 @@ $(document).ready(function() {
 			width: 600,
 			height: (240 + _Height),
 			onSelect: function(row) {
-				getFichario(row);
+				getRecord(row);
 			}
 		});
 		$dialog.fadeIn(200);
@@ -74,7 +74,7 @@ $(document).ready(function() {
 
 });
 
-function getFichario(row) {
+function getRecord(row) {
 	__id = row.attr("id").substr(3);
 	url = baseUrl + '/'+__action+'/edit/id/' + __id;
 	$(location).attr('href', url);

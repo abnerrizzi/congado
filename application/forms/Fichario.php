@@ -105,7 +105,8 @@ class Form_Fichario extends Form_Default
 			'filters' => array('StringTrim'),
 			'validators' => array(
 				new Zend_Validate_Date('dd/mm/YYYY'),
-				new Zend_Validate_Between('01/01/1900', date('d/m/Y'), true)
+				new Plugin_Validate_Date_Between('01/01/1900', date('d/m/Y'), 'dd/mm/YYYY', true)
+//				new Zend_Validate_Between('01/01/1900', date('d/m/Y'), true)
 			),
 			'maxlength' => 10,
 			'size' => 10,
