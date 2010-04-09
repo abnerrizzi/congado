@@ -118,18 +118,20 @@ class Zend_View_Helper_FormEdit
 	<td width="20"></td>
 ';
 		if (in_array('delete', $elements)) {
-			$excluir = $form->getElement('delete')->setAttrib('onclick', "check_delete(".$form->getElement('id')->getValue().", '".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."', '".$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."/delete');return false");
-		} else {
-			$excluir = '';
-		}
-	$output .= '
-	<td align="center">
-
+			$form->getElement('delete')->setAttrib('onclick', "check_delete(".$form->getElement('id')->getValue().", '".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."', '".$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."/delete');return false");
+			$excluir = '
 <span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="'.$form->getElement('delete')->getAttrib('onclick').'">
 <span class="UIIcon UIIcon_Delete">&nbsp;</span>
   <input class="UIButton_Text" type="button" value="Excluir" name="'.$form->getElement('delete')->getName().'" id="'.$form->getElement('delete')->getId().'" onclick="'.$form->getElement('delete')->getAttrib('onclick').'"/>
 </span>
 
+			';
+		} else {
+			$excluir = '';
+		}
+	$output .= '
+	<td align="center">
+'.$excluir.'
 	</td>
 	<td width="10"></td>
 	<td align="center">
