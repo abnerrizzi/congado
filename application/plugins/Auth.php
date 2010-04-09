@@ -20,6 +20,7 @@ class Plugin_Auth extends Zend_Controller_Plugin_Abstract
 		if (!Zend_Auth::getInstance()->hasIdentity()) {
 			Zend_Auth::getInstance()->clearIdentity();
 
+			// Armazena URL requisitada para redirecionamento apos login
 			$requestUri = substr($this->_request->getRequestUri(),
 				strlen(Zend_Controller_Front::getInstance()->getBaseUrl())
 			);
@@ -32,6 +33,7 @@ class Plugin_Auth extends Zend_Controller_Plugin_Abstract
 			$request->setActionName('login');
 			
 		} else {
+			// Caso ja esteja logado, apenas atribui novamente o tempo para expirar a sessao.
 			$authNamespace->requestUri = substr($this->_request->getRequestUri(),
 				strlen(Zend_Controller_Front::getInstance()->getBaseUrl()));
 			$__timeout = (Zend_Registry::getInstance()->configuration->resources->session->timeout->inactive);
