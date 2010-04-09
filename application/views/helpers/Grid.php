@@ -48,6 +48,9 @@ class Zend_View_Helper_Grid
 		// Add default script for grid
 		$this->view->headScript()->appendFile($grid->getBaseUrl() . '/scripts/grid.js');
 
+		// Add default fb style
+		$this->view->headLink()->appendStylesheet($grid->getBaseUrl() . '/styles/fb.css');
+
 		// talking value of sort using Front controller getRequest() method.
 		$_sort = Zend_Controller_Front::getInstance()->getRequest()->getParam('sort', 'asc');
 		$_by = Zend_Controller_Front::getInstance()->getRequest()->getParam('by', 'id');
@@ -59,13 +62,23 @@ class Zend_View_Helper_Grid
 <table id="null" border="0" width="800" cellpadding="5" style="border:0px; background-color: #fff;">
 
 	<tr>
-	  <td align="left" width="780"><h3>'.$grid->getName().'</h3></td>
-	  <td align="right" width="10" colspan="1">';
+	  <td align="left" width="480"><h3 style="margin-left: 10px;">'.$grid->getName().'</h3></td>
+	  <td align="right" colspan="1">';
 		if ($grid->getAdd()) {
 			$add = $grid->getAdd();
 			$addModule = $add['module'];
 			$addAction = $add['action'];
-			$output .= '<a id="add" href="'.$grid->getBaseUrl().'/'.$addModule.'/'.$addAction.'"><img src="'.$grid->getBaseUrl().'/images/button/add.gif" alt="" height="32" width="66"/></a>'."\n";
+//			$output .= '<a id="add" href="'.$grid->getBaseUrl().'/'.$addModule.'/'.$addAction.'"><img src="'.$grid->getBaseUrl().'/images/button/add.gif" alt="" height="32" width="66"/></a>'."\n";
+			$output .= '
+        <div id="add" class="rfloat">
+          <a class="UIButton UIButton_Gray UIActionButton" href="'.$grid->getBaseUrl().'/'.$addModule.'/'.$addAction.'">
+            <span class="UIButton_Text">
+              <span class="UIButton_Icon UIButton_IconNoSpriteMap UIButton_IconSmallMonochromatic" style="background-position: 0pt -361px;">&nbsp;</span>
+              Adicionar
+            </span>
+          </a>
+        </div>
+			'."\n";
 		}
 $output .= '</td>
 	</tr>
@@ -253,7 +266,7 @@ $output .= '</td>
 ' . $this->view->paginationControl(
 	$grid->getPaginator(),
 	'Elastic',
-	'/pagination_control.phtml'
+	'/pagination_control_item.phtml'
 );
 		$output .= '</div>
 </td></tr>

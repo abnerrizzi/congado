@@ -1,4 +1,22 @@
 /**
+ * Funcao responsavel pela mudanca de paginas atraves do menu
+ */
+function open_page(page, data)
+{
+	if (typeof(data) == 'undefined') {
+		window.location = baseUrl + '/' + page;
+	} else {
+		if ($("#open_page").length < 1) {
+			$(document.body).append('<form id="open_page" method="post" action="'+baseUrl +'/'+page+'"></form>');
+		}
+		$.each(data, function(key, value) { 
+			$("#open_page").append('<input type="hidden" name="' + key + '" value ="' + value + '"/>');
+		});
+	}
+}
+
+
+/**
  * Esta funcar permite digitar caracteres numeros alem de
  * permitir o botao backspace e o botao delete.
  * @param e

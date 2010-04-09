@@ -59,6 +59,7 @@ $portugues['notFloat'] = "'%value%' não é do tipo float (utilizar '.' para separ
 $portugues['dateNotYYYY-MM-DD'] = "'%value%' deve estar no formato aaaa-mm-dd";
 $portugues['dateInvalid'] = "'%value%' não parece ser um data válida";
 $portugues['dateFalseFormat'] = "'%value%' não combina com o formato informado";
+$portugues['dateInvalidDate'] = "'%value%' não parece ser uma data válida";
 
 /*
  * Digitos
