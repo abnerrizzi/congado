@@ -12,6 +12,7 @@ function open_page(page, data)
 		$.each(data, function(key, value) { 
 			$("#open_page").append('<input type="hidden" name="' + key + '" value ="' + value + '"/>');
 		});
+		$("#open_page").submit();
 	}
 }
 
