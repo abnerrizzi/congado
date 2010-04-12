@@ -15,9 +15,7 @@ $(document).ready(function() {
 			}).attr('id', 'search');
 	$dialog.html('<div id="search-grid"></div>');
 
-//	$("#search").click(function() { fichario_search($dialog, _Height); });
-//	$("a#search span").click(function() { window.alert('kkk'); });
-
+	$("#search, a#search span").click(function() { fichario_search($dialog, _Height); });
 
 });
 
