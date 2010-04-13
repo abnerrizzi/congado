@@ -8,14 +8,14 @@
  * 
  */
 
-class Movimentacao_CategoriaController extends Zend_Controller_Action
+class Movimentacao_DesmamaController extends Zend_Controller_Action
 {
 
 	public function init()
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Movimentação de Local';
+		$this->view->title = 'Movimentação de Desmana';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
@@ -23,13 +23,12 @@ class Movimentacao_CategoriaController extends Zend_Controller_Action
 	{
 		$gridModel = new Model_Grid($this->view->title);
 		$movimentacaoModel = new Model_Db_Movimentacao();
-		$movimentacaoModel->setTipo(1);
+		$movimentacaoModel->setTipo(0);
 
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
 		$result	= $movimentacaoModel->getPaginatorAdapter($_by, $_order, array('id', 'data'));
-		die();
 		
 		/*
 		 * Paginator
@@ -58,15 +57,15 @@ class Movimentacao_CategoriaController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'movimentacao/local',
+			'module'	=> 'movimentacao/categoria',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'movimentacao/local',
+			'module'	=> 'movimentacao/categoria',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'movimentacao/local',
+			'module'	=> 'movimentacao/categoria',
 			'action'	=> 'add',
 		));
 

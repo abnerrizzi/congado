@@ -9,7 +9,7 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Model
  * @subpackage Db
- * @version $Id: Alimento.php 105 2010-03-01 14:11:12Z bacteria_ $
+ * @version $Id$
  * 
  */
 class Model_Db_Movimentacao extends Model_Db
@@ -50,8 +50,21 @@ class Model_Db_Movimentacao extends Model_Db
 			->joinLeft(array('t' => 'movimentacao_tipo'), 'tipo_id = t.id', array(), $this->_schema)
 			->joinLeft(array('f' => 'fichario'), 'fichario_id = f.id', array('nome'), $this->_schema)
 		;
-		// Categoria
-		if ($this->getTipo() == 1) {
+
+		if ($this->getTipo() == 0) {
+			$select->joinLeft(
+				array('o' => 'categoria'),
+				'old = o.id',
+				array('old' => 'o.dsc'),
+				$this->_schema
+			);
+			$select->joinLeft(
+				array('n' => 'categoria'),
+				'new = n.id',
+				array('new' => 'n.dsc'),
+				$this->_schema
+			);
+		} elseif ($this->getTipo() == 1) {
 			$select->joinLeft(
 				array('o' => 'categoria'),
 				'old = o.id',
@@ -87,7 +100,7 @@ class Model_Db_Movimentacao extends Model_Db
 
 	}
 
-	public function getMovimentacoes($orderby = null, $order = null)
+	public function getMovimentacoesxxx($orderby = null, $order = null)
 	{
 		$query = $this->select()
 			->from($this->_name)
@@ -98,7 +111,7 @@ class Model_Db_Movimentacao extends Model_Db
 		return $result->toArray();
 	}
 
-	public function getMovimentacao($id)
+	public function getMovimentacaoxxx($id)
 	{
 		$id = (int)$id;
 		$row = $this->fetchRow('id = ' . $id);
@@ -112,7 +125,7 @@ class Model_Db_Movimentacao extends Model_Db
 		return $return;
 	}
 
-	public function updateMovimentacao($post)
+	public function updateMovimentacaoxxx($post)
 	{
 		$data = array(
 //			'id'=> $post['id'],
@@ -123,7 +136,7 @@ class Model_Db_Movimentacao extends Model_Db
 		$this->update($data , $where );
 	}
 
-	public function addMovimentacao($cod, $dsc)
+	public function addMovimentacaoxxx($cod, $dsc)
 	{
 
 		if ($this->checkCodMovimentacao($cod)) {
@@ -139,7 +152,7 @@ class Model_Db_Movimentacao extends Model_Db
 
 	}
 
-	public function deleteMovimentacao($id)
+	public function deleteMovimentacaoxxx($id)
 	{
 		$this->delete('id = ' . (int)$id);
 	}
@@ -150,7 +163,7 @@ class Model_Db_Movimentacao extends Model_Db
 	 * @param string $cod
 	 * @return boolean
 	 */
-	private function checkCodMovimentacao($cod)
+	private function checkCodMovimentacaoxxx($cod)
 	{
 		$query = $this->select()
 			->from($this->_name)

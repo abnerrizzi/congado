@@ -8,7 +8,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Form
- * @version $Id: Backup.php 96 2010-02-26 14:08:59Z bacteria_ $
+ * @version $Id$
  * 
  */
 class Form_Default extends Zend_Form

@@ -8,7 +8,7 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Helper
  * @subpackage Helper_Grid
- * @version $Id: Grid.php 189 2010-04-09 19:05:11Z bacteria_ $
+ * @version $Id$
  * 
  */
 
