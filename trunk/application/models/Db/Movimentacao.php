@@ -103,6 +103,19 @@ class Model_Db_Movimentacao extends Model_Db
 				array('new' => 'n.dsc'),
 				$this->_schema
 			);
+		} elseif ($this->getTipo() == 7) {
+			$select->joinLeft(
+				array('o' => 'fazenda'),
+				'old = o.id',
+				array('old' => 'o.descricao'),
+				$this->_schema
+			);
+			$select->joinLeft(
+				array('n' => 'fazenda'),
+				'new = n.id',
+				array('new' => 'n.descricao'),
+				$this->_schema
+			);
 		} elseif ($this->getTipo() == 8) {
 			$select->joinLeft(
 				array('o' => 'rebanho'),
