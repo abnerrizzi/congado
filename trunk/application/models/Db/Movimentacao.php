@@ -51,7 +51,7 @@ class Model_Db_Movimentacao extends Model_Db
 			->joinLeft(array('f' => 'fichario'), 'fichario_id = f.id', array('nome'), $this->_schema)
 		;
 		// Categoria
-		if ($this->_tipo == 1) {
+		if ($this->getTipo() == 1) {
 			$select->joinLeft(
 				array('o' => 'categoria'),
 				'old = o.id',
@@ -60,6 +60,19 @@ class Model_Db_Movimentacao extends Model_Db
 			);
 			$select->joinLeft(
 				array('n' => 'categoria'),
+				'new = n.id',
+				array('new' => 'n.dsc'),
+				$this->_schema
+			);
+		} elseif ($this->getTipo() == 4) {
+			$select->joinLeft(
+				array('o' => 'local'),
+				'old = o.id',
+				array('old' => 'o.dsc'),
+				$this->_schema
+			);
+			$select->joinLeft(
+				array('n' => 'local'),
 				'new = n.id',
 				array('new' => 'n.dsc'),
 				$this->_schema
