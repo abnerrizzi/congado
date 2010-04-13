@@ -11,11 +11,11 @@
 class Movimentacao_LocalController extends Zend_Controller_Action
 {
 
-public function init()
+	public function init()
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Movimentação de Categoria';
+		$this->view->title = 'Movimentação de Local';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
