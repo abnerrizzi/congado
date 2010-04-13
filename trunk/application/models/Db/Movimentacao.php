@@ -103,6 +103,19 @@ class Model_Db_Movimentacao extends Model_Db
 				array('new' => 'n.dsc'),
 				$this->_schema
 			);
+		} elseif ($this->getTipo() == 8) {
+			$select->joinLeft(
+				array('o' => 'rebanho'),
+				'old = o.id',
+				array('old' => 'o.dsc'),
+				$this->_schema
+			);
+			$select->joinLeft(
+				array('n' => 'rebanho'),
+				'new = n.id',
+				array('new' => 'n.dsc'),
+				$this->_schema
+			);
 		} else {
 			throw new Zend_Db_Table_Exception('Tipo de movimentação não definido: (' . $this->getTipo() . ')');
 		}
