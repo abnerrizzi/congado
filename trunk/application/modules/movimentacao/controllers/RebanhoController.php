@@ -8,14 +8,14 @@
  * 
  */
 
-class Movimentacao_DesmamaController extends Zend_Controller_Action
+class Movimentacao_RebanhoController extends Zend_Controller_Action
 {
 
 	public function init()
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Movimentação de Desmana';
+		$this->view->title = 'Movimentação de Rebanho';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
@@ -23,7 +23,7 @@ class Movimentacao_DesmamaController extends Zend_Controller_Action
 	{
 		$gridModel = new Model_Grid($this->view->title);
 		$movimentacaoModel = new Model_Db_Movimentacao();
-		$movimentacaoModel->setTipo(0);
+		$movimentacaoModel->setTipo(8);
 
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
@@ -57,15 +57,15 @@ class Movimentacao_DesmamaController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'movimentacao/desmama',
+			'module'	=> 'movimentacao/rebanho',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'movimentacao/desmama',
+			'module'	=> 'movimentacao/rebanho',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'movimentacao/desmama',
+			'module'	=> 'movimentacao/rebanho',
 			'action'	=> 'add',
 		));
 
