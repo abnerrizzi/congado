@@ -29,7 +29,6 @@ class Movimentacao_CategoriaController extends Zend_Controller_Action
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
 		$result	= $movimentacaoModel->getPaginatorAdapter($_by, $_order, array('id', 'data'));
-		die();
 		
 		/*
 		 * Paginator
@@ -74,6 +73,10 @@ class Movimentacao_CategoriaController extends Zend_Controller_Action
 		$this->view->grid = $gridModel;
 	}
 
+	public function addAction()
+	{
+		throw new Zend_Controller_Action_Exception('Controlador não implementado');
+	}
 
 }
 

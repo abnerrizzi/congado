@@ -46,8 +46,8 @@ class Movimentacao_LocalController extends Zend_Controller_Action
 		 */
 		$fields[] = new Model_Grid_Fields('data', 'Data', 20);
 		$fields[] = new Model_Grid_Fields('nome', 'Animal', 150);
-		$fields[] = new Model_Grid_Fields('old', 'Antigo', 150);
-		$fields[] = new Model_Grid_Fields('new', 'Novo', 150);
+		$fields[] = new Model_Grid_Fields('old', 'Antigo', 200);
+		$fields[] = new Model_Grid_Fields('new', 'Novo', 200);
 
 		/*
 		 * Grid Model
@@ -57,15 +57,15 @@ class Movimentacao_LocalController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'movimentacao/categoria',
+			'module'	=> 'movimentacao/local',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'movimentacao/categoria',
+			'module'	=> 'movimentacao/local',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'movimentacao/categoria',
+			'module'	=> 'movimentacao/local',
 			'action'	=> 'add',
 		));
 
@@ -73,6 +73,10 @@ class Movimentacao_LocalController extends Zend_Controller_Action
 		$this->view->grid = $gridModel;
 	}
 
+	public function addAction()
+	{
+		throw new Zend_Controller_Action_Exception('Controlador não implementado');
+	}
 
 }
 
