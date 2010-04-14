@@ -119,7 +119,7 @@ class Zend_View_Helper_FormEdit
 			$excluir = '
 <span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="'.$form->getElement('delete')->getAttrib('onclick').'">
 <span class="UIIcon UIIcon_Delete">&nbsp;</span>
-  <input class="UIButton_Text" type="button" value="Excluir" name="'.$form->getElement('delete')->getName().'" id="'.$form->getElement('delete')->getId().'" onclick="'.$form->getElement('delete')->getAttrib('onclick').'"/>
+  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Excluir" name="'.$form->getElement('delete')->getName().'" id="'.$form->getElement('delete')->getId().'" onclick="'.$form->getElement('delete')->getAttrib('onclick').'"/>
 </span>
 
 			';
@@ -134,13 +134,13 @@ class Zend_View_Helper_FormEdit
 	<td align="center">
 <span class="UIButton UIButton_Large UIFormButton  UIButton_Blue" onclick="$(\'#'.$form->getName().'\').submit();">
 <span class="UIIcon UIIcon_Save">&nbsp;</span>
-  <input class="UIButton_Text" type="submit" value="Salvar" name="'.$form->getElement('submit')->getName().'_" id="'.$form->getElement('submit')->getId().'_"/>
+  <input style="display: inline-block;" class="UIButton_Text" type="submit" value="Salvar" name="'.$form->getElement('submit')->getName().'_" id="'.$form->getElement('submit')->getId().'_"/>
 </span>
 
 
 <span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = \''.$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;">
 <span class="UIIcon UIIcon_Cancel">&nbsp;</span>
-  <input class="UIButton_Text" type="button" value="Cancelar" name="'.$form->getElement('cancel')->getName().'" id="'.$form->getElement('cancel')->getId().'"
+  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="'.$form->getElement('cancel')->getName().'" id="'.$form->getElement('cancel')->getId().'"
   onclick="location.href = \''.$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;"/>
 </span>
 
