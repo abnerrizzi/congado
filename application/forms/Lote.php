@@ -55,7 +55,7 @@ class Form_Lote extends Form_Default
 	public function __construct()
 	{
 		parent::__construct();
-		$this->setName('fazenda');
+		$this->setName('lote');
 		$this->addElement('hidden', 'id');
 
 		$this->addElement('select', 'fazenda_id', array(

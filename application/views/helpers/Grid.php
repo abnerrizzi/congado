@@ -48,9 +48,6 @@ class Zend_View_Helper_Grid
 		// Add default script for grid
 		$this->view->headScript()->appendFile($grid->getBaseUrl() . '/scripts/grid.js');
 
-		// Add default fb style
-		$this->view->headLink()->appendStylesheet($grid->getBaseUrl() . '/styles/fb.css');
-
 		// talking value of sort using Front controller getRequest() method.
 		$_sort = Zend_Controller_Front::getInstance()->getRequest()->getParam('sort', 'asc');
 		$_by = Zend_Controller_Front::getInstance()->getRequest()->getParam('by', 'id');
