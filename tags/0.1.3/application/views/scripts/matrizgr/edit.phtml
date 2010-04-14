@@ -1,0 +1,143 @@
+<?php
+
+$this->javascript();
+
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.center.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.dimensions.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
+	->appendFile($this->baseUrl() . '/scripts/library/filter.js')
+	;
+
+$this->headLink()
+	->appendStylesheet($this->baseUrl() . '/styles/flexigrid.css')
+	;
+
+?>
+
+
+<br/><br/>
+<form name="matrizgr" id="matrizgr" action="<?=$this->baseUrl . $this->form->getAction();?>" method="post">
+<?=$this->form->id->removeDecorator('tag')->removeDecorator('label');?>
+<table
+	id="form"
+	align="center"
+	border="0"
+	cellpadding="0"
+	cellspacing="0"
+	bgcolor="#F7F6F4"
+	class="content"
+	style="	border-right: 1px solid #CCCCCC;
+			border-bottom: 1px solid #CCCCCC;
+			border-left: 1px solid #919191;
+			font-size: 12px;">
+
+  <tr style="background: url('/congado/public/images/grid/bg_title.gif');">
+    <td width="20" ></td>
+    <td colspan="5" height="20" width="480" style="font-size: 11px;"><b><?=str_replace('_', ' ', strtoupper($this->form->getName()));?></b></td>
+  </tr>
+ 
+  <tr>
+    <td height="2" bgcolor="#f36400" colspan="5"/>
+  </tr>
+ 
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->raca_cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->raca_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->raca_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->raca->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+    </td>
+    <td width="50"></td>
+  </tr>
+ 
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->pai_cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->pai_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->pai_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->pai->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->mae_cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->mae_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->mae_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->mae->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->cria_cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->cria_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->cria_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->cria->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <a href="javascript:void(0);" onclick="return showfilter_grsangue('<?=$this->baseUrl();?>/json/grsangue','cria');">
+        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+      </a>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"/>
+  </tr>
+
+  <tr>
+    <td width="20"></td>
+    <td align="center"><?=$this->form->getElement('delete')->setAttrib('onclick', "check_delete(".$this->form->getElement('id')->getValue().", '".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."', '".$this->baseUrl()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."/delete');return false");?></td>
+    <td width="10"></td>
+    <td align="center"><?=$this->form->submit;?><?=$this->form->getElement('cancel')->setAttrib('onclick', "location.href = '".$this->baseUrl()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."'; return false;");?></td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"/>
+  </tr>
+
+
+
+
+
+  <tr>
+    <td height="10" colspan="5"/>
+  </tr>
+ 
+</table>
+</form>
+
+
+
+<div id="filter">
+  <div style="right: 0px; position: absolute; z-index: 8000; font-size: 11px;">
+    <a title="Fechar" class="" href="javascript:void(0);" onclick="hide_filter();">Fechar X</a>
+  </div>
+  <div id="filter-grid">
+  </div>
+</div>
+<div id="filter-bg"></div>
