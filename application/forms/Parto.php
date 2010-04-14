@@ -55,7 +55,7 @@ class Form_Parto extends Form_Default
 	public function __construct()
 	{
 		parent::__construct();
-		$this->setName('criador');
+		$this->setName('tipo_de_parto');
 		$this->addElement('hidden', 'id');
 
 		$this->addElement('text', 'cod', array(
