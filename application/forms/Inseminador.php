@@ -55,7 +55,7 @@ class Form_Inseminador extends Form_Default
 	public function __construct()
 	{
 		parent::__construct();
-		$this->setName('criador');
+		$this->setName('inseminador');
 		$this->addElement('hidden', 'id');
 
 		$this->addElement('text', 'cod', array(
