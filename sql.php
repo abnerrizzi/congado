@@ -1,5 +1,11 @@
 <pre>
 <?
+/*
+ip 192.163.2.44
+gw 192.163.1.11
+
+proxy 192.163.2.8:1082
+ */
 $link = mysql_connect('localhost', 'root', '') or die(mysql_error());
 $file = 'scripts/moviment.csv';
 $handle = fopen ($file, 'r');
