@@ -700,5 +700,18 @@ class JsonController extends Zend_Controller_Action
 	}
 
 
+	public function fcbkAction()
+	{
+		for ($i=0; $i < 5; $i++)
+		{
+			$return[] = array(
+				"caption" => "Abner".$i,
+				"value" => $i
+			);
+		}
+
+		$this->view->content = utf8_encode(json_encode($return));
+		$this->render('index');
+	}
 
 }

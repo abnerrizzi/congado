@@ -24,8 +24,8 @@ class Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract
 		{
 			switch ($module) {
 				case 'default':
-					break;
 				case 'movimentacao':
+				case 'test':
 					break;
 				default:
 					$layout->setLayoutPath(APPLICATION_PATH . '/modules/' . $module . '/layouts/scripts');
