@@ -24,9 +24,6 @@ class Zend_View_Helper_FormEdit
 	public function FormEdit(Zend_Form $form, $baseUrl = false, array $elements)
 	{
 
-		// Add default fb style
-		$this->view->headLink()->appendStylesheet($baseUrl . '/styles/fb.css');
-
 		if ($form->getAttrib('enctype')) {
 			$__enctype = ' enctype="'.$form->getAttrib('enctype').'"';
 		} else {
