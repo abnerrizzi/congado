@@ -1,0 +1,54 @@
+<?php echo $this->doctype() ?>
+
+<html <?php echo 'xmlns="http://www.w3.org/1999/xhtml"'?>>
+  <head>
+    <meta http-equiv="Content-type" content="text/html;charset=<?php echo $this->getEncoding() ?>" />
+    <?php
+    if ($this->title) {
+    	$this->headTitle()->append($this->title);
+    }
+    $this->headLink()
+    	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.all.css')
+		->appendStylesheet($this->baseUrl() . '/styles/flexigrid.css')
+		->appendStylesheet($this->baseUrl() . '/styles/menu.css')
+		->appendStylesheet($this->baseUrl() . '/styles/site.css')
+		->appendStylesheet($this->baseUrl() . '/styles/fb.css')
+	;
+    
+    $this->headScript()
+    	->prependFile($this->baseUrl() . '/scripts/menu.js')
+    	->prependFile($this->baseUrl() . '/scripts/functions.js')
+    	->prependFile($this->baseUrl() . '/scripts/library/fichario_search.js')
+		->prependFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.draggable.js')
+		->prependFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.dialog.js')
+		->prependFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.resizable.js')
+		->prependFile($this->baseUrl() . '/scripts/library/jquery/jquery.bgiframe.js')
+		->prependFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
+		->prependFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.core.js')
+		->prependFile($this->baseUrl() . '/scripts/jquery-1.3.2.js')
+	;
+    
+    $this->headScript()->appendScript('var baseUrl = "' . $this->baseUrl() . '";');
+    echo $this->headTitle();
+    ?>
+
+    <?php echo $this->headLink() ?>
+
+    <?php echo $this->headStyle() ?>
+
+    <?php echo $this->headScript() ?>
+
+  </head>
+
+<body>
+
+<?php if (Zend_Auth::getInstance()->hasIdentity()) { include_once ('menu.phtml'); } ?>
+
+
+  <div id="main">
+	<?php echo $this->layout()->content ?>
+  </div>
+  <div id="ajax_loader" class="ajax_loader" style="display: none;"></div>
+</body>
+
+</html>
