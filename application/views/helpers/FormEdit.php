@@ -144,9 +144,6 @@ class Zend_View_Helper_FormEdit
   onclick="location.href = \''.$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;"/>
 </span>
 
-<!--
-	'.$form->submit.$form->getElement('cancel')->setAttrib('onclick', "location.href = '".$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."'; return false;").'</td>
--->
     </td>
 	<td width="50"></td>
   </tr>
@@ -162,7 +159,3 @@ class Zend_View_Helper_FormEdit
 	}
 
 }
-
-/*
- * 7293
- */
