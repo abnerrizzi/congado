@@ -1,4 +1,14 @@
-body{background:#fff;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-size:11px;color:#333;margin:0;padding:0;text-align:left;direction:ltr;unicode-bidi:embed}
+#grid {
+	background:#fff;
+	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333;
+	margin:0;
+	padding:0;
+	text-align:left;
+	direction:ltr;
+	unicode-bidi:embed
+}
 
 
 a{cursor:pointer;color:#3b5998;-moz-outline-style:none;text-decoration:none}

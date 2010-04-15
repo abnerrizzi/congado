@@ -49,9 +49,9 @@ class MatrizgrController extends Zend_Controller_Action
 		$paginator->setCurrentPageNumber($_page);
 
 		$fields[] = new Model_Grid_Fields('raca_dsc', 'Raça', 'auto');
-		$fields[] = new Model_Grid_Fields('pai_dsc', 'Gr. Sangue Pai', 'auto');
-		$fields[] = new Model_Grid_Fields('mae_dsc', 'Gr. Sangue Mãe', 'auto');
-		$fields[] = new Model_Grid_Fields('cria_dsc', 'Gr. Sangue Cria', 'auto');
+		$fields[] = new Model_Grid_Fields('pai_dsc', 'Gr. Sangue Pai', '160');
+		$fields[] = new Model_Grid_Fields('mae_dsc', 'Gr. Sangue Mãe', '160');
+		$fields[] = new Model_Grid_Fields('cria_dsc', 'Gr. Sangue Cria', '160');
 
 		/*
 		 * Grid Model

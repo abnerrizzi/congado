@@ -8,7 +8,7 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Helper
  * @subpackage Helper_Grid
- * @version $Id$
+ * @version $Id: Grid.php 197 2010-04-13 13:09:41Z bacteria_ $
  * 
  */
 
@@ -47,7 +47,6 @@ class Zend_View_Helper_Grid
 		
 		// Add default script for grid
 		$this->view->headScript()->appendFile($grid->getBaseUrl() . '/scripts/grid.js');
-		$this->view->headScript()->appendFile($grid->getBaseUrl() . '/scripts/library/jquery/jquery.text_selection.js');
 
 		// talking value of sort using Front controller getRequest() method.
 		$_sort = Zend_Controller_Front::getInstance()->getRequest()->getParam('sort', 'asc');

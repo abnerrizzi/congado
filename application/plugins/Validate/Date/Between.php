@@ -8,7 +8,7 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Plugin
  * @subpackage Validate
- * @version $Id: Cnpj.php 107 2010-03-01 14:50:30Z bacteria_ $
+ * @version $Id: Between.php 197 2010-04-13 13:09:41Z bacteria_ $
  * 
  */
 

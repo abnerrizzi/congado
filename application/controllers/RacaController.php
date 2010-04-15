@@ -123,7 +123,7 @@ class RacaController extends Zend_Controller_Action
 
 			if ($racaForm->isValid($request->getPost())) {
 				$values = $racaForm->getValues(true);
-				unset($values['submit'], $values['cancel']);
+				unset($values['submit'], $values['cancel'], $values['delete']);
 				$racaModel->updateRaca($values);
 				$this->_redirect('raca/index');
 			}

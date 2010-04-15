@@ -153,4 +153,10 @@ class PelagemController extends Zend_Controller_Action
 
 	}
 
+	public function printAction()
+	{
+		$model = new Model_Db_Pelagem();
+		$this->view->data = $model->listPelagens();
+	}
+
 }
