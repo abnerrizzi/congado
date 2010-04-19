@@ -8,14 +8,14 @@
  * 
  */
 
-class Movimentacao_SanitariodoencaController extends Zend_Controller_Action
+class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 {
 
 	public function init()
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Controle Sanitários - Doença';
+		$this->view->title = 'Controle Sanitários - Preventivo';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
@@ -23,7 +23,7 @@ class Movimentacao_SanitariodoencaController extends Zend_Controller_Action
 	{
 		$gridModel = new Model_Grid($this->view->title);
 		$movimentacaoModel = new Model_Db_Sanitario();
-		$movimentacaoModel->setTipo(1);
+		$movimentacaoModel->setTipo(2);
 
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
