@@ -340,22 +340,4 @@ class Model_Db_Fichario extends Model_Db
 		}
 	}
 
-	public function listJsonAutocomplete($post)
-	{
-		$col_id = $this->_name.'.id';
-		$col_id = 'id';
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
-			->from($this->_name, array('value' => 'id', 'caption' => 'nome'), $this->_schema)
-		;
-
-		$this->_select->order('nome ASC');
-
-		$this->_select->orWhere($this->_name.'.nome' .' LIKE ?', '%'.$post.'%');
-		$this->_select->orWhere($this->_name.'.cod' .' LIKE ?', '%'.$post.'%');
-		$this->_select->limitPage(0, 10);
-
-		$array = $this->fetchAll($this->_select)->toArray();
-		return $array;
-	}
 }
