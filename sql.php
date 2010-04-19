@@ -5,24 +5,37 @@ ip 192.163.2.44
 gw 192.163.1.11
 
 proxy 192.163.2.8:1082
+
+
+Fazenda
+Animal
+Tipo
+Sequencial
+Data
+Ocorrencia
+Sequencia
+Comentario
+DataProximo
+CategoriaAnt
+TipoSisbov
  */
 $link = mysql_connect('localhost', 'root', '') or die(mysql_error());
-$file = 'scripts/moviment.csv';
+$file = 'scripts/sanitari.csv';
 $handle = fopen ($file, 'r');
 $z=0;
 
 while (!feof($handle))
 {
 
-	$atual = fgetcsv($handle, 10240, '|', "'");
+	$atual = fgetcsv($handle, 10240, ';', '|');
 
-	print "insert into `import`.`moviment` values (NULL, ";
+	print "insert into `import`.`sanitario` values (NULL, ";
 
 	$cols = count($atual);
 	for ($i=0; $i < $cols; $i++)
 	{
 		// dt_nascimento
-		if ($i == 3) {
+		if ($i == 4 || ($i == 8 && $atual[$i] != "")) {
 			print "'" . converte_data($atual[$i]) . "', ";
 			continue;
 		}
