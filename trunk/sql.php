@@ -12,7 +12,7 @@ $file = 'scripts/cobertur.csv';
 $handle = fopen ($file, 'r');
 $z=0;
 
-$inline = true;
+$inline = 0;
 
 if ($inline) {
 	print "insert into `congado-dev`.`cobertura` values ";
@@ -46,6 +46,9 @@ while (!feof($handle))
 					print "'" . $dt2 . "', ";
 					unset($dt2);
 					continue;
+				} else {
+					print "'" . $dt2 . "', ";
+					unset($dt2);
 				}
 			} else {
 				print "NULL, ";
@@ -59,6 +62,9 @@ while (!feof($handle))
 					print "'" . $dt4 . "', ";
 					unset($dt4);
 					continue;
+				} else {
+					print "'" . $dt4 . "', ";
+					unset($dt4);
 				}
 			} else {
 				print "NULL, ";
@@ -79,7 +85,6 @@ while (!feof($handle))
 				$query = "SELECT id FROM `congado-dev`.lote WHERE cod = '".$atual[$i]."' and fazenda_id = '".$atual[0]."'";
 				$result = mysql_query($query);
 				$row = mysql_fetch_row($result);
-//				var_dump($row);
 				if (!$row[0]) {
 					print "NULL";
 				} else {
