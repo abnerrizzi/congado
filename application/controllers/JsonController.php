@@ -702,15 +702,17 @@ class JsonController extends Zend_Controller_Action
 
 	public function fcbkAction()
 	{
-		for ($i=0; $i < 5; $i++)
-		{
-			$return[] = array(
-				"caption" => $this->getRequest()->getParam('tag', 'Nome de Teste').$i,
-				"value" => $i
-			);
-		}
-
-		$this->view->content = utf8_encode(json_encode($return));
+		$ficharioModel = new Model_Db_Fichario();
+		$this->view->content = utf8_encode(json_encode($ficharioModel->listJsonAutocomplete($this->getRequest()->getParam('tag'))));
+//		for ($i=0; $i < 5; $i++)
+//		{
+//			$return[] = array(
+//				"caption" => $this->getRequest()->getParam('tag', 'Nome de Teste').$i,
+//				"value" => $i
+//			);
+//		}
+//
+//		$this->view->content = utf8_encode(json_encode($return));
 		$this->render('index');
 	}
 

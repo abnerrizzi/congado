@@ -11,7 +11,7 @@
 }
 
 
-a{cursor:pointer;color:#3b5998;-moz-outline-style:none;text-decoration:none}
+a, a:visited{cursor:pointer;color:#3b5998;-moz-outline-style:none;text-decoration:none}
 
 
 
@@ -151,10 +151,4 @@ height: 12px;
 .UIPager_Vertical .UIPager_ButtonDisabled .UIPager_ButtonForward:active{background-position:-129px -46px}
 .UIPager .UIPager_PageNum{color:#000;float:left;font-size:12px;line-height:22px;padding-right:10px}
 .UIPager .UIPager_PageResult{color:#000;float:left;font-size:12px;line-height:22px;padding-right:10px}
-
-
-
-
-
-
 
