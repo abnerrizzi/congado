@@ -49,6 +49,7 @@ while (!feof($handle))
 				} else {
 					print "'" . $dt2 . "', ";
 					unset($dt2);
+					continue;
 				}
 			} else {
 				print "NULL, ";
@@ -65,6 +66,7 @@ while (!feof($handle))
 				} else {
 					print "'" . $dt4 . "', ";
 					unset($dt4);
+					continue;
 				}
 			} else {
 				print "NULL, ";
