@@ -22,12 +22,12 @@ class Movimentacao_CoberturaController extends Zend_Controller_Action
 	public function indexAction()
 	{
 		$gridModel = new Model_Grid($this->view->title);
-		$movimentacaoModel = new Model_Db_Cobertura();
+		$coberturaModel = new Model_Db_Cobertura();
 
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $movimentacaoModel->getPaginatorAdapter($_by, $_order, array('id', 'fichario_id', 'touro_id'));
+		$result	= $coberturaModel->getPaginatorAdapter($_by, $_order);
 		
 		/*
 		 * Paginator
@@ -43,10 +43,12 @@ class Movimentacao_CoberturaController extends Zend_Controller_Action
 		/*
 		 * Fields
 		 */
-		$fields[] = new Model_Grid_Fields('fichario_id', 'Vaca', 20);
-		$fields[] = new Model_Grid_Fields('touro_id', 'Touro', 150);
-//		$fields[] = new Model_Grid_Fields('old', 'Antigo', 200);
-//		$fields[] = new Model_Grid_Fields('new', 'Novo', 200);
+		$fields[] = new Model_Grid_Fields('vaca', 'Vaca', 80);
+		$fields[] = new Model_Grid_Fields('dh', 'Data Cobertura', 100);
+		$fields[] = new Model_Grid_Fields('touro', 'Touro', 80);
+		$fields[] = new Model_Grid_Fields('inseminador', 'Inseminador', 120);
+		$fields[] = new Model_Grid_Fields('lote_dsc', 'Lote', 120);
+//		$fields[] = new Model_Grid_Fields('touro_id', 'Touro', 150);
 
 		/*
 		 * Grid Model
