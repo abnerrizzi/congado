@@ -1,0 +1,18 @@
+<?php
+
+$this->javascript();
+
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.maskedinput.js')
+	;
+
+$this->headLink()
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.core.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.datepicker.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.theme.css')
+    ;
+
+echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
+
+?>
