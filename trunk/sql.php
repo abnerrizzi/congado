@@ -82,6 +82,14 @@ while (!feof($handle))
 				unset($row);
 				continue;
 			}
+		} elseif ($i == 13) {
+			$dt13 = converte_data($atual[$i]);
+			if ($dt13 != "") {
+				print "'" . $dt13 . "', ";
+			} else {
+				print "NULL, ";
+			}
+			continue;
 		} elseif ($i == 17) {
 			if ($atual[$i] != "") {
 				$query = "SELECT id FROM `congado-dev`.lote WHERE cod = '".$atual[$i]."' and fazenda_id = '".$atual[0]."'";
