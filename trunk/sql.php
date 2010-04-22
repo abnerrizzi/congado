@@ -8,81 +8,33 @@ gw 192.163.1.11
 proxy 192.163.2.8:1082
  */
 $link = mysql_connect('127.0.0.1', 'root', '') or die(mysql_error());
-$file = 'scripts/cobertur.csv';
+$file = 'scripts/examerep.csv';
 $handle = fopen ($file, 'r');
 $z=0;
 
+$table = 'examerep';
 $inline = 0;
 
 if ($inline) {
-	print "insert into `congado-dev`.`cobertura` values ";
+	print "insert into `congado-dev`.`$table` values ";
 }
 while (!feof($handle))
 {
 
 	$atual = fgetcsv($handle, 10240, ';', "'");
+//	print_r($atual);
+//	die();
 
 	if ($inline) {
 		print " (NULL, ";
 	} else {
-		print "insert into `congado-dev`.`cobertura` values (NULL, ";
+		print "insert into `congado-dev`.`$table` values (NULL, ";
 	}
 	$cols = count($atual);
 	for ($i=0; $i < $cols; $i++)
 	{
 		// dt_nascimento
-		if ($i == 2 || $i == 4) {
-			$dt = converte_data($atual[$i]);
-			if ($i == 2) {
-				$dt2 = $dt;
-			} elseif ($i == 4) {
-				$dt4 = $dt;
-			}
-			continue;
-		} elseif ($i == 3) {
-			if ($dt2 != NULL) {
-				if ($atual[$i] != "") {
-					$dt2 .= " " . substr($atual[$i], 0, strlen($atual[$i])-2) .":". substr($atual[$i], -2);
-					print "'" . $dt2 . "', ";
-					unset($dt2);
-					continue;
-				} else {
-					print "'" . $dt2 . "', ";
-					unset($dt2);
-					continue;
-				}
-			} else {
-				print "NULL, ";
-				unset($dt2);
-				continue;
-			}
-		} elseif ($i == 5) {
-			if ($dt4 != NULL) {
-				if ($atual[$i] != "") {
-					$dt4 .= " " . substr($atual[$i], 0, (strlen($atual[$i])-2)) .":". substr($atual[$i], -2);
-					print "'" . $dt4 . "', ";
-					unset($dt4);
-					continue;
-				} else {
-					print "'" . $dt4 . "', ";
-					unset($dt4);
-					continue;
-				}
-			} else {
-				print "NULL, ";
-				unset($dt4);
-				continue;
-			}
-		} elseif ($i == 11) {
-			if ($atual[$i] != "") {
-				$query = "SELECT id FROM `congado-dev`.inseminador WHERE cod = '".$atual[$i]."'";
-				$result = mysql_query($query);
-				$row = mysql_fetch_row($result);
-				print $row[0] . ', ';
-				unset($row);
-				continue;
-			}
-		} elseif ($i == 13) {
+		if ($i == 2) {
 			$dt13 = converte_data($atual[$i]);
 			if ($dt13 != "") {
 				print "'" . $dt13 . "', ";
@@ -90,15 +42,15 @@ while (!feof($handle))
 				print "NULL, ";
 			}
 			continue;
-		} elseif ($i == 17) {
+		} elseif ($i == 3) {
 			if ($atual[$i] != "") {
-				$query = "SELECT id FROM `congado-dev`.lote WHERE cod = '".$atual[$i]."' and fazenda_id = '".$atual[0]."'";
+				$query = "SELECT id FROM `congado-dev`.acompanhamento WHERE cod = '".$atual[$i]."'";
 				$result = mysql_query($query);
 				$row = mysql_fetch_row($result);
-				if (!$row[0]) {
-					print "NULL";
+				if ($row[0] == NULL) {
+					print 'NULL, ';
 				} else {
-					print $row[0];
+					print $row[0] . ', ';
 				}
 				unset($row);
 				continue;

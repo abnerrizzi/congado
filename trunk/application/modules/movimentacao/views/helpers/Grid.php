@@ -47,6 +47,7 @@ class Zend_View_Helper_Grid
 		
 		// Add default script for grid
 		$this->view->headScript()->appendFile($grid->getBaseUrl() . '/scripts/grid.js');
+		$this->view->headScript()->appendFile($grid->getBaseUrl() . '/scripts/library/jquery/jquery.text_selection.js');
 
 		// talking value of sort using Front controller getRequest() method.
 		$_sort = Zend_Controller_Front::getInstance()->getRequest()->getParam('sort', 'asc');
