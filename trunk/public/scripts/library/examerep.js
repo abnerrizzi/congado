@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$("#acompanhamento_cod").change(changeSelect);
 	$("#fichario_cod").change(changeSelectAnimal);
 
-	$("#dt_nascimento").datepicker({
+	$("#data").datepicker({
 
 		changeMonth: true,
 		changeYear: true,
@@ -29,13 +29,13 @@ $(document).ready(function() {
 	    maxDate: new Date()
 	});
 
-	$("#dt_nascimento").keyup(function(event){
-	        val = $(this).val();
-	        if (val.length == 2 || val.length == 5) {
-	        	val = val +'/';
-	        	$(this).val(val);
-	        }
-	});
+	$("#data").keyup(function(event){
+        val = $(this).val();
+        if (val.length == 2 || val.length == 5) {
+        	val = val +'/';
+        	$(this).val(val);
+        }
+});
 });
 
 

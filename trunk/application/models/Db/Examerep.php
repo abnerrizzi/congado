@@ -70,6 +70,28 @@ class Model_Db_Examerep extends Model_Db
 		$this->update($data , $where );
 	}
 
+	public function addExame($fazenda = false, $fichario = false, $data = false, $acompanhamento = false, $obs = false)
+	{
+		$_dt = explode('/', $data);
+		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
+
+		if ($fazenda && $fichario && $data && $acompanhamento) {
+			$data = array(
+				'fazenda_id' => intval($fazenda),
+				'fichario_id' => intval($fichario),
+				'data' => $_dt,
+				'acompanhamento_id' => intval($acompanhamento),
+				'obs' => utf8_encode($obs),
+			);
+			if ($this->insert($data)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			throw new Zend_Db_Table_Exception('Parametros insuficientes.');
+		}
+	}
 	public function addInseminador($cod, $dsc)
 	{
 

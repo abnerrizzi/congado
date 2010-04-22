@@ -79,8 +79,28 @@ class Movimentacao_ExamerepController extends Zend_Controller_Action
 		$this->view->form = $exameForm;
 
 		if ($this->getRequest()->isPost()) {
-			throw new Zend_Controller_Action_Exception('Implementar validacao dos dados');
 			$formData = $this->getRequest()->getPost();
+			if ($exameForm->isValid($formData))
+			{
+
+				// buscar fazenda pelo animal
+				$ficharioModel = new Model_Db_Fichario();
+				$__fazenda = $ficharioModel->getFichario($exameForm->getValue('fichario_id'));
+
+				$__fichario = $exameForm->getValue('fichario_id');
+				$__data = $exameForm->getValue('data');
+				$__acompanhamento = $exameForm->getValue('acompanhamento_id');
+				$__obs = $exameForm->getValue('obs');
+
+				$exameModel = new Model_Db_Examerep();
+				if ($exameModel->addExame($__fazenda, $__fichario, $__data, $__acompanhamento, $__obs)) {
+					$this->_redirect('/'.$this->getRequest()->getModuleName() .'/'. $this->getRequest()->getControllerName());
+				}
+				throw new Zend_Controller_Action_Exception('Implementar validacao dos dados');
+			} else {
+				$exameForm->populate($formData);
+			}
+			/*
 			if ($exameForm->isValid($formData)) {
 				$cod = $exameForm->getValue('cod');
 				$dsc = $exameForm->getValue('dsc');
@@ -89,9 +109,8 @@ class Movimentacao_ExamerepController extends Zend_Controller_Action
 				if ($inseminadorModel->addInseminador($cod, $dsc, $unidade)) {
 					$this->_redirect('/'. $this->getRequest()->getControllerName());
 				}
-			} else {
-				$exameForm->populate($formData);
 			}
+			*/
 		}
 //		throw new Zend_Controller_Action_Exception('Controlador não implementado');
 	}

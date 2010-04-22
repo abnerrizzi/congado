@@ -58,7 +58,7 @@ class Form_ExameReprodutivo extends Form_Default
 		$this->setName('exame_reprodutivo');
 		$this->addElement('hidden', 'id');
 
-		$this->addElement('hidden', 'fichario_id');
+		$this->addElement('hidden', 'fichario_id', array('required' => true));
 		$this->addElement('text', 'fichario_cod', array(
 			'label' => 'Animal',
 			'filters' => array('StringTrim', 'Alnum'),
@@ -72,7 +72,7 @@ class Form_ExameReprodutivo extends Form_Default
 			'disable' => true,
 		));
 
-		$this->addElement('text', 'dt_nascimento', array(
+		$this->addElement('text', 'data', array(
 			'label' => 'Data',
 			'required' => true,
 			'filters' => array('StringTrim'),
@@ -86,7 +86,7 @@ class Form_ExameReprodutivo extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('hidden', 'acompanhamento_id');
+		$this->addElement('hidden', 'acompanhamento_id', array('required' => true));
 		$this->addElement('text', 'acompanhamento_cod', array(
 			'label' => 'Acompanhamento',
 			'filters' => array('StringTrim', 'Alnum'),
@@ -101,7 +101,7 @@ class Form_ExameReprodutivo extends Form_Default
 		));
 
 		$this->addElement('textarea', 'obs', array(
-			'label' => 'Observação',
+			'label' => 'Avaliação',
 			'filters' => array('StringTrim', 'StringToUpper'),
 			'rows' => 7,
 			'cols' => 50,
