@@ -73,7 +73,7 @@ class Form_ExameReprodutivo extends Form_Default
 		));
 
 		$this->addElement('text', 'dt_nascimento', array(
-			'label' => 'Data Nascimento',
+			'label' => 'Data',
 			'required' => true,
 			'filters' => array('StringTrim'),
 			'validators' => array(

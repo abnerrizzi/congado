@@ -1,5 +1,7 @@
 <?php
 
+$this->javascript();
+
 $this->headScript()
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.tabs.js')
@@ -45,7 +47,7 @@ $this->headScript()
       <?=$this->form->fichario_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->fichario_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->fichario->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_criador('<?=$this->baseUrl();?>/json/criador','criador');">
+      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal','fichario');">
         <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
       </a>
     </td>
@@ -76,7 +78,7 @@ $this->headScript()
       <?=$this->form->acompanhamento_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->acompanhamento_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->acompanhamento->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_criador('<?=$this->baseUrl();?>/json/criador','criador');">
+      <a href="javascript:void(0);" onclick="return showfilter_acompanhamento('<?=$this->baseUrl();?>/json/acompanhamento','acompanhamento');">
         <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
       </a>
     </td>
