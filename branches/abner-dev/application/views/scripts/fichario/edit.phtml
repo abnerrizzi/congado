@@ -1,0 +1,708 @@
+<?php
+
+$this->javascript();
+
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.core.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.tabs.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.draggable.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.dialog.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.resizable.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/genealogia.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.qtip.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
+	;
+
+$this->headLink()
+	->appendStylesheet($this->baseUrl() . '/styles/flexigrid.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.core.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.datepicker.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.theme.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.tabs.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.dialog.css')
+	;
+
+?>
+
+<br/><br/>
+<form name="<?=$this->form->getName();?>" id="<?=$this->form->getId();?>" action="<?=$this->baseUrl . $this->form->getAction();?>" method="post">
+<?=$this->form->id->removeDecorator('tag')->removeDecorator('label');?>
+<table
+	id="form"
+	align="center"
+	border="0"
+	cellpadding="0"
+	cellspacing="0"
+	bgcolor="#F7F6F4"
+	class="content"
+	style="	border-right: 1px solid #CCCCCC;
+			border-bottom: 1px solid #CCCCCC;
+			border-left: 1px solid #919191;
+			font-size: 12px;">
+
+  <tr style="background: url('/congado/public/images/grid/bg_title.gif');">
+    <td width="20" ></td>
+    <td colspan="8" height="20" width="480" style="font-size: 11px;"><b><?=str_replace('_', ' ', strtoupper($this->form->getName()));?></b></td>
+  </tr>
+
+  <tr>
+    <td height="2" bgcolor="#f36400" colspan="9"/>
+  </tr>
+ 
+  <tr>
+    <td height="10" colspan="9"></td>
+  </tr>
+
+  <tr>
+    <td width="20"></td>
+    <td class="toolbar" colspan="7" align="left" style="vertical-align: middle;" valign="middle">
+<!--      <a href="<?=$this->baseUrl();?>/fichario/edit/id/<?=$this->form->id->getValue();?>" title="Exibe a Genealogia deste Animal"><img src="<?=$this->baseUrl();?>/images/genealogia_small.gif" alt="genealogia"/></a>-->
+	  <a href="javascript:void(0);" onclick="showGenealogia($('#id').val());"><img src="<?=$this->baseUrl();?>/images/genealogia_small.gif" alt="genealogia"/></a>
+      <a title="Pesquisar"><img src="<?=$this->baseUrl();?>/images/search.png" alt=""/></a>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="9"></td>
+  </tr>
+
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->fazenda_id->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element" colspan="5">
+      <?=$this->form->fazenda_id->removeDecorator('tag')->removeDecorator('label');?>
+    </td>
+    <td width="50"></td>
+  </tr>
+ 
+  <tr>
+    <td height="10" colspan="9"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element" colspan="5">
+      <?=$this->form->cod->removeDecorator('tag')->removeDecorator('label');?>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+ 
+  <tr>
+    <td height="10" colspan="9"><hr width="95%"></hr></td>
+  </tr>
+  <tr>
+    <td colspan="9">
+
+
+
+
+
+<div id="tabs" style=" font-size: 12px; width: 850px;">
+    <ul>
+        <li><a href="#tab1"><span>Dados Básicos</span></a></li>
+        <li><a href="#tab2"><span>Filiação / Obs.</span></a></li>
+        <li><a href="#tab3"><span>Genealogia</span></a></li>
+    </ul>
+    <div id="tab1">
+    <table
+		align="center"
+		width="800"
+		border="0"
+		cellpadding="0"
+		cellspacing="0"
+		bgcolor="#F7F6F4"
+		class="content"
+		style="	border-right: 1px solid #CCCCCC;
+				border-bottom: 1px solid #CCCCCC;
+				border-left: 1px solid #919191;
+				border-top: 1px solid #919191;
+				font-size: 12px;">
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+
+  <tr>
+    <td width="20"></td>
+    <td class="label" width="120"><?=$this->form->nome->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element" width="240">
+      <?=$this->form->nome->removeDecorator('tag')->removeDecorator('label');?>
+    </td>
+    <td width="10"></td>
+    <td class="label" width="140"><?=$this->form->rgn->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element" width="240">
+      <?=$this->form->rgn->removeDecorator('tag')->removeDecorator('label');?>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="9"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->sisbov->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->sisbov->removeDecorator('tag')->removeDecorator('label');?>
+    </td>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->dt_nascimento->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->dt_nascimento->removeDecorator('tag')->removeDecorator('label');?>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="9"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->criador_cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->criador_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->criador_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->criador->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <a href="javascript:void(0);" onclick="return showfilter_criador('<?=$this->baseUrl();?>/json/criador','criador');">
+        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+      </a>
+    </td>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->pelagem_cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->pelagem_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->pelagem_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->pelagem->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <a href="javascript:void(0);" onclick="return showfilter_pelagem('<?=$this->baseUrl();?>/json/pelagem','pelagem');">
+        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+      </a>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="9"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->raca_cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->raca_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->raca_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->raca->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <a href="javascript:void(0);" onclick="return showfilter_raca('<?=$this->baseUrl();?>/json/raca','raca');">
+        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+      </a>
+    </td>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->rebanho_cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->rebanho_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->rebanho_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->rebanho->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <a href="javascript:void(0);" onclick="return showfilter_rebanho('<?=$this->baseUrl();?>/json/rebanho','rebanho');">
+        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+      </a>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="9"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->categoria_cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->categoria_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->categoria_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->categoria->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <a href="javascript:void(0);" onclick="return showfilter_categoria('<?=$this->baseUrl();?>/json/categoria','categoria');">
+        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+      </a>
+    </td>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->local_cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->local_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->local_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->local->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <a href="javascript:void(0);" onclick="return showfilter_local('<?=$this->baseUrl();?>/json/local','local');">
+        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+      </a>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label">Grau de Sangue:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->grausangue_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->grausangue_manual->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->grausangue_manual->getLabel();?><br/>
+      <?=$this->form->grausangue_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->grausangue->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <a id="grausangue_search" href="javascript:void(0);" onclick="return showfilter_grausangue('<?=$this->baseUrl();?>/json/grausangue','grausangue');">
+        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+      </a>
+    </td>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->sexo->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->sexo->removeDecorator('tag')->removeDecorator('label');?>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->origem->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element" colspan="5">
+      <?=$this->form->origem->removeDecorator('tag')->removeDecorator('label');?>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+
+  </table>
+</div>
+<div id="tab2">
+    <table
+		align="center"
+		width="800"
+		border="0"
+		cellpadding="0"
+		cellspacing="0"
+		bgcolor="#F7F6F4"
+		class="content"
+		style="	border-right: 1px solid #CCCCCC;
+				border-bottom: 1px solid #CCCCCC;
+				border-left: 1px solid #919191;
+				border-top: 1px solid #919191;
+				font-size: 12px;">
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->pai_cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->pai_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->pai_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->pai->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal','pai');">
+        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+      </a>
+    </td>
+    <td width="50"></td>
+  </tr>
+  
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->mae_cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->mae_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->mae_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->mae->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal','mae');">
+        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+      </a>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->receptora_cod->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?=$this->form->receptora_id->removeDecorator('tag')->removeDecorator('label');?>
+      <?=$this->form->receptora_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <?=$this->form->receptora->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal','receptora');">
+        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+      </a>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td class="label"><?=$this->form->obs->getLabel();?>:</td>
+    <td width="10"></td>
+    <td class="element">
+      <?
+      $obs = $this->form->obs;
+      print '<textarea rows="'.$obs->getAttrib('rows').
+      			'" cols="'.$obs->getAttrib('cols').
+      			'" class="'.$obs->getAttrib('class').
+      			'" id="'.$obs->getId().
+      			'" name="'.$obs->getName().
+      			'">';
+      print $obs->getValue();
+      print '</textarea>';
+      ?>
+    </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+
+
+
+
+  </table>
+  </div>
+<div id="tab3">
+<table
+		align="center"
+		width="800"
+		border="0"
+		cellpadding="0"
+		cellspacing="0"
+		bgcolor="#F7F6F4"
+		class="content"
+		style="	border-right: 1px solid #CCCCCC;
+				border-bottom: 1px solid #CCCCCC;
+				border-left: 1px solid #919191;
+				border-top: 1px solid #919191;
+				font-size: 12px;">
+	<tr>
+		<td>
+
+
+
+
+
+<!-- START OF GENEALOGIA -->
+
+
+<?php
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.qtip.js')
+	;
+?>
+<br/>
+
+<table id="genealogia" border="0" align="center" cellpadding="0" cellspacing="0">
+
+
+	<!-- 001 -->
+	<tr>
+
+	  <td></td>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""/></td>
+<?if (@$this->array['pai']['pai']['pai']['id']):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['pai']['pai']['pai']['id'];?>" id="a<?=$this->array['pai']['pai']['pai']['id'];?>"><?=$this->array['pai']['pai']['pai']['cod'];?><br/><?=$this->array['pai']['pai']['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+	</tr>
+
+
+	<!-- 002 -->
+	<tr>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""style="filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test.png', sizingMethod='scale');"/></td>
+<?if (@$this->array['pai']['pai']['id']):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['pai']['pai']['id'];?>" id="a<?=$this->array['pai']['pai']['id'];?>"><?=$this->array['pai']['pai']['cod'];?><br/><?=$this->array['pai']['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 003 -->
+	<tr>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
+<?if (@$this->array['pai']['pai']['mae']['id']):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['pai']['pai']['mae']['id'];?>" id="a<?=$this->array['pai']['pai']['mae']['id'];?>"><?=$this->array['pai']['pai']['mae']['cod'];?><br/><?=$this->array['pai']['pai']['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+	</tr>
+
+
+	<!-- 004 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""/></td>
+<?if (@$this->array['pai']['id'] != ""):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['pai']['id'];?>" id="a<?=$this->array['pai']['id'];?>"><?=$this->array['pai']['cod'];?><br/><?=$this->array['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 005 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""/></td>
+
+<?if (@$this->array['pai']['mae']['pai']['id']):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['pai']['mae']['pai']['id'];?>" id="a<?=$this->array['pai']['mae']['pai']['id'];?>"><?=$this->array['pai']['mae']['pai']['cod'];?><br/><?=$this->array['pai']['mae']['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+
+	</tr>
+
+
+	<!-- 006 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
+<?if (@$this->array['pai']['mae']['id'] != ""):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['pai']['mae']['id'];?>" id="a<?=$this->array['pai']['mae']['id'];?>"><?=$this->array['pai']['mae']['cod'];?><br/><?=$this->array['pai']['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 007 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
+
+<?if (@$this->array['pai']['mae']['mae']['id']):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['pai']['mae']['mae']['id'];?>" id="a<?=$this->array['pai']['mae']['mae']['id'];?>"><?=$this->array['pai']['mae']['mae']['cod'];?><br/><?=$this->array['pai']['mae']['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+	</tr>
+
+
+	<!-- 008 -->
+	<tr>
+<?if (@$this->array['id']):?>
+	  <td class="animal"><a href="javascript:void(0);" id="a<?=$this->array['id'];?>"><?=$this->array['cod'];?><br/><?=$this->array['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 009 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""/></td>
+<?if (@$this->array['mae']['pai']['pai']['id']):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['mae']['pai']['pai']['id'];?>" id="a<?=$this->array['mae']['pai']['pai']['id'];?>"><?=$this->array['mae']['pai']['pai']['cod'];?><br/><?=$this->array['mae']['pai']['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+
+	</tr>
+
+
+	<!-- 010 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""/></td>
+<?if (@$this->array['mae']['pai']['id'] != ""):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['mae']['pai']['id'];?>" id="a<?=$this->array['mae']['pai']['id'];?>"><?=$this->array['mae']['pai']['cod'];?><br/><?=$this->array['mae']['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 011 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
+<?if (@$this->array['mae']['pai']['mae']['id']):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['mae']['pai']['mae']['id'];?>" id="a<?=$this->array['mae']['pai']['mae']['id'];?>"><?=$this->array['mae']['pai']['mae']['cod'];?><br/><?=$this->array['mae']['pai']['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+	</tr>
+
+
+	<!-- 012 -->
+	<tr>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
+<?if (@$this->array['mae']['id'] != ""):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['mae']['id'];?>" id="a<?=$this->array['mae']['id'];?>"><?=$this->array['mae']['cod'];?><br/><?=$this->array['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 013-->
+	<tr>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/vertical.gif" alt=""/></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_sup.gif" alt=""/></td>
+
+<?if (@$this->array['mae']['mae']['pai']['id']):?>
+	  <td class="animalm"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['mae']['mae']['pai']['id'];?>" id="a<?=$this->array['mae']['mae']['pai']['id'];?>"><?=$this->array['mae']['mae']['pai']['cod'];?><br/><?=$this->array['mae']['mae']['pai']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	  
+
+
+	</tr>
+
+
+	<!-- 014 -->
+	<tr>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
+<?if (@$this->array['mae']['mae']['id'] != ""):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['mae']['mae']['id'];?>" id="a<?=$this->array['mae']['mae']['id'];?>"><?=$this->array['mae']['mae']['cod'];?><br/><?=$this->array['mae']['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+	</tr>
+
+
+	<!-- 015 -->
+	<tr>
+	  <td></td>
+	  <td></td>
+	  <td align="right"><img src="<?=$this->baseUrl()?>/images/box/quina_inf.gif" alt=""/></td>
+
+<?if (@$this->array['mae']['mae']['mae']['id']):?>
+	  <td class="animalf"><a href="<?=$this->baseUrl() . "/fichario/edit/id/" . $this->array['mae']['mae']['mae']['id'];?>" id="a<?=$this->array['mae']['mae']['mae']['id'];?>"><?=$this->array['mae']['mae']['mae']['cod'];?><br/><?=$this->array['mae']['mae']['mae']['nome'];?></a></td>
+<?else:?>
+	  <td class="vazio">Desconhecido</td>
+<?endif;?>
+
+	</tr>
+
+</table>
+
+
+
+<!-- END OF GENEALOGIA -->
+
+
+
+
+
+
+
+
+
+
+
+		</td>
+	</tr>
+</table>
+</div>
+
+</div>
+</td></tr>
+
+
+
+
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+  <tr>
+    <td width="20"></td>
+    <td align="center">
+      <span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="<?=$this->form->getElement('delete')->getAttrib('onclick');?>">
+      <span class="UIIcon UIIcon_Delete">&nbsp;</span>
+        <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Excluir" name="<?=$this->form->getElement('delete')->getName();?>" id="<?=$this->form->getElement('delete')->getId();?>" onclick="<?=$this->form->getElement('delete')->getAttrib('onclick');?>"/>
+      </span>
+    </td>
+    <td width="10"></td>
+    <td align="center">
+
+<span class="UIButton UIButton_Large UIFormButton  UIButton_Blue" onclick="$('#<?=$this->form->getName();?>').submit();">
+<span class="UIIcon UIIcon_Save">&nbsp;</span>
+  <input style="display: inline-block;"  class="UIButton_Text" type="submit" value="Salvar" name="<?=$this->form->getElement('submit')->getName();?>_" id="<?=$this->form->getElement('submit')->getId();?>_"/>
+</span>
+
+
+<span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = '<?=$this->baseUrl()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName();?>'; return false;">
+<span class="UIIcon UIIcon_Cancel">&nbsp;</span>
+  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="<?=$this->form->getElement('cancel')->getName();?>" id="<?=$this->form->getElement('cancel')->getId();?>"
+  onclick="location.href = '<?=$this->baseUrl()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName();?>'; return false;"/>
+</span>
+
+
+    <td width="50"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"/>
+  </tr>
+
+
+
+
+
+  <tr>
+    <td height="10" colspan="5"/>
+  </tr>
+ 
+</table>
+</form>
+
+<div id="dlg" style="display: none;">
+  <div id="dlg-grid" style="padding: 0px; margin: 0px"></div>
+</div>
+
