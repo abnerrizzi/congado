@@ -22,8 +22,7 @@ class Movimentacao_ExamerepController extends Zend_Controller_Action
 	public function indexAction()
 	{
 		$gridModel = new Model_Grid($this->view->title);
-		$movimentacaoModel = new Model_Db_Movimentacao();
-		$movimentacaoModel->setTipo(1);
+		$movimentacaoModel = new Model_Db_Examerep();
 
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
@@ -45,8 +44,8 @@ class Movimentacao_ExamerepController extends Zend_Controller_Action
 		 * Fields
 		 */
 		$fields[] = new Model_Grid_Fields('data', 'Animal', 20);
-		$fields[] = new Model_Grid_Fields('nome', 'Data', 150);
-		$fields[] = new Model_Grid_Fields('old', 'Acompanhamento', 200);
+		$fields[] = new Model_Grid_Fields('nome', 'Data', 200);
+		$fields[] = new Model_Grid_Fields('acompanhamento', 'Acompanhamento', 200);
 
 		/*
 		 * Grid Model
@@ -78,9 +77,9 @@ class Movimentacao_ExamerepController extends Zend_Controller_Action
 		$exameForm->setAction('/movimentacao/examerep/add');
 		$exameForm->setMethod('post');
 		$this->view->form = $exameForm;
-		$this->view->elements = array('cod', 'dsc', 'unidade');
 
 		if ($this->getRequest()->isPost()) {
+			throw new Zend_Controller_Action_Exception('Implementar validacao dos dados');
 			$formData = $this->getRequest()->getPost();
 			if ($exameForm->isValid($formData)) {
 				$cod = $exameForm->getValue('cod');

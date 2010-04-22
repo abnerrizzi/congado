@@ -100,6 +100,13 @@ class Form_ExameReprodutivo extends Form_Default
 			'disable' => true,
 		));
 
+		$this->addElement('textarea', 'obs', array(
+			'label' => 'Observação',
+			'filters' => array('StringTrim', 'StringToUpper'),
+			'rows' => 7,
+			'cols' => 50,
+			'class'	=> 'input',
+		));
 
 		$this->addElement('image', 'submit', array(
 			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/save.gif',

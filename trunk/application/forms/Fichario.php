@@ -56,8 +56,6 @@ class Form_Fichario extends Form_Default
 	{
 		parent::__construct();
 		$this->setName('fichario');
-
-
 		$this->addElement('hidden', 'id');
 
 		$this->addElement('select', 'fazenda_id', array(

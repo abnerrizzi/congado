@@ -10,7 +10,7 @@
  * @package Helper
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  */
-class Zend_View_Helper_FormEdit
+class Zend_View_Helper_FormEdit extends Zend_View_Helper_Abstract
 {
 
 	public $view;
