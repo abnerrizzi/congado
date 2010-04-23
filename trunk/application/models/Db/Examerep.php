@@ -46,10 +46,27 @@ class Model_Db_Examerep extends Model_Db
 		return $result->toArray();
 	}
 
-	public function getInseminador($id)
+	public function getExame($id)
 	{
 		$id = (int)$id;
-		$row = $this->fetchRow('id = ' . $id);
+
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('e' => $this->_name), array(
+				'id',
+				'fazenda_id',
+				'fichario_id',
+				'data' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')"),
+				'acompanhamento_id',
+				'obs',
+			), $this->_schema)
+			->joinLeft('fichario', 'e.fichario_id = fichario.id', array('fichario_cod' => 'cod', 'fichario' => 'nome'), $this->_schema)
+			->joinLeft('acompanhamento', 'e.acompanhamento_id = acompanhamento.id', array('acompanhamento_cod' => 'cod', 'acompanhamento' => 'dsc'), $this->_schema)
+			->where('e.id = ?', $id)
+		;
+			
+		$row = $this->fetchRow($this->_select);
+
 		if (!$row) {
 			throw new Exception("Count not find row $id");
 		}
@@ -58,6 +75,26 @@ class Model_Db_Examerep extends Model_Db
 			$return[$key] = utf8_decode($val);
 		}
 		return $return;
+	}
+
+	public function updateExame($post)
+	{
+
+		$_dt = explode('/', $post['data']);
+		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
+
+		$data = array(
+			'fazenda_id' => (int)$post['fazenda_id'],
+			'fichario_id' => (int)$post['fichario_id'],
+			'data' => (int)$_dt,
+			'acompanhamento_id' => (int)$post['acompanhamento_id'],
+			'obs' => utf8_encode($post['obs'])
+		);
+
+		$where = 'id = '.(int)$post['id'];
+		Zend_Debug::dump($data);
+		Zend_Debug::dump($where);
+		die();
 	}
 
 	public function updateInseminador($post)

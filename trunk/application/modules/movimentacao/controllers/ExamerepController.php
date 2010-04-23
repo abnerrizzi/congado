@@ -100,20 +100,53 @@ class Movimentacao_ExamerepController extends Zend_Controller_Action
 			} else {
 				$exameForm->populate($formData);
 			}
-			/*
-			if ($exameForm->isValid($formData)) {
-				$cod = $exameForm->getValue('cod');
-				$dsc = $exameForm->getValue('dsc');
-				$unidade = floatval($exameForm->getValue('unidade'));
-				$inseminadorModel = new Model_Db_Inseminador();
-				if ($inseminadorModel->addInseminador($cod, $dsc, $unidade)) {
-					$this->_redirect('/'. $this->getRequest()->getControllerName());
-				}
-			}
-			*/
 		}
-//		throw new Zend_Controller_Action_Exception('Controlador não implementado');
+
 	}
 
+	public function editAction()
+	{
+
+		$request			= $this->getRequest();
+		$exameId			= (int)$request->getParam('id');
+		$exameForm			= new Form_ExameReprodutivo();
+
+		$exameForm->setAction('/movimentacao/examerep/edit');
+		$exameForm->setMethod('post');
+		$exameModel = new Model_Db_Examerep();
+
+		$exameForm->getElement('data')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			;
+
+		$exameForm->getElement('fichario_cod')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			;
+
+		$exameForm->getElement('acompanhamento_cod')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			;
+
+		if ($request->isPost()) {
+
+			if ($exameForm->isValid($request->getPost())) {
+				$exameModel->updateExame($exameForm->getValues());
+				$this->_redirect('/'.$this->getRequest()->getModuleName() .'/'. $this->getRequest()->getControllerName());
+			}
+			
+		} else {
+			if ($exameId > 0) {
+				$result = $exameModel->getExame($exameId);
+				$exameForm->populate($result);
+			} else {
+				throw new Zend_Controller_Action_Exception('invalid record number');
+			}
+		}
+
+		$this->view->form = $exameForm;
+	}
 }
 
