@@ -84,27 +84,11 @@ class Model_Db_Examerep extends Model_Db
 		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
 
 		$data = array(
-			'fazenda_id' => (int)$post['fazenda_id'],
-			'fichario_id' => (int)$post['fichario_id'],
-			'data' => (int)$_dt,
-			'acompanhamento_id' => (int)$post['acompanhamento_id'],
 			'obs' => utf8_encode($post['obs'])
 		);
 
 		$where = 'id = '.(int)$post['id'];
-		Zend_Debug::dump($data);
-		Zend_Debug::dump($where);
-		die();
-	}
-
-	public function updateInseminador($post)
-	{
-		$data = array(
-			'cod'=> utf8_encode($post['cod']),
-			'dsc'=> utf8_encode($post['dsc'])
-		);
-		$where = 'id = '.(int)$post['id'];
-		$this->update($data , $where );
+		$this->update($data , $where);
 	}
 
 	public function addExame($fazenda = false, $fichario = false, $data = false, $acompanhamento = false, $obs = false)
@@ -129,23 +113,8 @@ class Model_Db_Examerep extends Model_Db
 			throw new Zend_Db_Table_Exception('Parametros insuficientes.');
 		}
 	}
-	public function addInseminador($cod, $dsc)
-	{
 
-		$data = array(
-			'cod' => utf8_encode($cod),
-			'dsc' => utf8_encode($dsc)
-		);
-
-		if ($this->insert($data)) {
-			return true;
-		} else {
-			return false;
-		}
-
-	}
-
-	public function deleteInseminador($id)
+	public function deleteExame($id)
 	{
 		$this->delete('id = ' . intval($id));
 	}

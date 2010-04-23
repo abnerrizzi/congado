@@ -148,5 +148,26 @@ class Movimentacao_ExamerepController extends Zend_Controller_Action
 
 		$this->view->form = $exameForm;
 	}
+
+	public function deleteAction()
+	{
+		$request 	= $this->getRequest();
+		$exameModel	= new Model_Db_Examerep();
+
+		if ($request->isPost() && $request->getParam('param', false) == 'examerep') {
+			$exameId	= (int)$request->getParam('id');
+			$exameModel->deleteExame($exameId);
+			$this->view->error = false;
+			$this->view->msg = 'Registro apagado com sucesso.';
+		} else {
+			$exameId	= (int)$request->getParam('id');
+			$this->view->error = true;
+			$this->view->msg = 'Erro tentando apagar registro('.$exameId.')';
+		}
+		$this->view->url =
+			Zend_Controller_Front::getInstance()->getRequest()->getModuleName() .'/'.
+			Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+	}
+
 }
 
