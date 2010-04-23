@@ -1,6 +1,12 @@
 $(document).ready(function() {
 
-	__action = editUrl.split("/")[1];
+	if (typeof(__module) == 'undefined') {
+		__action = editUrl.split("/")[1];
+	} else {
+		baseUrl = baseUrl + '/' + __module;
+		__action = editUrl.split("/")[2];
+	}
+	window.alert(__action);
 
 	$("#add>a").before(
 			'<a class="UIButton UIButton_Gray UIActionButton" href="javascript:void(0);" id="search" title="Pesquisar">\n'+
