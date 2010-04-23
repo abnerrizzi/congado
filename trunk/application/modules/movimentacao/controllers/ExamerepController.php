@@ -43,8 +43,8 @@ class Movimentacao_ExamerepController extends Zend_Controller_Action
 		/*
 		 * Fields
 		 */
-		$fields[] = new Model_Grid_Fields('data', 'Animal', 20);
-		$fields[] = new Model_Grid_Fields('nome', 'Data', 200);
+		$fields[] = new Model_Grid_Fields('data', 'Data', 20);
+		$fields[] = new Model_Grid_Fields('nome', 'Animal', 200);
 		$fields[] = new Model_Grid_Fields('acompanhamento', 'Acompanhamento', 200);
 
 		/*
