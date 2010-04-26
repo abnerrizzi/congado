@@ -65,6 +65,7 @@ class Model_Db_User extends Model_Db
 		$passNew = $post['newpass'];
 		$passConfirm = $post['confirmpass'];
 		$data = false;
+		$auth = Zend_Auth::getInstance()->getStorage()->read();
 
 		if (!array_key_exists('id', $post)) {
 			return false;
@@ -72,6 +73,7 @@ class Model_Db_User extends Model_Db
 
 		if ($post['name'] != $userData['name'] && $post['name'] != '') {
 			$data['name'] = $post['name'];
+			$auth->name = $data['name'];
 		}
 
 		if ($post['admin'] != $userData['admin']) {
@@ -92,11 +94,13 @@ class Model_Db_User extends Model_Db
 
 		if ((int)$post['perpage'] > 0 && ($post['perpage'] != $userData['perpage'])) {
 			$data['perpage'] = $post['perpage'];
+			$auth->perpage = $data['perpage'];
 		}
 
 		if (is_array($data)) {
 			$where = $this->getAdapter()->quoteInto('id = ?', (int)$post['id']); 
 			if ($this->update($data, 'id = '.(int)$post['id'])) {
+				Zend_Auth::getInstance()->getStorage()->write($auth);
 				return true;
 			}
 		}

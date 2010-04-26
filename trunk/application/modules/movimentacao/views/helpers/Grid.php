@@ -8,7 +8,7 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Helper
  * @subpackage Helper_Grid
- * @version $Id: Grid.php 197 2010-04-13 13:09:41Z bacteria_ $
+ * @version $Id: Grid.php 248 2010-04-22 13:56:11Z bacteria_ $
  * 
  */
 
@@ -145,13 +145,13 @@ $output .= '</td>
 			$__fields = $__fields[$i];
 			if ($_by == $__fields->getColum()) {
 				$output .= '
-		  <td height="3" bgcolor="#FF7015"></td>
+		  <td height="1" bgcolor="#FF7015"></td>
 		  <td bgcolor="#FF7015"></td>
 		  <td bgcolor="#FF7015"></td>
 				';
 			} else {
 				$output .= '
-		  <td height="3" bgcolor="#BFBDB3"></td>
+		  <td height="1" bgcolor="#BFBDB3"></td>
 		  <td bgcolor="#BFBDB3"></td>
 		  <td bgcolor="#BFBDB3"></td>
 				';
@@ -173,7 +173,7 @@ $output .= '</td>
 			$class = 'row' . ($i%2);
 			$output .= '
 <tr class="content">
-  <td height="3" colspan="'.$_colSpan.'"></td>
+  <td height="2" colspan="'.$_colSpan.'"></td>
 </tr>
 <tr class="'.$class.'" id="id'.$post['id'].'">
 ';
@@ -235,7 +235,7 @@ $output .= '</td>
 			if ($grid->getPaginator()->getCurrentItemCount() != $i) {
 				$output .= '
 <tr class="content">
-  <td height="3" colspan="'.$_colSpan.'"></td>
+  <td height="2" colspan="'.$_colSpan.'"></td>
 </tr>
 
 <tr>
