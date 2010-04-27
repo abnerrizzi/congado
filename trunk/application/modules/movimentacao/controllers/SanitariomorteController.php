@@ -78,5 +78,58 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 		throw new Zend_Controller_Action_Exception('Controlador não implementado');
 	}
 
+	public function editAction()
+	{
+
+		$request	= $this->getRequest();
+		$morteId	= (int)$request->getParam('id');
+		$morteForm	= new Form_Sanitario();
+
+		$morteForm->setName('controle_sanitario_-_morte');
+		$morteForm->setAction('/raca/edit');
+		$morteForm->setMethod('post');
+		$morteModel = new Model_Db_Sanitario();
+		$morteModel->setTipo(0);
+		$morteForm->getElement('animal')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			->removeValidator('NoRecordExists')
+			;
+
+		if ($request->isPost()) {
+
+			if ($morteForm->isValid($request->getPost())) {
+				$values = $morteForm->getValues(true);
+				unset($values['submit'], $values['cancel'], $values['delete']);
+				$morteModel->updateRaca($values);
+				$this->_redirect('raca/index');
+			}
+
+		} else {
+
+			if ($morteId > 0) {
+				$result = $morteModel->getSanitario($morteId);
+				Zend_Debug::dump($result);
+				$morteForm->populate($result);
+			} else {
+				throw new Exception("invalid record number");
+			}
+		}
+
+		$this->view->elements = array(
+			'id',
+			'animal',
+			'data',
+			'ocorrencia_id',
+			'ocorrencia_cod',
+			'ocorrencia',
+			'dsc',
+			'comentario',
+			'tiposisbov',
+			'delete',
+		);
+		$this->view->form = $morteForm;
+	}
+
 }
 
