@@ -86,7 +86,7 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 		$morteForm	= new Form_Sanitario();
 
 		$morteForm->setName('controle_sanitario_-_morte');
-		$morteForm->setAction('/raca/edit');
+		$morteForm->setAction('/movimentacao/sanitariomorte/edit');
 		$morteForm->setMethod('post');
 		$morteModel = new Model_Db_Sanitario();
 		$morteModel->setTipo(0);
@@ -95,13 +95,22 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 			->setAttrib('class', 'readonly')
 			->removeValidator('NoRecordExists')
 			;
+		$morteForm->getElement('fichario_cod')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			;
 		$morteForm->getElement('ocorrencia')
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')
 			->removeValidator('NoRecordExists')
 			;
-		$morteForm->getElement('sequencia')
-			->setName('Causa');
+		$morteForm->getElement('ocorrencia_cod')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			;
+		$morteForm->getElement('sequencia_cod')
+			->setLabel('Causa');
+
 		$morteForm->getElement('sequencia')
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')
@@ -114,14 +123,13 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 				$values = $morteForm->getValues(true);
 				unset($values['submit'], $values['cancel'], $values['delete']);
 				$morteModel->updateRaca($values);
-				$this->_redirect('raca/index');
+				$this->_redirect('movimentacao/sanitariomorte/edit');
 			}
 
 		} else {
 
 			if ($morteId > 0) {
 				$result = $morteModel->getSanitario($morteId);
-				Zend_Debug::dump($result);
 				$morteForm->populate($result);
 			} else {
 				throw new Exception("invalid record number");

@@ -70,6 +70,7 @@ class Form_Sanitario extends Form_Default
 		));
 		$this->addElement('text', 'fichario', array(
 			'class'	=> 'input',
+			'size' => 30,
 		));
 
 		$this->addElement('text', 'data', array(
@@ -106,6 +107,7 @@ class Form_Sanitario extends Form_Default
 		));
 		$this->addElement('text', 'sequencia', array(
 			'class'	=> 'input',
+			'size' => 30,
 		));
 
 		$this->addElement('textarea', 'comentario', array(

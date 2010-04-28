@@ -35,7 +35,12 @@ class Zend_View_Helper_FormEdit extends Zend_View_Helper_Abstract
 ';
 		for ($i=0; $i < count($elements); $i++)
 		{
-			$_el = $form->getElement($elements[$i]);
+
+			if (is_array($elements[$i])) {
+				continue;
+			} else {
+				$_el = $form->getElement($elements[$i]);
+			}
 			if (!$_el) {
 				throw new Exception("Element (".$elements[$i].") not found in Zend_Form object");
 			}
@@ -72,12 +77,27 @@ class Zend_View_Helper_FormEdit extends Zend_View_Helper_Abstract
 ';
 		for ($i=0; $i < count($elements); $i++)
 		{
-			$_el = $form->getElement($elements[$i]);
-			if ($_el->getType() == 'Zend_Form_Element_Hidden' || $_el->getName() == 'delete') {
+			if (is_array($elements[$i])) {
+				$_el = $form->getElement($elements[$i][0] ."_cod");
+				$_group = true;
+			} else {
+				$_el = $form->getElement($elements[$i]);
+				$_group = false;
+			}
+
+			if (!is_object($_el) || $_el->getType() == 'Zend_Form_Element_Hidden' || $_el->getName() == 'delete') {
 				continue;
 			}
 
-			if (is_int($elementCity = strpos($_el->getName(), 'cidades_id'))) {
+			if ($_group) {
+				$_input = $form->getElement($elements[$i][0] ."_id")
+					->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');
+				$_input .= $form->getElement($elements[$i][0] ."_cod")
+					->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');
+				$_input .= $form->getElement($elements[$i][0])
+					->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');
+//				continue;
+			} elseif (is_int($elementCity = strpos($_el->getName(), 'cidades_id'))) {
 
 				if (is_int($elementCity)) {
 					$_input  = $form->getElement(substr($_el->getName(),0,$elementCity).'uf')->removeDecorator('tag')->removeDecorator('label');
