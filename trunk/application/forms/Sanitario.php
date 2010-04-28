@@ -58,20 +58,18 @@ class Form_Sanitario extends Form_Default
 		$this->setName('causas_mortis');
 		$this->addElement('hidden', 'id');
 
-		$this->addElement('hidden', 'animal_id', array(
+		$this->addElement('hidden', 'fichario_id', array(
 			'required' => true
 		));
-		$this->addElement('text', 'animal_cod', array(
-			'label' => 'Raça',
+		$this->addElement('text', 'fichario_cod', array(
+			'label' => 'Animal',
 			'filters' => array('StringTrim', 'Alnum'),
 			'maxlength' => 3,
 			'size' => 4,
 			'class'	=> 'input',
 		));
-		$this->addElement('text', 'animal', array(
+		$this->addElement('text', 'fichario', array(
 			'class'	=> 'input',
-//			'readonly' => 'readonly',
-//			'disable' => true,
 		));
 
 		$this->addElement('text', 'data', array(
@@ -96,16 +94,17 @@ class Form_Sanitario extends Form_Default
 		));
 		$this->addElement('text', 'ocorrencia', array(
 			'class'	=> 'input',
-//			'readonly' => 'readonly',
-//			'disable' => true,
 		));
 
-		$this->addElement('text', 'dsc', array(
-			'label' => 'Descrição',
-			'required' => true,
-			'filters' => array('StringTrim', 'StringToUpper'),
-			'maxlength' => 32,
-			'size' => 32,
+		$this->addElement('hidden', 'sequencia_id');
+		$this->addElement('text', 'sequencia_cod', array(
+			'label' => 'Sequência',
+			'filters' => array('StringTrim', 'Alnum'),
+			'maxlength' => 4,
+			'size' => 4,
+			'class'	=> 'input',
+		));
+		$this->addElement('text', 'sequencia', array(
 			'class'	=> 'input',
 		));
 

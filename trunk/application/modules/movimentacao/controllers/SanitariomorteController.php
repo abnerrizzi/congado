@@ -90,7 +90,19 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 		$morteForm->setMethod('post');
 		$morteModel = new Model_Db_Sanitario();
 		$morteModel->setTipo(0);
-		$morteForm->getElement('animal')
+		$morteForm->getElement('fichario')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			->removeValidator('NoRecordExists')
+			;
+		$morteForm->getElement('ocorrencia')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			->removeValidator('NoRecordExists')
+			;
+		$morteForm->getElement('sequencia')
+			->setName('Causa');
+		$morteForm->getElement('sequencia')
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')
 			->removeValidator('NoRecordExists')
@@ -117,13 +129,10 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 		}
 
 		$this->view->elements = array(
-			'id',
-			'animal',
+			array('fichario'),
 			'data',
-			'ocorrencia_id',
-			'ocorrencia_cod',
-			'ocorrencia',
-			'dsc',
+			array('ocorrencia'),
+			array('sequencia'),
 			'comentario',
 			'tiposisbov',
 			'delete',

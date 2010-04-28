@@ -95,11 +95,11 @@ class Model_Db_Sanitario extends Model_Db
 			->setIntegrityCheck(false)
 			->from($this->_name, array('id', 'fazenda_id', 'fichario_id', 'tipo_id', 'sequencial',
 			'data' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')"),
-			'ocorrencia_id', 'sequencia', 'comentario',
+			'ocorrencia_id', 'comentario',
 			'dataproximo' => new Zend_Db_Expr("DATE_FORMAT(dataproximo, '%d/%m/%Y')"),
 			'old', 'tiposisbov'), $this->_schema)
 			->joinLeft(array('t' => 'sanitario_tipo'), 'tipo_id = t.id', array(), $this->_schema)
-			->joinLeft(array('f' => 'fichario'), 'fichario_id = f.id', array('fichario' => 'nome'), $this->_schema)
+			->joinLeft(array('f' => 'fichario'), 'fichario_id = f.id', array('fichario_cod' => 'cod', 'fichario' => 'nome'), $this->_schema)
 			->joinLeft(array('d' => 'doenca'), 'ocorrencia_id = d.id', array('ocorrencia_cod' => 'cod', 'ocorrencia' => 'dsc'), $this->_schema)
 		;
 
@@ -107,21 +107,21 @@ class Model_Db_Sanitario extends Model_Db
 			$select->joinLeft(
 				array('s' => 'morte'),
 				'sequencia = s.id',
-				array('old' => 's.dsc'),
+				array('sequencia_id'  => 's.id', 'sequencia_cod' => 's.cod', 'sequencia'  => 's.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 1) {
 			$select->joinLeft(
 				array('s' => 'destino'),
 				'sequencia = s.id',
-				array('old' => 's.dsc'),
+				array('sequencia_id'  => 's.id', 'sequencia_cod' => 's.cod', 'sequencia'  => 's.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 2) {
 			$select->joinLeft(
 				array('s' => 'destino'),
 				'sequencia = s.id',
-				array('old' => 's.dsc'),
+				array('sequencia_id'  => 's.id', 'sequencia_cod' => 's.cod', 'sequencia'  => 's.dsc'),
 				$this->_schema
 			);
 		} else {
