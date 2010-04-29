@@ -122,8 +122,12 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 			if ($morteForm->isValid($request->getPost())) {
 				$values = $morteForm->getValues(true);
 				unset($values['submit'], $values['cancel'], $values['delete']);
+				$data['id'] = $values['id'];
+				$data['data'] = $values['data'];
+				$data['sequencia_id'] = $values['sequencia_id'];
+				$data['comentario'] = $values['comentario'];
 				$morteModel->updateRaca($values);
-				$this->_redirect('movimentacao/sanitariomorte/edit');
+				$this->_redirect('movimentacao/sanitariomorte');
 			}
 
 		} else {
@@ -137,6 +141,7 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 		}
 
 		$this->view->elements = array(
+			'id',
 			array('fichario'),
 			'data',
 			array('ocorrencia'),

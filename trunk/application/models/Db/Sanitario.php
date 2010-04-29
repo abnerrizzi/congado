@@ -55,21 +55,21 @@ class Model_Db_Sanitario extends Model_Db
 		if ($this->getTipo() == 0) {
 			$select->joinLeft(
 				array('s' => 'morte'),
-				'sequencia = s.id',
+				'sequencia_id = s.id',
 				array('old' => 's.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 1) {
 			$select->joinLeft(
 				array('s' => 'destino'),
-				'sequencia = s.id',
+				'sequencia_id = s.id',
 				array('old' => 's.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 2) {
 			$select->joinLeft(
 				array('s' => 'destino'),
-				'sequencia = s.id',
+				'sequencia_id = s.id',
 				array('old' => 's.dsc'),
 				$this->_schema
 			);
@@ -106,21 +106,21 @@ class Model_Db_Sanitario extends Model_Db
 		if ($this->getTipo() == 0) {
 			$select->joinLeft(
 				array('s' => 'morte'),
-				'sequencia = s.id',
+				'sequencia_id = s.id',
 				array('sequencia_id'  => 's.id', 'sequencia_cod' => 's.cod', 'sequencia'  => 's.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 1) {
 			$select->joinLeft(
 				array('s' => 'destino'),
-				'sequencia = s.id',
+				'sequencia_id = s.id',
 				array('sequencia_id'  => 's.id', 'sequencia_cod' => 's.cod', 'sequencia'  => 's.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 2) {
 			$select->joinLeft(
 				array('s' => 'destino'),
-				'sequencia = s.id',
+				'sequencia_id = s.id',
 				array('sequencia_id'  => 's.id', 'sequencia_cod' => 's.cod', 'sequencia'  => 's.dsc'),
 				$this->_schema
 			);
@@ -130,7 +130,6 @@ class Model_Db_Sanitario extends Model_Db
 		$select->where("tipo_id = ?", $this->getTipo());
 		$select->where("$this->_name.id = ?", $id);
 		
-//		print '<pre>' . $select;die();
 		$row = $this->fetchRow($select);
 		if (!$row) {
 			throw new Exception("Count not find row $id");
@@ -142,4 +141,18 @@ class Model_Db_Sanitario extends Model_Db
 		return $return;
 	}
 
+	public function updateRaca($values)
+	{
+		$_dt = explode('/', $values['data']);
+		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
+
+		$data = array(
+			'data' 			=> $_dt,
+			'sequencia_id'	=> (int)$values['sequencia_id'],
+			'comentario'	=> utf8_encode($values['comentario']),
+		);
+		$where = $this->getAdapter()->quoteInto('id = ?', (int)$values['id']);
+		
+		$this->update($data, $where);
+	}
 }

@@ -24,7 +24,7 @@ class Zend_View_Helper_Javascript extends Zend_View_Helper_Abstract
 	{
 
 		$request = Zend_Controller_Front::getInstance()->getRequest();
-		$file_uri = '/scripts/library/'.$request->getControllerName().'.js';
+		$file_uri = '/scripts/library/'.$request->getModuleName().'/'.$request->getControllerName().'.js';
 		if (file_exists(APPLICATION_PATH . $this->javaScriptPath . $file_uri))
 		{
 			$this->view->headScript()->appendFile($this->view->baseUrl().$file_uri);

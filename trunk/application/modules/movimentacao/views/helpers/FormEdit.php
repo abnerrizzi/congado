@@ -85,7 +85,7 @@ class Zend_View_Helper_FormEdit extends Zend_View_Helper_Abstract
 				$_group = false;
 			}
 
-			if (!is_object($_el) && $_el->getType() == 'Zend_Form_Element_Hidden' || $_el->getName() == 'delete') {
+			if (!is_object($_el) || $_el->getType() == 'Zend_Form_Element_Hidden' || $_el->getName() == 'delete') {
 				continue;
 			}
 
