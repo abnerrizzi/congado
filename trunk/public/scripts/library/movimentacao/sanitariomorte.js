@@ -2,6 +2,7 @@ $(document).ready(function() {
 
 	updateField('#sequencia_cod', 'morte');
 	addSearchIcon('sequencia', baseUrl+'/json/morte', 'Causa Mortis', 'showfilter_morte', 600, 240);
+	addSearchIcon('fichario', baseUrl+'/json/animal', 'animal', 'showfilter_animal', 600, 240);
 
 	campoData("#data", new Date());
 

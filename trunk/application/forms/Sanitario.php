@@ -88,6 +88,7 @@ class Form_Sanitario extends Form_Default
 		$this->addElement('hidden', 'ocorrencia_id');
 		$this->addElement('text', 'ocorrencia_cod', array(
 			'label' => 'Ocorrência',
+			'required' => true,
 			'filters' => array('StringTrim', 'Alnum'),
 			'maxlength' => 4,
 			'size' => 4,

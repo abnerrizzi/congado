@@ -141,7 +141,7 @@ class Model_Db_Sanitario extends Model_Db
 		return $return;
 	}
 
-	public function updateRaca($values)
+	public function updateSanitario($values)
 	{
 		$_dt = explode('/', $values['data']);
 		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
@@ -154,5 +154,10 @@ class Model_Db_Sanitario extends Model_Db
 		$where = $this->getAdapter()->quoteInto('id = ?', (int)$values['id']);
 		
 		$this->update($data, $where);
+	}
+
+	public function addSanitario($post)
+	{
+		throw new Zend_Exception('vai adicionar os dados');
 	}
 }
