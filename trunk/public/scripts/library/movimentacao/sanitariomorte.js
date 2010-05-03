@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	updateField('#sequencia_cod', 'morte');
-	addSearchIcon('sequencia', 'jsonUrl', 'Sequência', 600, 240);
+	addSearchIcon('sequencia', baseUrl+'/json/morte', 'Causa Mortis', 'showfilter_morte', 600, 240);
 
 	campoData("#data", new Date());
 
@@ -116,62 +116,18 @@ function updateField(__fld, __jsonUrl, __qtype)
 
 
 
+
 /**
  * Funcao criada para globalizar o metodo de implementacao do incone de pesquisa
  */
-function addSearchIcon(__parent, __jsonUrl, title, w, h)
+function addSearchIcon(__parent, __jsonUrl, title, function_call, w, h)
 {
 	__id = __parent+'_search';
 	lnk = $('#'+__parent).parent().append(' <a id="'+__id+'"><img alt="" src="'+baseUrl+'/images/search.png"/></a>');
 	__id = '#'+__parent+'_search';
 	$(__id).attr('href', "javascript:void(0);");
 	$('#'+__parent+'_search').click(function() {
-		filterPopup(title, w, h, __jsonUrl, __parent);
+		eval(function_call+"('"+__jsonUrl+"', '"+__parent+"');");
 	});
 }
 
-
-
-function filterPopup(title, w, h, url, input)
-{
-	createDialogFilter(title, w, h);
-}
-
-
-
-function createDialogFilter(title, w, h, modal)
-{
-
-	modal = typeof(modal) != 'undefined' ? modal : true;
-
-	$.each($.browser, function(i) {
-		if ($.browser.mozilla) {
-			_Height = parseInt(20);
-		} else {
-			_Height = parseInt(0);
-		}
-	});
-
-	// Setting default values
-	w = typeof(w) != 'undefined' ? w : 620;
-	h = typeof(h) != 'undefined' ? h : (390 + _Height);
-
-	if ($("#dlg").length == false) {
-		$(document.body).append('<div id="dlg" style="display: none;"><div id="dlg-grid" style="padding: 0px; margin: 0px"></div></div>');
-	}
-
-	$("#dlg").dialog({
-		modal: modal,
-		autoOpen: false,
-		resizable: false,
-		title: title,
-		width: w,
-		height: h
-	});
-
-	$("#dlg").dialog('open');
-
-	// Workaround to set title forced
-	$('#ui-dialog-title-dlg').html(title);
-
-}
