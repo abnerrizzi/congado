@@ -3,7 +3,18 @@ $(document).ready(function() {
 	updateField('#sequencia_cod', 'morte');
 	addSearchIcon('sequencia', 'jsonUrl', 'Sequência', 600, 240);
 
-	$("#data").datepicker({
+	campoData("#data", new Date());
+
+});
+
+
+
+function campoData(fields, __maxDate)
+{
+
+	__maxDate = typeof(__maxDate) != 'undefined' ? __maxDate : 'cod';
+
+	$(fields).datepicker({
 
 		changeMonth: true,
 		changeYear: true,
@@ -22,17 +33,15 @@ $(document).ready(function() {
 	    ],
 	    nextText: 'Próximo',
 	    prevText: 'Anterior',
-	    maxDate: new Date()
-	});
-
-	$("#data").keyup(function(event){
-	        val = $(this).val();
+	    maxDate: __maxDate
+		}).keyup(function(event){
+			val = $(this).val();
 	        if (val.length == 2 || val.length == 5) {
 	        	val = val +'/';
 	        	$(this).val(val);
 	        }
-	});
-});
+		});
+}
 
 
 
@@ -49,9 +58,9 @@ function updateField(__fld, __jsonUrl, __qtype)
 		suffix = '_cod';
 		__fieldName = this.name.substr(0,(this.name.length - suffix.length));
 		__fieldValue = this.value;
-	
+
 		__url = baseUrl + '/json/' + __jsonUrl;
-	
+
 		if (__fieldValue == '') {
 			$("#" + __fieldName + "_id").val(null);
 			$("#" + __fieldName + "_cod").val(null);
@@ -106,6 +115,7 @@ function updateField(__fld, __jsonUrl, __qtype)
 }
 
 
+
 /**
  * Funcao criada para globalizar o metodo de implementacao do incone de pesquisa
  */
@@ -115,29 +125,10 @@ function addSearchIcon(__parent, __jsonUrl, title, w, h)
 	lnk = $('#'+__parent).parent().append(' <a id="'+__id+'"><img alt="" src="'+baseUrl+'/images/search.png"/></a>');
 	__id = '#'+__parent+'_search';
 	$(__id).attr('href', "javascript:void(0);");
-//	$(__id).attr('onclick', 'return filterPopup("'+title+'", '+w+', '+h+', "'+__jsonUrl+'", "'+__parent+'")');
-	$('#'+__parent+'_search').click(function() { filterPopup(title, w, h, __jsonUrl, __parent) });
-//	clickUrl = "return showfilter_pelagem('<?=$this->baseUrl();?>/json/pelagem',this.name);"
+	$('#'+__parent+'_search').click(function() {
+		filterPopup(title, w, h, __jsonUrl, __parent);
+	});
 }
-
-/*
-<a href="javascript:void(0);"
-onclick="return showfilter_pelagem('<?=$this->baseUrl();?>/json/pelagem','pelagem');"
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -148,10 +139,11 @@ function filterPopup(title, w, h, url, input)
 
 
 
-
-
 function createDialogFilter(title, w, h, modal)
 {
+
+	modal = typeof(modal) != 'undefined' ? modal : true;
+
 	$.each($.browser, function(i) {
 		if ($.browser.mozilla) {
 			_Height = parseInt(20);
@@ -163,8 +155,6 @@ function createDialogFilter(title, w, h, modal)
 	// Setting default values
 	w = typeof(w) != 'undefined' ? w : 620;
 	h = typeof(h) != 'undefined' ? h : (390 + _Height);
-
-	modal = typeof(modal) != 'undefined' ? modal : true;
 
 	if ($("#dlg").length == false) {
 		$(document.body).append('<div id="dlg" style="display: none;"><div id="dlg-grid" style="padding: 0px; margin: 0px"></div></div>');

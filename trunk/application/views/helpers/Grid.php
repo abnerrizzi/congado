@@ -145,13 +145,13 @@ $output .= '</td>
 			$__fields = $__fields[$i];
 			if ($_by == $__fields->getColum()) {
 				$output .= '
-		  <td height="1" bgcolor="#FF7015"></td>
+		  <td height="2" bgcolor="#FF7015"></td>
 		  <td bgcolor="#FF7015"></td>
 		  <td bgcolor="#FF7015"></td>
 				';
 			} else {
 				$output .= '
-		  <td height="1" bgcolor="#BFBDB3"></td>
+		  <td height="2" bgcolor="#BFBDB3"></td>
 		  <td bgcolor="#BFBDB3"></td>
 		  <td bgcolor="#BFBDB3"></td>
 				';

@@ -82,7 +82,7 @@ class Form_EstacaoMonta extends Form_Default
 			'required' => true,
 			'filters' => array('StringTrim'),
 			'validators' => array(
-				new Zend_Validate_Date('dd/mm/YYYY')
+				new Zend_Validate_Date('dd/MM/YYYY')
 			),
 			'maxlength' => 10,
 			'size' => 10,
@@ -94,7 +94,7 @@ class Form_EstacaoMonta extends Form_Default
 			'required' => true,
 			'filters' => array('StringTrim'),
 			'validators' => array(
-				new Zend_Validate_Date('dd/mm/YYYY')
+				new Zend_Validate_Date('dd/MM/YYYY')
 			),
 			'maxlength' => 32,
 			'size' => 32,
