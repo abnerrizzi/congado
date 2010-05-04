@@ -27,8 +27,11 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
+		if ($_by == 'dt') {
+			$_by = 'data';
+		}
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $movimentacaoModel->getPaginatorAdapter($_by, $_order, array('id', 'data'));
+		$result	= $movimentacaoModel->getPaginatorAdapter($_by, $_order, array('id', 'dt' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')")));
 		
 		/*
 		 * Paginator
@@ -44,7 +47,7 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 		/*
 		 * Fields
 		 */
-		$fields[] = new Model_Grid_Fields('data', 'Data', 20);
+		$fields[] = new Model_Grid_Fields('dt', 'Data', 20);
 		$fields[] = new Model_Grid_Fields('nome', 'Animal', 150);
 		$fields[] = new Model_Grid_Fields('doenca', 'Ocorrência', 150);
 		$fields[] = new Model_Grid_Fields('old', 'Causa', 250);
@@ -118,8 +121,8 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 				$dsc = $morteForm->getValue('dsc');
 				$morteModel = new Model_Db_Sanitario();
 				$morteModel->setTipo(0);
-				if ($morteModel->addSanitario($post)) {
-					$this->_redirect('/'. $this->getRequest()->getControllerName());
+				if ($morteModel->addSanitarioMorte($this->getRequest()->getParams())) {
+					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 				}
 			} else {
 				$morteForm->populate($formData);

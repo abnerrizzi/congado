@@ -1,9 +1,15 @@
 $(document).ready(function() {
 
-	updateField('#sequencia_cod', 'morte');
-	updateField('#fichario_cod', 'animal', 'fichario.cod');
-	addSearchIcon('sequencia', baseUrl+'/json/morte', 'Causa Mortis', 'showfilter_morte', 600, 240);
-	addSearchIcon('fichario', baseUrl+'/json/animal', 'animal', 'showfilter_animal', 600, 240);
+
+	if (!$('#sequencia_cod').attr('readonly')) {
+		updateField('#sequencia_cod', 'morte');
+		addSearchIcon('sequencia', baseUrl+'/json/morte', 'Causa Mortis', 'showfilter_morte', 600, 240);
+	}
+
+	if (!$("#fichario_cod").attr('readonly')) {
+		addSearchIcon('fichario', baseUrl+'/json/animal', 'animal', 'showfilter_animal', 600, 240);
+		updateField('#fichario_cod', 'animal', 'fichario.cod');
+	}
 
 	campoData("#data", new Date());
 

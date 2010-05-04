@@ -36,14 +36,6 @@ class Model_Db_Sanitario extends Model_Db
 			$cols = array($cols);
 		}
 
-		foreach ($cols as $key => $val) {
-			if ($val == 'data') {
-				$cols[$val] = "DATE_FORMAT($val, '%d/%m/%Y')";
-			} else {
-				$cols[$key] = $val;
-			}
-		}
-
 		$select = $this->select()
 			->setIntegrityCheck(false)
 			->from($this->_name, $cols, $this->_schema)
@@ -156,8 +148,33 @@ class Model_Db_Sanitario extends Model_Db
 		$this->update($data, $where);
 	}
 
-	public function addSanitario($post)
+	public function addSanitarioMorte($post)
 	{
-		throw new Zend_Exception('vai adicionar os dados');
+		$_dt = explode('/', $post['data']);
+		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
+
+		$posts = array (
+			'fichario_id'		=> $post['fichario_id'],
+			'data'				=> $_dt,
+			'ocorrencia_id'		=> $post['ocorrencia_id'],
+			'sequencia_id'		=> $post['sequencia_id'],
+			'comentario'		=> $post['comentario'],
+			'tiposisbov'		=> $post['tiposisbov'],
+			'tipo_id'			=> $this->getTipo(),
+		);
+
+		foreach ($posts as $key => $val) {
+			if ($val == '' && !is_int($val)) {
+				continue;
+			} else {
+				$data[$key] = utf8_encode($val);
+			}
+		}
+
+		if ($this->insert($data)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
