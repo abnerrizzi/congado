@@ -64,7 +64,7 @@ class Form_Sanitario extends Form_Default
 		$this->addElement('text', 'fichario_cod', array(
 			'label' => 'Animal',
 			'filters' => array('StringTrim', 'Alnum'),
-			'maxlength' => 3,
+			'maxlength' => 15,
 			'size' => 4,
 			'class'	=> 'input',
 		));
