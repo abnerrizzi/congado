@@ -139,7 +139,7 @@ class Zend_View_Helper_FormEdit extends Zend_View_Helper_Abstract
 			$excluir = '
 <span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="'.$form->getElement('delete')->getAttrib('onclick').'">
 <span class="UIIcon UIIcon_Delete">&nbsp;</span>
-  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Excluir" name="'.$form->getElement('delete')->getName().'" id="'.$form->getElement('delete')->getId().'" onclick="'.$form->getElement('delete')->getAttrib('onclick').'"/>
+  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Excluir" name="'.$form->getElement('delete')->getName().'" id="'.$form->getElement('delete')->getId().'"/>
 </span>
 
 			';
