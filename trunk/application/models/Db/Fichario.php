@@ -20,6 +20,11 @@ class Model_Db_Fichario extends Model_Db
 
 	public function getPaginatorAdapter($orderby = null, $order = null)
 	{
+
+		if ($orderby == 'data_nascimento') {
+			$orderby = 'dt_nascimento';
+		}
+
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
 			->from(array('f' => $this->_name), array(
@@ -27,12 +32,9 @@ class Model_Db_Fichario extends Model_Db
 				'cod',
 				'nome',
 				'rgn',
-				'dt_nascimento' => new Zend_Db_Expr("DATE_FORMAT(dt_nascimento, '%d/%m/%Y')"),
+				'data_nascimento' => new Zend_Db_Expr("DATE_FORMAT(dt_nascimento, '%d/%m/%Y')"),
 			), $this->_schema)
-//			->joinLeft('raca', 'f.raca_id = raca.id', array('raca_dsc' => 'dsc'), $this->_schema)
 			->joinLeft('local', 'f.local_id = local.id', array('local_dsc' => 'dsc'), $this->_schema)
-//			faz o join recortando/delimitando a quantidade de caracteres
-//			->joinLeft('fazenda', 'f.fazenda_id = fazenda.id', array('fazenda_dsc' => new Zend_Db_Expr("SUBSTRING(descricao, 1, 30)")), $this->_schema)
 			->joinLeft('fazenda', 'f.fazenda_id = fazenda.id', array('fazenda_dsc' => 'descricao'), $this->_schema)
 			->order($orderby .' '. $order)
 			;

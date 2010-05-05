@@ -53,7 +53,7 @@ class FicharioController extends Zend_Controller_Action
 		 */
 		$fields[] = new Model_Grid_Fields('cod', 'Animal', 65);
 		$fields[] = new Model_Grid_Fields('nome','Nome', 120);
-		$fields[] = new Model_Grid_Fields('dt_nascimento','Dt Nasc.', 60);
+		$fields[] = new Model_Grid_Fields('data_nascimento','Dt Nasc.', 60);
 		$fields[] = new Model_Grid_Fields('rgn','RGN', 60);
 		$fields[] = new Model_Grid_Fields('fazenda_dsc','Fazenda', 320);
 
