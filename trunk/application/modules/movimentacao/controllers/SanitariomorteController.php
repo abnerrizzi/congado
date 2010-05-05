@@ -111,7 +111,6 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 			array('sequencia'),
 			'comentario',
 			'tiposisbov',
-			'delete',
 		);
 
 		if ($this->getRequest()->isPost()) {
@@ -138,7 +137,7 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 		$morteForm	= new Form_Sanitario();
 
 		$morteForm->setName('controle_sanitario_-_morte');
-		$morteForm->setAction('/movimentacao/sanitariomorte/edit');
+		$morteForm->setAction('/'.$request->getModuleName().'/'.$request->getControllerName().'/edit');
 		$morteForm->setMethod('post');
 		$morteModel = new Model_Db_Sanitario();
 		$morteModel->setTipo(0);
@@ -205,5 +204,27 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 		$this->view->form = $morteForm;
 	}
 
+	public function deleteAction()
+	{
+		$request		= $this->getRequest();
+		$morteForm	= new Form_Sanitario();
+		$morteForm->setAction('/'.$request->getModuleName().'/'.$request->getControllerName().'/delete');
+		$morteForm->setMethod('post');
+		$morteModel = new Model_Db_Sanitario();
+		$morteModel->setTipo(0);
+
+		$morteId = (int)$request->getParam('id');
+		if ($request->isPost() && $request->getParam('param', false) == 'movimentacao/sanitariomorte') {
+			$morteModel->deleteMorte($morteId);
+			$this->view->error = false;
+			$this->view->msg = 'Registro apagado com sucesso.';
+		} else {
+			$this->view->error = true;
+			$this->view->msg = 'Erro tentando apagar registro('.$morteId.')';
+		}
+		$this->view->url = $this->getRequest()->getModuleName()
+			. '/' . $this->getRequest()->getControllerName()
+			.'/index';
+	}
 }
 

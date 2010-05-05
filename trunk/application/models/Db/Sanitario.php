@@ -135,6 +135,9 @@ class Model_Db_Sanitario extends Model_Db
 
 	public function updateSanitario($values)
 	{
+		if ($this->getTipo() != 0) {
+			throw new Zend_Exception('Erro inesperado');
+		}
 		$_dt = explode('/', $values['data']);
 		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
 
@@ -150,6 +153,9 @@ class Model_Db_Sanitario extends Model_Db
 
 	public function addSanitarioMorte($post)
 	{
+		if ($this->getTipo() != 0) {
+			throw new Zend_Exception('Erro inesperado');
+		}
 		$_dt = explode('/', $post['data']);
 		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
 
@@ -177,4 +183,10 @@ class Model_Db_Sanitario extends Model_Db
 			return false;
 		}
 	}
+
+	public function deleteMorte($id)
+	{
+		$this->delete('id = ' . (int)$id);
+	}
+
 }
