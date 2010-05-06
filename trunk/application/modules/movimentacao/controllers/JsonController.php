@@ -54,4 +54,9 @@ class Movimentacao_JsonController extends Zend_Controller_Action
 
 	}
 
+	public function sanitariomorteAction()
+	{
+		$request = $this->getRequest()->getParams();
+		die();
+	}
 }

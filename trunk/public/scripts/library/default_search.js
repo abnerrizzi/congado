@@ -3,7 +3,7 @@ $(document).ready(function() {
 	if (typeof(__module) == 'undefined') {
 		__action = editUrl.split("/")[1];
 	} else {
-		baseUrl = baseUrl + '/' + __module;
+//		__baseUrl = baseUrl + '/' + __module;
 		__action = editUrl.split("/")[2];
 	}
 
@@ -14,7 +14,7 @@ $(document).ready(function() {
 			'Pesquisar\n'+
 			'</span></a>\n'+
 			'\n'
-//			'<td width="2%" align="right"><a href="javascript:void(0);" id="search" title="Pesquisar"><img src="' + baseUrl + '/images/search.png" alt="Pesquisar"/></a></td>'
+//			'<td width="2%" align="right"><a href="javascript:void(0);" id="search" title="Pesquisar"><img src="' + __baseUrl + '/images/search.png" alt="Pesquisar"/></a></td>'
 	);
 
 	var _Height = checkBrowser();

@@ -57,15 +57,15 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'movimentacao/sanitariomorte',
+			'module'	=> 'movimentacao/sanitariopreventivo',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'movimentacao/sanitariomorte',
+			'module'	=> 'movimentacao/sanitariopreventivo',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'movimentacao/sanitariomorte',
+			'module'	=> 'movimentacao/sanitariopreventivo',
 			'action'	=> 'add',
 		));
 
