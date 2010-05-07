@@ -160,3 +160,20 @@ jQuery.fn.centerx = function () {
     this.css("left", ( $(window).width() - this.width() ) / 2+$(window).scrollLeft() + "px");
     return this;
 };
+
+
+function getRecord(row) {
+	__id = row.attr("id").substr(3);
+	url = baseUrl + '/'+__action+'/edit/id/' + __id;
+	$(location).attr('href', url);
+	$("#search").dialog('close');
+}
+
+function checkBrowser()
+{
+	if ($.browser.mozilla) {
+		return parseInt(20);
+	} else {
+		return parseInt(0);
+	}
+}
