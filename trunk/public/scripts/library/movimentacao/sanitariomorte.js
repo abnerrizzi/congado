@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
 	if (!$('#sequencia_cod').attr('readonly')) {
 		updateField('#sequencia_cod', 'morte');
 		addSearchIcon('sequencia', baseUrl+'/json/morte', 'Causa Mortis', 'showfilter_morte', 600, 240);
