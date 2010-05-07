@@ -75,7 +75,55 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 
 	public function addAction()
 	{
-		throw new Zend_Controller_Action_Exception('Controlador não implementado');
+
+		$morteForm = new Form_Sanitario();
+		$morteForm->setName('controle_sanitario_-_preventivo');
+		$morteForm->setAction('/movimentacao/sanitariomorte/add');
+		$morteForm->setMethod('post');
+
+		$morteForm->getElement('fichario')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			->removeValidator('NoRecordExists')
+			;
+
+		$morteForm->getElement('sequencia_cod')
+			->setLabel('Causa');
+		$morteForm->getElement('sequencia')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			->removeValidator('NoRecordExists')
+			;
+		/*
+		 * Procedimento de validacao e inclusao
+		 */
+
+		$morteForm->getElement('ocorrencia_id')->setValue(2);
+		$this->view->form = $morteForm;
+		$this->view->elements = array(
+			'id',
+			array('fichario'),
+			'data',
+			'ocorrencia_id',
+			array('sequencia'),
+			'comentario',
+			'tiposisbov',
+		);
+
+		if ($this->getRequest()->isPost()) {
+			$formData = $this->getRequest()->getPost();
+			if ($morteForm->isValid($formData)) {
+				$cod = $morteForm->getValue('cod');
+				$dsc = $morteForm->getValue('dsc');
+				$morteModel = new Model_Db_Sanitario();
+				$morteModel->setTipo(0);
+				if ($morteModel->addSanitarioMorte($this->getRequest()->getParams())) {
+					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
+				}
+			} else {
+				$morteForm->populate($formData);
+			}
+		}
 	}
 
 }
