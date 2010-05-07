@@ -2,6 +2,7 @@ $(document).ready(function() {
 
 	if (typeof(__module) == 'undefined') {
 		__action = editUrl.split("/")[1];
+		__module = '';
 	} else {
 //		__baseUrl = baseUrl + '/' + __module;
 		__action = editUrl.split("/")[2];
@@ -14,7 +15,6 @@ $(document).ready(function() {
 			'Pesquisar\n'+
 			'</span></a>\n'+
 			'\n'
-//			'<td width="2%" align="right"><a href="javascript:void(0);" id="search" title="Pesquisar"><img src="' + __baseUrl + '/images/search.png" alt="Pesquisar"/></a></td>'
 	);
 
 	var _Height = checkBrowser();
@@ -32,11 +32,11 @@ $(document).ready(function() {
 			}).attr('id', 'search');
 	$dialog.html('<div id="search-default"></div>');
 
-	$('a#search span').click(function(){
+	$('a#search').click(function(){
 		$dialog.dialog('open');
 		$("#search-default").flexigrid(
 		{
-			url: baseUrl + '/json/'+__action+'',
+			url: baseUrl +'/'+ __module +'/json/'+ __action,
 			dataType: 'json',
 			colModel : [{
 					display: 'Codigo',
@@ -79,18 +79,3 @@ $(document).ready(function() {
 
 });
 
-function getRecord(row) {
-	__id = row.attr("id").substr(3);
-	url = baseUrl + '/'+__action+'/edit/id/' + __id;
-	$(location).attr('href', url);
-	$("#search").dialog('close');
-}
-
-function checkBrowser()
-{
-	if ($.browser.mozilla) {
-		return parseInt(20);
-	} else {
-		return parseInt(0);
-	}
-}
