@@ -1,0 +1,142 @@
+<?php
+
+$this->javascript();
+
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.maskedinput.js')
+	->appendFile($this->baseUrl() . '/scripts/library/_filters.js')
+	;
+	
+$this->headLink()
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.core.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.datepicker.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.theme.css')
+	;
+
+//echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
+//echo $this->form->fichario_cod->getLabel();
+//echo $this->form->fichario_cod->removeDecorator('tag')->removeDecorator('label');
+?>
+
+<br/><br/>
+<form name="<?=$this->form->getName();?>" id="<?=$this->form->getId();?>" action="<?=$this->baseUrl . $this->form->getAction();?>" method="post">
+
+<table
+	id="form"
+	align="center"
+	border="0"
+	cellpadding="0"
+	cellspacing="0"
+	bgcolor="#F7F6F4"
+	class="content"
+	style="	border-right: 1px solid #CCCCCC;
+			border-bottom: 1px solid #CCCCCC;
+			border-left: 1px solid #919191;
+			font-size: 12px;">
+
+  <tr style="background: url('/congado/public/images/grid/bg_title.gif');">
+    <td width="20" ></td>
+    <td colspan="8" height="20" width="480" style="font-size: 11px;"><b><?=str_replace('_', ' ', strtoupper($this->form->getName()));?></b></td>
+  </tr>
+ 
+  <tr>
+    <td height="2" bgcolor="#f36400" colspan="9"/>
+  </tr>
+
+
+
+  <tr>
+	<td height="10" colspan="5"> </td>
+  </tr>
+  <tr>
+	<td width="20"></td>
+	<td class="label"><?=$this->form->data->getLabel();?>:</td>
+	<td width="10"></td>
+	<td class="element"><?=$this->form->data->removeDecorator('tag')->removeDecorator('label');?></td>
+	<td width="50"></td>
+  </tr>
+ 
+  <tr>
+	<td height="10" colspan="5"> </td>
+  </tr>
+  <tr>
+	<td width="20"></td>
+	<td class="label"><?=$this->form->ocorrencia_cod->getLabel();?>:</td>
+	<td width="10"></td> 
+	<td class="element">
+<?=$this->form->ocorrencia_id->removeDecorator('tag')->removeDecorator('label');?>
+<?=$this->form->ocorrencia_cod->removeDecorator('tag')->removeDecorator('label');?>
+<?=$this->form->ocorrencia->removeDecorator('tag')->removeDecorator('label');?></td>
+	<td width="50"></td>
+  </tr>
+
+
+
+  <tr>
+	<td height="10" colspan="5"/>
+  </tr>
+
+  <tr>
+    <td width="20"></td>
+	<td colspan="3">
+	  <div id="fichario_grid" style="border: 1px solid; width: 100%;">
+
+<table>
+  <tr>
+	<td width="20"></td>
+	<td class="label"><?=$this->form->fichario_cod->getLabel();?>:</td>
+	<td width="10"></td> 
+	<td class="element">
+<?=$this->form->fichario_cod->removeDecorator('tag')->removeDecorator('label');?>
+<?=$this->form->fichario->removeDecorator('tag')->removeDecorator('label');?>
+	<td width="50"></td>
+  </tr>
+</table>
+
+<fieldset style="width: 400px;"> 
+	<legend>Animais</legend> 
+</fieldset>
+      </div>
+    </td>
+	<td width="50"></td>
+  </tr>
+
+  <tr>
+	<td height="10" colspan="5"/>
+  </tr>
+
+  <tr>
+	<td width="20"></td>
+
+	<td align="center">
+
+	</td>
+	<td width="10"></td>
+	<td align="center">
+<span class="UIButton UIButton_Large UIFormButton  UIButton_Blue" onclick="$('#controle_sanitario__preventivo').submit();">
+<span class="UIIcon UIIcon_Save">&nbsp;</span>
+  <input style="display: inline-block;" class="UIButton_Text" type="submit" value="Salvar" name="submit_" id="submit_"/>
+</span>
+
+
+<span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = '/congado/public/movimentacao/sanitariopreventivo'; return false;">
+<span class="UIIcon UIIcon_Cancel">&nbsp;</span>
+  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="cancel" id="cancel" onclick="location.href = '/congado/public/movimentacao/sanitariopreventivo'; return false;"/>
+</span>
+
+    </td>
+	<td width="50"></td>
+  </tr>
+
+  <tr>
+	<td height="10" colspan="5"/>
+  </tr>
+
+</table>
+</form>
+
+
+<div id="dlg" style="display: none;">
+  <div id="dlg-grid" style="padding: 0px; margin: 0px"></div>
+</div>

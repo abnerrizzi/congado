@@ -87,27 +87,25 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 			->removeValidator('NoRecordExists')
 			;
 
-		$morteForm->getElement('sequencia_cod')
-			->setLabel('Causa');
-		$morteForm->getElement('sequencia')
+		$morteForm->getElement('ocorrencia')
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')
 			->removeValidator('NoRecordExists')
 			;
+
+		$morteForm->getElement('data')
+			->setLabel('Data')
+			;
+
 		/*
 		 * Procedimento de validacao e inclusao
 		 */
 
-		$morteForm->getElement('ocorrencia_id')->setValue(2);
+		$morteForm->getElement('sequencia_id')->setValue(3);
 		$this->view->form = $morteForm;
 		$this->view->elements = array(
-			'id',
-			array('fichario'),
 			'data',
-			'ocorrencia_id',
-			array('sequencia'),
-			'comentario',
-			'tiposisbov',
+			array('ocorrencia'),
 		);
 
 		if ($this->getRequest()->isPost()) {
@@ -116,7 +114,7 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 				$cod = $morteForm->getValue('cod');
 				$dsc = $morteForm->getValue('dsc');
 				$morteModel = new Model_Db_Sanitario();
-				$morteModel->setTipo(0);
+				$morteModel->setTipo(2);
 				if ($morteModel->addSanitarioMorte($this->getRequest()->getParams())) {
 					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 				}

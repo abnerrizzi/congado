@@ -1,16 +1,22 @@
 $(document).ready(function() {
 
-	if (!$('#sequencia_cod').attr('readonly')) {
-		updateField('#sequencia_cod', 'morte');
-		addSearchIcon('sequencia', baseUrl+'/json/morte', 'Causa Mortis', 'showfilter_morte', 600, 240);
-	}
-
-	if (!$("#fichario_cod").attr('readonly')) {
-		addSearchIcon('fichario', baseUrl+'/json/animal', 'animal', 'showfilter_animal', 600, 240);
-		updateField('#fichario_cod', 'animal', 'fichario.cod');
+	if (!$('#ocorrencia_cod').attr('readonly')) {
+		updateField('#ocorrencia_cod', 'doenca');
+		addSearchIcon('ocorrencia', baseUrl+'/json/doenca', 'Doenças', 'showfilter_doenca', 600, 240);
 	}
 
 	campoData("#data", new Date());
+
+	$("#fichario_grid").parent().css('text-align', 'center');
+
+	$("#fichario_cod").keypress(function(e) {
+		if(e.keyCode==13){
+            window.alert('Enter');
+		} else {
+			window.alert('Outra');
+		}
+		return false;
+	});
 
 });
 

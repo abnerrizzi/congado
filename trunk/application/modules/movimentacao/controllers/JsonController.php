@@ -59,4 +59,18 @@ class Movimentacao_JsonController extends Zend_Controller_Action
 		$request = $this->getRequest()->getParams();
 		die();
 	}
+
+	public function animalAction()
+	{
+		$request = $this->getRequest();
+		$x = array (
+			'id',
+			'cod',
+			'nome',
+			'now()',
+		);
+
+		$modelM = new Model_Db_Fichario();
+	}
+
 }

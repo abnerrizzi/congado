@@ -579,6 +579,53 @@ function createDialog(title, w, h, modal)
 
 
 
+function showfilter_doenca(url, input)
+{
+	createDialog('Doenças');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
+		{
+			url: url,
+			dataType: 'json',
+			colModel : [{
+					display: 'Raça',
+					name : 'cod',
+					width : 40,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Descrição',
+					name : 'dsc',
+					width : 180,
+					sortable : true,
+					align: 'left'
+				}],
+			searchitems : [{
+					display: 'Raça',
+					name : 'cod'
+				}, {
+					display: 'Descrição',
+					name : 'dsc',
+					isdefault: true
+				}],
+			sortname: "cod",
+			sortorder: "asc",
+			usepager: true,
+			title: false,
+			useRp: true,
+			rp: 10,
+			showTableToggleBtn: false,
+			pagestat: 'Mostrando {from} até {to} de {total} itens',
+			width: 600,
+			height: (240 + _Height),
+			onSelect: function(row) {
+				changeField(row, input);
+			}
+		});
+		$("#dlg").fadeIn(200);
+	}
+}
+
 function showfilter_morte(url, input)
 {
 	createDialog('Causas Mortis');
