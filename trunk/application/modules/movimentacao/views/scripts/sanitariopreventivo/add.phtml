@@ -85,18 +85,19 @@ $this->headLink()
 <table>
   <tr>
 	<td width="20"></td>
-	<td class="label"><?=$this->form->fichario_cod->getLabel();?>:</td>
+	<td class="label" align="left"><?=$this->form->fichario_cod->getLabel();?>:</td>
 	<td width="10"></td> 
 	<td class="element">
 <?=$this->form->fichario_cod->removeDecorator('tag')->removeDecorator('label');?>
-<?=$this->form->fichario->removeDecorator('tag')->removeDecorator('label');?>
-	<td width="50"></td>
+	</td>
   </tr>
 </table>
 
 <fieldset style="width: 400px;"> 
-	<legend>Animais</legend> 
+	<legend style="text-align: left;">Animais</legend>
+	<br/>
 </fieldset>
+<br/>
       </div>
     </td>
 	<td width="50"></td>

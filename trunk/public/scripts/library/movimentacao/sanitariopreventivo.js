@@ -10,16 +10,15 @@ $(document).ready(function() {
 	$("#fichario_grid").parent().css('text-align', 'center');
 
 	$("#fichario_cod").keypress(function(e) {
-		if(e.keyCode==13){
-            window.alert('Enter');
-		} else {
-			window.alert('Outra');
+
+		if (e.keyCode == 13) {
+            window.alert('Enter: ' + e.value);
+            return false;
 		}
-		return false;
+
 	});
 
 });
-
 
 
 /*
