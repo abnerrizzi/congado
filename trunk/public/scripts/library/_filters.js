@@ -534,6 +534,82 @@ function showfilter_animal(url, input)
 
 }
 
+function showfilter_animalDoenca(url, input)
+{
+
+	createDialog('Animal');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
+		{
+			url: url,
+			dataType: 'json',
+			colModel : [{
+					display: 'Animal',
+					name : 'cod',
+					width : 80,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Nome',
+					name : 'nome',
+					width : 160,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'RGN',
+					name : 'rgn',
+					width : 80,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'SISBOV',
+					name : 'sisbov',
+					width : 80,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Sexo',
+					name : 'sexo',
+					width : 40,
+					sortable : true,
+					align: 'left'
+				}],
+			searchitems : [{
+					display: 'Animal',
+					name : 'fichario.cod'
+				}, {
+					display: 'Nome',
+					name : 'nome',
+					isdefault: true
+				}, {
+					display: 'RGN',
+					name : 'rgn',
+					isdefault: true
+				}, {
+					display: 'SISBOV',
+					name : 'fichario.sisbov',
+					isdefault: true
+				}],
+			sortname: "nome",
+			sortorder: "asc",
+			usepager: true,
+			title: false,
+			useRp: true,
+			rp: 10,
+			showTableToggleBtn: false,
+			pagestat: 'Mostrando {from} até {to} de {total} itens',
+			width: 600,
+			height: (240 + _Height),
+			onSelect: function(row, input) {
+				__id = row.attr("id").substr(3);
+				__cod = $("#row"+__id+" td: div")[0].innerHTML;
+				$('#'+input).value(__cod);
+			}
+		});
+		$("#dlg").fadeIn(200);
+	}
+
+}
 /**
  * 
  * @param title

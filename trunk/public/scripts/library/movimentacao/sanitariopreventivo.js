@@ -5,10 +5,11 @@ $(document).ready(function() {
 		addSearchIcon('ocorrencia', baseUrl+'/json/doenca', 'Doenças', 'showfilter_doenca', 600, 240);
 	}
 
+	addSearchIcon('fichario_cod', baseUrl+'/json/animal', 'Doenças', 'showfilter_animalDoenca', 600, 240);
+
 	campoData("#data", new Date());
 
 	$("#fichario_grid").parent().css('text-align', 'center');
-
 	$("#fichario_cod").keypress(function(e) {
 
 		if (e.keyCode == 13) {
