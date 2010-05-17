@@ -13,10 +13,50 @@ $(document).ready(function() {
 	$("#fichario_cod").keypress(function(e) {
 
 		if (e.keyCode == 13) {
-            window.alert('Enter: ' + e.value);
+            window.alert('Enter: ' + this.value);
+            window.alert(baseUrl + '/movimentacao/json/animalpreventivo');
+
+
+
+            $.post(baseUrl + '/movimentacao/json/animalpreventivo', {
+        		cod		: this.value,
+        		fazenda_id	: __fieldValue,
+        		sexo	: __sexo,
+        		like	: 'false',
+        		ajax	: 'true'
+        	}, function(j) {
+        		j = j.rows;
+        		if (j && j.length == 1) {
+        			$("#" + __fieldName + "_id").val(j[0].id);
+        			$("#" + __fieldName + "_cod").val(j[0].cell[0]);
+        			$("#" + __fieldName).val(j[0].cell[1]);
+        		} else {
+        			$("#ajax_loader").html("Código não encontrado").show();
+        			$("#" + __fieldName + "_id").val(null);
+//        			$("#" + __fieldName + "_cod").val(null);
+        			$("#" + __fieldName).val(null);
+        			setTimeout(function(){
+        				$("#ajax_loader").fadeOut(300); }
+        			, 2000);
+        			return false;
+        		}
+        		$("#ajax_loader").fadeOut(100);
+        	}, "json");
+
+            $.ajax({
+            	type: 'POST',
+            	url: baseUrl + '/movimentacao/json/animalpreventivo',
+            	data: data,
+            	success: success,
+            	dataType: 'json'
+            });
             return false;
 		}
 
+	});
+
+	$("#fichario_cod").keyup(function() {
+		this.value = this.value.toUpperCase();
 	});
 
 });
