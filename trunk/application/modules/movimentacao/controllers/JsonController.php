@@ -78,7 +78,7 @@ class Movimentacao_JsonController extends Zend_Controller_Action
 		$animalModel = new Model_Db_Fichario();
 		$data = array(
 			'cod'			=> $this->getRequest()->getParam('cod'),
-//			'fazenda_id'	=> $this->getRequest()->getParam('fazenda_id'),
+			'fazenda_id'	=> $this->getRequest()->getParam('fazenda_id'),
 		);
 		$return = $animalModel->findPreventivoMorte($data);
 		print json_encode($return);
