@@ -58,6 +58,12 @@ class Form_Sanitario extends Form_Default
 		$this->setName('causas_mortis');
 		$this->addElement('hidden', 'id');
 
+		$this->addElement('select', 'fazenda_id', array(
+			'label' => 'Fazenda',
+			'required' => true,
+			'class'	=> 'input',
+		));
+
 		$this->addElement('hidden', 'fichario_id', array(
 			'required' => true
 		));

@@ -81,6 +81,16 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 		$morteForm->setAction('/movimentacao/sanitariomorte/add');
 		$morteForm->setMethod('post');
 
+		$fazendaModel = new Model_Db_Fazenda();
+		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
+		$morteForm->getElement('fazenda_id')
+			->addMultiOption(false, '--');
+
+		foreach ($fazendas as $fazenda) {
+			$morteForm->getElement('fazenda_id')
+				->addMultiOption($fazenda['id'], $fazenda['descricao']);
+		}
+
 		$morteForm->getElement('fichario')
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')
@@ -100,10 +110,10 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 		/*
 		 * Procedimento de validacao e inclusao
 		 */
-
 		$morteForm->getElement('sequencia_id')->setValue(3);
 		$this->view->form = $morteForm;
 		$this->view->elements = array(
+			'fazenda_id',
 			'data',
 			array('ocorrencia'),
 		);

@@ -177,3 +177,76 @@ function checkBrowser()
 		return parseInt(0);
 	}
 }
+
+
+
+
+
+
+
+
+
+function DumpObject(obj)
+{
+	var od = new Object;
+	var result = "";
+	var len = 0;
+
+	for (var property in obj)
+	{
+		var value = obj[property];
+		if (typeof value == 'string')
+			value = "'" + value + "'";
+		else if (typeof value == 'object')
+		{
+			if (value instanceof Array)
+			{
+				value = "[ " + value + " ]";
+			} else {
+				var ood = DumpObject(value);
+				value = "{ " + ood.dump + " }";
+			}
+		}
+		result += "'" + property + "' : " + value + ", ";
+		len++;
+	}
+	od.dump = result.replace(/, $/, "");
+	od.len = len;
+
+	return od;
+}
+
+
+
+function createDialog(title, w, h, modal)
+{
+	$.each($.browser, function(i) {
+		if ($.browser.mozilla) {
+			_Height = parseInt(20);
+		} else {
+			_Height = parseInt(0);
+		}
+	});
+
+	// Setting default values
+	w = typeof(w) != 'undefined' ? w : 620;
+	h = typeof(h) != 'undefined' ? h : (390 + _Height);
+
+	modal = typeof(modal) != 'undefined' ? modal : true;
+
+	$("#dlg").dialog({
+		modal: modal,
+		autoOpen: false,
+		resizable: false,
+		title: title,
+		width: w,
+		height: h
+	});
+
+	$("#dlg").dialog('open');
+	$("#dlg").html('<div id="dlg-grid" style="padding: 0px; margin: 0px"></div>');
+
+	// Workaround to set title forced
+	$('#ui-dialog-title-dlg').html(title);
+
+}

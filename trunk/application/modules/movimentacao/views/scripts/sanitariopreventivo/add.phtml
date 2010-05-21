@@ -51,6 +51,17 @@ $this->headLink()
   </tr>
   <tr>
 	<td width="20"></td>
+	<td class="label"><?=$this->form->fazenda_id->getLabel();?>:</td>
+	<td width="10"></td>
+	<td class="element"><?=$this->form->fazenda_id->removeDecorator('tag')->removeDecorator('label');?></td>
+	<td width="50"></td>
+  </tr>
+ 
+  <tr>
+	<td height="10" colspan="5"> </td>
+  </tr>
+  <tr>
+	<td width="20"></td>
 	<td class="label"><?=$this->form->data->getLabel();?>:</td>
 	<td width="10"></td>
 	<td class="element"><?=$this->form->data->removeDecorator('tag')->removeDecorator('label');?></td>
@@ -89,6 +100,7 @@ $this->headLink()
 	<td width="10"></td> 
 	<td class="element">
 <?=$this->form->fichario_cod->removeDecorator('tag')->removeDecorator('label');?>
+<span id="input_info" class="UIIcon UIIcon_Exclamation" style="float: right;">&nbsp;</span>
 	</td>
   </tr>
 </table>
@@ -141,3 +153,5 @@ $this->headLink()
 <div id="dlg" style="display: none;">
   <div id="dlg-grid" style="padding: 0px; margin: 0px"></div>
 </div>
+
+<div id="error" style="display: none;"></div>

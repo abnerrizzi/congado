@@ -9,49 +9,45 @@ $(document).ready(function() {
 
 	campoData("#data", new Date());
 
+//	input_info;
+
 	$("#fichario_grid").parent().css('text-align', 'center');
 	$("#fichario_cod").keypress(function(e) {
 
 		if (e.keyCode == 13) {
-            window.alert('Enter: ' + this.value);
-            window.alert(baseUrl + '/movimentacao/json/animalpreventivo');
 
+			// Check if fazenda is selected
+			if ($('#fazenda_id').val() == "") {
+				$("#ajax_loader").html("Por favor selecione uma fazenda").fadeIn(100);
+				setTimeout(function(){
+					$("#ajax_loader").fadeOut(300); }
+				, 2000);
+				$('#fazenda_id').focus();
+				return false;
+			}
 
+			// Check if cod is present
+			if (this.value == "") {
+				return false;
+			}
 
-            $.post(baseUrl + '/movimentacao/json/animalpreventivo', {
-        		cod		: this.value,
-        		fazenda_id	: __fieldValue,
-        		sexo	: __sexo,
-        		like	: 'false',
-        		ajax	: 'true'
-        	}, function(j) {
-        		j = j.rows;
-        		if (j && j.length == 1) {
-        			$("#" + __fieldName + "_id").val(j[0].id);
-        			$("#" + __fieldName + "_cod").val(j[0].cell[0]);
-        			$("#" + __fieldName).val(j[0].cell[1]);
-        		} else {
-        			$("#ajax_loader").html("Código não encontrado").show();
-        			$("#" + __fieldName + "_id").val(null);
-//        			$("#" + __fieldName + "_cod").val(null);
-        			$("#" + __fieldName).val(null);
-        			setTimeout(function(){
-        				$("#ajax_loader").fadeOut(300); }
-        			, 2000);
-        			return false;
-        		}
-        		$("#ajax_loader").fadeOut(100);
-        	}, "json");
+            ajaxUrl = baseUrl + '/movimentacao/json/animalpreventivo';
+            $.post(ajaxUrl, {
+            	fazenda_id: $('#fazenda_id').val(),
+            	cod:		this.value,
+            	rand:		Math.random()
+            }, function(j) {
+            	if (typeof(j.error) != 'undefined') {
+            		createDialog('ERRO', 480, 240);
+            		$("#dlg").html(j.error);
+            		$("#dlg").dialog();
+            	} else {
+            		window.alert('retornou algo q nao eh erro');
+            	}
+            }, "json");
 
-            $.ajax({
-            	type: 'POST',
-            	url: baseUrl + '/movimentacao/json/animalpreventivo',
-            	data: data,
-            	success: success,
-            	dataType: 'json'
-            });
             return false;
-		}
+	}
 
 	});
 

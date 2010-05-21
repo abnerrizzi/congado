@@ -839,37 +839,6 @@ function showfilter_animal(url, input)
  * @param modal
  * @return
  */
-function createDialog(title, w, h, modal)
-{
-	$.each($.browser, function(i) {
-		if ($.browser.mozilla) {
-			_Height = parseInt(20);
-		} else {
-			_Height = parseInt(0);
-		}
-	});
-
-	// Setting default values
-	w = typeof(w) != 'undefined' ? w : 620;
-	h = typeof(h) != 'undefined' ? h : (390 + _Height);
-
-	modal = typeof(modal) != 'undefined' ? modal : true;
-
-	$("#dlg").dialog({
-		modal: modal,
-		autoOpen: false,
-		resizable: false,
-		title: title,
-		width: w,
-		height: h
-	});
-
-	$("#dlg").dialog('open');
-
-	// Workaround to set title forced
-	$('#ui-dialog-title-dlg').html(title);
-
-}
 
 
 

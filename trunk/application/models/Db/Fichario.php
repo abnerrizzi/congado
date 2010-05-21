@@ -360,4 +360,16 @@ class Model_Db_Fichario extends Model_Db
 		$array = $this->fetchAll($this->_select)->toArray();
 		return $array;
 	}
+
+	public function findPreventivoMorte($data)
+	{
+		if (@$data['cod'] == "" || @$data['fazenda_id'] == "") {
+//			throw new Zend_Db_Table_Exception('Parametros incorretos');
+			$return['error'] = 'Parametros incorretos';
+		} else {
+			$return = array();
+		}
+		return $return;
+	}
+
 }
