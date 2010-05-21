@@ -5,7 +5,7 @@ $(document).ready(function() {
 		addSearchIcon('ocorrencia', baseUrl+'/json/doenca', 'Doenças', 'showfilter_doenca', 600, 240);
 	}
 
-	addSearchIcon('fichario_cod', baseUrl+'/json/animal', 'Doenças', 'showfilter_animalDoenca', 600, 240);
+	addSearchIcon('fichario_cod', baseUrl+'/json/animal', 'Doenças', 'showfilter_animalPreventivo', 600, 240);
 
 	campoData("#data", new Date());
 
@@ -45,7 +45,9 @@ $(document).ready(function() {
             		if (j.length > 1) {
             			createDialog('ERRO', 480, 240);
             			$("#dlg").html("Foi encontrado mais de um registro com o código informado.");
-            			$("#dlg").dialog();
+            			$("#dlg").dialog({
+            				beforeclose: function() { window.alert('fechou');$("#fichario_cod").focus(); }
+            			});
             		}
             	}
             }, "json");
