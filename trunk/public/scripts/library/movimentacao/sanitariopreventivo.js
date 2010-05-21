@@ -42,7 +42,11 @@ $(document).ready(function() {
             		$("#dlg").html(j.error);
             		$("#dlg").dialog();
             	} else {
-            		window.alert('retornou algo q nao eh erro');
+            		if (j.length > 1) {
+            			createDialog('ERRO', 480, 240);
+            			$("#dlg").html("Foi encontrado mais de um registro com o código informado.");
+            			$("#dlg").dialog();
+            		}
             	}
             }, "json");
 

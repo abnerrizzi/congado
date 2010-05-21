@@ -386,7 +386,11 @@ class Model_Db_Fichario extends Model_Db
 //				->joinLeft(array('receptora' => 'fichario'), 'f.receptora_id = receptora.id', array('receptora_cod' => 'cod', 'receptora' => 'nome'), $this->_schema)
 				->where('f.cod = ?', $data['cod'])
 			;
-			$return = $this->fetchAll($this->_select)->toArray();
+			if ($this->fetchAll($this->_select)->count() == 0) {
+				$return['error'] = 'Nenhum registro encontrado.';
+			} else {
+				$return = $this->fetchAll($this->_select)->toArray();
+			}
 		}
 		return $return;
 	}
