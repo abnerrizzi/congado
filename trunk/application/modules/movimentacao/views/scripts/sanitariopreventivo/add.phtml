@@ -14,9 +14,6 @@ $this->headLink()
 	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.theme.css')
 	;
 
-//echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
-//echo $this->form->fichario_cod->getLabel();
-//echo $this->form->fichario_cod->removeDecorator('tag')->removeDecorator('label');
 ?>
 
 <br/><br/>
@@ -56,9 +53,9 @@ $this->headLink()
 	<td class="element"><?=$this->form->fazenda_id->removeDecorator('tag')->removeDecorator('label');?></td>
 	<td width="50"></td>
   </tr>
- 
+
   <tr>
-	<td height="10" colspan="5"> </td>
+	<td height="10" colspan="5"></td>
   </tr>
   <tr>
 	<td width="20"></td>
@@ -100,7 +97,6 @@ $this->headLink()
 	<td width="10"></td> 
 	<td class="element">
 <?=$this->form->fichario_cod->removeDecorator('tag')->removeDecorator('label');?>
-<span id="input_info" class="UIIcon UIIcon_Exclamation" style="float: right;">&nbsp;</span>
 	</td>
   </tr>
 </table>
@@ -113,7 +109,7 @@ $this->headLink()
 <!-- START OF TABLE HEAD -->
 	  <tr class="head">
 
-		  <td width="5" style="background: url('/congado/public/images/grid/bg_title.gif');">
+		  <td width="5" style="background: url('/congado/public/images/grid/bg_title.gif');"/>
 		  <td width="60" style="background: url('/congado/public/images/grid/bg_title.gif');">
 			<a href="javascript:void(0);">Animal</a>
 		  </td>
@@ -122,7 +118,7 @@ $this->headLink()
 			<img src="/congado/public/images/grid/divisor_title.gif" alt=""/>
 		  </td>
 
-		  <td width="15" style="background: url('/congado/public/images/grid/bg_title.gif');">
+		  <td width="15" style="background: url('/congado/public/images/grid/bg_title.gif');"/>
 		  <td width="150" style="background: url('/congado/public/images/grid/bg_title.gif');">
 			<a href="javascript:void(0);">Nome</a>
 		  </td>
@@ -131,7 +127,7 @@ $this->headLink()
 			<img src="/congado/public/images/grid/divisor_title.gif" alt=""/>
 		  </td>
 
-		  <td width="5" style="background: url('/congado/public/images/grid/bg_title.gif');">
+		  <td width="5" style="background: url('/congado/public/images/grid/bg_title.gif');"/>
           <td width="80" style="background: url('/congado/public/images/grid/bg_title.gif');">
             <a href="javascript:void(0);">Horário</a>
           </td>
@@ -140,7 +136,7 @@ $this->headLink()
 			<img src="/congado/public/images/grid/divisor_title.gif" alt=""/>
 		  </td>
 
-		  <td width="5" style="background: url('/congado/public/images/grid/bg_title.gif');">
+		  <td width="5" style="background: url('/congado/public/images/grid/bg_title.gif');"/>
           <td width="70" style="background: url('/congado/public/images/grid/bg_title.gif');" align="center">
             <a href="javascript:void(0);">Remover</a>
           </td>
@@ -149,71 +145,14 @@ $this->headLink()
 			<img src="/congado/public/images/grid/divisor_title.gif" alt=""/>
 		  </td>
 
-
 		</tr>
 <!-- END OF TABLE HEAD -->
-		<tr>
-		  <td height="2" bgcolor="#BFBDB3" colspan="12"></td>
-		</tr>
-
-<tr class="content">
-  <td height="2" colspan="12"></td>
-</tr>
-			
-<tr class="row1" id="id5">
-  <td/>
-  <td>PR</td>
-  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
-
-  <td/>
-  <td align="left">PRETA</td>
-  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
-
-  <td/>
-  <td align="left" style="padding-left: 10px;"><?=date('H:i:s', time());?></td>
-  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td> 
-
-  <td/>
-  <td align="center">
-    <a class="UIObjectListing_RemoveLink" href="javascript:void(0);">&nbsp;</a>
-  </td>
-  <td/> 
-</tr> 
-			
-
-
-
-<tr class="content">
-  <td height="2" colspan="12"></td>
-</tr>
-<tr>
-  <td height="1" colspan="12" bgcolor="#BFBDB3"></td>
-</tr>
-<tr class="row0" id="id2">
-
-  <td/>
-  <td>BR</td>
-  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
-
-  <td/>
-  <td align="left">ANIMAL</td>
-  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
-
-  <td/>
-  <td align="left" style="padding-left: 10px;"><?=date('H:i:s', time());?></td>
-  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
-
-  <td/>
-  <td>BR</td>
-  <td/>
-</tr>
 
 
 
 
 
-
-<tr class="content">
+<tr id="lastRow" class="content">
   <td colspan="12" height="4"></td>
 </tr>
 

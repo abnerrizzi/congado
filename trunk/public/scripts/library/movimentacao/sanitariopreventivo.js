@@ -38,18 +38,11 @@ $(document).ready(function() {
             	rand:		Math.random()
             }, function(j) {
             	if (typeof(j.error) != 'undefined') {
-            		createDialog('ERRO', 480, 240);
-            		$("#dlg").html(j.error);
-            		$("#dlg").dialog();
+            		window.alert(j.error);
+            		return false;
             	} else {
             		if (j.length > 1) {
-            			createDialog('ERRO', 480, 240);
-            			$("#dlg").html("Foi encontrado mais de um registro com o código informado.");
-            			$("#dlg").dialog({
-            				beforeclose: function() { window.alert('fechou');$("#fichario_cod").focus(); }
-            			});
-            			$(document.body).append("<div id='print_r'></div>");
-            			$.debug.print_r(j, 'print_r', false);
+            			window.alert("Foi encontrado mais de um registro com o código informado.");
             			return false;
             		} else if (j.length == 1) {
             			addAnimal(j);
@@ -167,5 +160,38 @@ function addSearchIcon(__parent, __jsonUrl, title, function_call, w, h)
  */
 function addAnimal(j)
 {
-	window.alert(dump(j));
+	if ($('#id'+j[0].id).length > 0) {
+		window.alert('Animal ja inserido anteriormente');
+	} else {
+
+		if (j[0].cod == null) {
+			j[0].cod = "";
+		}
+		if (j[0].nome == null) {
+			j[0].nome = "";
+		}
+
+		del = '<a class="UIObjectListing_RemoveLink" href="javascript:void(0);" onclick="deleteAnimal('+j[0].id+');">&nbsp;</a>';
+
+		if ($('#lastRow').prev().attr('class') == 'head') {
+			html = '<tr><td height="1" colspan="12" bgcolor="#BFBDB3"></td></tr><tr class="row0" id="id'+j[0].id+'"><td/><td>'+j[0].cod+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left">'+j[0].nome+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left" style="padding-left: 10px;">'+j[0].time+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="center">'+del+'</td><td/></tr>';
+		} else {
+			html = '<tr class="content"><td height="2" colspan="12"></td></tr><tr><td height="1" colspan="12" bgcolor="#BFBDB3"></td></tr><tr class="row0" id="id'+j[0].id+'"><td/><td>'+j[0].cod+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left">'+j[0].nome+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left" style="padding-left: 10px;">'+j[0].time+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="center">'+del+'</td><td/></tr>';
+		}
+
+		$('#gridAnimal #lastRow').before(html);
+		$('#fichario_cod').val('');
+	}
 }
+
+
+function deleteAnimal(id)
+{
+	$('#id'+id).prev().remove();
+	if ($('#id'+id).prev().attr('class') != 'head') {
+		$('#id'+id).prev().remove();
+	}
+	$('#id'+id).remove();
+	return false;
+}
+
