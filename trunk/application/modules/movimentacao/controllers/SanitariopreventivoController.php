@@ -76,9 +76,12 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 	public function addAction()
 	{
 
+		print '<pre>';
+		print_r($this->getRequest()->getParams());
+		print '</pre>';
 		$morteForm = new Form_Sanitario();
 		$morteForm->setName('controle_sanitario_-_preventivo');
-		$morteForm->setAction('/movimentacao/sanitariomorte/add');
+		$morteForm->setAction('/movimentacao/sanitariopreventivo/add');
 		$morteForm->setMethod('post');
 
 		$fazendaModel = new Model_Db_Fazenda();

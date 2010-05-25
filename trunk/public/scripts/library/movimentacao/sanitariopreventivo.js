@@ -31,6 +31,7 @@ $(document).ready(function() {
 				return false;
 			}
 
+			$("#ajax_loader").html("Buscando dados...").fadeIn(100);
             ajaxUrl = baseUrl + '/movimentacao/json/animalpreventivo';
             $.post(ajaxUrl, {
             	fazenda_id: $('#fazenda_id').val(),
@@ -171,7 +172,8 @@ function addAnimal(j)
 			j[0].nome = "";
 		}
 
-		del = '<a class="UIObjectListing_RemoveLink" href="javascript:void(0);" onclick="deleteAnimal('+j[0].id+');">&nbsp;</a>';
+		input = '<input type="hidden" name="fichario[]" value="'+j[0].id+'"/>';
+		del = input + '<a class="UIObjectListing_RemoveLink" href="javascript:void(0);" onclick="deleteAnimal('+j[0].id+');">&nbsp;</a>';
 
 		if ($('#lastRow').prev().attr('class') == 'head') {
 			html = '<tr><td height="1" colspan="12" bgcolor="#BFBDB3"></td></tr><tr class="row0" id="id'+j[0].id+'"><td/><td>'+j[0].cod+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left">'+j[0].nome+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left" style="padding-left: 10px;">'+j[0].time+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="center">'+del+'</td><td/></tr>';
@@ -181,6 +183,7 @@ function addAnimal(j)
 
 		$('#gridAnimal #lastRow').before(html);
 		$('#fichario_cod').val('');
+		$("#ajax_loader").fadeOut(100);
 	}
 }
 
