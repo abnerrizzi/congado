@@ -159,7 +159,7 @@ function addSearchIcon(__parent, __jsonUrl, title, function_call, w, h)
 /**
  * Funcao que adiciona linha na tabela com o retorno do json
  */
-function addAnimal(j)
+function addAnimal(j, time)
 {
 	if ($('#id'+j[0].id).length > 0) {
 		window.alert('Animal ja inserido anteriormente');
@@ -172,7 +172,11 @@ function addAnimal(j)
 			j[0].nome = "";
 		}
 
+		if (typeof(time) != 'undefined') {
+			j[0].time = time;
+		}
 		input = '<input type="hidden" name="fichario[]" value="'+j[0].id+'"/>';
+		input = input + '<input type="hidden" name="horario['+j[0].id+']" value="'+j[0].time+'"/>';
 		del = input + '<a class="UIObjectListing_RemoveLink" href="javascript:void(0);" onclick="deleteAnimal('+j[0].id+');">&nbsp;</a>';
 
 		if ($('#lastRow').prev().attr('class') == 'head') {

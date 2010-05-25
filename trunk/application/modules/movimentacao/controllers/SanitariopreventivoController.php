@@ -76,9 +76,6 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 	public function addAction()
 	{
 
-		print '<pre>';
-		print_r($this->getRequest()->getParams());
-		print '</pre>';
 		$morteForm = new Form_Sanitario();
 		$morteForm->setName('controle_sanitario_-_preventivo');
 		$morteForm->setAction('/movimentacao/sanitariopreventivo/add');
@@ -103,6 +100,8 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 			->removeValidator('NoRecordExists')
 			;
 
+		$morteForm->getElement('ocorrencia_id')
+			->setRequired(true);
 		$morteForm->getElement('ocorrencia')
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')
@@ -123,6 +122,15 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 			'data',
 			array('ocorrencia'),
 		);
+
+		if ($this->getRequest()->getParam('horario', false)) {
+			$horario = $this->getRequest()->getParam('horario', false);
+			$ficharioModel = new Model_Db_Fichario();
+			foreach ($horario as $key => $val) {
+				$animais[] = $ficharioModel->recoverPreventivoMorte($key, $val);
+			}
+			$this->view->animais = $animais;
+		}
 
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();

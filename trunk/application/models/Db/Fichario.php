@@ -375,16 +375,6 @@ class Model_Db_Fichario extends Model_Db
 					'obs',
 					'time' => new Zend_Db_Expr('curtime()')
 				), $this->_schema)
-//				->joinLeft('criador', 'f.criador_id = criador.id', array('criador_cod' => 'cod', 'criador' => 'dsc'), $this->_schema)
-//				->joinLeft('pelagem', 'f.pelagem_id = pelagem.id', array('pelagem_cod' => 'cod', 'pelagem' => 'dsc'), $this->_schema)
-//				->joinLeft('raca', 'f.raca_id = raca.id', array('raca_cod' => 'cod', 'raca' => 'dsc'), $this->_schema)
-//				->joinLeft('rebanho', 'f.rebanho_id = rebanho.id', array('rebanho_cod' => 'cod', 'rebanho' => 'dsc'), $this->_schema)
-//				->joinLeft('categoria', 'f.categoria_id = categoria.id', array('categoria_cod' => 'cod', 'categoria' => 'dsc'), $this->_schema)
-//				->joinLeft('local', 'f.local_id = local.id', array('local_cod' => 'local', 'local' => 'dsc'), $this->_schema)
-//				->joinLeft('grausangue', 'f.grausangue_id = grausangue.id', array('grausangue_cod' => 'cod', 'grausangue' => 'dsc'), $this->_schema)
-//				->joinLeft(array('pai' => 'fichario'), 'f.pai_id = pai.id', array('pai_cod' => 'cod', 'pai' => 'nome'), $this->_schema)
-//				->joinLeft(array('mae' => 'fichario'), 'f.mae_id = mae.id', array('mae_cod' => 'cod', 'mae' => 'nome'), $this->_schema)
-//				->joinLeft(array('receptora' => 'fichario'), 'f.receptora_id = receptora.id', array('receptora_cod' => 'cod', 'receptora' => 'nome'), $this->_schema)
 				->where('f.cod = ?', $data['cod'])
 			;
 			if ($this->fetchAll($this->_select)->count() == 0) {
@@ -396,4 +386,28 @@ class Model_Db_Fichario extends Model_Db
 		return $return;
 	}
 
+	public function recoverPreventivoMorte($id = false, $time = false)
+	{
+		if ($id == false && $time == false) {
+			$return['error'] = 'Parametros incorretos';
+		} else {
+				$this->_select = $this->select()
+				->setIntegrityCheck(false)
+				->from(array('f' => $this->_name), array(
+					'id',
+					'cod',
+					'nome',
+					'obs',
+					'time' => new Zend_Db_Expr("'".$time."'")
+				), $this->_schema)
+				->where('f.id = ?', $id)
+			;
+			if ($this->fetchAll($this->_select)->count() == 0) {
+				$return['error'] = 'Nenhum registro encontrado.';
+			} else {
+				$return = $this->fetchAll($this->_select)->toArray();
+			}
+		}
+		return $return;
+	}
 }

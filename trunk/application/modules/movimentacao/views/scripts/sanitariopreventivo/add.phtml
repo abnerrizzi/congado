@@ -149,7 +149,43 @@ $this->headLink()
 <!-- END OF TABLE HEAD -->
 
 
+<?if (is_array($this->animais)):?>
+<?for($i=0; $i < count($this->animais); $i++):?>
+<?$animal = $this->animais[$i][0];?>
 
+<?
+// Se nao for o primeiro registro
+if ($i==0){?>
+<tr class="content"><td height="2" colspan="12"></td></tr>
+<?}?>
+<tr><td height="1" colspan="12" bgcolor="#BFBDB3"></td></tr>
+<tr class="content">
+  <td height="2" colspan="12"></td>
+</tr>
+			
+<tr class="row1" id="id<?=$animal['id'];?>">
+  <td/>
+  <td><?=$animal['cod'];?></td>
+  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
+
+  <td/>
+  <td align="left"><?=$animal['nome'];?></td>
+  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
+
+  <td/>
+  <td align="left" style="padding-left: 10px;"><?=$animal['time'];?></td>
+  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td> 
+
+  <td/>
+  <td align="center">
+    <a class="UIObjectListing_RemoveLink" href="javascript:void(0);" onclick="deleteAnimal(<?=$animal['id'];?>);">&nbsp;</a>
+  </td>
+  <td/> 
+</tr> 
+
+
+<?endfor;?>
+<?endif;?>
 
 
 <tr id="lastRow" class="content">
