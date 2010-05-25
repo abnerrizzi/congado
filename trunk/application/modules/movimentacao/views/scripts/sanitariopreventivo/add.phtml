@@ -178,6 +178,8 @@ if ($i==0){?>
 
   <td/>
   <td align="center">
+    <input type="hidden" name="fichario[]" value="<?=$animal['id'];?>">
+    <input type="hidden" name="horario[<?=$animal['id'];?>]" value="<?=$animal['time'];?>">
     <a class="UIObjectListing_RemoveLink" href="javascript:void(0);" onclick="deleteAnimal(<?=$animal['id'];?>);">&nbsp;</a>
   </td>
   <td/> 
