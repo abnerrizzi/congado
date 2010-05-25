@@ -373,6 +373,7 @@ class Model_Db_Fichario extends Model_Db
 					'cod',
 					'nome',
 					'obs',
+					'time' => new Zend_Db_Expr('curtime()')
 				), $this->_schema)
 //				->joinLeft('criador', 'f.criador_id = criador.id', array('criador_cod' => 'cod', 'criador' => 'dsc'), $this->_schema)
 //				->joinLeft('pelagem', 'f.pelagem_id = pelagem.id', array('pelagem_cod' => 'cod', 'pelagem' => 'dsc'), $this->_schema)

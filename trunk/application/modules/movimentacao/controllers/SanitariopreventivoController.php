@@ -91,6 +91,9 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 				->addMultiOption($fazenda['id'], $fazenda['descricao']);
 		}
 
+		// Valor setado apenas para teste.
+		$morteForm->getElement('fazenda_id')->setValue(1);
+
 		$morteForm->getElement('fichario')
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')

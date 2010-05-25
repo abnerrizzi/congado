@@ -108,11 +108,12 @@ $this->headLink()
 <fieldset style="width: 400px;"> 
 	<legend style="text-align: left;">Animais</legend>
 
-	<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-right: 1px solid #CCCCCC; border-left: 1px solid #919191;" bgcolor="#F7F6F1">
+	<table id="gridAnimal" border="0" align="center" cellpadding="0" cellspacing="0" style="border-right: 1px solid #CCCCCC; border-left: 1px solid #919191;" bgcolor="#F7F6F1">
 
 <!-- START OF TABLE HEAD -->
 	  <tr class="head">
 
+		  <td width="5" style="background: url('/congado/public/images/grid/bg_title.gif');">
 		  <td width="60" style="background: url('/congado/public/images/grid/bg_title.gif');">
 			<a href="javascript:void(0);">Animal</a>
 		  </td>
@@ -121,6 +122,7 @@ $this->headLink()
 			<img src="/congado/public/images/grid/divisor_title.gif" alt=""/>
 		  </td>
 
+		  <td width="15" style="background: url('/congado/public/images/grid/bg_title.gif');">
 		  <td width="150" style="background: url('/congado/public/images/grid/bg_title.gif');">
 			<a href="javascript:void(0);">Nome</a>
 		  </td>
@@ -129,8 +131,18 @@ $this->headLink()
 			<img src="/congado/public/images/grid/divisor_title.gif" alt=""/>
 		  </td>
 
+		  <td width="5" style="background: url('/congado/public/images/grid/bg_title.gif');">
           <td width="80" style="background: url('/congado/public/images/grid/bg_title.gif');">
             <a href="javascript:void(0);">Horário</a>
+          </td>
+
+          <td width="0" style="background: url('/congado/public/images/grid/bg_title.gif');">
+			<img src="/congado/public/images/grid/divisor_title.gif" alt=""/>
+		  </td>
+
+		  <td width="5" style="background: url('/congado/public/images/grid/bg_title.gif');">
+          <td width="70" style="background: url('/congado/public/images/grid/bg_title.gif');" align="center">
+            <a href="javascript:void(0);">Remover</a>
           </td>
 
           <td width="0" style="background: url('/congado/public/images/grid/bg_title.gif');">
@@ -141,146 +153,76 @@ $this->headLink()
 		</tr>
 <!-- END OF TABLE HEAD -->
 		<tr>
-		  <td height="2" bgcolor="#BFBDB3" colspan="6"></td>
+		  <td height="2" bgcolor="#BFBDB3" colspan="12"></td>
 		</tr>
 
-<tr class="content"> 
-  <td height="2" colspan="6"></td> 
-</tr> 
-<tr class="row1" id="id1"> 
- 
-  <td align="center"> 
-	</td> 
-	
-  <td
+<tr class="content">
+  <td height="2" colspan="12"></td>
+</tr>
+			
+<tr class="row1" id="id5">
+  <td/>
+  <td>PR</td>
+  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
 
-	>AM</td> 
+  <td/>
+  <td align="left">PRETA</td>
+  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
+
+  <td/>
+  <td align="left" style="padding-left: 10px;"><?=date('H:i:s', time());?></td>
   <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td> 
- 
-  <td align="center"> 
-	</td> 
-	
-  <td colspan="2">AMARELA</td> 
+
+  <td/>
+  <td align="center">
+    <a class="UIObjectListing_RemoveLink" href="javascript:void(0);">&nbsp;</a>
+  </td>
+  <td/> 
 </tr> 
 			
-<tr class="content"> 
-  <td height="2" colspan="6"></td> 
-</tr> 
- 
-<tr> 
-  <td height="1" colspan="6" bgcolor="#BFBDB3"></td> 
-</tr> 
- 
-<tr class="content"> 
-  <td height="2" colspan="6"></td> 
-</tr> 
-<tr class="row0" id="id2"> 
- 
-  <td align="center"> 
-	</td> 
-	
-  <td
 
-	>BR</td> 
-  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td> 
- 
-  <td align="center"> 
-	</td> 
-	
-  <td colspan="2">BRANCA</td> 
-</tr> 
-			
-<tr class="content"> 
-  <td height="2" colspan="6"></td> 
-</tr> 
- 
-<tr> 
-  <td height="1" colspan="6" bgcolor="#BFBDB3"></td> 
-</tr> 
- 
-<tr class="content"> 
-  <td height="2" colspan="6"></td> 
-</tr> 
-<tr class="row1" id="id3"> 
- 
-  <td align="center"> 
-	</td> 
-	
-  <td
 
-	>CC</td> 
-  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td> 
- 
-  <td align="center"> 
-	</td> 
-	
-  <td colspan="2">CINZA CLARA</td> 
-</tr> 
-			
-<tr class="content"> 
-  <td height="2" colspan="6"></td> 
-</tr> 
- 
-<tr> 
-  <td height="1" colspan="6" bgcolor="#BFBDB3"></td> 
-</tr> 
- 
-<tr class="content"> 
-  <td height="2" colspan="6"></td> 
-</tr> 
-<tr class="row0" id="id4"> 
- 
-  <td align="center"> 
-	</td> 
-	
-  <td
 
-	>CZ</td> 
-  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td> 
- 
-  <td align="center"> 
-	</td> 
-	
-  <td colspan="2">CINZA</td> 
-</tr> 
-			
-<tr class="content"> 
-  <td height="2" colspan="6"></td> 
-</tr> 
- 
-<tr> 
-  <td height="1" colspan="6" bgcolor="#BFBDB3"></td> 
-</tr> 
- 
-<tr class="content"> 
-  <td height="2" colspan="6"></td> 
-</tr> 
-<tr class="row1" id="id5"> 
- 
-  <td align="center"> 
-	</td> 
-	
-  <td
+<tr class="content">
+  <td height="2" colspan="12"></td>
+</tr>
+<tr>
+  <td height="1" colspan="12" bgcolor="#BFBDB3"></td>
+</tr>
+<tr class="row0" id="id2">
 
-	>PR</td> 
-  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td> 
- 
-  <td align="center"> 
-	</td> 
-	
-  <td colspan="2">PRETA</td> 
-</tr> 
-			
-<tr class="content"> 
-  <td colspan="6" height="4"></td> 
-</tr> 
- 
-<tr> 
-  <td height="10" style="background: url('/congado/public/images/grid/bg_bottom.gif');" colspan="6"></td> 
-</tr> 
- 
-</table> 
-	<br/>
+  <td/>
+  <td>BR</td>
+  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
+
+  <td/>
+  <td align="left">ANIMAL</td>
+  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
+
+  <td/>
+  <td align="left" style="padding-left: 10px;"><?=date('H:i:s', time());?></td>
+  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
+
+  <td/>
+  <td>BR</td>
+  <td/>
+</tr>
+
+
+
+
+
+
+<tr class="content">
+  <td colspan="12" height="4"></td>
+</tr>
+
+<tr>
+  <td height="10" colspan="12" style="background: url('/congado/public/images/grid/bg_bottom.gif');"></td>
+</tr>
+
+</table>
+<br/>
 </fieldset>
 <br/>
       </div>
@@ -289,7 +231,7 @@ $this->headLink()
   </tr>
 
   <tr>
-	<td height="10" colspan="5"/>
+	<td height="10" colspan="12"/>
   </tr>
 
   <tr>

@@ -156,3 +156,5 @@ height: 12px;
 .UIPager .UIPager_PageNum{color:#000;float:left;font-size:12px;line-height:22px;padding-right:10px}
 .UIPager .UIPager_PageResult{color:#000;float:left;font-size:12px;line-height:22px;padding-right:10px}
 
+.UIObjectListing_RemoveLink{background:transparent url(/congado/public/styles/images/fb-delete.gif) no-repeat top left;width:18px;height:18px;display:block}
+.UIObjectListing_RemoveLink:hover{text-decoration:none;background-position:top right}

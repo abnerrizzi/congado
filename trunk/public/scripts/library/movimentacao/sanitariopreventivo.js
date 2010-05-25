@@ -48,6 +48,15 @@ $(document).ready(function() {
             			$("#dlg").dialog({
             				beforeclose: function() { window.alert('fechou');$("#fichario_cod").focus(); }
             			});
+            			$(document.body).append("<div id='print_r'></div>");
+            			$.debug.print_r(j, 'print_r', false);
+            			return false;
+            		} else if (j.length == 1) {
+            			addAnimal(j);
+            			return false;
+            		} else {
+            			window.alert('Error inesperado');
+            			return false;
             		}
             	}
             }, "json");
@@ -150,3 +159,13 @@ function addSearchIcon(__parent, __jsonUrl, title, function_call, w, h)
 	});
 }
 
+
+
+
+/**
+ * Funcao que adiciona linha na tabela com o retorno do json
+ */
+function addAnimal(j)
+{
+	window.alert(dump(j));
+}
