@@ -184,6 +184,29 @@ class Model_Db_Sanitario extends Model_Db
 		}
 	}
 
+	public function addSanitarioPreventivo($data, $ids)
+	{
+
+		foreach ($ids as $key => $val) {
+
+			$_dt = explode('/', $data['data']);
+			$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
+			
+
+			$__current = $data;
+			$__current['fichario_id'] = $key;
+			$__current['data'] = $_dt;
+			$__current['tipo_id'] = $this->getTipo();
+			$row = $this->createRow($__current);
+			if (!$row->save()) {
+				return false;
+			}
+		}
+
+		return true;
+
+	}
+
 	public function deleteMorte($id)
 	{
 		$this->delete('id = ' . (int)$id);

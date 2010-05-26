@@ -126,13 +126,18 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
 			if ($morteForm->isValid($formData)) {
-				print '<pre>';
-				die('isValid');
 				$cod = $morteForm->getValue('cod');
 				$dsc = $morteForm->getValue('dsc');
 				$morteModel = new Model_Db_Sanitario();
 				$morteModel->setTipo(2);
-				if ($morteModel->addSanitarioPreventivo($this->getRequest()->getParams())) {
+
+				// Criar array associando os ids com o restante dos dados.
+				$data['fazenda_id']		= $formData['fazenda_id'];
+				$data['data']			= $formData['data'];
+				$data['ocorrencia_id']	= $formData['ocorrencia_id'];
+				$ficharios				= $formData['fichario_id'];
+
+				if ($morteModel->addSanitarioPreventivo($data, $ficharios)) {
 					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 				}
 			} else {

@@ -156,8 +156,7 @@ function addAnimal(j, time)
 		if (typeof(time) != 'undefined') {
 			j.time = time;
 		}
-		input = '<input type="hidden" name="fichario_id[]" value="'+j.id+'"/>';
-		input = input + '<input type="hidden" name="fichario_id['+j.id+']" value="'+j.time+'"/>';
+		input = '<input type="hidden" name="fichario_id['+j.id+']" value="'+j.time+'"/>';
 		del = input + '<a class="UIObjectListing_RemoveLink" href="javascript:void(0);" onclick="deleteAnimal('+j.id+');">&nbsp;</a>';
 
 		if ($('#lastRow').prev().attr('class') == 'head') {
