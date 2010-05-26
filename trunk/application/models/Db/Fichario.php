@@ -375,8 +375,12 @@ class Model_Db_Fichario extends Model_Db
 					'obs',
 					'time' => new Zend_Db_Expr('curtime()')
 				), $this->_schema)
-				->where('f.cod = ?', $data['cod'])
 			;
+			if (@$data['byId']) {
+				$this->_select->where('f.id = ?', $data['cod']);
+			} else {
+				$this->_select->where('f.cod = ?', $data['cod']);
+			}
 			if ($this->fetchAll($this->_select)->count() == 0) {
 				$return['error'] = 'Nenhum registro encontrado.';
 			} else {

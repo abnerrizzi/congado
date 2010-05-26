@@ -32,28 +32,7 @@ $(document).ready(function() {
 			}
 
 			$("#ajax_loader").html("Buscando dados...").fadeIn(100);
-            ajaxUrl = baseUrl + '/movimentacao/json/animalpreventivo';
-            $.post(ajaxUrl, {
-            	fazenda_id: $('#fazenda_id').val(),
-            	cod:		this.value,
-            	rand:		Math.random()
-            }, function(j) {
-            	if (typeof(j.error) != 'undefined') {
-            		window.alert(j.error);
-            		return false;
-            	} else {
-            		if (j.length > 1) {
-            			window.alert("Foi encontrado mais de um registro com o código informado.");
-            			return false;
-            		} else if (j.length == 1) {
-            			addAnimal(j[0]);
-            			return false;
-            		} else {
-            			window.alert('Error inesperado');
-            			return false;
-            		}
-            	}
-            }, "json");
+            searchAnimalByCod(this.value);
 
             return false;
 	}
@@ -105,9 +84,9 @@ function updateField(__fld, __jsonUrl, __qtype)
 			success: function(j) {
 				j = j.rows;
 				if (j && j.length == 1) {
-					$("#" + __fieldName + "_id").val(j.id);
-					$("#" + __fieldName + "_cod").val(j.cell[0]);
-					$("#" + __fieldName).val(j.cell[1]);
+					$("#" + __fieldName + "_id").val(j[0].id);
+					$("#" + __fieldName + "_cod").val(j[0].cell[0]);
+					$("#" + __fieldName).val(j[0].cell[1]);
 				} else {
 					$("#ajax_loader").html("Código não encontrado").show();
 					$("#" + __fieldName + "_id").val('');
@@ -163,6 +142,7 @@ function addAnimal(j, time)
 {
 	if ($('#id'+j.id).length > 0) {
 		window.alert('Animal ja inserido anteriormente');
+		$("#fichario_cod").focus();
 		
 	} else {
 
@@ -176,8 +156,8 @@ function addAnimal(j, time)
 		if (typeof(time) != 'undefined') {
 			j.time = time;
 		}
-		input = '<input type="hidden" name="fichario[]" value="'+j.id+'"/>';
-		input = input + '<input type="hidden" name="horario['+j.id+']" value="'+j.time+'"/>';
+		input = '<input type="hidden" name="fichario_id[]" value="'+j.id+'"/>';
+		input = input + '<input type="hidden" name="fichario_id['+j.id+']" value="'+j.time+'"/>';
 		del = input + '<a class="UIObjectListing_RemoveLink" href="javascript:void(0);" onclick="deleteAnimal('+j.id+');">&nbsp;</a>';
 
 		if ($('#lastRow').prev().attr('class') == 'head') {
@@ -205,3 +185,69 @@ function deleteAnimal(id)
 	return false;
 }
 
+
+
+/**
+ * Funcao que busca animal pelo codigo, depois executa funcao para adicionar na tabela
+ */
+function searchAnimalByCod(cod)
+{
+	$("#ajax_loader").html("Buscando dados...").fadeIn(100);
+    ajaxUrl = baseUrl + '/movimentacao/json/animalpreventivo';
+    $.post(ajaxUrl, {
+    	fazenda_id: $('#fazenda_id').val(),
+    	cod:		cod,
+    	rand:		Math.random()
+    }, function(j) {
+    	if (typeof(j.error) != 'undefined') {
+    		window.alert(j.error);
+    		return false;
+    	} else {
+    		if (j.length > 1) {
+    			window.alert("Foi encontrado mais de um registro com o código informado.");
+    			$("#ajax_loader").fadeOut(300);
+    			return false;
+    		} else if (j.length == 1) {
+    			addAnimal(j[0]);
+    			return false;
+    		} else {
+    			window.alert('Error inesperado');
+    			$("#ajax_loader").fadeOut(300);
+    			return false;
+    		}
+    	}
+    }, "json");
+}
+
+/**
+ * Funcao que busca animal pelo codigo, depois executa funcao para adicionar na tabela
+ */
+function searchAnimalById(cod)
+{
+	$("#ajax_loader").html("Buscando dados...").fadeIn(100);
+    ajaxUrl = baseUrl + '/movimentacao/json/animalpreventivo';
+    $.post(ajaxUrl, {
+    	fazenda_id: $('#fazenda_id').val(),
+    	cod:		cod,
+    	byId:		true,
+    	rand:		Math.random()
+    }, function(j) {
+    	if (typeof(j.error) != 'undefined') {
+    		window.alert(j.error);
+    		return false;
+    	} else {
+    		if (j.length > 1) {
+    			window.alert("Foi encontrado mais de um registro com o código informado.");
+    			$("#ajax_loader").fadeOut(300);
+    			return false;
+    		} else if (j.length == 1) {
+    			addAnimal(j[0]);
+    			return false;
+    		} else {
+    			window.alert('Error inesperado');
+    			$("#ajax_loader").fadeOut(300);
+    			return false;
+    		}
+    	}
+    }, "json");
+}

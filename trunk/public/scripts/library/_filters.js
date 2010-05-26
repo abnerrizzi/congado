@@ -801,7 +801,8 @@ function showfilter_animalPreventivo(url, input)
 			onSelect: function(row, input) {
 				__id = row.attr("id").substr(3);
 				__cod = $("#row"+__id+" td: div")[0].innerHTML;
-				$('#fichario_cod').val(__cod);
+				searchAnimalById(__id);
+				hide_filter();
 			}
 		});
 		$("#dlg").fadeIn(200);

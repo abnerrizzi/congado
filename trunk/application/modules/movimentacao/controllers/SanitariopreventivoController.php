@@ -123,26 +123,27 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 			array('ocorrencia'),
 		);
 
-		if ($this->getRequest()->getParam('horario', false)) {
-			$horario = $this->getRequest()->getParam('horario', false);
-			$ficharioModel = new Model_Db_Fichario();
-			foreach ($horario as $key => $val) {
-				$animais[] = $ficharioModel->recoverPreventivoMorte($key, $val);
-			}
-			$this->view->animais = $animais;
-		}
-
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
 			if ($morteForm->isValid($formData)) {
+				print '<pre>';
+				die('isValid');
 				$cod = $morteForm->getValue('cod');
 				$dsc = $morteForm->getValue('dsc');
 				$morteModel = new Model_Db_Sanitario();
 				$morteModel->setTipo(2);
-				if ($morteModel->addSanitarioMorte($this->getRequest()->getParams())) {
+				if ($morteModel->addSanitarioPreventivo($this->getRequest()->getParams())) {
 					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 				}
 			} else {
+				if ($this->getRequest()->getParam('fichario_id', '') != '') {
+					$horario = $this->getRequest()->getParam('fichario_id', false);
+					$ficharioModel = new Model_Db_Fichario();
+					foreach ($horario as $key => $val) {
+						$animais[] = $ficharioModel->recoverPreventivoMorte($key, $val);
+					}
+					$this->view->animais = $animais;
+				}
 				$morteForm->populate($formData);
 			}
 		}
