@@ -46,7 +46,7 @@ $(document).ready(function() {
             			window.alert("Foi encontrado mais de um registro com o código informado.");
             			return false;
             		} else if (j.length == 1) {
-            			addAnimal(j);
+            			addAnimal(j[0]);
             			return false;
             		} else {
             			window.alert('Error inesperado');
@@ -105,9 +105,9 @@ function updateField(__fld, __jsonUrl, __qtype)
 			success: function(j) {
 				j = j.rows;
 				if (j && j.length == 1) {
-					$("#" + __fieldName + "_id").val(j[0].id);
-					$("#" + __fieldName + "_cod").val(j[0].cell[0]);
-					$("#" + __fieldName).val(j[0].cell[1]);
+					$("#" + __fieldName + "_id").val(j.id);
+					$("#" + __fieldName + "_cod").val(j.cell[0]);
+					$("#" + __fieldName).val(j.cell[1]);
 				} else {
 					$("#ajax_loader").html("Código não encontrado").show();
 					$("#" + __fieldName + "_id").val('');
@@ -161,34 +161,37 @@ function addSearchIcon(__parent, __jsonUrl, title, function_call, w, h)
  */
 function addAnimal(j, time)
 {
-	if ($('#id'+j[0].id).length > 0) {
+	if ($('#id'+j.id).length > 0) {
 		window.alert('Animal ja inserido anteriormente');
+		
 	} else {
 
-		if (j[0].cod == null) {
-			j[0].cod = "";
+		if (j.cod == null) {
+			j.cod = "";
 		}
-		if (j[0].nome == null) {
-			j[0].nome = "";
+		if (j.nome == null) {
+			j.nome = "";
 		}
 
 		if (typeof(time) != 'undefined') {
-			j[0].time = time;
+			j.time = time;
 		}
-		input = '<input type="hidden" name="fichario[]" value="'+j[0].id+'"/>';
-		input = input + '<input type="hidden" name="horario['+j[0].id+']" value="'+j[0].time+'"/>';
-		del = input + '<a class="UIObjectListing_RemoveLink" href="javascript:void(0);" onclick="deleteAnimal('+j[0].id+');">&nbsp;</a>';
+		input = '<input type="hidden" name="fichario[]" value="'+j.id+'"/>';
+		input = input + '<input type="hidden" name="horario['+j.id+']" value="'+j.time+'"/>';
+		del = input + '<a class="UIObjectListing_RemoveLink" href="javascript:void(0);" onclick="deleteAnimal('+j.id+');">&nbsp;</a>';
 
 		if ($('#lastRow').prev().attr('class') == 'head') {
-			html = '<tr><td height="1" colspan="12" bgcolor="#BFBDB3"></td></tr><tr class="row0" id="id'+j[0].id+'"><td/><td>'+j[0].cod+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left">'+j[0].nome+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left" style="padding-left: 10px;">'+j[0].time+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="center">'+del+'</td><td/></tr>';
+			html = '<tr><td height="1" colspan="12" bgcolor="#BFBDB3"></td></tr><tr class="row0" id="id'+j.id+'"><td/><td>'+j.cod+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left">'+j.nome+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left" style="padding-left: 10px;">'+j.time+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="center">'+del+'</td><td/></tr>';
 		} else {
-			html = '<tr class="content"><td height="2" colspan="12"></td></tr><tr><td height="1" colspan="12" bgcolor="#BFBDB3"></td></tr><tr class="row0" id="id'+j[0].id+'"><td/><td>'+j[0].cod+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left">'+j[0].nome+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left" style="padding-left: 10px;">'+j[0].time+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="center">'+del+'</td><td/></tr>';
+			html = '<tr class="content"><td height="2" colspan="12"></td></tr><tr><td height="1" colspan="12" bgcolor="#BFBDB3"></td></tr><tr class="row0" id="id'+j.id+'"><td/><td>'+j.cod+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left">'+j.nome+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left" style="padding-left: 10px;">'+j.time+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="center">'+del+'</td><td/></tr>';
 		}
 
 		$('#gridAnimal #lastRow').before(html);
 		$('#fichario_cod').val('');
-		$("#ajax_loader").fadeOut(100);
 	}
+	divheight = parseInt($("#gridAnimal").height());
+	$("#divGridAnimal").animate({scrollTop: divheight}, 300);
+	$("#ajax_loader").fadeOut(100);
 }
 
 

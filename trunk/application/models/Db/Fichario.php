@@ -403,10 +403,13 @@ class Model_Db_Fichario extends Model_Db
 				->where('f.id = ?', $id)
 			;
 			if ($this->fetchAll($this->_select)->count() == 0) {
-				$return['error'] = 'Nenhum registro encontrado.';
+				$__return['error'] = 'Nenhum registro encontrado.';
 			} else {
-				$return = $this->fetchAll($this->_select)->toArray();
+				$__return = $this->fetchRow($this->_select)->toArray();
 			}
+		}
+		foreach ($__return as $key => $val) {
+			$return[$key] = utf8_decode($val);
 		}
 		return $return;
 	}
