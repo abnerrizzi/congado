@@ -44,7 +44,7 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 		/*
 		 * Fields
 		 */
-		$fields[] = new Model_Grid_Fields('data', 'Data', 20);
+		$fields[] = new Model_Grid_Fields('dt', 'Data', 20);
 		$fields[] = new Model_Grid_Fields('nome', 'Animal', 150);
 		$fields[] = new Model_Grid_Fields('doenca', 'Ocorrência', 200);
 

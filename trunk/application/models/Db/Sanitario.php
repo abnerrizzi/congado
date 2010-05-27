@@ -32,10 +32,18 @@ class Model_Db_Sanitario extends Model_Db
 	public function getPaginatorAdapter($orderby = null, $order = null, $cols = '*')
 	{
 
+		if ($orderby == 'dt') {
+			$orderby = 'data';
+		}
+
 		if (!is_array($cols)) {
 			$cols = array($cols);
 		}
 
+		$cols = array(
+			'id',
+			'dt' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')"),
+		);
 		$select = $this->select()
 			->setIntegrityCheck(false)
 			->from($this->_name, $cols, $this->_schema)
