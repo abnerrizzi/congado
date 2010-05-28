@@ -136,4 +136,5 @@ class Movimentacao_JsonController extends Zend_Controller_Action
 		$this->view->content = utf8_encode(json_encode($animais));
 		$this->render('index');
 	}
+
 }

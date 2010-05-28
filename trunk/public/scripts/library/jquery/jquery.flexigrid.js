@@ -8,6 +8,13 @@
  * $Date: 2008-07-14 00:09:43 +0800 (Tue, 14 Jul 2008) $
  */
  
+
+
+
+var ja_mandou_ajax_anteriormente = false;
+
+
+
 (function($){
 		  
 	$.addFlex = function(t,p)
@@ -626,7 +633,8 @@
 				p.qtype = $('select[name=qtype]',g.sDiv).val();
 				p.newp = 1;
 
-				this.populate();				
+				this.populate();
+				clearInterval(ja_mandou_ajax_anteriormente);
 			},
 			changePage: function (ctype){ //change page
 			
@@ -1215,7 +1223,67 @@
 				
 				$(g.sDiv).append("<div class='sDiv2'>Pesquisar <input type='text' size='30' name='q' class='qsbox' /> <select name='qtype'>"+sopt+"</select> <input type='button' value='Limpar' /></div>");
 
-				$('input[name=q],select[name=qtype]',g.sDiv).keydown(function(e){if(e.keyCode==13) g.doSearch()}).keyup(function(e){if(e.keyCode!=13) g.doSearch()});
+				/**
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * ORIG: $('input[name=q],select[name=qtype]',g.sDiv).keydown(function(e){if(e.keyCode==13) g.doSearch()}).keyup(function(e){if(e.keyCode!=13) g.doSearch()});
+				 */
+				$('input[name=q],select[name=qtype]',g.sDiv).keydown(
+						function(e) {
+							if(e.keyCode==13)
+								g.doSearch()
+							}).keyup(function(e){
+								if(e.keyCode!=13) {
+
+									if (!ja_mandou_ajax_anteriormente) {
+										ja_mandou_ajax_anteriormente = window.setInterval(function() {g.doSearch()}, 700);
+									} else {
+										clearInterval(ja_mandou_ajax_anteriormente);
+										ja_mandou_ajax_anteriormente = window.setInterval(function() {g.doSearch()}, 700);
+									}
+										
+									// wait 300 mileseconds
+									
+								}
+							});
 				$('input[value=Limpar]',g.sDiv).click(function(){$('input[name=q]',g.sDiv).val(''); p.query = ''; g.doSearch(); });
 				$(g.bDiv).after(g.sDiv);				
 				

@@ -1,5 +1,22 @@
 $(document).ready(function() {
 
+	if (typeof(__module) == 'undefined') {
+		__action = editUrl.split("/")[1];
+		__module = '';
+	} else {
+//		__baseUrl = baseUrl + '/' + __module;
+		__action = editUrl.split("/")[2];
+	}
+
+	$("#add>a").before(
+			'<a class="UIButton UIButton_Gray UIActionButton" href="javascript:void(0);" id="search" title="Pesquisar">\n'+
+			'<span class="UIButton_Text">\n'+
+			'<span class="UIButton_Search UIButton_IconNoSpriteMap_Search UIButton_IconSmallMonochromatic" style="background: url(/congado/public/images/search.png) no-repeat;background-position: 4pt 1px;"></span>\n'+
+			'Pesquisar\n'+
+			'</span></a>\n'+
+			'\n'
+	);
+
 	var _Height = checkBrowser();
 
 	var $dialog = $('<div></div>').dialog(
@@ -9,99 +26,65 @@ $(document).ready(function() {
 				closeOnEscape: true,
 				autoOpen: false,
 				resizable: false,
-				title: 'Controle Sanitário - Preventivo',
+				title: __title,
 				width: 620,
 				height: parseInt(390 + _Height)
 			}).attr('id', 'search');
-	$dialog.html('<div id="search-grid"></div>');
+	$dialog.html('<div id="search-default"></div>');
 
-	$("a#search span").click(function() { fichario_search($dialog, _Height); });
+	$('a#search').click(function(){
+		$dialog.dialog('open');
+		$("#search-default").flexigrid(
+		{
+			url: baseUrl +'/'+ __module +'/json/'+ __action,
+			dataType: 'json',
+			colModel : [{
+					display: 'Data',
+					name : 'dt',
+					width : 80,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Animal',
+					name : 'fichario.nome',
+					width : 160,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Ocorrencia',
+					name : 'old',
+					width : 160,
+					sortable : true,
+					align: 'left'
+				}],
+			searchitems : [{
+					display: 'Data',
+					name : 'cod'
+				}, {
+					display: 'Animal',
+					name : 'fichario.nome',
+					isdefault: true
+				}, {
+					display: 'Ocorrencia',
+					name : 'd.dsc'
+				}],
+			sortname: "dt",
+			sortorder: "asc",
+			usepager: true,
+			title: false,
+			useRp: true,
+			rp: 10,
+			showTableToggleBtn: false,
+			pagestat: 'Mostrando {from} até {to} de {total} itens',
+			width: 600,
+			height: (240 + _Height),
+			onSelect: function(row) {
+				getRecord(row);
+			}
+		});
+		$dialog.fadeIn(200);
+	});
+
 
 });
 
-function fichario_search($dialog, _Height){
-	$dialog.dialog('open');
-	$("#search-grid").flexigrid(
-	{
-		url: baseUrl + __module + '/json/animal',
-		dataType: 'json',
-		colModel : [{
-				display: 'Animal',
-				name : 'cod',
-				width : 80,
-				sortable : true,
-				align: 'left'
-			}, {
-				display: 'Nome',
-				name : 'nome',
-				width : 160,
-				sortable : true,
-				align: 'left'
-			}, {
-				display: 'RGN',
-				name : 'rgn',
-				width : 80,
-				sortable : true,
-				align: 'left'
-			}, {
-				display: 'SISBOV',
-				name : 'sisbov',
-				width : 80,
-				sortable : true,
-				align: 'left'
-			}, {
-				display: 'Sexo',
-				name : 'sexo',
-				width : 40,
-				sortable : true,
-				align: 'left'
-			}],
-		searchitems : [{
-				display: 'Animal',
-				name : 'fichario.cod'
-			}, {
-				display: 'Nome',
-				name : 'nome',
-				isdefault: true
-			}, {
-				display: 'RGN',
-				name : 'rgn',
-				isdefault: true
-			}, {
-				display: 'SISBOV',
-				name : 'fichario.sisbov',
-				isdefault: true
-			}],
-		sortname: "nome",
-		sortorder: "asc",
-		usepager: true,
-		title: false,
-		useRp: true,
-		rp: 10,
-		showTableToggleBtn: false,
-		pagestat: 'Mostrando {from} até {to} de {total} itens',
-		width: 600,
-		height: (240 + _Height),
-		onSelect: function(row) {
-			getFichario(row);
-		}
-	});
-	$dialog.fadeIn(200);
-};
-
-
-function getFichario(row) {
-	__id = row.attr("id").substr(3);
-	url = baseUrl + '/fichario/edit/id/' + __id;
-	$(location).attr('href', url);
-	$("#search").dialog('close');
-}
-
-function checkBrowser()
-{
-	if ($.browser.mozilla) {
-		return parseInt(20);
-	} else {
-		return parseInt(0);
-	}
-}

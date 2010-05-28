@@ -227,7 +227,13 @@ class Model_Db_Sanitario extends Model_Db
 		$col_id = 'id';
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
-			->from($this->_name, array('id', 'data'), $this->_schema)
+			->from($this->_name, array(
+				'id',
+				'dt' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')"),
+			), $this->_schema)
+			->joinInner('fichario',$this->_name.'.fichario_id = fichario.id',array('fichario.nome'),$this->_schema)
+			->joinLeft(array('d' => 'doenca'), 'ocorrencia_id = d.id', array('doenca' => 'dsc'), $this->_schema)
+			->where('tipo_id = ?', $this->getTipo())
 		;
 
 		if ($orderby && $order) {
@@ -242,6 +248,7 @@ class Model_Db_Sanitario extends Model_Db
 			}
 		}
 
+//		die('<pere>'.$this->_select);
 		$return = array(
 			'page' => $page,
 			'total' => $this->fetchAll($this->_select)->count(),
@@ -273,6 +280,7 @@ class Model_Db_Sanitario extends Model_Db
 			}
 			$return['rows'][] = $current;
 		}
+//		die('<pre>' . $this->_select);
 		return $return;
 
 	}
