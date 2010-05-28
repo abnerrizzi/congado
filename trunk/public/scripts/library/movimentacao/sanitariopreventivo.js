@@ -9,8 +9,6 @@ $(document).ready(function() {
 
 	campoData("#data", new Date());
 
-//	input_info;
-
 	$("#fichario_grid").parent().css('text-align', 'center');
 	$("#fichario_cod").keypress(function(e) {
 
@@ -162,7 +160,7 @@ function addAnimal(j, time)
 		if ($('#lastRow').prev().attr('class') == 'head') {
 			html = '<tr><td height="1" colspan="12" bgcolor="#BFBDB3"></td></tr><tr class="row0" id="id'+j.id+'"><td/><td>'+j.cod+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left">'+j.nome+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left" style="padding-left: 10px;">'+j.time+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="center">'+del+'</td><td/></tr>';
 		} else {
-			html = '<tr class="content"><td height="2" colspan="12"></td></tr><tr><td height="1" colspan="12" bgcolor="#BFBDB3"></td></tr><tr class="row0" id="id'+j.id+'"><td/><td>'+j.cod+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left">'+j.nome+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left" style="padding-left: 10px;">'+j.time+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="center">'+del+'</td><td/></tr>';
+			html = '<tr><td height="1" colspan="12"></td></tr><tr><td height="1" colspan="12" bgcolor="#BFBDB3"></td></tr><tr class="row0" id="id'+j.id+'"><td/><td>'+j.cod+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left">'+j.nome+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="left" style="padding-left: 10px;">'+j.time+'</td><td style="background: url(\'/congado/public/images/grid/divisor_content.gif\');"></td><td/><td align="center">'+del+'</td><td/></tr>';
 		}
 
 		$('#gridAnimal #lastRow').before(html);
@@ -181,6 +179,7 @@ function deleteAnimal(id)
 		$('#id'+id).prev().remove();
 	}
 	$('#id'+id).remove();
+//	$()
 	return false;
 }
 

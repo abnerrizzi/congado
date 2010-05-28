@@ -220,4 +220,61 @@ class Model_Db_Sanitario extends Model_Db
 		$this->delete('id = ' . (int)$id);
 	}
 
+	public function listJsonMorte($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
+	{
+
+		$col_id = $this->_name.'.id';
+		$col_id = 'id';
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from($this->_name, array('id', 'data'), $this->_schema)
+		;
+
+		if ($orderby && $order) {
+			$this->_select->order($orderby .' '. $order);
+		}
+
+		if ($qtype && $query) {
+			if ($like == 'false') {
+				$this->_select->where($qtype .' = ?', $query);
+			} else {
+				$this->_select->where($qtype .' LIKE ?', '%'.$query.'%');
+			}
+		}
+
+		$return = array(
+			'page' => $page,
+			'total' => $this->fetchAll($this->_select)->count(),
+		);
+
+		if ($page && $limit) {
+			$this->_select->limitPage($page, $limit);
+		}
+
+		$array = $this->fetchAll($this->_select)->toArray();
+		for ($i=0; $i < count($array); $i++)
+		{
+			$row = $array[$i];
+
+			$current = array(
+				'id' => $row[$col_id]
+			);
+			foreach ($row as $key => $val)
+			{
+				if ($key == $col_id) {
+					continue;
+				} else {
+					if ($val == null) {
+						$current['cell'][] = '';
+					} else {
+						$current['cell'][] = ($val);
+					}
+				}
+			}
+			$return['rows'][] = $current;
+		}
+		return $return;
+
+	}
+
 }

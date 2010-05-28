@@ -22,13 +22,13 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 	public function indexAction()
 	{
 		$gridModel = new Model_Grid($this->view->title);
-		$movimentacaoModel = new Model_Db_Sanitario();
-		$movimentacaoModel->setTipo(2);
+		$sanitarioModel = new Model_Db_Sanitario();
+		$sanitarioModel->setTipo(2);
 
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $movimentacaoModel->getPaginatorAdapter($_by, $_order, array('id', 'data'));
+		$result	= $sanitarioModel->getPaginatorAdapter($_by, $_order, array('id', 'data'));
 		
 		/*
 		 * Paginator
