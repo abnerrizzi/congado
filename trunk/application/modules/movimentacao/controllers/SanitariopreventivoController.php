@@ -102,11 +102,12 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')
 			->removeValidator('NoRecordExists')
-			;
+		;
 
 		$morteForm->getElement('data')
-			->setLabel('Data')
-			;
+			->setLabel('Data');
+		$morteForm->getElement('dataproximo')
+			->setRequired(false);
 
 		/*
 		 * Procedimento de validacao e inclusao
@@ -137,6 +138,9 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 				}
 			} else {
+				Zend_Debug::dump($morteForm->getErrors());
+				die();
+				
 				if ($this->getRequest()->getParam('fichario_id', '') != '') {
 					$horario = $this->getRequest()->getParam('fichario_id', false);
 					$ficharioModel = new Model_Db_Fichario();
@@ -195,7 +199,7 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 		if ($request->isPost()) {
 
 			Zend_Debug::dump($request->getPost());
-			die();
+			die('fazer procedimento de alteracao');
 			if ($doencaForm->isValid($request->getPost())) {
 				$values = $doencaForm->getValues(true);
 				unset($values['submit'], $values['cancel']);
@@ -216,6 +220,30 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 		}
 
 		$this->view->form = $morteForm;
+	}
+
+	public function deleteAction()
+	{
+
+		$request = $this->getRequest();
+		$morteForm = new Form_Sanitario();
+		$morteForm->setAction('xxx');
+		$morteForm->setMethod('post');
+		$morteModel = new Model_Db_Sanitario();
+		$morteModel->setTipo(2);
+
+		if ($request->isPost() && $request->getParam('param', false) == 'sanitariopreventivo') {
+			$morteId = (int)$request->getParam('id');
+			$morteModel->deleteMorte($morteId);
+			$this->view->error = false;
+			$this->view->msg = 'Registro apagado com sucesso.';
+		} else {
+			$morteId = (int)$request->getParam('id');
+			$this->view->error = true;
+			$this->view->msg = 'Erro tentando apagar registro('.$morteId.')';
+		}
+		$this->view->url = $request->getModuleName().'/'.$request->getControllerName();
+
 	}
 
 }
