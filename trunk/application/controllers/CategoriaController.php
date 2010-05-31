@@ -5,6 +5,7 @@
  */
 
 /**
+ * @TODO: Criar validador ao associar ao animal
  * CategoriaController
  * 
  * Controla requisições de manipulação das categorias.
@@ -33,7 +34,14 @@ class CategoriaController extends Zend_Controller_Action
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $categoriaModel->getPaginatorAdapter($_by, $_order, array('id', 'cod', 'dsc', 'unidade'));
+
+		// Workaround to get sex description from cod
+		$sexo = new Zend_Db_Expr("CASE sexo when 'M' then 'MACHO'
+    when 'F' then 'FEMEA'
+    else 'INDIFERENTE'
+    end as sexo");
+		
+		$result	= $categoriaModel->getPaginatorAdapter($_by, $_order, array('id', 'cod', 'dsc', $sexo));
 
 		/*
 		 * Paginator
@@ -50,8 +58,8 @@ class CategoriaController extends Zend_Controller_Action
 		 * Fields
 		 */
 		$fields[] = new Model_Grid_Fields('cod', 'C&oacute;digo', 20);
-		$fields[] = new Model_Grid_Fields('dsc','Descri&ccedil;&atilde;o', 150);
-		$fields[] = new Model_Grid_Fields('unidade','Unidade', 60);
+		$fields[] = new Model_Grid_Fields('dsc', 'Descri&ccedil;&atilde;o', 150);
+		$fields[] = new Model_Grid_Fields('sexo', 'Sexo', 70);
 
 		/*
 		 * Grid Model
@@ -92,6 +100,9 @@ class CategoriaController extends Zend_Controller_Action
 			->removeValidator('NoRecordExists')
 			;
 
+		$categoriaForm->getElement('sexo')
+			->setSeparator('&nbsp;')
+			;
 		if ($request->isPost()) {
 
 			if ($categoriaForm->isValid($request->getPost())) {
@@ -107,7 +118,7 @@ class CategoriaController extends Zend_Controller_Action
 			}
 		}
 
-		$this->view->elements = array('id', 'cod', 'dsc', 'unidade', 'delete');
+		$this->view->elements = array('id', 'cod', 'dsc', 'sexo', 'delete');
 		$this->view->form = $categoriaForm;
 	}
 
