@@ -118,9 +118,15 @@ $this->headLink()
   </tr>
 
   <tr>
-	<td width="20"></td>
+	<td width="20" align="center"></td>
 
 	<td align="center">
+
+<?$this->form->getElement('delete')->setAttrib('onclick', "check_delete(".$this->form->getElement('id')->getValue().", '".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."', '".$this->baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getModuleName()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."/delete');return false");?>
+<span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="<?=$this->form->getElement('delete')->getAttrib('onclick');?>">
+<span class="UIIcon UIIcon_Delete">&nbsp;</span>
+  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Excluir" name="<?=$this->form->getElement('delete')->getName();?>" id="<?=$this->form->getElement('delete')->getId();?>"/>
+</span>
 
 	</td>
 	<td width="10"></td>
