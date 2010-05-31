@@ -164,7 +164,11 @@ jQuery.fn.centerx = function () {
 
 function getRecord(row) {
 	__id = row.attr("id").substr(3);
-	url = baseUrl + '/'+__action+'/edit/id/' + __id;
+	if (typeof(__module) != 'undefined') {
+		url = baseUrl+'/'+__module+'/'+__action+'/edit/id/'+__id;
+	} else {
+		url = baseUrl+'/'+__action+'/edit/id/'+__id;
+	}
 	$(location).attr('href', url);
 	$("#search").dialog('close');
 }

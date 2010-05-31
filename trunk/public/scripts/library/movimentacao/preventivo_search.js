@@ -4,7 +4,7 @@ $(document).ready(function() {
 		__action = editUrl.split("/")[1];
 		__module = '';
 	} else {
-//		__baseUrl = baseUrl + '/' + __module;
+		__baseUrl = baseUrl + '/' + __module;
 		__action = editUrl.split("/")[2];
 	}
 
