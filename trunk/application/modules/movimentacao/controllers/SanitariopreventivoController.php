@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ * @TODO: a data de proximo pode ser a mesma quando esta se cadastrando um grupo?
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
  * @version $Id: CategoriaController.php 203 2010-04-13 14:22:30Z bacteria_ $
@@ -90,9 +90,6 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 				->addMultiOption($fazenda['id'], $fazenda['descricao']);
 		}
 
-		// Valor setado apenas para teste.
-		$morteForm->getElement('fazenda_id')->setValue(1);
-
 		$morteForm->getElement('fichario')
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')
@@ -153,5 +150,72 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 		}
 	}
 
-}
+	public function editAction()
+	{
+		$request = $this->getRequest();
+		$morteId = (int)$request->getParam('id');
+		$morteForm = new Form_Sanitario();
 
+		$morteForm->setName('controle_sanitario_-_preventivo');
+		$morteForm->setAction('/movimentacao/sanitariopreventivo/edit');
+		$morteForm->setMethod('post');
+
+		$fazendaModel = new Model_Db_Fazenda();
+		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
+		$morteForm->getElement('fazenda_id')
+			->addMultiOption(false, '--');
+
+		foreach ($fazendas as $fazenda) {
+			$morteForm->getElement('fazenda_id')
+				->addMultiOption($fazenda['id'], $fazenda['descricao']);
+		}
+		$morteForm->getElement('sequencia_id')->setValue(3);
+
+		$morteForm->getElement('fazenda_id')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			;
+
+		$morteForm->getElement('fichario')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			;
+
+		$morteForm->getElement('fichario_cod')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			;
+
+		$morteForm->getElement('ocorrencia')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			->setAttrib('size', '40')
+			;
+
+		if ($request->isPost()) {
+
+			Zend_Debug::dump($request->getPost());
+			die();
+			if ($doencaForm->isValid($request->getPost())) {
+				$values = $doencaForm->getValues(true);
+				unset($values['submit'], $values['cancel']);
+				$doencaModel->updateDoenca($values);
+				$this->_redirect('doenca/index');
+			}
+
+		} else {
+
+			if ($morteId > 0) {
+				$morteModel = new Model_Db_Sanitario();
+				$morteModel->setTipo(2);
+				$result = $morteModel->getSanitario($morteId);
+				$morteForm->populate($result);
+			} else {
+				throw new Exception('invalid record number');
+			}
+		}
+
+		$this->view->form = $morteForm;
+	}
+
+}

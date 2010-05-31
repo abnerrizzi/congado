@@ -80,7 +80,7 @@ class Form_Sanitario extends Form_Default
 		));
 
 		$this->addElement('text', 'data', array(
-			'label' => 'Data Data',
+			'label' => 'Data',
 			'required' => true,
 			'filters' => array('StringTrim'),
 			'validators' => array(
@@ -134,7 +134,19 @@ class Form_Sanitario extends Form_Default
 				'SA' => 'Sacrifício',
 			),
 		));
-		
+
+		$this->addElement('text', 'dataproximo', array(
+			'label' => 'Data',
+			'required' => true,
+			'filters' => array('StringTrim'),
+			'validators' => array(
+				new Zend_Validate_Date('dd/MM/YYYY'),
+			),
+			'maxlength' => 10,
+			'size' => 10,
+			'class'	=> 'input',
+		));
+
 
 		$this->addElement('image', 'submit', array(
 			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/save.gif',
