@@ -342,3 +342,53 @@ function dump(array, level) {
 		}
 	};
 })(jQuery);
+
+function changeSelect() {
+
+	this.value = this.value.toUpperCase();
+	suffix = '_cod';
+	__select = '#' + this.name.substr(0,(this.name.length - suffix.length));
+	__hidden = '#' + this.name.substr(0,(this.name.length - suffix.length)) + '_id';
+
+	for (int = 0; int < $("#raca option").length; int++) {
+		if (this.value == $(__select + " option")[int].value.split(";")[1]) {
+			$(__select).val($(__select + " option")[int].value);
+			$(__hidden).val($(__select).val().split(";")[0]);
+			$(__select).val(this.value.split(";")[1]);
+			__exists = true;
+			break;
+		} else {
+			$(__hidden).val('');
+			$(__select).val('');
+			__exists = false;
+		}
+
+	}
+	if (!__exists) {
+		if ($("#ajax_loader")) {
+			$("#ajax_loader").html("Código não encontrado").show();
+			setTimeout(function(){
+				$("#ajax_loader").fadeOut(300); }
+			, 2000);
+		}
+		return false;
+	}
+
+}
+
+
+/**
+ * Funcao criada para globalizar o metodo de implementacao do incone de pesquisa
+ */
+function addSearchIcon(__parent, __jsonUrl, title, function_call, w, h)
+{
+	__id = __parent+'_search';
+	$('#'+__parent).parent().append(' <a id="'+__id+'"><img alt="" src="'+baseUrl+'/images/search.png"/></a>');
+	obj = $('#'+__id);
+	obj.attr('href', "javascript:void(0);");
+	obj.click(function() {
+		eval(function_call+"('"+__jsonUrl+"', '"+__parent+"');");
+	});
+}
+
+

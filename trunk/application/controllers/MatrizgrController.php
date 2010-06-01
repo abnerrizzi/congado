@@ -84,6 +84,7 @@ class MatrizgrController extends Zend_Controller_Action
 		$matrizgrForm = new Form_Matrizgr();
 		$matrizgrForm->setAction('/matrizgr/add');
 		$matrizgrForm->setMethod('post');
+		$this->view->elements = array(array('raca'), array('pai'), array('mae'), array('cria'));
 		$this->view->form = $matrizgrForm;
 
 
@@ -233,6 +234,7 @@ class MatrizgrController extends Zend_Controller_Action
 			}
 		}
 
+		$this->view->elements = array('raca_id');
 		$this->view->form = $matrizgrForm;
 
 	}

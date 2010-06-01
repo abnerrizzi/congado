@@ -134,21 +134,6 @@ function updateField(__fld, __jsonUrl, __qtype)
 
 
 
-/**
- * Funcao criada para globalizar o metodo de implementacao do incone de pesquisa
- */
-function addSearchIcon(__parent, __jsonUrl, title, function_call, w, h)
-{
-	__id = __parent+'_search';
-	lnk = $('#'+__parent).parent().append(' <a id="'+__id+'"><img alt="" src="'+baseUrl+'/images/search.png"/></a>');
-	__id = '#'+__parent+'_search';
-	$(__id).attr('href', "javascript:void(0);");
-	$('#'+__parent+'_search').click(function() {
-		eval(function_call+"('"+__jsonUrl+"', '"+__parent+"');");
-	});
-}
-
-
 
 
 /**

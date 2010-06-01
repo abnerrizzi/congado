@@ -154,7 +154,7 @@ class Zend_View_Helper_FormEdit extends Zend_View_Helper_Abstract
 	<td align="center">
 <span class="UIButton UIButton_Large UIFormButton  UIButton_Blue" onclick="$(\'#'.$form->getName().'\').submit();">
 <span class="UIIcon UIIcon_Save">&nbsp;</span>
-  <input style="display: inline-block;" class="UIButton_Text" type="submit" value="Salvar" name="'.$form->getElement('submit')->getName().'_" id="'.$form->getElement('submit')->getId().'_"/>
+  <input style="display: inline-block;" class="UIButton_Text" type="button" value="Salvar" name="'.$form->getElement('submit')->getName().'_" id="'.$form->getElement('submit')->getId().'_"/>
 </span>
 
 

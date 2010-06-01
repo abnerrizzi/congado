@@ -418,53 +418,6 @@ function showfilter_pelagem(url, input)
 	}
 }
 
-function showfilter_raca(url, input)
-{
-	createDialog('Raça');
-	if ($("#dlg").length) {
-		$("#dlg-grid").flexigrid(
-		{
-			url: url,
-			dataType: 'json',
-			colModel : [{
-					display: 'Raça',
-					name : 'cod',
-					width : 40,
-					sortable : true,
-					align: 'left'
-				}, {
-					display: 'Descrição',
-					name : 'dsc',
-					width : 180,
-					sortable : true,
-					align: 'left'
-				}],
-			searchitems : [{
-					display: 'Raça',
-					name : 'cod'
-				}, {
-					display: 'Descrição',
-					name : 'dsc',
-					isdefault: true
-				}],
-			sortname: "cod",
-			sortorder: "asc",
-			usepager: true,
-			title: false,
-			useRp: true,
-			rp: 10,
-			showTableToggleBtn: false,
-			pagestat: 'Mostrando {from} até {to} de {total} itens',
-			width: 600,
-			height: (240 + _Height),
-			onSelect: function(row) {
-				changeField(row, input);
-			}
-		});
-		$("#dlg").fadeIn(200);
-	}
-}
-
 function showfilter_rebanho(url, input)
 {
 	createDialog('Rebanho');
@@ -605,57 +558,6 @@ function showfilter_local(url, input)
 					isdefault: true
 				}],
 			sortname: "local",
-			sortorder: "asc",
-			usepager: true,
-			title: false,
-			useRp: true,
-			rp: 10,
-			showTableToggleBtn: false,
-			pagestat: 'Mostrando {from} até {to} de {total} itens',
-			width: 600,
-			height: (240 + _Height),
-			onSelect: function(row) {
-				changeField(row, input);
-			},
-			params: [ 
-			          {name: 'fazenda_id', value: $("#fazenda_id").val()}
-			        ]
-		});
-		$("#dlg").fadeIn(200);
-	}
-}
-
-function showfilter_grausangue(url, input)
-{
-
-	createDialog('Grau Sangue');
-	if ($("#dlg").length) {
-		$("#dlg-grid").flexigrid(
-		{
-			url: url,
-			dataType: 'json',
-			colModel : [{
-					display: 'Grau Sangue',
-					name : 'cod',
-					width : 40,
-					sortable : true,
-					align: 'left'
-				}, {
-					display: 'Descrição',
-					name : 'dsc',
-					width : 180,
-					sortable : true,
-					align: 'left'
-				}],
-			searchitems : [{
-					display: 'Grau Sangue',
-					name : 'cod'
-				}, {
-					display: 'Descrição',
-					name : 'dsc',
-					isdefault: true
-				}],
-			sortname: "cod",
 			sortorder: "asc",
 			usepager: true,
 			title: false,
