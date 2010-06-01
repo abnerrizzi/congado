@@ -104,9 +104,20 @@ $this->headLink()
 	<td width="10"></td> 
 	<td class="element">
 <?=$this->form->comentario->removeDecorator('tag')->removeDecorator('label');?>
+	</td>
 	<td width="50"></td>
   </tr>
 
+  <tr>
+	<td height="10" colspan="5"></td>
+  </tr>
+  <tr>
+	<td width="20"></td>
+	<td class="label"><?=$this->form->dataproximo->getLabel();?>:</td>
+	<td width="10"></td>
+	<td class="element"><?=$this->form->dataproximo->removeDecorator('tag')->removeDecorator('label');?></td>
+	<td width="50"></td>
+  </tr>
 
 
   <tr>

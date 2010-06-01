@@ -136,7 +136,7 @@ class Form_Sanitario extends Form_Default
 		));
 
 		$this->addElement('text', 'dataproximo', array(
-			'label' => 'Data',
+			'label' => 'Data Proximo',
 			'required' => true,
 			'filters' => array('StringTrim'),
 			'validators' => array(

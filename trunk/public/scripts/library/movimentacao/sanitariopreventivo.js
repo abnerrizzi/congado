@@ -8,6 +8,7 @@ $(document).ready(function() {
 	addSearchIcon('fichario_cod', baseUrl+'/json/animal', 'Doenças', 'showfilter_animalPreventivo', 600, 240);
 
 	campoData("#data", new Date());
+	campoData("#dataproximo", new Date()+(60*60*24*365*30));
 
 	$("#fichario_grid").parent().css('text-align', 'center');
 	$("#fichario_cod").keypress(function(e) {
@@ -41,6 +42,23 @@ $(document).ready(function() {
 		this.value = this.value.toUpperCase();
 	});
 
+	$('form').submit(function(){
+		if ($('#dataproximo').length > 0 && $('#dataproximo').val() != '') {
+			__dataProximo = $('#dataproximo').val().split('/');
+			__data = $('#data').val().split('/');
+			__dtp = new Date(__dataProximo[2], __dataProximo[1], __dataProximo[0]);
+			__dt  = new Date(__data[2], __data[1], __data[0]);
+			if ((__dt - __dtp) >= 0) {
+				__msgError = 'A data da proxima preventiva deve ser maior que a\ndata da preventiva atual: '+ $('#data').val();
+				window.alert(__msgError);
+				return false;
+			}
+		}
+	});
+	
+
+
+//	if (Date.parse($('date'))-Date.parse('01/01/2011')
 });
 
 

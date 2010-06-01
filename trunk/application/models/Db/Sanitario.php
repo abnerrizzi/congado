@@ -159,6 +159,24 @@ class Model_Db_Sanitario extends Model_Db
 		$this->update($data, $where);
 	}
 
+	public function updateMorte($values)
+	{
+
+		$_dt = explode('/', $values['data']);
+		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
+
+		$_dtp = explode('/', $values['dataproximo']);
+		$_dtp = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
+
+		$values['data'] = $_dt;
+		$values['dataproximo'] = $_dtp;
+
+		$where = $this->getAdapter()->quoteInto('id = ?', (int)$values['id']);
+
+		$this->update($data, $where);
+
+	}
+
 	public function addSanitarioMorte($post)
 	{
 		if ($this->getTipo() != 0) {

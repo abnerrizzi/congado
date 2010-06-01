@@ -176,7 +176,6 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 		$morteForm->getElement('sequencia_id')->setValue(3);
 
 		$morteForm->getElement('fazenda_id')
-			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')
 			;
 
@@ -198,15 +197,16 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 
 		if ($request->isPost()) {
 
-			Zend_Debug::dump($request->getPost());
-			die('fazer procedimento de alteracao');
-			if ($doencaForm->isValid($request->getPost())) {
-				$values = $doencaForm->getValues(true);
-				unset($values['submit'], $values['cancel']);
-				$doencaModel->updateDoenca($values);
-				$this->_redirect('doenca/index');
+			$data['id'] = $request->getParam('id');
+			$data['data'] = $request->getParam('data');
+			$data['ocorrencia_id'] = $request->getParam('ocorrencia_id');
+			$data['comentario'] = $request->getParam('comentario');
+			$data['dataproximo'] = $request->getParam('dataproximo');
+			if ($morteForm->isValid($request->getPost())) {
+				$morteModel = new Model_Db_Sanitario();
+				$morteModel->updateMorte($data);
+				$this->_redirect('movimentacao/sanitario/preventivo');
 			}
-
 		} else {
 
 			if ($morteId > 0) {
