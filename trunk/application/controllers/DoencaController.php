@@ -123,7 +123,7 @@
 
 			if ($doencaForm->isValid($request->getPost())) {
 				$values = $doencaForm->getValues(true);
-				unset($values['submit'], $values['cancel']);
+				unset($values['submit'], $values['cancel'], $values['delete']);
 				$doencaModel->updateDoenca($values);
 				$this->_redirect('doenca/index');
 			}
