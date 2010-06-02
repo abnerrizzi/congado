@@ -129,7 +129,6 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 				}
 			} else {
 				$morteForm->populate($formData);
-				Zend_Debug::dump($morteForm->getErrors());
 			}
 		}
 	}

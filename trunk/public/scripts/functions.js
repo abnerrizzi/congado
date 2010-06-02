@@ -392,3 +392,136 @@ function addSearchIcon(__parent, __jsonUrl, title, function_call, w, h)
 }
 
 
+
+
+function changeSelectAnimal() {
+
+	this.value = this.value.toUpperCase();
+	suffix = '_cod';
+	__fieldName = this.name.substr(0,(this.name.length - suffix.length));
+	__fieldValue = this.value;
+	__url = baseUrl + '/json/animal';
+
+	if (__fieldValue == '') {
+		$("#" + __fieldName + "_id").val('');
+		$("#" + __fieldName + "_cod").val('');
+		$("#" + __fieldName).val('');
+		return true;
+	} else if (__fieldValue == $("#cod").val()) {
+		$("#ajax_loader").html("Código não pode ser o mesmo do animal atual.").show();
+		setTimeout(function(){
+			$("#ajax_loader").fadeOut(300); }
+		, 2000);
+		return false;
+	}
+
+	if (__fieldName == 'mae' || __fieldName == 'receptora') {
+		__sexo = 'F';
+	} else if (__fieldName == 'pai') {
+		__sexo = 'M';
+	} else {
+		__sexo = '';
+	}
+	__qtype = 'fichario.cod';
+
+	$("#ajax_loader").html("Buscando dados...").show();
+	suffix = '_cod';
+	$.post(__url, {
+		qtype	: __qtype,
+		query	: __fieldValue,
+		sexo	: __sexo,
+		like	: 'false',
+		ajax	: 'true'
+	}, function(j) {
+		j = j.rows;
+		if (j && j.length == 1) {
+			$("#" + __fieldName + "_id").val(j[0].id);
+			$("#" + __fieldName + "_cod").val(j[0].cell[0]);
+			$("#" + __fieldName).val(j[0].cell[1]);
+		} else {
+			$("#ajax_loader").html("Código não encontrado").show();
+			$("#" + __fieldName + "_id").val(null);
+//			$("#" + __fieldName + "_cod").val(null);
+			$("#" + __fieldName).val(null);
+			setTimeout(function(){
+				$("#ajax_loader").fadeOut(300); }
+			, 2000);
+			return false;
+		}
+		$("#ajax_loader").fadeOut(100);
+	}, "json");
+
+}
+
+
+
+/*
+ * Busca via ajax os valores de id e descricao dos campos de acordo com o codigo digitado
+ */
+function updateField(__fld, __jsonUrl, __qtype)
+{
+	// Change default value if not passed through function call
+	__qtype = typeof(__qtype) != 'undefined' ? __qtype : 'cod';
+
+	$(__fld).change(function(){
+		this.value = this.value.toUpperCase();
+		suffix = '_cod';
+		__fieldName = this.name.substr(0,(this.name.length - suffix.length));
+		__fieldValue = this.value;
+
+		__url = baseUrl + '/json/' + __jsonUrl;
+
+		if (__fieldValue == '') {
+			$("#" + __fieldName + "_id").val(null);
+			$("#" + __fieldName + "_cod").val(null);
+			$("#" + __fieldName).val(null);
+			return false;
+		}
+
+		$("#ajax_loader").html("Buscando dados...").show();
+		suffix = '_cod';
+
+		$.ajax({
+			type: "POST",
+			url: __url,
+			data: ({
+				qtype : __qtype,
+				query : __fieldValue,
+				like : 'false'
+			}),
+			dataType: "json",
+			success: function(j) {
+				j = j.rows;
+				if (j && j.length == 1) {
+					$("#" + __fieldName + "_id").val(j[0].id);
+					$("#" + __fieldName + "_cod").val(j[0].cell[0]);
+					$("#" + __fieldName).val(j[0].cell[1]);
+				} else {
+					$("#ajax_loader").html("Código não encontrado").show();
+					$("#" + __fieldName + "_id").val('');
+					$("#" + __fieldName).val('');
+					$("#" + __fieldName + "_cod").focus();
+					setTimeout(function(){
+						$("#ajax_loader").fadeOut(300); }
+					, 2000);
+					return false;
+				}
+				$("#ajax_loader").fadeOut(100);
+			},
+
+			error: function() {
+				$("#ajax_loader").html("Erro inesperado!").show();
+				$("#" + __fieldName + "_id").val('');
+				$("#" + __fieldName).val('');
+				setTimeout(function(){
+					$("#ajax_loader").fadeOut(3000); }
+				, 2000);
+				return false;
+			}
+
+		});
+
+	});
+}
+
+

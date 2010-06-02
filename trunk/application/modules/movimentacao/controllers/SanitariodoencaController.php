@@ -28,7 +28,7 @@ class Movimentacao_SanitariodoencaController extends Zend_Controller_Action
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $movimentacaoModel->getPaginatorAdapter($_by, $_order, array('id', 'data'));
+		$result	= $movimentacaoModel->getPaginatorAdapter($_by, $_order, array('id', 'dt' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')")));
 		
 		/*
 		 * Paginator
@@ -44,7 +44,7 @@ class Movimentacao_SanitariodoencaController extends Zend_Controller_Action
 		/*
 		 * Fields
 		 */
-		$fields[] = new Model_Grid_Fields('data', 'Data', 20);
+		$fields[] = new Model_Grid_Fields('dt', 'Data', 20);
 		$fields[] = new Model_Grid_Fields('nome', 'Animal', 150);
 		$fields[] = new Model_Grid_Fields('doenca', 'Ocorrência', 200);
 		$fields[] = new Model_Grid_Fields('old', 'Destino', 200);
@@ -57,15 +57,15 @@ class Movimentacao_SanitariodoencaController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'movimentacao/sanitariomorte',
+			'module'	=> 'movimentacao/sanitariodoenca',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'movimentacao/sanitariomorte',
+			'module'	=> 'movimentacao/sanitariodoenca',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'movimentacao/sanitariomorte',
+			'module'	=> 'movimentacao/sanitariodoenca',
 			'action'	=> 'add',
 		));
 
@@ -75,7 +75,55 @@ class Movimentacao_SanitariodoencaController extends Zend_Controller_Action
 
 	public function addAction()
 	{
-		throw new Zend_Controller_Action_Exception('Controlador não implementado');
+
+		$doencaForm = new Form_Sanitario();
+		$doencaForm->setName('controle_sanitario_-_doenca');
+		$doencaForm->setAction('/movimentacao/sanitariodoenca/add');
+		$doencaForm->setMethod('post');
+
+		$doencaForm->getElement('fichario')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			->removeValidator('NoRecordExists')
+			;
+
+		$doencaForm->getElement('sequencia_cod')
+			->setLabel('Causa');
+		$doencaForm->getElement('sequencia')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			->removeValidator('NoRecordExists')
+			;
+		/*
+		 * Procedimento de validacao e inclusao
+		 */
+		$doencaForm->getElement('dataproximo')
+			->setRequired(false);
+
+		$doencaForm->getElement('ocorrencia_id')->setValue(2);
+		$this->view->form = $doencaForm;
+		$this->view->elements = array(
+			array('fichario'),
+			'data',
+			array('ocorrencia'),
+			array('sequencia'),
+			'comentario',
+		);
+
+		if ($this->getRequest()->isPost()) {
+			$formData = $this->getRequest()->getPost();
+			if ($doencaForm->isValid($formData)) {
+				$doencaModel = new Model_Db_Sanitario();
+				$doencaModel->setTipo(0);
+				if ($doencaModel->addSanitarioDoenca($this->getRequest()->getParams())) {
+					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
+				}
+			} else {
+				$doencaForm->populate($formData);
+				Zend_Debug::dump($doencaForm->getErrors());
+			}
+		}
+
 	}
 
 }

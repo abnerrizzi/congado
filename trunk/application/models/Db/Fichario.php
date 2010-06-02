@@ -84,7 +84,7 @@ class Model_Db_Fichario extends Model_Db
 		}
 
 		if (array_key_exists('sexo', $params) && $params['sexo'] != false) {
-			$this->_select->where('sexo = ?', $params['sexo']);
+			$this->_select->where($this->_name.'.sexo = ?', $params['sexo']);
 		}
 
 //		print '<pre>'.$this->_select;
