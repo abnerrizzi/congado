@@ -138,7 +138,7 @@ class CriadorController extends Zend_Controller_Action
 			if ($criadorForm->isValid($request->getPost())) {
 
 				$criadorModel->updateCriador($criadorForm->getValues());
-				$this->_redirect('criador/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 
 			}
 

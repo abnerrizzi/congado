@@ -122,7 +122,7 @@ class DestinoController extends Zend_Controller_Action
 
 			if ($destinoForm->isValid($request->getPost())) {
 				$destinoModel->updateDestino($destinoForm->getValues());
-				$this->_redirect('destino/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

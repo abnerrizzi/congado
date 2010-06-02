@@ -125,7 +125,7 @@
 				$values = $doencaForm->getValues(true);
 				unset($values['submit'], $values['cancel'], $values['delete']);
 				$doencaModel->updateDoenca($values);
-				$this->_redirect('doenca/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

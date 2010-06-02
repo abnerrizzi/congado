@@ -122,7 +122,7 @@ class AtivagricolaController extends Zend_Controller_Action
 
 			if ($ativagricolaForm->isValid($request->getPost())) {
 				$ativagricolaModel->updateAtivagricola($ativagricolaForm->getValues());
-				$this->_redirect('ativagricola/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

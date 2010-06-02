@@ -123,7 +123,7 @@ class InseminadorController extends Zend_Controller_Action
 
 			if ($inseminadorForm->isValid($request->getPost())) {
 				$inseminadorModel->updateInseminador($inseminadorForm->getValues());
-				$this->_redirect('inseminador/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

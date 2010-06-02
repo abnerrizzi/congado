@@ -221,7 +221,7 @@ class MatrizgrController extends Zend_Controller_Action
 
 			if ($matrizgrForm->isValid($request->getPost())) {
 				$matrizgrModel->updateMatrizGrauSangue($matrizgrForm->getValues());
-				$this->_redirect('matrizgr/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

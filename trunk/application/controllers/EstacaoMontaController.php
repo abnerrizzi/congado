@@ -127,7 +127,7 @@ class EstacaoMontaController extends Zend_Controller_Action
 
 			if ($estacaomontaForm->isValid($request->getPost())) {
 				$estacaomontaModel->updateEstacaoMonta($estacaomontaForm->getValues());
-				$this->_redirect('estacaomonta/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

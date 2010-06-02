@@ -125,7 +125,7 @@ class RacaController extends Zend_Controller_Action
 				$values = $racaForm->getValues(true);
 				unset($values['submit'], $values['cancel'], $values['delete']);
 				$racaModel->updateRaca($values);
-				$this->_redirect('raca/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

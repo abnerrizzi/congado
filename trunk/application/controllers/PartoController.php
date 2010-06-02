@@ -122,7 +122,7 @@ class PartoController extends Zend_Controller_Action
 
 			if ($partoForm->isValid($request->getPost())) {
 				$partoModel->updateParto($partoForm->getValues());
-				$this->_redirect('parto/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

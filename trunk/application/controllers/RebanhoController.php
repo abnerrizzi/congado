@@ -122,7 +122,7 @@ class RebanhoController extends Zend_Controller_Action
 
 			if ($rebanhoForm->isValid($request->getPost())) {
 				$rebanhoModel->updateRebanho($rebanhoForm->getValues());
-				$this->_redirect('rebanho/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

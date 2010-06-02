@@ -122,7 +122,7 @@ class SituacaoCriaController extends Zend_Controller_Action
 
 			if ($situacaocriaForm->isValid($request->getPost())) {
 				$situacaocriaModel->updateSituacaoCria($situacaocriaForm->getValues());
-				$this->_redirect('situacaocria/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

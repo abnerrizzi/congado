@@ -138,7 +138,6 @@ class Form_Sanitario extends Form_Default
 		$this->addElement('text', 'dataproximo', array(
 			'label' => 'Data Proximo',
 			'required' => true,
-			'filters' => array('StringTrim'),
 			'validators' => array(
 				new Zend_Validate_Date('dd/MM/YYYY'),
 			),

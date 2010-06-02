@@ -122,7 +122,7 @@ class MotivoLactacaoController extends Zend_Controller_Action
 
 			if ($motivolactacaoForm->isValid($request->getPost())) {
 				$motivolactacaoModel->updateMotivoLactacao($motivolactacaoForm->getValues());
-				$this->_redirect('motivolactacao/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

@@ -195,6 +195,9 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 			->setAttrib('size', '40')
 			;
 
+		$morteForm->getElement('dataproximo')
+			->setRequired(false)
+		;
 		if ($request->isPost()) {
 
 			$data['id'] = $request->getParam('id');
@@ -205,7 +208,7 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 			if ($morteForm->isValid($request->getPost())) {
 				$morteModel = new Model_Db_Sanitario();
 				$morteModel->updateMorte($data);
-				$this->_redirect('movimentacao/sanitario/preventivo');
+				$this->_redirect($request->getModuleName().'/'.$request->getControllerName());
 			}
 		} else {
 

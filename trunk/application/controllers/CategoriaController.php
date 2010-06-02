@@ -107,7 +107,7 @@ class CategoriaController extends Zend_Controller_Action
 
 			if ($categoriaForm->isValid($request->getPost())) {
 				$categoriaModel->updateCategoria($categoriaForm->getValues());
-				$this->_redirect('categoria/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 		} else {
 			if ($categoriaId > 0) {

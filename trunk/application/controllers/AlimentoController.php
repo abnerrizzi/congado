@@ -88,6 +88,7 @@ class AlimentoController extends Zend_Controller_Action
 		$alimentoForm->setMethod('post');
 		$alimentoModel = new Model_Db_Alimento();
 		$alimentoForm->getElement('cod')
+			->removeValidator('NoRecordExists')
 			->setAttrib('readonly', 'readonly')
 //			->setAttrib('disabled', 'disabled')
 			->setAttrib('class', 'readonly')
@@ -98,7 +99,7 @@ class AlimentoController extends Zend_Controller_Action
 
 			if ($alimentoForm->isValid($request->getPost())) {
 				$alimentoModel->updateAlimento($alimentoForm->getValues());
-				$this->_redirect('alimento/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 		} else {
 			if ($alimentoId > 0) {

@@ -55,10 +55,7 @@ $(document).ready(function() {
 			}
 		}
 	});
-	
 
-
-//	if (Date.parse($('date'))-Date.parse('01/01/2011')
 });
 
 

@@ -163,7 +163,7 @@ class FicharioController extends Zend_Controller_Action
 
 			if ($ficharioForm->isValid($request->getPost())) {
 				$ficharioModel->updateFichario($ficharioForm->getValues());
-				$this->_redirect('fichario/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

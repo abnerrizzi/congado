@@ -122,7 +122,7 @@ class MorteController extends Zend_Controller_Action
 
 			if ($morteForm->isValid($request->getPost())) {
 				$morteModel->updateMorte($morteForm->getValues());
-				$this->_redirect('morte/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {
