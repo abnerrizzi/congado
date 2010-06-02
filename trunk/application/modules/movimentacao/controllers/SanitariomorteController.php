@@ -178,7 +178,7 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 				$data['sequencia_id'] = $values['sequencia_id'];
 				$data['comentario'] = $values['comentario'];
 				$morteModel->updateSanitario($values);
-				$this->_redirect('movimentacao/sanitariomorte');
+				$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 			}
 
 		} else {
