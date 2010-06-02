@@ -223,6 +223,15 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 		}
 
 		$this->view->form = $morteForm;
+		$this->view->elements = array(
+			'id',
+			'fazenda_id',
+			'data',
+			array('ocorrencia'),
+			array('fichario'),
+			'comentario',
+			'dataproximo',
+		);
 	}
 
 	public function deleteAction()

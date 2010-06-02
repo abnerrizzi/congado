@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function(){
 
 	if (!$('#sequencia_cod').attr('readonly')) {
 		updateField('#sequencia_cod', 'morte');

@@ -174,6 +174,10 @@ class Zend_View_Helper_FormEdit extends Zend_View_Helper_Abstract
 
 </table>
 </form>
+
+<div id="dlg" style="display: none;">
+  <div id="dlg-grid" style="padding: 0px; margin: 0px"></div>
+</div>
 ';
 		return $output;
 	}

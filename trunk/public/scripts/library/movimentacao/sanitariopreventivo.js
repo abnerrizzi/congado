@@ -5,7 +5,9 @@ $(document).ready(function() {
 		addSearchIcon('ocorrencia', baseUrl+'/json/doenca', 'Doenças', 'showfilter_doenca', 600, 240);
 	}
 
-	addSearchIcon('fichario_cod', baseUrl+'/json/animal', 'Doenças', 'showfilter_animalPreventivo', 600, 240);
+	if (!$('#fichario_cod').attr('readonly')) {
+		addSearchIcon('fichario_cod', baseUrl+'/json/animal', 'Doenças', 'showfilter_animalPreventivo', 600, 240);
+	}
 
 	campoData("#data", new Date());
 	campoData("#dataproximo", new Date()+(60*60*24*365*30));
@@ -46,8 +48,8 @@ $(document).ready(function() {
 		if ($('#dataproximo').length > 0 && $('#dataproximo').val() != '') {
 			__dataProximo = $('#dataproximo').val().split('/');
 			__data = $('#data').val().split('/');
-			__dtp = new Date(__dataProximo[2], __dataProximo[1], __dataProximo[0]);
-			__dt  = new Date(__data[2], __data[1], __data[0]);
+			__dtp = new Date(parseInt(__dataProximo[2]), parseInt(__dataProximo[1])-1, parseInt(__dataProximo[0]));
+			__dt  = new Date(parseInt(__data[2]), parseInt(__data[1])-1, parseInt(__data[0]));
 			if ((__dt - __dtp) >= 0) {
 				__msgError = 'A data da proxima preventiva deve ser maior que a\ndata da preventiva atual: '+ $('#data').val();
 				window.alert(__msgError);

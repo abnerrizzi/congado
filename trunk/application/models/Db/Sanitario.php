@@ -166,7 +166,7 @@ class Model_Db_Sanitario extends Model_Db
 		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
 
 		$_dtp = explode('/', $values['dataproximo']);
-		$_dtp = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
+		$_dtp = $_dtp[2] .'/'. $_dtp[1] .'/'. $_dtp[0];
 
 		$data['data'] = $_dt;
 		$data['ocorrencia_id'] = $values['ocorrencia_id'];
@@ -174,8 +174,6 @@ class Model_Db_Sanitario extends Model_Db
 		$data['dataproximo'] = $_dtp;
 
 		$where = $this->getAdapter()->quoteInto('id = ?', (int)$values['id']);
-
-		$this->update($data, $where);
 
 	}
 

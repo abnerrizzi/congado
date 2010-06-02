@@ -100,6 +100,10 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 		/*
 		 * Procedimento de validacao e inclusao
 		 */
+		$morteForm->getElement('dataproximo')
+			->setRequired(false);
+		$morteForm->getElement('fazenda_id')
+			->setRequired(false);
 
 		$morteForm->getElement('ocorrencia_id')->setValue(2);
 		$this->view->form = $morteForm;
@@ -125,6 +129,7 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 				}
 			} else {
 				$morteForm->populate($formData);
+				Zend_Debug::dump($morteForm->getErrors());
 			}
 		}
 	}
@@ -226,5 +231,5 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 			. '/' . $this->getRequest()->getControllerName()
 			.'/index';
 	}
-}
 
+}
