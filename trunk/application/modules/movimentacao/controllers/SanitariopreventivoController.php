@@ -225,6 +225,7 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 		$this->view->form = $morteForm;
 		$this->view->elements = array(
 			'id',
+			'delete',
 			'fazenda_id',
 			'data',
 			array('ocorrencia'),
@@ -239,12 +240,11 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 
 		$request = $this->getRequest();
 		$morteForm = new Form_Sanitario();
-		$morteForm->setAction('xxx');
 		$morteForm->setMethod('post');
 		$morteModel = new Model_Db_Sanitario();
 		$morteModel->setTipo(2);
 
-		if ($request->isPost() && $request->getParam('param', false) == 'sanitariopreventivo') {
+		if ($request->isPost() && $request->getParam('param', false) == 'movimentacao/sanitariopreventivo') {
 			$morteId = (int)$request->getParam('id');
 			$morteModel->deleteMorte($morteId);
 			$this->view->error = false;
@@ -253,6 +253,7 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 			$morteId = (int)$request->getParam('id');
 			$this->view->error = true;
 			$this->view->msg = 'Erro tentando apagar registro('.$morteId.')';
+			Zend_Debug::dump($request);
 		}
 		$this->view->url = $request->getModuleName().'/'.$request->getControllerName();
 
