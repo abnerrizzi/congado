@@ -87,8 +87,14 @@ class Movimentacao_SanitariodoencaController extends Zend_Controller_Action
 			->removeValidator('NoRecordExists')
 			;
 
+		$doencaForm->getElement('ocorrencia')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			->removeValidator('NoRecordExists')
+			;
+
 		$doencaForm->getElement('sequencia_cod')
-			->setLabel('Causa');
+			->setLabel('Destino');
 		$doencaForm->getElement('sequencia')
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')
@@ -98,6 +104,8 @@ class Movimentacao_SanitariodoencaController extends Zend_Controller_Action
 		 * Procedimento de validacao e inclusao
 		 */
 		$doencaForm->getElement('dataproximo')
+			->setRequired(false);
+		$doencaForm->getElement('fazenda_id')
 			->setRequired(false);
 
 		$doencaForm->getElement('ocorrencia_id')->setValue(2);
@@ -114,7 +122,7 @@ class Movimentacao_SanitariodoencaController extends Zend_Controller_Action
 			$formData = $this->getRequest()->getPost();
 			if ($doencaForm->isValid($formData)) {
 				$doencaModel = new Model_Db_Sanitario();
-				$doencaModel->setTipo(0);
+				$doencaModel->setTipo(1);
 				if ($doencaModel->addSanitarioDoenca($this->getRequest()->getParams())) {
 					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 				}

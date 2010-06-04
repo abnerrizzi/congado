@@ -525,3 +525,37 @@ function updateField(__fld, __jsonUrl, __qtype)
 }
 
 
+
+
+/**
+ * Funcao que busca animal pelo codigo, depois executa funcao para adicionar na tabela
+ */
+function searchAnimalById(cod)
+{
+	$("#ajax_loader").html("Buscando dados...").fadeIn(100);
+    ajaxUrl = baseUrl + '/movimentacao/json/animalpreventivo';
+    $.post(ajaxUrl, {
+    	fazenda_id: $('#fazenda_id').val(),
+    	cod:		cod,
+    	byId:		true,
+    	rand:		Math.random()
+    }, function(j) {
+    	if (typeof(j.error) != 'undefined') {
+    		window.alert(j.error);
+    		return false;
+    	} else {
+    		if (j.length > 1) {
+    			window.alert("Foi encontrado mais de um registro com o código informado.");
+    			$("#ajax_loader").fadeOut(300);
+    			return false;
+    		} else if (j.length == 1) {
+    			addAnimal(j[0]);
+    			return false;
+    		} else {
+    			window.alert('Error inesperado');
+    			$("#ajax_loader").fadeOut(300);
+    			return false;
+    		}
+    	}
+    }, "json");
+}

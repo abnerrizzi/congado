@@ -178,6 +178,40 @@ class Model_Db_Sanitario extends Model_Db
 
 	}
 
+	public function addSanitarioDoenca($post)
+	{
+		if ($this->getTipo() != 1) {
+			throw new Zend_Exception('Erro inesperado');
+		}
+
+		$_dt = explode('/', $post['data']);
+		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
+
+		$posts = array(
+			'fichario_id'		=> $post['fichario_id'],
+			'data'				=> $_dt,
+			'ocorrencia_id'		=> $post['ocorrencia_id'],
+			'sequencia_id'		=> $post['sequencia_id'],
+			'comentario'		=> $post['comentario'],
+			'tipo_id'			=> $this->getTipo(),
+		);
+
+		foreach ($posts as $key => $val) {
+			if ($val == '' && !is_int($val)) {
+				continue;
+			} else {
+				$data[$key] = utf8_encode($val);
+			}
+		}
+
+		if ($this->insert($data)) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
 	public function addSanitarioMorte($post)
 	{
 		if ($this->getTipo() != 0) {
@@ -213,6 +247,10 @@ class Model_Db_Sanitario extends Model_Db
 
 	public function addSanitarioPreventivo($data, $ids)
 	{
+
+		if ($this->getTipo() != 2) {
+			throw new Zend_Exception('Erro inesperado');
+		}
 
 		foreach ($ids as $key => $val) {
 

@@ -810,5 +810,49 @@ function showfilter_animalPreventivo(url, input)
 
 }
 
-
-
+function showfilter_destino(url, input)
+{
+	createDialog('Destinos');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
+		{
+			url: url,
+			dataType: 'json',
+			colModel : [{
+					display: 'Destino',
+					name : 'cod',
+					width : 40,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Descrição',
+					name : 'dsc',
+					width : 180,
+					sortable : true,
+					align: 'left'
+				}],
+			searchitems : [{
+					display: 'Destino',
+					name : 'cod'
+				}, {
+					display: 'Descrição',
+					name : 'dsc',
+					isdefault: true
+				}],
+			sortname: "cod",
+			sortorder: "asc",
+			usepager: true,
+			title: false,
+			useRp: true,
+			rp: 10,
+			showTableToggleBtn: false,
+			pagestat: 'Mostrando {from} até {to} de {total} itens',
+			width: 600,
+			height: (240 + _Height),
+			onSelect: function(row) {
+				changeField(row, input);
+			}
+		});
+		$("#dlg").fadeIn(200);
+	}
+}
