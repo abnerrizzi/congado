@@ -160,6 +160,26 @@ class Model_Db_Sanitario extends Model_Db
 		$this->update($data, $where);
 	}
 
+	public function updateDoenca($values)
+	{
+		if ($this->getTipo() != 1) {
+			throw new Zend_Exception('Erro inesperado');
+		}
+		$_dt = explode('/', $values['data']);
+		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
+
+		$data = array(
+			'data' 			=> $_dt,
+			'sequencia_id'	=> (int)$values['sequencia_id'],
+			'ocorrencia_id'	=> (int)$values['ocorrencia_id'],
+			'comentario'	=> utf8_encode($values['comentario']),
+			'tiposisbov'	=> strtoupper($values['tiposisbov']),
+		);
+		$where = $this->getAdapter()->quoteInto('id = ?', (int)$values['id']);
+		
+		$this->update($data, $where);
+	}
+
 	public function updateMorte($values)
 	{
 
@@ -273,6 +293,11 @@ class Model_Db_Sanitario extends Model_Db
 	}
 
 	public function deleteMorte($id)
+	{
+		$this->delete('id = ' . (int)$id);
+	}
+
+	public function deleteDoenca($id)
 	{
 		$this->delete('id = ' . (int)$id);
 	}

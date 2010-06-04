@@ -134,5 +134,112 @@ class Movimentacao_SanitariodoencaController extends Zend_Controller_Action
 
 	}
 
+	public function editAction()
+	{
+
+		$request	= $this->getRequest();
+		$doencaId	= (int)$request->getParam('id');
+		$doencaForm	= new Form_Sanitario();
+
+		$doencaForm->setName('controle_sanitario_-_doenca');
+		$doencaForm->setAction('/'.$request->getModuleName().'/'.$request->getControllerName().'/edit');
+		$doencaForm->setMethod('post');
+		$doencaModel = new Model_Db_Sanitario();
+		$doencaModel->setTipo(1);
+		$doencaForm->getElement('fichario')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			->removeValidator('NoRecordExists')
+			;
+		$doencaForm->getElement('fichario_cod')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			;
+		
+
+		$doencaForm->getElement('ocorrencia')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			->removeValidator('NoRecordExists')
+			;
+
+		$doencaForm->getElement('sequencia_cod')
+			->setLabel('Destino');
+		$doencaForm->getElement('sequencia')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			->removeValidator('NoRecordExists')
+			;
+		/*
+		 * Procedimento de validacao e inclusao
+		 */
+		$doencaForm->getElement('dataproximo')
+			->setRequired(false);
+		$doencaForm->getElement('fazenda_id')
+			->setRequired(false);
+
+		if ($request->isPost()) {
+
+			if ($doencaForm->isValid($request->getPost())) {
+				$values = $doencaForm->getValues(true);
+				unset($values['submit'], $values['cancel'], $values['delete']);
+				$data['id'] = $values['id'];
+				$data['data'] = $values['data'];
+				$data['sequencia_id'] = $values['sequencia_id'];
+				$data['comentario'] = $values['comentario'];
+				$data['tiposisbov'] = $values['tiposisbov'];
+				$doencaModel->updateDoenca($values);
+				$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
+			} else {
+				print '<pre>';
+				print_r($doencaForm->getErrors());
+				print '</pre>';
+			}
+
+		} else {
+
+			if ($doencaId > 0) {
+				$result = $doencaModel->getSanitario($doencaId);
+				$doencaForm->populate($result);
+			} else {
+				throw new Exception("invalid record number");
+			}
+		}
+
+		$this->view->elements = array(
+			'id',
+			array('fichario'),
+			'data',
+			array('ocorrencia'),
+			array('sequencia'),
+			'delete',
+			'comentario',
+		);
+		$this->view->form = $doencaForm;
+
+	}
+
+	public function deleteAction()
+	{
+		$request		= $this->getRequest();
+		$doencaForm	= new Form_Sanitario();
+		$doencaForm->setAction('/'.$request->getModuleName().'/'.$request->getControllerName().'/delete');
+		$doencaForm->setMethod('post');
+		$doencaModel = new Model_Db_Sanitario();
+		$doencaModel->setTipo(1);
+
+		$doencaId = (int)$request->getParam('id');
+		if ($request->isPost() && $request->getParam('param', false) == 'movimentacao/sanitariodoenca') {
+			$doencaModel->deleteDoenca($doencaId);
+			$this->view->error = false;
+			$this->view->msg = 'Registro apagado com sucesso.';
+		} else {
+			$this->view->error = true;
+			$this->view->msg = 'Erro tentando apagar registro('.$doencaId.')';
+		}
+		$this->view->url = $this->getRequest()->getModuleName()
+			. '/' . $this->getRequest()->getControllerName()
+			. '/index';
+	}
 }
 
