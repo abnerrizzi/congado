@@ -11,7 +11,16 @@
 
 
 
+
+
+
+/**
+ * IMPLEMENTED
+ */
 var ja_mandou_ajax_anteriormente = false;
+
+
+
 
 
 
@@ -634,7 +643,17 @@ var ja_mandou_ajax_anteriormente = false;
 				p.newp = 1;
 
 				this.populate();
+
+
+
+				/**
+				 * IMPLEMENTED
+				 */
 				clearInterval(ja_mandou_ajax_anteriormente);
+
+
+
+
 			},
 			changePage: function (ctype){ //change page
 			
@@ -1225,46 +1244,8 @@ var ja_mandou_ajax_anteriormente = false;
 
 				/**
 				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * ORIG: $('input[name=q],select[name=qtype]',g.sDiv).keydown(function(e){if(e.keyCode==13) g.doSearch()}).keyup(function(e){if(e.keyCode!=13) g.doSearch()});
+				 * IMPLEMENTED
+				 * ORIGINAL: $('input[name=q],select[name=qtype]',g.sDiv).keydown(function(e){if(e.keyCode==13) g.doSearch()}).keyup(function(e){if(e.keyCode!=13) g.doSearch()});
 				 */
 				$('input[name=q],select[name=qtype]',g.sDiv).keydown(
 						function(e) {
@@ -1284,6 +1265,9 @@ var ja_mandou_ajax_anteriormente = false;
 									
 								}
 							});
+				/**
+                 * END
+                 */
 				$('input[value=Limpar]',g.sDiv).click(function(){$('input[name=q]',g.sDiv).val(''); p.query = ''; g.doSearch(); });
 				$(g.bDiv).after(g.sDiv);				
 				
