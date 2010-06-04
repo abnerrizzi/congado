@@ -65,7 +65,8 @@ var ja_mandou_ajax_anteriormente = false;
 			 onToggleCol: false,
 			 onChangeSort: false,
 			 onSuccess: false,
-			 onSubmit: false // using a custom populate function
+			 onSubmit: false, // using a custom populate function
+			 delayInterval: 300 // ******* delay used to wait mileseconds before data sent through ajax
 		  }, p);
 		  		
 
@@ -1255,10 +1256,10 @@ var ja_mandou_ajax_anteriormente = false;
 								if(e.keyCode!=13) {
 
 									if (!ja_mandou_ajax_anteriormente) {
-										ja_mandou_ajax_anteriormente = window.setInterval(function() {g.doSearch()}, 700);
+										ja_mandou_ajax_anteriormente = window.setInterval(function() {g.doSearch()}, p.delayInterval);
 									} else {
 										clearInterval(ja_mandou_ajax_anteriormente);
-										ja_mandou_ajax_anteriormente = window.setInterval(function() {g.doSearch()}, 700);
+										ja_mandou_ajax_anteriormente = window.setInterval(function() {g.doSearch()}, p.delayInterval);
 									}
 										
 									// wait 300 mileseconds
