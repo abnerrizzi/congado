@@ -172,6 +172,13 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 			->removeValidator('NoRecordExists')
 			;
 
+		$morteForm->getElement('dataproximo')
+			->setRequired(false)
+			;
+
+		$morteForm->getElement('fazenda_id')
+			->setRequired(false)
+			;
 		if ($request->isPost()) {
 
 			if ($morteForm->isValid($request->getPost())) {
@@ -181,8 +188,13 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 				$data['data'] = $values['data'];
 				$data['sequencia_id'] = $values['sequencia_id'];
 				$data['comentario'] = $values['comentario'];
+				$data['tiposisbov'] = $values['tiposisbov'];
 				$morteModel->updateSanitario($values);
 				$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
+			} else {
+				print '<pre>';
+				print_r($morteForm->getErrors());
+				print '</pre>';
 			}
 
 		} else {

@@ -153,6 +153,7 @@ class Model_Db_Sanitario extends Model_Db
 			'data' 			=> $_dt,
 			'sequencia_id'	=> (int)$values['sequencia_id'],
 			'comentario'	=> utf8_encode($values['comentario']),
+			'tiposisbov'	=> strtoupper($values['tiposisbov']),
 		);
 		$where = $this->getAdapter()->quoteInto('id = ?', (int)$values['id']);
 		
