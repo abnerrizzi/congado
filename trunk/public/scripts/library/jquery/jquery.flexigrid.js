@@ -277,7 +277,6 @@ var ja_mandou_ajax_anteriormente = false;
 							
 							
 							if (this.dcoln>this.dcolt)
-								
 								$('th:eq('+this.dcolt+')',this.hDiv).before(this.dcol);
 							else
 								$('th:eq('+this.dcolt+')',this.hDiv).after(this.dcol);

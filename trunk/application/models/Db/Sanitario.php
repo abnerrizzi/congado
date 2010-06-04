@@ -302,7 +302,7 @@ class Model_Db_Sanitario extends Model_Db
 		$this->delete('id = ' . (int)$id);
 	}
 
-	public function listJsonMorte($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
+	public function listJsonPreventivo($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
 	{
 
 		$col_id = $this->_name.'.id';

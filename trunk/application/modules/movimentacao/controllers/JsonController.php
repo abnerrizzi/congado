@@ -89,8 +89,8 @@ class Movimentacao_JsonController extends Zend_Controller_Action
 	public function sanitariopreventivoAction()
 	{
 
-		$morteModel = new Model_Db_Sanitario();
-		$morteModel->setTipo(2);
+		$preventivoModel = new Model_Db_Sanitario();
+		$preventivoModel->setTipo(2);
 		if ($this->getRequest()->getParam('sortname', false)) {
 			$sortname = $this->getRequest()->getParam('sortname', false);
 		} elseif ($this->getRequest()->getParam('sidx', false)) {
@@ -115,7 +115,7 @@ class Movimentacao_JsonController extends Zend_Controller_Action
 			$rp = 10;
 		}
 
-		$animais = $morteModel->listJsonMorte(
+		$animais = $preventivoModel->listJsonPreventivo(
 			array(
 				'id',
 				'nome',
