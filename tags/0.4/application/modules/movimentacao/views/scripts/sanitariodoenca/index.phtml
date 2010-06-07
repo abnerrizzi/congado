@@ -1,0 +1,12 @@
+<?php
+
+$this->headScript()
+	->appendScript("\t__title = 'Controle Sanitário - Doença';\n")
+	->appendScript("\t__module = 'movimentacao';\n")
+	->appendFile($this->baseUrl() . '/scripts/library/default_search.js')
+	;
+
+echo $this->grid($this->grid);
+
+?>
+
