@@ -315,6 +315,7 @@ class Model_Db_Sanitario extends Model_Db
 			), $this->_schema)
 			->joinInner('fichario',$this->_name.'.fichario_id = fichario.id',array('fichario.nome'),$this->_schema)
 			->joinLeft(array('d' => 'doenca'), 'ocorrencia_id = d.id', array('doenca' => 'dsc'), $this->_schema)
+			->joinLeft(array('dst' => 'destino'), 'sequencia_id = dst.id', array('dst' => 'dsc'), $this->_schema)
 			->where('tipo_id = ?', $this->getTipo())
 		;
 

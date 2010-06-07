@@ -2,8 +2,9 @@
 
 $this->headScript()
 	->appendScript("\t__title = 'Controle Sanitário - Doença';\n")
-	->appendScript("\t__module = 'movimentacao';\n")
-	->appendFile($this->baseUrl() . '/scripts/library/default_search.js')
+	->appendScript("\t__module = '".Zend_Controller_Front::getInstance()->getRequest()->getModuleName()."';\n")
+//	->appendFile($this->baseUrl() . '/scripts/library/default_search.js')
+	->appendFile($this->baseUrl() . '/scripts/library/movimentacao/doenca_search.js')
 	;
 
 echo $this->grid($this->grid);

@@ -241,5 +241,5 @@ class Movimentacao_SanitariodoencaController extends Zend_Controller_Action
 			. '/' . $this->getRequest()->getControllerName()
 			. '/index';
 	}
-}
 
+}
