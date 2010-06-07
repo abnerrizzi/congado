@@ -1,0 +1,363 @@
+<?php
+/**
+ * 
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ *
+ * @version $Id: dyn-menu.phtml 197 2010-04-13 13:09:41Z bacteria_ $
+ * 
+ */
+
+?>
+<div id="main_menu">
+
+
+<!-- Starting Page Content [menu nests within] -->
+<div style="background-image:url(<?=$this->baseUrl();?>/images/menu/center_tile.gif); width: 100%;">
+<table cellpadding="0" cellspacing="0" style="width: 100%;"><tr>
+<td><div style="font-size:1px;width:6px;height:34px;background-image:url(<?=$this->baseUrl();?>/images/menu/left_cap.gif);"></div></td>
+<td><div style="font-size:1px;width:6px;height:34px;"></div></td>
+<td style="width: 100%;">
+
+<!-- QuickMenu Structure [Menu 0] -->
+
+<ul id="qm0" class="qmmc">
+
+	<li><a href="javascript:void(0)" onclick="">ARQUIVO</a>
+		<ul>
+
+		<li><a id="search" href="javascript:void(0)">Pesquisar Fichario</a></li>
+
+		<li><span class="qmdivider qmdividerx" >&nbsp;</span></li>
+
+		<li><a href="javascript:void(0)" onclick="open_page('user');">Configurações</a></li>
+
+		<li><span class="qmdivider qmdividerx" >&nbsp;</span></li>
+
+		<li><a href="javascript:void(0)" onclick="open_page('auth/logout');">Sair</a></li>
+		</ul>
+	</li>
+
+	<li><span class="qmdivider qmdividery" >&nbsp;</span></li>
+
+	<li><a class="qmparent" href="javascript:void(0)">CADASTROS</a>
+
+		<ul>
+
+
+		<li><a class="qmparent" href="javascript:void(0)"><b>Tabelas</b></a>
+			<ul>
+			<li><a href="javascript:void(0);" onclick="open_page('pelagem');">Pelagens</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('categoria');">Categorias</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('local');">Locais</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('grausangue');">Graus de Sangue</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('criador');">Criadores / Proprietários / Compradores</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('lote');">Lotes</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('inseminador');">Inseminadores</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('parto');">Tipos de Parto</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('acompanhamento');">Tipos Acompanhamento Reprod.</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('tecnico');">Técnicos de Transferencia de Embrião</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('doenca');">Tipos de Controle Sanitário</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('raca');">Raças</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('alimento');">Regimes Alimentares</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('destino');">Destinos</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('morte');">Causa Mortis</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('ativagricola');">Atividades Agrícolas</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('rebanho');">Rebanhos</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('matrizgr');">Matriz de Graus de Sangue</a></li>
+			<li><a href="javascript:void(0);" onclick="">* - Matriz de Cruzamentos de Raças</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('situacaocria');">Situações das Crias ao Nascimento</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('situacaopesagem');">Tipos de Situações à Pesagem</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('motivolactacao');">Motivos de Encerramento de Lactação</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('estacaomonta');">Estações de Monta</a></li>
+			</ul></li>
+
+		<li><a href="javascript:void(0)" onclick="open_page('fichario');">Fichário</a></li>
+		<li><a href="javascript:void(0)" onclick="">* - Estoque de Sêmen</a></li>
+
+		<li><a class="qmparent" href="javascript:void(0)"><b>Perfil Linear</b></a>
+			<ul>
+			<li><a href="javascript:void(0);" onclick="">* - Deras</a></li>
+			<li><a href="javascript:void(0);" onclick="">* - Padrão Próprio</a></li>
+			</ul></li>
+
+		<li><a class="qmparent" href="javascript:void(0)"><b>Coleta / Est. Embrião</b></a>
+			<ul>
+			<li><a href="javascript:void(0);" onclick="">* - Coleta de Embriões</a></li>
+			<li><a href="javascript:void(0);" onclick="">* - Estoque de Embriões</a></li>
+			</ul></li>
+
+		<li><a href="javascript:void(0)" onclick="">* - Exame Andrológico</a></li>
+		<li><a href="javascript:void(0)" onclick="">* - Premiações</a></li>
+
+		<li><span class="qmdivider qmdividerx" >&nbsp;</span></li>
+
+		<li><a href="javascript:void(0)" onclick="">* - Agenda</a></li>
+
+		<li><span class="qmdivider qmdividerx" >&nbsp;</span></li>
+
+		<li><a href="javascript:void(0)" onclick="">* - Usuários</a></li>
+		<li><a href="javascript:void(0)" onclick="open_page('fazenda');">Fazendas</a></li>
+		</ul></li>
+
+
+	<li><span class="qmdivider qmdividery" >&nbsp;</span></li>
+
+	<li><a class="qmparent" href="javascript:void(0)">OPERAÇÃO</a>
+
+		<ul>
+
+		<li><a class="qmparent" href="javascript:void(0)"><b>Produção</b></a>
+			<ul>
+			<li><a class="qmparent" href="javascript:void(0)"><b>Engorda</b></a>
+				<ul>
+				<li><a href="javascript:void(0);" onclick="">Pesagens</a></li>
+				<li><a href="javascript:void(0);" onclick="">Pesagens/Medidas/Situações</a></li>
+				<li><a href="javascript:void(0);" onclick="">Situações à Pesagem</a></li>
+				<li><a href="javascript:void(0);" onclick="">Peso Morto</a></li>
+				</ul></li>
+
+			<li><a class="qmparent" href="javascript:void(0)"><b>Lactação</b></a>
+				<ul>
+				<li><a href="javascript:void(0);" onclick="">Parto Atual</a></li>
+				<li><a href="javascript:void(0);" onclick="">Partos Anteriores</a></li>
+				</ul></li>
+
+			<li><a href="javascript:void(0);" onclick="">rotas</a></li>
+			<li><a href="javascript:void(0);" onclick="">pedidos</a></li>
+			<li><a href="javascript:void(0);" onclick="">clientes</a></li>
+			<li><a href="javascript:void(0);" onclick="">produtos</a></li>
+
+			</ul></li>
+
+		<li><a class="qmparent" href="javascript:void(0)"><b>Reprodução</b></a>
+			<ul>
+			<li><a class="qmparent" href="javascript:void(0);" onclick=""><b>Cobertura</b></a>
+				<ul>
+				<li><a href="javascript:void(0);" onclick="">Inseminação/Monta Controlada</a></li>
+				<li><a href="javascript:void(0);" onclick="">Regime de Pasto</a></li>
+				</ul>
+			</li>
+			<li><a href="javascript:void(0);" onclick="">Diagnóstico de Gestação</a></li>
+			<li><a href="javascript:void(0);" onclick="">Acasalamento</a></li>
+			<li><a class="qmparent" href="javascript:void(0);" onclick=""><b>Parto / Aborto / Sexagem</b></a>
+				<ul>
+				<li><a href="javascript:void(0);" onclick="">Score Corporal</a></li>
+				<li><a href="javascript:void(0);" onclick="">Acompanhamento Reprodutivo</a></li>
+				<li><a href="javascript:void(0);" onclick="">Transferência de Embrião</a></li>
+				</ul>
+			</li>
+			<li><a href="javascript:void(0);" onclick="">Score Corporal</a></li>
+			<li><a href="javascript:void(0);" onclick="">Acompanhamento Reprodutivo</a></li>
+			<li><a href="javascript:void(0);" onclick="">Transferência de Embrião</a></li>
+			</ul></li>
+
+		<li><a class="qmparent" href="javascript:void(0)"><b>Movimentação</b></a>
+			<ul>
+			<li><a class="qmparent" href="javascript:void(0);" onclick=""><b>Desmana</b></a>
+			<ul>
+				<li><a href="javascript:void(0);" onclick="">Simples</a></li>
+				<li><a href="javascript:void(0);" onclick="">Peso, CE e Medidas</a></li>
+			</ul></li>	
+			<li><a href="javascript:void(0);" onclick="">Mudança de Categoria</a></li>
+			<li><a href="javascript:void(0);" onclick="">Encerramento de Lactação</a></li>
+			<li><a href="javascript:void(0);" onclick="">Mudança Alimentar</a></li>
+			<li><a href="javascript:void(0);" onclick="">Mudança de Local</a></li>
+			<li><a href="javascript:void(0);" onclick="">Mudança de Lote</a></li>
+			<li><a href="javascript:void(0);" onclick="">Mudança de Rebanho</a></li>
+			<li><a href="javascript:void(0);" onclick="">Mudança de Fazenda</a></li>
+			<li><a href="javascript:void(0);" onclick="">Venda</a></li>
+
+			<li><span class="qmdivider qmdividerx" >&nbsp;</span></li>
+
+			<li><a href="javascript:void(0);" onclick="">Estação de Monta</a></li>
+
+			<li><span class="qmdivider qmdividerx" >&nbsp;</span></li>
+
+			<li><a href="javascript:void(0);" onclick="">Sêmen</a></li>
+
+			<li><span class="qmdivider qmdividerx" >&nbsp;</span></li>
+
+			<li><a href="javascript:void(0);" onclick="">Baixa de Embrião</a></li>
+			</ul></li>
+
+		<li><a class="qmparent" href="javascript:void(0)"><b>Sanitários</b></a>
+			<ul>
+			<li><a href="javascript:void(0);" onclick="">Morte</a></li>
+			<li><a href="javascript:void(0);" onclick="">Doença</a></li>
+			<li><a href="javascript:void(0);" onclick="">Preventivos</a></li>
+			</ul></li>
+
+		<li><a href="javascript:void(0)" onclick="">Operações Agrícolas</a>
+		</li></ul></li>
+
+
+
+
+	<li><span class="qmdivider qmdividery" >&nbsp;</span></li>
+
+	<li><a class="qmparent" href="javascript:void(0)">RELAT&Oacute;RIOS</a>
+
+		<ul>
+
+		<li><a class="qmparent" href="javascript:void(0)"><b>Enviar arquivos de...</b></a>
+			<ul>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/route','route','400','335','no');return false;">rotas</a></li>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/order','order','400','335','no');return false;">pedidos</a></li>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/customer','customer','400','335','no');return false;">clientes</a></li>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/product','product','400','335','no');return false;">produtos</a></li>
+
+			</ul></li>
+
+		<li><a href="javascript:void(0)" onclick="show_map('/map/delivery','filter_placa','400','300','yes','type=vgm');">Visualizar entregas</a>
+		</li></ul></li>
+
+
+
+
+	<li><span class="qmdivider qmdividery" >&nbsp;</span></li>
+
+	<li><a class="qmparent" href="javascript:void(0)">GRÁFICOS</a>
+
+		<ul>
+
+		<li><a class="qmparent" href="javascript:void(0)"><b>Enviar arquivos de...</b></a>
+			<ul>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/route','route','400','335','no');return false;">rotas</a></li>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/order','order','400','335','no');return false;">pedidos</a></li>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/customer','customer','400','335','no');return false;">clientes</a></li>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/product','product','400','335','no');return false;">produtos</a></li>
+
+			</ul></li>
+
+		<li><a href="javascript:void(0)" onclick="show_map('/map/delivery','filter_placa','400','300','yes','type=vgm');">Visualizar entregas</a>
+		</li></ul></li>
+
+
+
+
+	<li><span class="qmdivider qmdividery" >&nbsp;</span></li>
+
+	<li><a class="qmparent" href="javascript:void(0)">CUSTOS</a>
+
+		<ul>
+
+		<li><a class="qmparent" href="javascript:void(0)"><b>Enviar arquivos de...</b></a>
+			<ul>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/route','route','400','335','no');return false;">rotas</a></li>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/order','order','400','335','no');return false;">pedidos</a></li>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/customer','customer','400','335','no');return false;">clientes</a></li>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/product','product','400','335','no');return false;">produtos</a></li>
+
+			</ul></li>
+
+		<li><a href="javascript:void(0)" onclick="show_map('/map/delivery','filter_placa','400','300','yes','type=vgm');">Visualizar entregas</a>
+		</li></ul></li>
+
+
+
+
+	<li><span class="qmdivider qmdividery" >&nbsp;</span></li>
+
+	<li><a class="qmparent" href="javascript:void(0)">UTILITÁRIOS</a>
+
+		<ul>
+
+		<li><a class="qmparent" href="javascript:void(0)"><b>BACKUP</b></a>
+			<ul>
+			<li><a href="javascript:void(0);" onclick="open_page('backup/export');">Gerar BACKUP</a></li>
+			<li><a href="javascript:void(0);" onclick="open_page('backup/import');">Restaurar BACKUP</a></li>
+
+			</ul></li>
+
+		<li><a href="javascript:void(0)" onclick="show_map('/map/delivery','filter_placa','400','300','yes','type=vgm');">Visualizar entregas</a>
+		</li></ul></li>
+
+
+
+
+	<li><span class="qmdivider qmdividery" >&nbsp;</span></li>
+
+	<li><a class="qmparent" href="javascript:void(0)">AJUDA</a>
+
+		<ul>
+
+		<li><a class="qmparent" href="javascript:void(0)"><b>Enviar arquivos de...</b></a>
+			<ul>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/route','route','400','335','no');return false;">rotas</a></li>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/order','order','400','335','no');return false;">pedidos</a></li>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/customer','customer','400','335','no');return false;">clientes</a></li>
+			<li><a href="javascript:void(0);" onclick="show_map('/upload/product','product','400','335','no');return false;">produtos</a></li>
+
+			</ul></li>
+
+		<li><a href="javascript:void(0)" onclick="show_map('/map/delivery','filter_placa','400','300','yes','type=vgm');">Visualizar entregas</a>
+		</li></ul></li>
+
+
+
+
+
+<li class="qmclear">&nbsp;</li></ul>
+
+<!-- Ending Page Content [menu nests within] -->
+</td>
+
+<td><div style="font-size:1px;width:6px;height:34px;background-image:url(<?=$this->baseUrl();?>/images/menu/right_cap.gif);"></div></td>
+</tr></table></div>
+
+
+<!-- Create Menu Settings: (Menu ID, Is Vertical, Show Timer, Hide Timer, On Click ('all', 'main' or 'lev2'), Right to Left, Horizontal Subs, Flush Left, Flush Top) -->
+<script type="text/javascript">qm_create(0,false,0,500,false,false,false,false,false);</script>
+</div>
+
+
+<script type="text/javascript">
+
+function open_page(page)
+{
+	window.location = '<?php echo $this->baseUrl();?>/' + page;
+}
+
+</script>
+
+
+
+
+<!-- Add-On Settings -->
+	<script type="text/JavaScript">
+
+		/*******  Menu 0 Add-On Settings *******/
+		var a = qmad.qm0 = new Object();
+
+		// Item Bullets (CSS - Imageless) Add On
+		a.ibcss_apply_to = "parent";
+		a.ibcss_main_type = "";
+		a.ibcss_main_direction = "";
+		a.ibcss_main_size = false;
+		a.ibcss_main_position_x = -16;
+		a.ibcss_main_position_y = -5;
+		a.ibcss_main_align_x = "right";
+		a.ibcss_main_align_y = "middle";
+		a.ibcss_sub_type = "arrow";
+		a.ibcss_sub_direction = "right";
+		a.ibcss_sub_size = 5;
+		a.ibcss_sub_position_x = -7;
+		a.ibcss_sub_position_y = 0;
+		a.ibcss_sub_align_x = "right";
+		a.ibcss_sub_align_y = "middle";
+
+		// Rounded Corners Add On
+		a.rcorner_size = 6;
+		a.rcorner_container_padding = 0;
+		a.rcorner_border_color = "#DADADA";
+		a.rcorner_bg_color = "#F7F7F7";
+		a.rcorner_apply_corners = new Array(false,true,true,true);
+		a.rcorner_top_line_auto_inset = true;
+
+		// Rounded Items Add On
+		a.ritem_size = 4;
+		a.ritem_apply = "main";
+		a.ritem_main_apply_corners = new Array(true,true,false,false);
+		a.ritem_show_on_actives = true;
+
+	</script>
