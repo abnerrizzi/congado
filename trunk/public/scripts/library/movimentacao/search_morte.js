@@ -4,6 +4,7 @@ $(document).ready(function() {
 		__action = editUrl.split("/")[1];
 		__module = '';
 	} else {
+		__baseUrl = baseUrl + '/' + __module;
 		__action = editUrl.split("/")[2];
 	}
 
@@ -38,27 +39,32 @@ $(document).ready(function() {
 			url: baseUrl +'/'+ __module +'/json/'+ __action,
 			dataType: 'json',
 			colModel : [{
-					display: 'Codigo',
-					name : 'cod',
+					display: 'Data',
+					name : 'data',
 					width : 80,
 					sortable : true,
 					align: 'left'
 				}, {
-					display: 'Descrição',
-					name : 'dsc',
+					display: 'Animal',
+					name : 'fichario.nome',
 					width : 160,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Causa',
+					name : 's.dsc',
+					width : 120,
 					sortable : true,
 					align: 'left'
 				}],
 			searchitems : [{
-					display: 'Codigo',
-					name : 'cod'
+					display: 'Animal',
+					name : 'fichario.nome'
 				}, {
-					display: 'Descrição',
-					name : 'dsc',
-					isdefault: true
+					display: 'Causa',
+					name : 's.dsc'
 				}],
-			sortname: "dsc",
+			sortname: "dt",
 			sortorder: "asc",
 			usepager: true,
 			title: false,

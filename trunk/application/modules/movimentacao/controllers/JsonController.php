@@ -54,12 +54,6 @@ class Movimentacao_JsonController extends Zend_Controller_Action
 
 	}
 
-	public function sanitariomorteAction()
-	{
-		$request = $this->getRequest()->getParams();
-		die();
-	}
-
 	public function animalAction()
 	{
 		$request = $this->getRequest();
@@ -141,7 +135,7 @@ class Movimentacao_JsonController extends Zend_Controller_Action
 	{
 
 		$preventivoModel = new Model_Db_Sanitario();
-		$preventivoModel->setTipo(2);
+		$preventivoModel->setTipo(1);
 		if ($this->getRequest()->getParam('sortname', false)) {
 			$sortname = $this->getRequest()->getParam('sortname', false);
 		} elseif ($this->getRequest()->getParam('sidx', false)) {
@@ -186,6 +180,58 @@ class Movimentacao_JsonController extends Zend_Controller_Action
 		);
 		$this->view->content = utf8_encode(json_encode($animais));
 		$this->render('index');
+	}
+
+	public function sanitariomorteAction()
+	{
+
+		$preventivoModel = new Model_Db_Sanitario();
+		$preventivoModel->setTipo(0);
+		if ($this->getRequest()->getParam('sortname', false)) {
+			$sortname = $this->getRequest()->getParam('sortname', false);
+		} elseif ($this->getRequest()->getParam('sidx', false)) {
+			$sortname = $this->getRequest()->getParam('sidx', false);
+		} else {
+			$sortname = false;
+		}
+
+		if ($this->getRequest()->getParam('sortorder', false)) {
+			$sortorder = $this->getRequest()->getParam('sortorder', false);
+		} elseif ($this->getRequest()->getParam('sord', false)) {
+			$sortorder = $this->getRequest()->getParam('sord', false);
+		} else {
+			$sortorder = 'asc';
+		}
+
+		if ($this->getRequest()->getParam('rp', false)) {
+			$rp = $this->getRequest()->getParam('rp');
+		} elseif ($this->getRequest()->getParam('rows', false)) {
+			$rp = $this->getRequest()->getParam('rows');
+		} else {
+			$rp = 10;
+		}
+
+		$animais = $preventivoModel->listJsonPreventivo(
+			array(
+				'id',
+				'nome',
+				'data',
+				'ocorrencia',
+			),
+			$sortname,
+			$sortorder,
+			$this->getRequest()->getParam('page','1'),
+			$rp,
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false),
+			array(
+				'sexo' => $this->getRequest()->getParam('sexo', false),
+			)
+		);
+		$this->view->content = utf8_encode(json_encode($animais));
+		$this->render('index');
+
 	}
 
 }
