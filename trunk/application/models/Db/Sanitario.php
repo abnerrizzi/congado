@@ -330,7 +330,7 @@ class Model_Db_Sanitario extends Model_Db
 			}
 		}
 
-//		die('<pere>'.$this->_select);
+//		die('<pre>'.$this->_select);
 		$return = array(
 			'page' => $page,
 			'total' => $this->fetchAll($this->_select)->count(),

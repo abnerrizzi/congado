@@ -40,7 +40,7 @@ $(document).ready(function() {
 			dataType: 'json',
 			colModel : [{
 					display: 'Data',
-					name : 'dt',
+					name : 'data',
 					width : 80,
 					sortable : true,
 					align: 'left'
@@ -58,9 +58,6 @@ $(document).ready(function() {
 					align: 'left'
 				}],
 			searchitems : [{
-					display: 'Data',
-					name : 'cod'
-				}, {
 					display: 'Animal',
 					name : 'fichario.nome',
 					isdefault: true
