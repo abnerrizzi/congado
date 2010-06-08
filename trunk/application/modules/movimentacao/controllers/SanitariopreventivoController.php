@@ -4,7 +4,7 @@
  * @TODO: a data de proximo pode ser a mesma quando esta se cadastrando um grupo?
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: CategoriaController.php 203 2010-04-13 14:22:30Z bacteria_ $
+ * @version $Id$
  * 
  */
 

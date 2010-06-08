@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: DesmamaController.php 203 2010-04-13 14:22:30Z bacteria_ $
+ * @version $Id$
  * 
  */
 

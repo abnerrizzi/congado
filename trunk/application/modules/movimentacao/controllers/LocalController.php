@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: LocalController.php 199 2010-04-13 13:47:35Z bacteria_ $
+ * @version $Id$
  * 
  */
 

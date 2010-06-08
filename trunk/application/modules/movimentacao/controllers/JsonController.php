@@ -14,7 +14,7 @@
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
- * @version $Id: JsonController.php 239 2010-04-19 14:47:17Z bacteria_ $
+ * @version $Id$
  */
 
 class Movimentacao_JsonController extends Zend_Controller_Action
