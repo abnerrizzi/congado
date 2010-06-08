@@ -26,11 +26,11 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 		$movimentacaoModel->setTipo(0);
 
 		$_page	= $this->_getParam('page', 1);
-		$_by	= $this->_getParam('by', 'id');
+		$_by	= $this->_getParam('by', 'dt');
 		if ($_by == 'dt') {
 			$_by = 'data';
 		}
-		$_order	= $this->_getParam('sort', 'asc');
+		$_order	= $this->_getParam('sort', 'desc');
 		$result	= $movimentacaoModel->getPaginatorAdapter($_by, $_order, array('id', 'dt' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')")));
 		
 		/*
@@ -71,7 +71,7 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 	}
 

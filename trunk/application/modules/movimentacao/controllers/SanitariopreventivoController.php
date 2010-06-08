@@ -26,8 +26,11 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 		$sanitarioModel->setTipo(2);
 
 		$_page	= $this->_getParam('page', 1);
-		$_by	= $this->_getParam('by', 'id');
-		$_order	= $this->_getParam('sort', 'asc');
+		$_by	= $this->_getParam('by', 'dt');
+		if ($_by == 'dt') {
+			$_by = 'data';
+		}
+		$_order	= $this->_getParam('sort', 'desc');
 		$result	= $sanitarioModel->getPaginatorAdapter($_by, $_order, array('id', 'data'));
 		
 		/*
@@ -68,7 +71,7 @@ class Movimentacao_SanitariopreventivoController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 	}
 

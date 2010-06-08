@@ -71,7 +71,7 @@ class GrausangueController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 	}
 
