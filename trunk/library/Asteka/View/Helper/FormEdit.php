@@ -10,7 +10,7 @@
  * @package Helper
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  */
-class Zend_View_Helper_FormEdit extends Zend_View_Helper_Abstract
+class Asteka_View_Helper_FormEdit extends Zend_View_Helper_Abstract
 {
 
 	public $view;
@@ -134,8 +134,13 @@ class Zend_View_Helper_FormEdit extends Zend_View_Helper_Abstract
   <tr>
 	<td width="20"></td>
 ';
+		if (Zend_Controller_Front::getInstance()->getRequest()->getModuleName() == 'default') {
+			$moduleName = '';
+		} else {
+			$moduleName = Zend_Controller_Front::getInstance()->getRequest()->getModuleName().'/';
+		}
 		if (in_array('delete', $elements)) {
-			$form->getElement('delete')->setAttrib('onclick', "check_delete(".$form->getElement('id')->getValue().", '".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."', '".$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."/delete');return false");
+			$form->getElement('delete')->setAttrib('onclick', "check_delete(".$form->getElement('id')->getValue().", '".$moduleName.Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."', '".$baseUrl."/".$moduleName.Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."/delete');return false");
 			$excluir = '
 <span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="'.$form->getElement('delete')->getAttrib('onclick').'">
 <span class="UIIcon UIIcon_Delete">&nbsp;</span>
@@ -158,10 +163,10 @@ class Zend_View_Helper_FormEdit extends Zend_View_Helper_Abstract
 </span>
 
 
-<span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = \''.$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;">
+<span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = \''.$baseUrl."/".$moduleName.Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;">
 <span class="UIIcon UIIcon_Cancel">&nbsp;</span>
   <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="'.$form->getElement('cancel')->getName().'" id="'.$form->getElement('cancel')->getId().'"
-  onclick="location.href = \''.$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;"/>
+  onclick="location.href = \''.$baseUrl."/".$moduleName.Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;"/>
 </span>
 
     </td>
