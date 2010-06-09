@@ -51,6 +51,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		// Initialize view
 		$view = new Zend_View();
 
+		$view->addHelperPath(
+			APPLICATION_PATH . '/../library/Asteka/View/Helper',
+			'Asteka_View_Helper'
+		);
+
 		$view->doctype('XHTML1_TRANSITIONAL');
 		$view->headTitle('SCBE')
 			->setSeparator(' :: ');
