@@ -1,0 +1,14 @@
+<?php
+
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.grid.locale-pt-br.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.jqGrid.min.js')
+	->appendFile($this->baseUrl() . '/scripts/library/fichario_jqgrid.js')
+	;
+
+$this->headLink()
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.jqgrid.css')
+?>
+
+<table id="list" class="scroll"><tr><td></td></tr></table>
+<div id="pager" class="scroll" style="text-align:center;"></div>

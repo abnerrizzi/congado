@@ -1,0 +1,19 @@
+<?
+if (!$this->img) {
+	header('Content-type: image/gif');
+	$x = 16;
+	$y = 9;
+	$size = 128;
+	$img = imagecreate($size*$x, $size*$y);
+//	$bg = imagecolorallocate($img, 240, 240, 240);
+	imagegif($img);
+} else {
+	header('Content-Type: '.$this->mime);
+	$fp = fopen($this->file, 'r');
+	while (!feof($fp)) {
+		print fread($fp, 1024);
+	}
+	fclose($fp);
+}
+
+?>
