@@ -26,6 +26,7 @@ class Zend_View_Helper_Flexigrid extends Zend_View_Helper_HtmlElement
 	 */
 	public function flexigrid($selector, array $options, array $tableAttribs)
 	{
+		throw new Zend_View_Exception('Modulo desabilitado temporariamente, contate o administrador');
 		$onready_content = '$("'. $selector .'").flexigrid(' . Zend_Json::encode($options) . ')'; 
 		$this->view->jQuery()->appendContent($onready_content);
 		

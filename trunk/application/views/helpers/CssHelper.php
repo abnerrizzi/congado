@@ -23,7 +23,7 @@ class Zend_View_Helper_CssHelper extends Zend_View_Helper_Abstract
 	function cssHelper()
 	{
 
-		throw new Zend_View_Exception('Modulo desabilitado por nao ter utilidade');
+		throw new Zend_View_Exception('Modulo desabilitado temporariamente, contate o administrador');
 		$request = Zend_Controller_Front::getInstance()->getRequest();
 		$file_uri = '/styles/'.$request->getControllerName().'.css';
 		if (file_exists(APPLICATION_PATH . $this->cssPath . $file_uri))
