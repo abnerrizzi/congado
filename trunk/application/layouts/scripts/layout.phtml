@@ -15,7 +15,7 @@
 		->appendStylesheet($this->baseUrl() . '/styles/fb.css')
 	;
     
-    $this->bundleScript()
+    $this->headScript()
     	->prependFile($this->baseUrl() . '/scripts/menu.js')
     	->prependFile($this->baseUrl() . '/scripts/functions.js')
     	->prependFile($this->baseUrl() . '/scripts/library/fichario_search.js')
@@ -29,7 +29,6 @@
 	;
     
     $this->headScript()->appendScript('var baseUrl = "' . $this->baseUrl() . '";');
-    echo $this->bundleScript()->toString();
     echo $this->headTitle();
     ?>
 
