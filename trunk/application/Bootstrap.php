@@ -56,25 +56,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 			'Asteka_View_Helper'
 		);
 
-		$view->addHelperPath(
-			APPLICATION_PATH . '/../library/BundlePhu/View/Helper',
-			'BundlePhu_View_Helper'
-		);
-
-		$view->getHelper('BundleScript')
-			->setCacheDir(APPLICATION_PATH . '/../public/scripts/data/cache/js')
-			->setDocRoot(APPLICATION_PATH . '/../..')
-			->setUseMinify(true)
-			->setMinifyCommand('java -jar yuicompressor -o :filename')
-			->setUseGzip(false)
-			->setUrlPrefix('congado/public/scripts/data/cache/js')
-		;
-
-		$view->getHelper('BundleLink')
-			->setCacheDir(APPLICATION_PATH . '/data/cache/css')
-			->setDocRoot(APPLICATION_PATH . '/public')
-			->setUrlPrefix('/stylesheets');
-
 		$view->doctype('XHTML1_TRANSITIONAL');
 		$view->headTitle('SCBE')
 			->setSeparator(' :: ');
