@@ -33,7 +33,7 @@ class Asteka_View_Helper_Javascript extends Zend_View_Helper_Abstract
 		$file_uri = '/scripts/library/'.$moduleName.$request->getControllerName().'.js';
 		if (file_exists(APPLICATION_PATH . $this->javaScriptPath . $file_uri))
 		{
-			$this->view->headScript()->appendFile($this->view->baseUrl().$file_uri);
+			$this->view->bundleScript()->appendFile($this->view->baseUrl().$file_uri);
 		}
 	}
 

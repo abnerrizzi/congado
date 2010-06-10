@@ -382,7 +382,7 @@ class BundlePhu_View_Helper_BundleScript extends Zend_View_Helper_HeadScript
      * @throws BadMethodCallException When neither _minifyCommand or _minifyCallback are defined
      * @return void
      */
-    protected function _writeUncompressed($cacheFile, $data)
+    protected function _writeUncompressed_OLD($cacheFile, $data)
     {
         if ($this->_doMinify) {
             if (!empty($this->_minifyCallback)) {
@@ -414,5 +414,30 @@ class BundlePhu_View_Helper_BundleScript extends Zend_View_Helper_HeadScript
     {
         $data = gzencode($data, $this->_gzipLevel);
         file_put_contents("$cacheFile.gz", $data);
+    }
+
+	protected function _writeUncompressed($cacheFile, $data)
+    {
+        if ($this->_doMinify) {
+
+        	$javascriptPacker = new Plugin_JavaScriptPacker($data, "Normal", true, false);
+        	$javascriptPacked = $javascriptPacker->pack();
+        	file_put_contents($cacheFile, $javascriptPacked);
+        	/*
+        	if (!empty($this->_minifyCallback)) {
+                $data = call_user_func($this->_minifyCallback, $data);
+                file_put_contents($cacheFile, $data);
+            } else if (!empty($this->_minifyCommand)) {
+                $command = str_replace(':filename', $cacheFile, $this->_minifyCommand);
+                $handle = popen("$command" , 'w');
+                fwrite($handle, $data);
+                pclose($handle);
+            } else {
+                throw new BadMethodCallException("Neither _minifyCommand or _minifyCallback are defined.");
+            }
+            */
+        } else {
+            file_put_contents($cacheFile, $data);
+        }
     }
 }

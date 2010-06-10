@@ -62,13 +62,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		);
 
 		$view->getHelper('BundleScript')
-			->setCacheDir(APPLICATION_PATH . '/data/cache/js')
-			->setDocRoot(APPLICATION_PATH . '/public')
+			->setCacheDir(APPLICATION_PATH . '/../public/scripts/data/cache/js')
+			->setDocRoot(APPLICATION_PATH . '/../..')
 			->setUseMinify(true)
 			->setMinifyCommand('java -jar yuicompressor -o :filename')
-			->setUseGzip(true)
-			->setGzipLevel(9)
-			->setUrlPrefix('/javascripts');
+			->setUseGzip(false)
+			->setUrlPrefix('congado/public/scripts/data/cache/js')
+		;
 
 		$view->getHelper('BundleLink')
 			->setCacheDir(APPLICATION_PATH . '/data/cache/css')
