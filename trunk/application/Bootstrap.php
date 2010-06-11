@@ -110,6 +110,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	{
 		$front = Zend_Controller_Front::getInstance();
 		$front->registerPlugin(new Plugin_Auth());
+		$front->registerPlugin(new Plugin_GridSession());
 		$front->addModuleDirectory(APPLICATION_PATH . '/modules/admin/', 'admin');
 	}
 
