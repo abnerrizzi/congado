@@ -1,5 +1,18 @@
 <?php
 
+/**
+ * @package Controller
+ */
+
+/**
+ * ColetaembController
+ * 
+ * Controla requisições de manipulação das coletas de embrioes.
+ *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Controller
+ * @version $Id$
+ */
 class ColetaembController extends Zend_Controller_Action
 {
 
@@ -66,6 +79,11 @@ class ColetaembController extends Zend_Controller_Action
 		$this->view->grid = $gridModel;
     }
 
+    public function editAction()
+    {
+    	$this->view->form = new Zend_Form();
+    	$this->view->elements = array();
+    }
 
 }
 
