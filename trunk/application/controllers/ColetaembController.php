@@ -20,7 +20,7 @@ class ColetaembController extends Zend_Controller_Action
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
 
-		$result = $coletaModel->getPaginatorAdapter($_by, $_order, array('id', 'cod', 'dsc'));
+		$result = $coletaModel->getPaginatorAdapter($_by, $_order);
 
 		/*
 		 * Paginator
@@ -36,8 +36,11 @@ class ColetaembController extends Zend_Controller_Action
 		/*
 		 * Fields
 		 */
-		$fields[] = new Model_Grid_Fields('dsc', 'Descri&ccedil;&atilde;o', 150);
-		$fields[] = new Model_Grid_Fields('sexo', 'Sexo', 70);
+		$fields[] = new Model_Grid_Fields('data_coleta', 'Coleta', 70);
+		$fields[] = new Model_Grid_Fields('vaca_cod', 'Vaca (cod)', 75);
+		$fields[] = new Model_Grid_Fields('vaca_nome', 'Vaca', 150);
+		$fields[] = new Model_Grid_Fields('touro_cod', 'Touro (cod)', 75);
+		$fields[] = new Model_Grid_Fields('touro_nome', 'Touro', 150);
 
 		/*
 		 * Grid Model
@@ -47,15 +50,15 @@ class ColetaembController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'categoria',
+			'module'	=> 'coletaemb',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'categoria',
+			'module'	=> 'coletaemb',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'categoria',
+			'module'	=> 'coletaemb',
 			'action'	=> 'add',
 		));
 
