@@ -6,6 +6,7 @@
 
 /**
  * 
+ * @TODO: Criar validador ao associar ao animal
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Model
  * @subpackage Db
@@ -71,15 +72,15 @@ class Model_Db_Categoria extends Model_Db
 	{
 
 		if ($post['unidade'] == '') {
-			$post['unidade'] = null;
+			$post['unidade'] = 'I';
 		} else {
-			$post['unidade'] = floatval($post['unidade']);
+			$post['unidade'] = strtoupper($post['unidade']);
 		}
 
 		$data = array(
 			'cod'=> utf8_encode($post['cod']),
 			'dsc'=> utf8_encode($post['dsc']),
-			'unidade' => $post['unidade'],
+			'sexo' => $post['sexo'],
 		);
 		$where = 'id = '.(int)$post['id'];
 		$this->update($data , $where );

@@ -77,14 +77,21 @@ class Form_Categoria extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'unidade', array(
-			'label' => 'Unidade Animal',
+		$this->addElement('radio', 'sexo', array(
+			'label' => 'Sexo',
 			'filters' => array('StringTrim', 'StringToUpper'),
-			'validators' => array('Float'),
+			'required' => true,
 			'maxlength' => 32,
 			'size' => 32,
 			'class'	=> 'input',
 		));
+		$this->getElement('sexo')
+			->addMultiOptions(array(
+				'M' => 'Macho',
+				'F' => 'Femea',
+				'I' => 'Indiferente'
+			))
+		;
 
 		$this->addElement('image', 'cancel', array(
 			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/cancel.gif',

@@ -72,7 +72,7 @@ class InseminadorController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 
 	}
@@ -123,7 +123,7 @@ class InseminadorController extends Zend_Controller_Action
 
 			if ($inseminadorForm->isValid($request->getPost())) {
 				$inseminadorModel->updateInseminador($inseminadorForm->getValues());
-				$this->_redirect('inseminador/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

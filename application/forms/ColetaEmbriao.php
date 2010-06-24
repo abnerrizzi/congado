@@ -1,0 +1,486 @@
+<?php
+
+/**
+ * @package Form
+ */
+
+/**
+ * 
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @package Form
+ * @version $Id: Doenca.php 100 2010-02-26 19:12:18Z bacteria_ $
+ * 
+ */
+class Form_ColetaEmbriao extends Form_Default
+{
+
+	protected $_standardElementDecorator = array(
+		'ViewHelper',
+		'Errors',
+		array(array('data' => 'HtmlTag'), array('tag' => 'td', 'class' => 'element')),
+		array('Label', array('tag' => 'td')),
+		array(array('row' => 'HtmlTag'), array('tag' => 'tr')),
+	);
+
+	protected $_buttonElementDecorator = array(
+		'ViewHelper',
+		array('decorator' => array('td' => 'HtmlTag'), 'options' => array('tag' => 'td', 'colspan'=>'2','align'=>'center')),
+		'Label',
+		array('decorator' => array('tr' => 'HtmlTag'), 'options' => array('tag' => 'tr')),
+	);
+
+	protected $_standardGroupDecorator = array(
+		'FormElements',
+		array('HtmlTag', array(
+			'tag' => 'table',
+			'align' => 'center',
+			'class' => 'my_pre_defined_class',
+			'border' => 1
+		)),
+		array('Fieldset', array('style' => 'width: 580px;'))
+	);
+
+	public function init()
+	{
+		$this->_initTranslator();
+	}
+
+	public function _initTranslator()
+	{
+
+		$translate = Zend_Registry::get('Zend_Translate');
+		$this->setTranslator($translate);
+	}
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->setName('tipos_de_controle_sanitario');
+		$this->addElement('hidden', 'id');
+
+		$this->addElement('select', 'fazenda_id', array(
+			'label' => 'Fazenda',
+			'required' => true,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('hidden', 'vaca_id');
+		$this->addElement('text', 'vaca_cod', array(
+			'label' => 'Vaca',
+			'filters' => array('StringTrim', 'Alnum'),
+			'maxlength' => 16,
+			'size' => 10,
+			'class'	=> 'input',
+		));
+		$this->addElement('text', 'vaca', array(
+			'class'	=> 'input',
+			'readonly' => 'readonly',
+			'disable' => true,
+		));
+
+		$this->addElement('text', 'dt_coleta', array(
+			'label' => 'Coleta',
+			'required' => true,
+			'filters' => array('StringTrim'),
+			'validators' => array(
+				new Zend_Validate_Date('dd/MM/YYYY'),
+				new Plugin_Validate_Date_Between('01/01/1900', date('d/m/Y'), 'dd/mm/YYYY', true)
+			),
+			'maxlength' => 10,
+			'size' => 10,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'ciotipo', array(
+			'label' => 'Cio Base Tipo',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'hormonio', array(
+			'label' => 'Hormônio',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'trata_inicio', array(
+			'label' => 'Tratamento Inicio',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'trata_final', array(
+			'label' => 'Tratamento Final',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'dosagem', array(
+			'label' => 'Dosagem',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'distribuicao', array(
+			'label' => 'Distribuição',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'prot_nome', array(
+			'label' => 'Nome',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'prost_dh', array(
+			'label' => 'Data/Hora',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'prost_dosagem', array(
+			'label' => 'prost_Dosagem',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'cio_dh', array(
+			'label' => 'cio_dh',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'gnrh_nome', array(
+			'label' => 'gnrh_nome',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'gnrh_dh', array(
+			'label' => 'gnrh_dh',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'gnrh_dosagem', array(
+			'label' => 'gnrh_dosagem',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('hidden', 'touro_id');
+		$this->addElement('text', 'touro_cod', array(
+			'label' => 'Touro',
+			'filters' => array('StringTrim', 'Alnum'),
+			'maxlength' => 16,
+			'size' => 10,
+			'class'	=> 'input',
+		));
+		$this->addElement('text', 'touro', array(
+			'class'	=> 'input',
+			'readonly' => 'readonly',
+			'disable' => true,
+		));
+
+		$this->addElement('text', 'touro_fazenda_id', array(
+			'label' => 'touro_fazenda_id',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'prost_dosagem', array(
+			'label' => 'prost_dosagem',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'partida', array(
+			'label' => 'partida',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'insemina_dh1', array(
+			'label' => 'inseminadh1',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'dose1', array(
+			'label' => 'dose1',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'partida1', array(
+			'label' => 'partida1',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'cdc1', array(
+			'label' => 'cdc1',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'insemina_dh2', array(
+			'label' => 'insemina2',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'dose2', array(
+			'label' => 'dose2',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'partida2', array(
+			'label' => 'partida2',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'cdc2', array(
+			'label' => 'cdc2',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'insemina_dh3', array(
+			'label' => 'insemina3',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'dose3', array(
+			'label' => 'dose3',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'partida3', array(
+			'label' => 'partida3',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'cdc3', array(
+			'label' => 'cdc3',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'insemina_dh4', array(
+			'label' => 'insemina_dh4',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'dose4', array(
+			'label' => 'dose4',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'partida4', array(
+			'label' => 'partida4',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'cdc4', array(
+			'label' => 'cdc4',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'soro_nome', array(
+			'label' => 'soro_nome',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'soro_partida', array(
+			'label' => 'soro_partida',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'meio_nome', array(
+			'label' => 'meio_partida',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'injet_cd', array(
+			'label' => 'injet_cd',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'injet_ce', array(
+			'label' => 'injet_ce',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'colet_cd', array(
+			'label' => 'colet_cd',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'colet_ce', array(
+			'label' => 'colet_ce',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'avalia_od', array(
+			'label' => 'avalia_od',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'avalia_oe', array(
+			'label' => 'avalia_oe',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'viavel', array(
+			'label' => 'viavel',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'nao_viavel', array(
+			'label' => 'nao_viavel',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'fecundada', array(
+			'label' => 'fecundada',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'nao_fecundada', array(
+			'label' => 'nao_fecundada',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'cdg', array(
+			'label' => 'cdg',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'cdg_anterior', array(
+			'label' => 'cdg_anterior',
+			'filters' => array('StringTrim'),
+			'maxlength' => 32,
+			'size' => 16,
+			'class'	=> 'input',
+		));
+		
+	}
+
+}

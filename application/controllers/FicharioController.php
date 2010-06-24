@@ -53,7 +53,7 @@ class FicharioController extends Zend_Controller_Action
 		 */
 		$fields[] = new Model_Grid_Fields('cod', 'Animal', 65);
 		$fields[] = new Model_Grid_Fields('nome','Nome', 120);
-		$fields[] = new Model_Grid_Fields('dt_nascimento','Dt Nasc.', 60);
+		$fields[] = new Model_Grid_Fields('data_nascimento','Dt Nasc.', 60);
 		$fields[] = new Model_Grid_Fields('rgn','RGN', 60);
 		$fields[] = new Model_Grid_Fields('fazenda_dsc','Fazenda', 320);
 
@@ -77,7 +77,7 @@ class FicharioController extends Zend_Controller_Action
 			'module'	=> 'fichario',
 			'action'	=> 'add',
 		));
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 
 	}
@@ -163,7 +163,7 @@ class FicharioController extends Zend_Controller_Action
 
 			if ($ficharioForm->isValid($request->getPost())) {
 				$ficharioModel->updateFichario($ficharioForm->getValues());
-				$this->_redirect('fichario/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

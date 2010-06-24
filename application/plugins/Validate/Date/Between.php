@@ -8,7 +8,7 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Plugin
  * @subpackage Validate
- * @version $Id: Between.php 197 2010-04-13 13:09:41Z bacteria_ $
+ * @version $Id: Between.php 342 2010-06-09 20:13:22Z bacteria_ $
  * 
  */
 
@@ -206,12 +206,30 @@ class Plugin_Validate_Date_Between extends Zend_Validate_Abstract
 
         if ($this->_inclusive) {
             if ($this->_min > $unformated || $this->_max < $unformated) {
+                $x = $this->getMin();
+                $_min = substr($x, 6, 2) ."/". substr($x, 4, 2) ."/". substr($x, 0,4);
+
+                $x = $this->getMax();
+                $_max = substr($x, 6, 2) ."/". substr($x, 4, 2) ."/". substr($x, 0,4);
+
+                $this->_min = $_min;
+                $this->_max = $_max;
+
                 $this->_error(self::NOT_BETWEEN);
                 return false;
             }
         } else {
             if ($this->_min >= $unformated ||  $this->_max <= $unformated) {
-                $this->_error(self::NOT_BETWEEN_STRICT);
+                $x = $this->getMin();
+                $_min = substr($x, 6, 2) ."/". substr($x, 4, 2) ."/". substr($x, 0,4);
+
+                $x = $this->getMax();
+                $_max = substr($x, 6, 2) ."/". substr($x, 4, 2) ."/". substr($x, 0,4);
+
+                $this->_min = $_min;
+                $this->_max = $_max;
+
+            	$this->_error(self::NOT_BETWEEN_STRICT);
                 return false;
             }
         }

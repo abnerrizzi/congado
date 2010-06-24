@@ -3,160 +3,17 @@
 $this->javascript();
 
 $this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.center.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.dimensions.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
-	->appendFile($this->baseUrl() . '/scripts/library/filter.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.maskedinput.js')
+	->appendFile($this->baseUrl() . '/scripts/library/_filters.js')
 	;
 
 $this->headLink()
-	->appendStylesheet($this->baseUrl() . '/styles/flexigrid.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.core.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.datepicker.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.theme.css')
 	;
 
+echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
+
 ?>
-
-
-<br/><br/>
-<form name="matrizgr" id="matrizgr" action="<?=$this->baseUrl . $this->form->getAction();?>" method="post">
- 
-<table
-	id="form"
-	align="center"
-	border="0"
-	cellpadding="0"
-	cellspacing="0"
-	bgcolor="#F7F6F4"
-	class="content"
-	style="	border-right: 1px solid #CCCCCC;
-			border-bottom: 1px solid #CCCCCC;
-			border-left: 1px solid #919191;
-			font-size: 12px;">
-
-  <tr style="background: url('/congado/public/images/grid/bg_title.gif');">
-    <td width="20" ></td>
-    <td colspan="5" height="20" width="480" style="font-size: 11px;"><b><?=str_replace('_', ' ', strtoupper($this->form->getName()));?></b></td>
-  </tr>
- 
-  <tr>
-    <td height="2" bgcolor="#f36400" colspan="5"/>
-  </tr>
- 
-  <tr>
-    <td height="10" colspan="5"></td>
-  </tr>
-  <tr>
-    <td width="20"></td>
-    <td class="label"><?=$this->form->raca_cod->getLabel();?>:</td>
-    <td width="10"></td>
-    <td class="element">
-      <?=$this->form->raca_id->removeDecorator('tag')->removeDecorator('label');?>
-      <?=$this->form->raca_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <?=$this->form->raca->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_raca('<?=$this->baseUrl();?>/json/raca','raca');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
-    </td>
-    <td width="50"></td>
-  </tr>
- 
-  <tr>
-    <td height="10" colspan="5"></td>
-  </tr>
-  <tr>
-    <td width="20"></td>
-    <td class="label"><?=$this->form->pai_cod->getLabel();?>:</td>
-    <td width="10"></td>
-    <td class="element">
-      <?=$this->form->pai_id->removeDecorator('tag')->removeDecorator('label');?>
-      <?=$this->form->pai_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <?=$this->form->pai->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_grsangue('<?=$this->baseUrl();?>/json/grsangue','pai');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
-    </td>
-    <td width="50"></td>
-  </tr>
-
-  <tr>
-    <td height="10" colspan="5"></td>
-  </tr>
-  <tr>
-    <td width="20"></td>
-    <td class="label"><?=$this->form->mae_cod->getLabel();?>:</td>
-    <td width="10"></td>
-    <td class="element">
-      <?=$this->form->mae_id->removeDecorator('tag')->removeDecorator('label');?>
-      <?=$this->form->mae_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <?=$this->form->mae->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_grsangue('<?=$this->baseUrl();?>/json/grsangue','mae');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
-    </td>
-    <td width="50"></td>
-  </tr>
-
-  <tr>
-    <td height="10" colspan="5"></td>
-  </tr>
-  <tr>
-    <td width="20"></td>
-    <td class="label"><?=$this->form->cria_cod->getLabel();?>:</td>
-    <td width="10"></td>
-    <td class="element">
-      <?=$this->form->cria_id->removeDecorator('tag')->removeDecorator('label');?>
-      <?=$this->form->cria_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <?=$this->form->cria->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_grsangue('<?=$this->baseUrl();?>/json/grsangue','cria');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
-    </td>
-    <td width="50"></td>
-  </tr>
-
-  <tr>
-    <td height="10" colspan="5"/>
-  </tr>
-
-  <tr>
-    <td width="20"></td>
-    <td align="center">
-<span class="UIButton UIButton_Large UIFormButton  UIButton_Blue" onclick="$('#<?=$this->form->getName();?>').submit();">
-<span class="UIIcon UIIcon_Save">&nbsp;</span>
-  <input style="display: inline-block;" class="UIButton_Text" type="submit" value="Salvar" name="<?=$this->form->getElement('submit')->getName();?>_" id="<?=$this->form->getElement('submit')->getId();?>_"/>
-</span>
-    </td>
-    <td width="10"></td>
-    <td align="center">
-<span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = '<?=$this->baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName();?>'; return false;">
-<span class="UIIcon UIIcon_Cancel">&nbsp;</span>
-  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="<?=$this->form->getElement('cancel')->getName();?>" id="<?=$this->form->getElement('cancel')->getId();?>"
-  onclick="location.href = '<?=$this->baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName();?>'; return false;"/>
-</span>
-    </td>
-    <td width="50"></td>
-  </tr>
-
-  <tr>
-    <td height="10" colspan="5"/>
-  </tr>
-
-
-
-
-
-  <tr>
-    <td height="10" colspan="5"/>
-  </tr>
- 
-</table>
-</form>
-
-
-
-<div id="filter">
-  <div style="right: 0px; position: absolute; z-index: 8000; font-size: 11px;">
-    <a title="Fechar" class="" href="javascript:void(0);" onclick="hide_filter();">Fechar X</a>
-  </div>
-  <div id="filter-grid"></div>
-</div>
-<div id="filter-bg"></div>

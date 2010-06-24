@@ -72,7 +72,7 @@ class PartoController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 
 	}
@@ -122,7 +122,7 @@ class PartoController extends Zend_Controller_Action
 
 			if ($partoForm->isValid($request->getPost())) {
 				$partoModel->updateParto($partoForm->getValues());
-				$this->_redirect('parto/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

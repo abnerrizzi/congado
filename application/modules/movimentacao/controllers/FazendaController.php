@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: CategoriaController.php 203 2010-04-13 14:22:30Z bacteria_ $
+ * @version $Id: FazendaController.php 337 2010-06-08 13:40:22Z bacteria_ $
  * 
  */
 
@@ -69,7 +69,7 @@ class Movimentacao_FazendaController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 	}
 

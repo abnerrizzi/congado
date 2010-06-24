@@ -7,7 +7,7 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Helper
  */
-class Zend_View_Helper_Javascript extends Zend_View_Helper_Abstract
+class Asteka_View_Helper_Javascript extends Zend_View_Helper_Abstract
 {
 
 	public $view;
@@ -24,10 +24,17 @@ class Zend_View_Helper_Javascript extends Zend_View_Helper_Abstract
 	{
 
 		$request = Zend_Controller_Front::getInstance()->getRequest();
-		$file_uri = '/scripts/library/'.$request->getControllerName().'.js';
+		if ($request->getModuleName() == 'default') {
+			$moduleName = '';
+		} else {
+			$moduleName = $request->getModuleName().'/';
+		}
+
+		$file_uri = '/scripts/library/'.$moduleName.$request->getControllerName().'.js';
 		if (file_exists(APPLICATION_PATH . $this->javaScriptPath . $file_uri))
 		{
 			$this->view->headScript()->appendFile($this->view->baseUrl().$file_uri);
 		}
 	}
+
 }

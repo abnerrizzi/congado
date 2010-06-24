@@ -8,11 +8,11 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Helper
  * @subpackage Helper_Grid
- * @version $Id$
+ * @version $Id: Grid.php 341 2010-06-09 20:04:49Z bacteria_ $
  * 
  */
 
-class Zend_View_Helper_Grid
+class Asteka_View_Helper_Grid extends Zend_View_Helper_Abstract
 {
 
 	public $view;
@@ -145,13 +145,13 @@ $output .= '</td>
 			$__fields = $__fields[$i];
 			if ($_by == $__fields->getColum()) {
 				$output .= '
-		  <td height="3" bgcolor="#FF7015"></td>
+		  <td height="2" bgcolor="#FF7015"></td>
 		  <td bgcolor="#FF7015"></td>
 		  <td bgcolor="#FF7015"></td>
 				';
 			} else {
 				$output .= '
-		  <td height="3" bgcolor="#BFBDB3"></td>
+		  <td height="2" bgcolor="#BFBDB3"></td>
 		  <td bgcolor="#BFBDB3"></td>
 		  <td bgcolor="#BFBDB3"></td>
 				';
@@ -173,7 +173,7 @@ $output .= '</td>
 			$class = 'row' . ($i%2);
 			$output .= '
 <tr class="content">
-  <td height="3" colspan="'.$_colSpan.'"></td>
+  <td height="2" colspan="'.$_colSpan.'"></td>
 </tr>
 <tr class="'.$class.'" id="id'.$post['id'].'">
 ';
@@ -235,7 +235,7 @@ $output .= '</td>
 			if ($grid->getPaginator()->getCurrentItemCount() != $i) {
 				$output .= '
 <tr class="content">
-  <td height="3" colspan="'.$_colSpan.'"></td>
+  <td height="2" colspan="'.$_colSpan.'"></td>
 </tr>
 
 <tr>

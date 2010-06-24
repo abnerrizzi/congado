@@ -74,7 +74,7 @@ class LoteController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 
 	}
@@ -157,7 +157,7 @@ class LoteController extends Zend_Controller_Action
 
 			if ($loteForm->isValid($request->getPost())) {
 				$loteModel->updateLote($loteForm->getValues());
-				$this->_redirect('lote/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

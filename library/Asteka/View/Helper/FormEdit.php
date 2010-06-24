@@ -10,7 +10,7 @@
  * @package Helper
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  */
-class Zend_View_Helper_FormEdit
+class Asteka_View_Helper_FormEdit extends Zend_View_Helper_Abstract
 {
 
 	public $view;
@@ -35,7 +35,12 @@ class Zend_View_Helper_FormEdit
 ';
 		for ($i=0; $i < count($elements); $i++)
 		{
-			$_el = $form->getElement($elements[$i]);
+
+			if (is_array($elements[$i])) {
+				continue;
+			} else {
+				$_el = $form->getElement($elements[$i]);
+			}
 			if (!$_el) {
 				throw new Exception("Element (".$elements[$i].") not found in Zend_Form object");
 			}
@@ -72,12 +77,27 @@ class Zend_View_Helper_FormEdit
 ';
 		for ($i=0; $i < count($elements); $i++)
 		{
-			$_el = $form->getElement($elements[$i]);
-			if ($_el->getType() == 'Zend_Form_Element_Hidden' || $_el->getName() == 'delete') {
+			if (is_array($elements[$i])) {
+				$_el = $form->getElement($elements[$i][0] ."_cod");
+				$_group = true;
+			} else {
+				$_el = $form->getElement($elements[$i]);
+				$_group = false;
+			}
+
+			if (!is_object($_el) || $_el->getType() == 'Zend_Form_Element_Hidden' || $_el->getName() == 'delete') {
 				continue;
 			}
 
-			if (is_int($elementCity = strpos($_el->getName(), 'cidades_id'))) {
+			if ($_group) {
+				$_input = $form->getElement($elements[$i][0] ."_id")
+					->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');
+				$_input .= $form->getElement($elements[$i][0] ."_cod")
+					->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');
+				$_input .= $form->getElement($elements[$i][0])
+					->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');
+//				continue;
+			} elseif (is_int($elementCity = strpos($_el->getName(), 'cidades_id'))) {
 
 				if (is_int($elementCity)) {
 					$_input  = $form->getElement(substr($_el->getName(),0,$elementCity).'uf')->removeDecorator('tag')->removeDecorator('label');
@@ -114,12 +134,17 @@ class Zend_View_Helper_FormEdit
   <tr>
 	<td width="20"></td>
 ';
+		if (Zend_Controller_Front::getInstance()->getRequest()->getModuleName() == 'default') {
+			$moduleName = '';
+		} else {
+			$moduleName = Zend_Controller_Front::getInstance()->getRequest()->getModuleName().'/';
+		}
 		if (in_array('delete', $elements)) {
-			$form->getElement('delete')->setAttrib('onclick', "check_delete(".$form->getElement('id')->getValue().", '".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."', '".$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."/delete');return false");
+			$form->getElement('delete')->setAttrib('onclick', "check_delete(".$form->getElement('id')->getValue().", '".$moduleName.Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."', '".$baseUrl."/".$moduleName.Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."/delete');return false");
 			$excluir = '
 <span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="'.$form->getElement('delete')->getAttrib('onclick').'">
 <span class="UIIcon UIIcon_Delete">&nbsp;</span>
-  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Excluir" name="'.$form->getElement('delete')->getName().'" id="'.$form->getElement('delete')->getId().'" onclick="'.$form->getElement('delete')->getAttrib('onclick').'"/>
+  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Excluir" name="'.$form->getElement('delete')->getName().'" id="'.$form->getElement('delete')->getId().'"/>
 </span>
 
 			';
@@ -134,14 +159,14 @@ class Zend_View_Helper_FormEdit
 	<td align="center">
 <span class="UIButton UIButton_Large UIFormButton  UIButton_Blue" onclick="$(\'#'.$form->getName().'\').submit();">
 <span class="UIIcon UIIcon_Save">&nbsp;</span>
-  <input style="display: inline-block;" class="UIButton_Text" type="submit" value="Salvar" name="'.$form->getElement('submit')->getName().'_" id="'.$form->getElement('submit')->getId().'_"/>
+  <input style="display: inline-block;" class="UIButton_Text" type="button" value="Salvar" name="'.$form->getElement('submit')->getName().'_" id="'.$form->getElement('submit')->getId().'_"/>
 </span>
 
 
-<span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = \''.$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;">
+<span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = \''.$baseUrl."/".$moduleName.Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;">
 <span class="UIIcon UIIcon_Cancel">&nbsp;</span>
   <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="'.$form->getElement('cancel')->getName().'" id="'.$form->getElement('cancel')->getId().'"
-  onclick="location.href = \''.$baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;"/>
+  onclick="location.href = \''.$baseUrl."/".$moduleName.Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;"/>
 </span>
 
     </td>
@@ -154,6 +179,10 @@ class Zend_View_Helper_FormEdit
 
 </table>
 </form>
+
+<div id="dlg" style="display: none;">
+  <div id="dlg-grid" style="padding: 0px; margin: 0px"></div>
+</div>
 ';
 		return $output;
 	}

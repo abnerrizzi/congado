@@ -73,7 +73,7 @@ class MatrizgrController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 
 	}
@@ -84,6 +84,7 @@ class MatrizgrController extends Zend_Controller_Action
 		$matrizgrForm = new Form_Matrizgr();
 		$matrizgrForm->setAction('/matrizgr/add');
 		$matrizgrForm->setMethod('post');
+		$this->view->elements = array(array('raca'), array('pai'), array('mae'), array('cria'));
 		$this->view->form = $matrizgrForm;
 
 
@@ -220,7 +221,7 @@ class MatrizgrController extends Zend_Controller_Action
 
 			if ($matrizgrForm->isValid($request->getPost())) {
 				$matrizgrModel->updateMatrizGrauSangue($matrizgrForm->getValues());
-				$this->_redirect('matrizgr/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {
@@ -233,6 +234,7 @@ class MatrizgrController extends Zend_Controller_Action
 			}
 		}
 
+		$this->view->elements = array('raca_id');
 		$this->view->form = $matrizgrForm;
 
 	}

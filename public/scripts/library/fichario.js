@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+	$('#nome').css('font-size', '16px');
+	$('#nome').css('font-weight', 'bold');
+//	$('#nome').css('background-color', '#cacaca');
+//	$('#nome').css('color', '#a60');
+	$('#nome').css('border', '2px solid #f63');
 	$('#dlg').bind('dialogbeforeclose', function(event, ui) {
 		hide_filter();
 	});
@@ -151,63 +156,6 @@ function toggleFields(opt) {
 		$("#fazenda_id").attr('disabled', false);
 		$("#fazenda_id").attr('readonly', false);
 	}
-}
-
-function changeSelectAnimal() {
-
-	this.value = this.value.toUpperCase();
-	suffix = '_cod';
-	__fieldName = this.name.substr(0,(this.name.length - suffix.length));
-	__fieldValue = this.value;
-	__url = baseUrl + '/json/animal';
-
-	if (__fieldValue == '') {
-		$("#" + __fieldName + "_id").val('');
-		$("#" + __fieldName + "_cod").val('');
-		$("#" + __fieldName).val('');
-		return true;
-	} else if (__fieldValue == $("#cod").val()) {
-		$("#ajax_loader").html("Código não pode ser o mesmo do animal atual.").show();
-		setTimeout(function(){
-			$("#ajax_loader").fadeOut(300); }
-		, 2000);
-		return false;
-	}
-
-	if (__fieldName == 'mae' || __fieldName == 'receptora') {
-		__sexo = 'F';
-	} else {
-		__sexo = 'M';
-	}
-	__qtype = 'fichario.cod';
-
-	$("#ajax_loader").html("Buscando dados...").show();
-	suffix = '_cod';
-	$.post(__url, {
-		qtype	: __qtype,
-		query	: __fieldValue,
-		sexo	: __sexo,
-		like	: 'false',
-		ajax	: 'true'
-	}, function(j) {
-		j = j.rows;
-		if (j && j.length == 1) {
-			$("#" + __fieldName + "_id").val(j[0].id);
-			$("#" + __fieldName + "_cod").val(j[0].cell[0]);
-			$("#" + __fieldName).val(j[0].cell[1]);
-		} else {
-			$("#ajax_loader").html("Código não encontrado").show();
-			$("#" + __fieldName + "_id").val(null);
-//			$("#" + __fieldName + "_cod").val(null);
-			$("#" + __fieldName).val(null);
-			setTimeout(function(){
-				$("#ajax_loader").fadeOut(300); }
-			, 2000);
-			return false;
-		}
-		$("#ajax_loader").fadeOut(100);
-	}, "json");
-
 }
 
 /*
@@ -413,53 +361,6 @@ function showfilter_pelagem(url, input)
 	}
 }
 
-function showfilter_raca(url, input)
-{
-	createDialog('Raça');
-	if ($("#dlg").length) {
-		$("#dlg-grid").flexigrid(
-		{
-			url: url,
-			dataType: 'json',
-			colModel : [{
-					display: 'Raça',
-					name : 'cod',
-					width : 40,
-					sortable : true,
-					align: 'left'
-				}, {
-					display: 'Descrição',
-					name : 'dsc',
-					width : 180,
-					sortable : true,
-					align: 'left'
-				}],
-			searchitems : [{
-					display: 'Raça',
-					name : 'cod'
-				}, {
-					display: 'Descrição',
-					name : 'dsc',
-					isdefault: true
-				}],
-			sortname: "cod",
-			sortorder: "asc",
-			usepager: true,
-			title: false,
-			useRp: true,
-			rp: 10,
-			showTableToggleBtn: false,
-			pagestat: 'Mostrando {from} até {to} de {total} itens',
-			width: 600,
-			height: (240 + _Height),
-			onSelect: function(row) {
-				changeField(row, input);
-			}
-		});
-		$("#dlg").fadeIn(200);
-	}
-}
-
 function showfilter_rebanho(url, input)
 {
 	createDialog('Rebanho');
@@ -600,57 +501,6 @@ function showfilter_local(url, input)
 					isdefault: true
 				}],
 			sortname: "local",
-			sortorder: "asc",
-			usepager: true,
-			title: false,
-			useRp: true,
-			rp: 10,
-			showTableToggleBtn: false,
-			pagestat: 'Mostrando {from} até {to} de {total} itens',
-			width: 600,
-			height: (240 + _Height),
-			onSelect: function(row) {
-				changeField(row, input);
-			},
-			params: [ 
-			          {name: 'fazenda_id', value: $("#fazenda_id").val()}
-			        ]
-		});
-		$("#dlg").fadeIn(200);
-	}
-}
-
-function showfilter_grausangue(url, input)
-{
-
-	createDialog('Grau Sangue');
-	if ($("#dlg").length) {
-		$("#dlg-grid").flexigrid(
-		{
-			url: url,
-			dataType: 'json',
-			colModel : [{
-					display: 'Grau Sangue',
-					name : 'cod',
-					width : 40,
-					sortable : true,
-					align: 'left'
-				}, {
-					display: 'Descrição',
-					name : 'dsc',
-					width : 180,
-					sortable : true,
-					align: 'left'
-				}],
-			searchitems : [{
-					display: 'Grau Sangue',
-					name : 'cod'
-				}, {
-					display: 'Descrição',
-					name : 'dsc',
-					isdefault: true
-				}],
-			sortname: "cod",
 			sortorder: "asc",
 			usepager: true,
 			title: false,
@@ -834,37 +684,6 @@ function showfilter_animal(url, input)
  * @param modal
  * @return
  */
-function createDialog(title, w, h, modal)
-{
-	$.each($.browser, function(i) {
-		if ($.browser.mozilla) {
-			_Height = parseInt(20);
-		} else {
-			_Height = parseInt(0);
-		}
-	});
-
-	// Setting default values
-	w = typeof(w) != 'undefined' ? w : 620;
-	h = typeof(h) != 'undefined' ? h : (390 + _Height);
-
-	modal = typeof(modal) != 'undefined' ? modal : true;
-
-	$("#dlg").dialog({
-		modal: modal,
-		autoOpen: false,
-		resizable: false,
-		title: title,
-		width: w,
-		height: h
-	});
-
-	$("#dlg").dialog('open');
-
-	// Workaround to set title forced
-	$('#ui-dialog-title-dlg').html(title);
-
-}
 
 
 
