@@ -20,6 +20,11 @@ class Model_Db_Fichario extends Model_Db
 
 	public function getPaginatorAdapter($orderby = null, $order = null)
 	{
+
+		if ($orderby == 'data_nascimento') {
+			$orderby = 'dt_nascimento';
+		}
+
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
 			->from(array('f' => $this->_name), array(
@@ -27,12 +32,9 @@ class Model_Db_Fichario extends Model_Db
 				'cod',
 				'nome',
 				'rgn',
-				'dt_nascimento' => new Zend_Db_Expr("DATE_FORMAT(dt_nascimento, '%d/%m/%Y')"),
+				'data_nascimento' => new Zend_Db_Expr("DATE_FORMAT(dt_nascimento, '%d/%m/%Y')"),
 			), $this->_schema)
-//			->joinLeft('raca', 'f.raca_id = raca.id', array('raca_dsc' => 'dsc'), $this->_schema)
 			->joinLeft('local', 'f.local_id = local.id', array('local_dsc' => 'dsc'), $this->_schema)
-//			faz o join recortando/delimitando a quantidade de caracteres
-//			->joinLeft('fazenda', 'f.fazenda_id = fazenda.id', array('fazenda_dsc' => new Zend_Db_Expr("SUBSTRING(descricao, 1, 30)")), $this->_schema)
 			->joinLeft('fazenda', 'f.fazenda_id = fazenda.id', array('fazenda_dsc' => 'descricao'), $this->_schema)
 			->order($orderby .' '. $order)
 			;
@@ -82,7 +84,7 @@ class Model_Db_Fichario extends Model_Db
 		}
 
 		if (array_key_exists('sexo', $params) && $params['sexo'] != false) {
-			$this->_select->where('sexo = ?', $params['sexo']);
+			$this->_select->where($this->_name.'.sexo = ?', $params['sexo']);
 		}
 
 //		print '<pre>'.$this->_select;
@@ -330,9 +332,9 @@ class Model_Db_Fichario extends Model_Db
 		$result = $this->fetchAll($this->_select)->toArray();
 
 		if (count($result) > 0) {
-			for ($i=0; count < $result; $i++)
+			for ($i=0; $i < count($result); $i++)
 			{
-				$result[$i]['nome'] = utf8_encode($result[$i]['nome']);
+				$result[$i]['nome'] = utf8_decode($result[$i]['nome']);
 			}
 			return $result;
 		} else {
@@ -357,5 +359,62 @@ class Model_Db_Fichario extends Model_Db
 
 		$array = $this->fetchAll($this->_select)->toArray();
 		return $array;
+	}
+
+	public function findPreventivoMorte($data)
+	{
+		if (@$data['cod'] == "" || @$data['fazenda_id'] == "") {
+			$return['error'] = 'Parametros incorretos';
+		} else {
+				$this->_select = $this->select()
+				->setIntegrityCheck(false)
+				->from(array('f' => $this->_name), array(
+					'id',
+					'cod',
+					'nome',
+					'obs',
+					'time' => new Zend_Db_Expr('curtime()')
+				), $this->_schema)
+			;
+			if (@$data['byId']) {
+				$this->_select->where('f.id = ?', $data['cod']);
+			} else {
+				$this->_select->where('f.cod = ?', $data['cod']);
+			}
+			if ($this->fetchAll($this->_select)->count() == 0) {
+				$return['error'] = 'Nenhum registro encontrado.';
+			} else {
+				$return = $this->fetchAll($this->_select)->toArray();
+			}
+		}
+		return $return;
+	}
+
+	public function recoverPreventivoMorte($id = false, $time = false)
+	{
+		if ($id == false && $time == false) {
+			$return['error'] = 'Parametros incorretos';
+		} else {
+				$this->_select = $this->select()
+				->setIntegrityCheck(false)
+				->from(array('f' => $this->_name), array(
+					'id',
+					'cod',
+					'nome',
+					'obs',
+					'time' => new Zend_Db_Expr("'".$time."'")
+				), $this->_schema)
+				->where('f.id = ?', $id)
+			;
+			if ($this->fetchAll($this->_select)->count() == 0) {
+				$__return['error'] = 'Nenhum registro encontrado.';
+			} else {
+				$__return = $this->fetchRow($this->_select)->toArray();
+			}
+		}
+		foreach ($__return as $key => $val) {
+			$return[$key] = utf8_decode($val);
+		}
+		return $return;
 	}
 }

@@ -28,6 +28,7 @@ class Zend_View_Helper_JQuery extends Zend_View_Helper_Abstract
 	 */
 	public function jQuery ()
 	{
+		throw new Zend_View_Exception('Modulo desabilitado temporariamente, contate o administrador');
 		return $this;
 	}
 

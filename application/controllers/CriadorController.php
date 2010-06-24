@@ -72,7 +72,7 @@ class CriadorController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 
 	}
@@ -138,7 +138,7 @@ class CriadorController extends Zend_Controller_Action
 			if ($criadorForm->isValid($request->getPost())) {
 
 				$criadorModel->updateCriador($criadorForm->getValues());
-				$this->_redirect('criador/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 
 			}
 

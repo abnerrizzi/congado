@@ -74,7 +74,7 @@ class FazendaController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 
 	}
@@ -116,7 +116,7 @@ class FazendaController extends Zend_Controller_Action
 
 			if ($fazendaForm->isValid($request->getPost())) {
 				$fazendaModel->updateFazenda($fazendaForm->getValues());
-				$this->_redirect('fazenda/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

@@ -71,7 +71,7 @@ class GrausangueController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 	}
 
@@ -94,7 +94,7 @@ class GrausangueController extends Zend_Controller_Action
 
 			if ($grausangueForm->isValid($request->getPost())) {
 				$grausangueModel->updateGrausangue($grausangueForm->getValues());
-				$this->_redirect('grausangue/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 		} else {
 			if ($grausangueId > 0) {

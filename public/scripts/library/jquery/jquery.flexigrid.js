@@ -8,6 +8,22 @@
  * $Date: 2008-07-14 00:09:43 +0800 (Tue, 14 Jul 2008) $
  */
  
+
+
+
+
+
+
+/**
+ * IMPLEMENTED
+ */
+var ja_mandou_ajax_anteriormente = false;
+
+
+
+
+
+
 (function($){
 		  
 	$.addFlex = function(t,p)
@@ -49,7 +65,8 @@
 			 onToggleCol: false,
 			 onChangeSort: false,
 			 onSuccess: false,
-			 onSubmit: false // using a custom populate function
+			 onSubmit: false, // using a custom populate function
+			 delayInterval: 300 // ******* delay used to wait mileseconds before data sent through ajax
 		  }, p);
 		  		
 
@@ -260,7 +277,6 @@
 							
 							
 							if (this.dcoln>this.dcolt)
-								
 								$('th:eq('+this.dcolt+')',this.hDiv).before(this.dcol);
 							else
 								$('th:eq('+this.dcolt+')',this.hDiv).after(this.dcol);
@@ -626,7 +642,18 @@
 				p.qtype = $('select[name=qtype]',g.sDiv).val();
 				p.newp = 1;
 
-				this.populate();				
+				this.populate();
+
+
+
+				/**
+				 * IMPLEMENTED
+				 */
+				clearInterval(ja_mandou_ajax_anteriormente);
+
+
+
+
 			},
 			changePage: function (ctype){ //change page
 			
@@ -1215,7 +1242,32 @@
 				
 				$(g.sDiv).append("<div class='sDiv2'>Pesquisar <input type='text' size='30' name='q' class='qsbox' /> <select name='qtype'>"+sopt+"</select> <input type='button' value='Limpar' /></div>");
 
-				$('input[name=q],select[name=qtype]',g.sDiv).keydown(function(e){if(e.keyCode==13) g.doSearch()}).keyup(function(e){if(e.keyCode!=13) g.doSearch()});
+				/**
+				 * 
+				 * IMPLEMENTED
+				 * ORIGINAL: $('input[name=q],select[name=qtype]',g.sDiv).keydown(function(e){if(e.keyCode==13) g.doSearch()}).keyup(function(e){if(e.keyCode!=13) g.doSearch()});
+				 */
+				$('input[name=q],select[name=qtype]',g.sDiv).keydown(
+						function(e) {
+							if(e.keyCode==13)
+								g.doSearch()
+							}).keyup(function(e){
+								if(e.keyCode!=13) {
+
+									if (!ja_mandou_ajax_anteriormente) {
+										ja_mandou_ajax_anteriormente = window.setInterval(function() {g.doSearch()}, p.delayInterval);
+									} else {
+										clearInterval(ja_mandou_ajax_anteriormente);
+										ja_mandou_ajax_anteriormente = window.setInterval(function() {g.doSearch()}, p.delayInterval);
+									}
+										
+									// wait 300 mileseconds
+									
+								}
+							});
+				/**
+                 * END
+                 */
 				$('input[value=Limpar]',g.sDiv).click(function(){$('input[name=q]',g.sDiv).val(''); p.query = ''; g.doSearch(); });
 				$(g.bDiv).after(g.sDiv);				
 				

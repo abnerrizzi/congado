@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: LocalController.php 199 2010-04-13 13:47:35Z bacteria_ $
+ * @version $Id: LocalController.php 337 2010-06-08 13:40:22Z bacteria_ $
  * 
  */
 
@@ -69,7 +69,7 @@ class Movimentacao_LocalController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 	}
 

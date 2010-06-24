@@ -673,7 +673,7 @@ $this->headScript()
 
 <span class="UIButton UIButton_Large UIFormButton  UIButton_Blue" onclick="$('#<?=$this->form->getName();?>').submit();">
 <span class="UIIcon UIIcon_Save">&nbsp;</span>
-  <input style="display: inline-block;"  class="UIButton_Text" type="submit" value="Salvar" name="<?=$this->form->getElement('submit')->getName();?>_" id="<?=$this->form->getElement('submit')->getId();?>_"/>
+  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Salvar" name="<?=$this->form->getElement('submit')->getName();?>_" id="<?=$this->form->getElement('submit')->getId();?>_"/>
 </span>
 
 
@@ -684,6 +684,7 @@ $this->headScript()
 </span>
 
 
+	</td>
     <td width="50"></td>
   </tr>
 

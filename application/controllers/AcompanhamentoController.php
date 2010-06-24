@@ -72,7 +72,7 @@ class AcompanhamentoController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 
 	}
@@ -122,7 +122,7 @@ class AcompanhamentoController extends Zend_Controller_Action
 
 			if ($acompanhamentoForm->isValid($request->getPost())) {
 				$acompanhamentoModel->updateAcompanhamento($acompanhamentoForm->getValues());
-				$this->_redirect('acompanhamento/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

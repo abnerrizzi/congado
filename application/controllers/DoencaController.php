@@ -72,7 +72,7 @@
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 
 	}
@@ -109,7 +109,7 @@
 		$request	= $this->getRequest();
 		$doencaId	= (int)$request->getParam('id');
 		$doencaForm	= new Form_Doenca();
-		
+
 		$doencaForm->setAction('/doenca/edit');
 		$doencaForm->setMethod('post');
 		$doencaModel = new Model_Db_Doenca();
@@ -123,9 +123,9 @@
 
 			if ($doencaForm->isValid($request->getPost())) {
 				$values = $doencaForm->getValues(true);
-				unset($values['submit'], $values['cancel']);
+				unset($values['submit'], $values['cancel'], $values['delete']);
 				$doencaModel->updateDoenca($values);
-				$this->_redirect('doenca/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

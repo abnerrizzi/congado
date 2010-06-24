@@ -74,7 +74,7 @@ class LocalController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 
 	}
@@ -112,7 +112,7 @@ class LocalController extends Zend_Controller_Action
 
 			if ($localForm->isValid($request->getPost())) {
 				$localModel->updateLocal($localForm->getValues());
-				$this->_redirect('local/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

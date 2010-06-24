@@ -72,7 +72,7 @@ class MorteController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 
 	}
@@ -122,7 +122,7 @@ class MorteController extends Zend_Controller_Action
 
 			if ($morteForm->isValid($request->getPost())) {
 				$morteModel->updateMorte($morteForm->getValues());
-				$this->_redirect('morte/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

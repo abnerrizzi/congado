@@ -9,7 +9,7 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Model
  * @subpackage Db
- * @version $Id: Movimentacao.php 205 2010-04-13 14:31:30Z bacteria_ $
+ * @version $Id: Movimentacao.php 342 2010-06-09 20:13:22Z bacteria_ $
  * 
  */
 class Model_Db_Movimentacao extends Model_Db

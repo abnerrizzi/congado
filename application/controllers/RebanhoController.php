@@ -72,7 +72,7 @@ class RebanhoController extends Zend_Controller_Action
 			'action'	=> 'add',
 		));
 
-		$this->view->sort = $this->_getParam('sort', 'id');
+		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 
 	}
@@ -122,7 +122,7 @@ class RebanhoController extends Zend_Controller_Action
 
 			if ($rebanhoForm->isValid($request->getPost())) {
 				$rebanhoModel->updateRebanho($rebanhoForm->getValues());
-				$this->_redirect('rebanho/index');
+				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {

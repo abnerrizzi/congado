@@ -17,8 +17,10 @@ class Plugin_Auth extends Zend_Controller_Plugin_Abstract
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{
 		$authNamespace = new Zend_Session_Namespace('Zend_Auth');
+		$gridSession = new Zend_Session_Namespace('gridSession');
 		if (!Zend_Auth::getInstance()->hasIdentity()) {
 			Zend_Auth::getInstance()->clearIdentity();
+			$gridSession->unsetAll();
 
 			// Armazena URL requisitada para redirecionamento apos login
 			$requestUri = substr($this->_request->getRequestUri(),
