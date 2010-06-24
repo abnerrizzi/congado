@@ -40,4 +40,21 @@ class Model_Db_ColetaEmbriao extends Model_Db
 		
 	}
 
+	public function getColetaEmbriao($id)
+	{
+		$id = (int)$id;
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->joinLeft('criador', 'f.criador_id = criador.id', array('criador_cod' => 'cod', 'criador' => 'dsc'), $this->_schema)
+			;
+		$row = $this->fetchRow('id = ' . $id);
+		if (!$row) {
+			throw new Exception("Count not find row $id");
+		}
+		$array = $row->toArray();
+		foreach ($array as $key => $val) {
+			$return[$key] = utf8_decode($val);
+		}
+		return $return;
+	}
 }
