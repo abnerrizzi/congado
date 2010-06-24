@@ -81,8 +81,69 @@ class ColetaembController extends Zend_Controller_Action
 
     public function editAction()
     {
-    	$this->view->form = new Zend_Form();
-    	$this->view->elements = array();
+
+    	$request		= $this->getRequest();
+    	$coletaId		= $request->getParam('id');
+		$coletaForm		= new Form_ColetaEmbriao();
+
+		$coletaForm->setACtion('/coletaemb/edit');
+		$coletaForm->setMethod('post');
+
+	    /*
+		 * Populando select de fazendas
+		 */
+		$fazendaModel = new Model_Db_Fazenda();
+		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
+		$coletaForm->getElement('fazenda_id')
+			->addMultiOption(false, '--')
+			->setAttrib('disabled', 'disabled')
+		;
+		foreach ($fazendas as $fazenda) {
+			$coletaForm->getElement('fazenda_id')
+				->addMultiOption($fazenda['id'], $fazenda['descricao']);
+		}
+
+    	$this->view->form = $coletaForm;
+    	$this->view->elements = array(
+    		'id',
+    		array('vaca'),
+    		'fazenda_id',
+    		'dt_coleta',
+    		'ciotipo',
+    		'hormonio',
+    		'trata_inicio',
+    		'trata_final',
+    		'dosagem',
+    		'distribuicao',
+
+    		'soro_nome',
+    		'soro_partida',
+//    		'meio_nome',
+//    		'meio_partida'
+    	);
+
+    	$coletaModel = new Model_Db_ColetaEmbriao();
+
+    	if ($request->isPost()) {
+
+//			if ($doencaForm->isValid($request->getPost())) {
+//				$values = $doencaForm->getValues(true);
+//				unset($values['submit'], $values['cancel'], $values['delete']);
+//				$doencaModel->updateDoenca($values);
+//				$this->_redirect('/'. $this->getRequest()->getControllerName());
+//			}
+
+		} else {
+
+			if ($coletaId > 0) {
+				$result = $coletaModel->getColetaEmbriao($coletaId);
+				$coletaForm->populate($result);
+			} else {
+				throw new Exception("invalid record number");
+			}
+		}
+
+
     }
 
 }
