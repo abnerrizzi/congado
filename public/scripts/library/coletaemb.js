@@ -12,7 +12,7 @@ $(document).ready(function() {
 //	toggleFields(true);
 //	changeGrauSangue();
 
-	$("#dt_coleta").datepicker({
+	$("#dt_coleta, #trata_inicio, #trata_final").datepicker({
 
 		changeMonth: true,
 		changeYear: true,
@@ -32,9 +32,7 @@ $(document).ready(function() {
 	    nextText: 'Próximo',
 	    prevText: 'Anterior',
 	    maxDate: new Date()
-	});
-
-	$("#dt_coleta").keyup(function(event){
+	}).keyup(function(event){
 	        val = $(this).val();
 	        if (val.length == 2 || val.length == 5) {
 	        	val = val +'/';
