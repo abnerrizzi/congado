@@ -40,7 +40,7 @@ $(document).ready(function() {
 	        }
 	});
 
-	$("#prost_dhd").datepicker({
+	$("#prost_dhd, #insemina_dh1h, #insemina_dh2h, #insemina_dh3h, #insemina_dh4h").datepicker({
 
 		changeMonth: true,
 		changeYear: true,
@@ -69,7 +69,7 @@ $(document).ready(function() {
 	});
 
 	// Filtro para campos de hora
-	$('#prost_dhh, #insemina_dh1h').keyup(function(event){
+	$('#prost_dhh, #insemina_dh1h, #insemina_dh2h, #insemina_dh3h, #insemina_dh3h').keyup(function(event){
         val = $(this).val();
         if (val.length == 2) {
         	val = val +':';
