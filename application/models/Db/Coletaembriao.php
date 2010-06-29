@@ -45,14 +45,37 @@ class Model_Db_ColetaEmbriao extends Model_Db
 		$id = (int)$id;
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
-			->joinLeft('criador', 'f.criador_id = criador.id', array('criador_cod' => 'cod', 'criador' => 'dsc'), $this->_schema)
+			->from($this->_name, '*', $this->_schema)
+			->joinLeft(array('vaca' => 'fichario'), 'vaca_id = vaca.id',array('vaca_cod' => 'cod', 'vaca' => 'nome'),$this->_schema)
+			->joinLeft(array('touro' => 'fichario'), 'touro_id = touro.id',array('touro_cod' => 'cod', 'touro' => 'nome'),$this->_schema)
+			->where($this->_name.'.id = ?', (int)$id)
 			;
-		$row = $this->fetchRow('id = ' . $id);
+//		die('<pre>'.$this->_select);
+		$row = $this->fetchRow($this->_select);
 		if (!$row) {
 			throw new Exception("Count not find row $id");
 		}
 		$array = $row->toArray();
+		$_datas = array(
+			'dt_coleta',
+			'trata_inicio',
+			'trata_final',
+		);
+		$_dh = array(
+			'prost_dh',
+			'gnrh_dh',
+			'insemina_dh1',
+			'insemina_dh2',
+			'insemina_dh3',
+			'insemina_dh4',
+		);
 		foreach ($array as $key => $val) {
+			if (in_array($key, $_datas) && $val != NULL) {
+				$val = date('d/m/Y', strtotime($val));
+			} elseif (in_array($key, $_dh) && $val != NULL) {
+				$return[$key.'d'] = date('d/m/Y', strtotime($val));
+				$return[$key.'h'] = date('H:i', strtotime($val));
+			}
 			$return[$key] = utf8_decode($val);
 		}
 		return $return;

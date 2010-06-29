@@ -133,6 +133,7 @@ class ColetaembController extends Zend_Controller_Action
 //				$this->_redirect('/'. $this->getRequest()->getControllerName());
 //			}
 
+    		throw new Zend_Controller_Exception('sequencia de alteracao nao implementada');
 		} else {
 
 			if ($coletaId > 0) {

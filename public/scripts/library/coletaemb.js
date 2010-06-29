@@ -40,6 +40,58 @@ $(document).ready(function() {
 	        }
 	});
 
+	$("#prost_dhd").datepicker({
+
+		changeMonth: true,
+		changeYear: true,
+		showAnim: 'fadeIn',
+
+		dateFormat: 'dd/mm/yy',
+		autoSize: true,
+		dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+		dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+		dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+		monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+		             'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+		],
+	    monthNames: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+	                 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+	    ],
+	    nextText: 'Próximo',
+	    prevText: 'Anterior',
+	    maxDate: new Date()
+	}).keyup(function(event){
+	        val = $(this).val();
+	        if (val.length == 2 || val.length == 5) {
+	        	val = val +'/';
+	        	$(this).val(val);
+	        }
+	});
+
+	// Filtro para campos de hora
+	$('#prost_dhh, #insemina_dh1h').keyup(function(event){
+        val = $(this).val();
+        if (val.length == 2) {
+        	val = val +':';
+        	$(this).val(val);
+        }
+	}).blur(function() {
+		time = $(this).val().split(':');
+		if (time[0] > 23 || time[1] > 59) {
+			$(this).val('');
+			$(this).focus();
+			if ($("#ajax_loader")) {
+				$("#ajax_loader").html("Hora inválida").show();
+				setTimeout(function(){
+					$("#ajax_loader").fadeOut(300);
+				}
+				, 2000);
+			} else {
+				window.alert('Hora inválida');
+			}
+		}
+	});
+
 	$("#tabs").tabs();
 
 	// if obs exists Dialogs appers
