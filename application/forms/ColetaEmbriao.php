@@ -55,7 +55,7 @@ class Form_ColetaEmbriao extends Form_Default
 	public function __construct()
 	{
 		parent::__construct();
-		$this->setName('tipos_de_controle_sanitario');
+		$this->setName('coleta_de_embrioes');
 		$this->addElement('hidden', 'id');
 
 		$this->addElement('select', 'fazenda_id', array(
@@ -91,14 +91,6 @@ class Form_ColetaEmbriao extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'ciotipo', array(
-			'label' => 'Cio Base Tipo',
-			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
-			'class'	=> 'input',
-		));
-
 		$this->addElement('text', 'hormonio', array(
 			'label' => 'Hormônio',
 			'filters' => array('StringTrim'),
@@ -110,24 +102,24 @@ class Form_ColetaEmbriao extends Form_Default
 		$this->addElement('text', 'trata_inicio', array(
 			'label' => 'Tratamento Inicio',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 10,
+			'size' => 11,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'trata_final', array(
 			'label' => 'Tratamento Final',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 10,
+			'size' => 11,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'dosagem', array(
 			'label' => 'Dosagem',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 6,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
@@ -139,59 +131,91 @@ class Form_ColetaEmbriao extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'prot_nome', array(
+		$this->addElement('text', 'prost_nome', array(
 			'label' => 'Nome',
 			'filters' => array('StringTrim'),
 			'maxlength' => 32,
-			'size' => 16,
+			'size' => 20,
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'prost_dh', array(
-			'label' => 'Data/Hora',
+		$this->addElement('text', 'prost_dhd', array(
+			'label' => 'Data',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 10,
+			'size' => 10,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'prost_dhh', array(
+			'label' => 'Data',
+			'filters' => array('StringTrim'),
+			'maxlength' => 5,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'prost_dosagem', array(
-			'label' => 'prost_Dosagem',
+			'label' => 'Dosagem',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 4,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'cio_dh', array(
-			'label' => 'cio_dh',
+		$this->addElement('text', 'cio_tipo', array(
+			'label' => 'Tipo',
 			'filters' => array('StringTrim'),
 			'maxlength' => 32,
-			'size' => 16,
+			'size' => 20,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'cio_dhd', array(
+			'label' => 'Data',
+			'filters' => array('StringTrim'),
+			'maxlength' => 10,
+			'size' => 10,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'cio_dhh', array(
+			'label' => 'Data',
+			'filters' => array('StringTrim'),
+			'maxlength' => 5,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'gnrh_nome', array(
-			'label' => 'gnrh_nome',
+			'label' => 'Nome',
 			'filters' => array('StringTrim'),
 			'maxlength' => 32,
-			'size' => 16,
+			'size' => 20,
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'gnrh_dh', array(
-			'label' => 'gnrh_dh',
+		$this->addElement('text', 'gnrh_dhd', array(
+			'label' => 'Data',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 10,
+			'size' => 10,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'gnrh_dhh', array(
+			'label' => 'Data',
+			'filters' => array('StringTrim'),
+			'maxlength' => 5,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'gnrh_dosagem', array(
-			'label' => 'gnrh_dosagem',
+			'label' => 'Dosagem',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 4,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
@@ -217,14 +241,6 @@ class Form_ColetaEmbriao extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'prost_dosagem', array(
-			'label' => 'prost_dosagem',
-			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
-			'class'	=> 'input',
-		));
-
 		$this->addElement('text', 'partida', array(
 			'label' => 'partida',
 			'filters' => array('StringTrim'),
@@ -233,24 +249,32 @@ class Form_ColetaEmbriao extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'insemina_dh1', array(
-			'label' => 'inseminadh1',
+		$this->addElement('text', 'insemina_dh1d', array(
+			'label' => 'Data',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 10,
+			'size' => 10,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'insemina_dh1h', array(
+			'label' => 'Hora',
+			'filters' => array('StringTrim'),
+			'maxlength' => 5,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'dose1', array(
-			'label' => 'dose1',
+			'label' => 'Doses',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 4,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'partida1', array(
-			'label' => 'partida1',
+			'label' => 'Partida',
 			'filters' => array('StringTrim'),
 			'maxlength' => 32,
 			'size' => 16,
@@ -265,24 +289,32 @@ class Form_ColetaEmbriao extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'insemina_dh2', array(
-			'label' => 'insemina2',
+		$this->addElement('text', 'insemina_dh2d', array(
+			'label' => 'Data',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 10,
+			'size' => 10,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'insemina_dh2h', array(
+			'label' => 'Hora',
+			'filters' => array('StringTrim'),
+			'maxlength' => 5,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'dose2', array(
-			'label' => 'dose2',
+			'label' => 'Doses',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 4,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'partida2', array(
-			'label' => 'partida2',
+			'label' => 'Partida',
 			'filters' => array('StringTrim'),
 			'maxlength' => 32,
 			'size' => 16,
@@ -297,24 +329,32 @@ class Form_ColetaEmbriao extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'insemina_dh3', array(
-			'label' => 'insemina3',
+		$this->addElement('text', 'insemina_dh3d', array(
+			'label' => 'Data',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 10,
+			'size' => 10,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'insemina_dh3h', array(
+			'label' => 'Hora',
+			'filters' => array('StringTrim'),
+			'maxlength' => 5,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'dose3', array(
-			'label' => 'dose3',
+			'label' => 'Doses',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 4,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'partida3', array(
-			'label' => 'partida3',
+			'label' => 'Partida',
 			'filters' => array('StringTrim'),
 			'maxlength' => 32,
 			'size' => 16,
@@ -329,24 +369,32 @@ class Form_ColetaEmbriao extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'insemina_dh4', array(
-			'label' => 'insemina_dh4',
+		$this->addElement('text', 'insemina_dh4d', array(
+			'label' => 'Data',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 10,
+			'size' => 10,
+			'class'	=> 'input',
+		));
+
+		$this->addElement('text', 'insemina_dh4h', array(
+			'label' => 'Hora',
+			'filters' => array('StringTrim'),
+			'maxlength' => 5,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'dose4', array(
-			'label' => 'dose4',
+			'label' => 'Doses',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 4,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'partida4', array(
-			'label' => 'partida4',
+			'label' => 'Partida',
 			'filters' => array('StringTrim'),
 			'maxlength' => 32,
 			'size' => 16,
@@ -480,7 +528,13 @@ class Form_ColetaEmbriao extends Form_Default
 			'size' => 16,
 			'class'	=> 'input',
 		));
-		
+
+		$this->addElement('hidden', 'obs', array(
+			'label' => 'Observação',
+			'filters' => array('StringTrim', 'StringToUpper'),
+			'class'	=> 'input',
+		));
+
 	}
 
 }

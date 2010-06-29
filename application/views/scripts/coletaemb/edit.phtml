@@ -12,7 +12,6 @@ $this->headScript()
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.draggable.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.dialog.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.resizable.js')
-//	->appendFile($this->baseUrl() . '/scripts/library/genealogia.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.qtip.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
 	;
@@ -35,7 +34,7 @@ $this->headLink()
 <table
 	id="form"
 	align="center"
-	border="2"
+	border="0"
 	cellpadding="0"
 	cellspacing="0"
 	bgcolor="#F7F6F4"
@@ -61,13 +60,22 @@ $this->headLink()
     <td width="20"></td>
     <td class="label"><?=$this->form->vaca_cod->getLabel();?>:</td>
     <td width="10"></td>
-    <td class="element" colspan="2">
+    <td class="element">
       <?=$this->form->vaca_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->vaca_cod->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->vaca->removeDecorator('tag')->removeDecorator('label');?>
     </td>
+    <td width="50"></td>
+  </tr>
+
+  <tr> 
+	<td height="10" colspan="5"> </td> 
+  </tr>
+  <tr>
+    <td width="20"></td>
     <td class="label"><?=$this->form->dt_coleta->getLabel();?>:</td>
-    <td class="element" colspan="2">
+    <td width="10"></td>
+    <td class="element">
       <?=$this->form->dt_coleta->removeDecorator('tag')->removeDecorator('label');?>
     </td>
     <td width="50"></td>
@@ -83,7 +91,7 @@ $this->headLink()
 
 
 
-<div id="tabs" style=" font-size: 12px; width: 850px;">
+<div id="tabs" style="font-size: 12px; width: 850px;">
     <ul>
         <li><a href="#tab1"><span>Dados Gerais</span></a></li>
         <li><a href="#tab2"><span>Inseminações/Montas</span></a></li>
@@ -102,33 +110,242 @@ $this->headLink()
 				border-bottom: 1px solid #CCCCCC;
 				border-left: 1px solid #919191;
 				border-top: 1px solid #919191;
-				font-size: 12px;">
-
-  <tr>
-    <td height="10" colspan="5"></td>
-  </tr>
+				font-size: 11px;">
 
   <tr>
     <td width="20"></td>
-    <td class="label" width="120"><?=$this->form->hormonio->getLabel();?>:</td>
-    <td width="10"></td>
-    <td class="element" width="240">
-      <?=$this->form->hormonio->removeDecorator('tag')->removeDecorator('label');?>
+    <td height="10" colspan="3"></td>
+    <td width="20"></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td colspan="3">
+      <fieldset style="width: 97%;">
+        <legend align="left"><b>Tratamento</b></legend>
+        <table
+        	align="center"
+        	width="100%"
+        	border="0"
+        	cellpadding="0"
+        	cellspacing="0"
+        	bgcolor="#F7F6F4"
+        	class="content"
+        	style="font-size: 11px;">
+          <tr> 
+            <td height="10" colspan="5"> </td> 
+          </tr>
+          <tr>
+          	<td class="label"><?=$this->form->hormonio->getLabel();?>:</td>
+          	<td width="10"></td>
+            <td><?=$this->form->hormonio->removeDecorator('tag')->removeDecorator('label');?></td>
+            <td width="10"></td>
+            <td class="label"><?=$this->form->trata_inicio->getLabel();?>:</td>
+            <td width="10"></td>
+            <td><?=$this->form->trata_inicio->removeDecorator('tag')->removeDecorator('label');?></td>
+            <td width="10"></td>
+            <td class="label"><?=$this->form->dosagem->getLabel();?>:</td>
+            <td width="10"></td>
+            <td><?=$this->form->dosagem->removeDecorator('tag')->removeDecorator('label');?></td>
+          </tr>
+
+          <tr> 
+            <td height="10" colspan="5"> </td> 
+          </tr>
+          <tr>
+            <td class="label"><?=$this->form->distribuicao->getLabel();?>:</td>
+            <td width="10"></td>
+            <td><?=$this->form->distribuicao->removeDecorator('tag')->removeDecorator('label');?></td>
+            <td width="10"></td>
+            <td class="label"><?=$this->form->trata_final->getLabel();?>:</td>
+            <td width="10"></td>
+            <td><?=$this->form->trata_final->removeDecorator('tag')->removeDecorator('label');?></td>
+          </tr>
+          <tr> 
+            <td height="10" colspan="5"> </td> 
+          </tr>
+
+        </table>
+      </fieldset>
     </td>
-    <td width="10"></td>
-    <td class="label" width="140"><?=$this->form->distribuicao->getLabel();?>:</td>
-    <td width="10"></td>
-    <td class="element" width="240">
-      <?=$this->form->distribuicao->removeDecorator('tag')->removeDecorator('label');?>
-    </td>
-    <td width="50"></td>
+    <td></td>
   </tr>
 
   <tr>
     <td height="10" colspan="5"></td>
   </tr>
 
-  </table>
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+    <td></td>
+    <td>
+      <fieldset style="width: 90%;">
+        <legend align="left"><b>Prostaglandina</b></legend>
+        <table
+        	align="center"
+        	width="30%"
+        	border="0"
+        	cellpadding="0"
+        	cellspacing="0"
+        	bgcolor="#F7F6F4"
+        	class="content"
+        	style="font-size: 11px;">
+          <tr> 
+            <td height="10" colspan="5"> </td> 
+          </tr>
+          <tr>
+          	<td class="label"><?=$this->form->prost_nome->getLabel();?>:</td>
+          	<td width="10"></td>
+            <td><?=$this->form->prost_nome->removeDecorator('tag')->removeDecorator('label');?></td>
+          </tr>
+
+          <tr> 
+            <td height="10" colspan="5"> </td> 
+          </tr>
+          <tr>
+          	<td class="label"><?=$this->form->prost_dhd->getLabel();?>:</td>
+          	<td width="10"></td>
+            <td>
+              <?=$this->form->prost_dhd->removeDecorator('tag')->removeDecorator('label');?>
+              <?=$this->form->prost_dhh->removeDecorator('tag')->removeDecorator('label');?>
+            </td>
+          </tr>
+
+          <tr> 
+            <td height="10" colspan="5"> </td> 
+          </tr>
+          <tr>
+          	<td class="label"><?=$this->form->prost_dosagem->getLabel();?>:</td>
+          	<td width="10"></td>
+            <td><?=$this->form->prost_dosagem->removeDecorator('tag')->removeDecorator('label');?></td>
+          </tr>
+          <tr>
+            <td height="10" colspan="5"> </td> 
+          </tr>
+        </table>
+      </fieldset>
+</td><td>
+      <fieldset style="width: 90%;">
+        <legend align="left"><b>GnRH</b></legend>
+        <table
+        	align="center"
+        	width="30%"
+        	border="0"
+        	cellpadding="0"
+        	cellspacing="0"
+        	bgcolor="#F7F6F4"
+        	class="content"
+        	style="font-size: 12px;">
+          <tr>
+            <td height="10" colspan="5"> </td> 
+          </tr>
+          <tr>
+          	<td class="label"><?=$this->form->gnrh_nome->getLabel();?>:</td>
+          	<td width="10"></td>
+            <td><?=$this->form->gnrh_nome->removeDecorator('tag')->removeDecorator('label');?></td>
+          </tr>
+
+          <tr> 
+            <td height="10" colspan="5"> </td> 
+          </tr>
+          <tr>
+          	<td class="label"><?=$this->form->gnrh_dhd->getLabel();?>:</td>
+          	<td width="10"></td>
+            <td>
+              <?=$this->form->gnrh_dhd->removeDecorator('tag')->removeDecorator('label');?>
+              <?=$this->form->gnrh_dhh->removeDecorator('tag')->removeDecorator('label');?>
+            </td>
+          </tr>
+
+          <tr> 
+            <td height="10" colspan="5"> </td> 
+          </tr>
+          <tr>
+          	<td class="label"><?=$this->form->gnrh_dosagem->getLabel();?>:</td>
+          	<td width="10"></td>
+            <td><?=$this->form->gnrh_dosagem->removeDecorator('tag')->removeDecorator('label');?></td>
+          </tr>
+          <tr>
+            <td height="10" colspan="5"> </td> 
+          </tr>
+        </table>
+      </fieldset>
+
+</td><td>
+      <fieldset style="width: 90%;">
+        <legend align="left"><b>Cio Base</b></legend>
+
+        <table
+        	align="center"
+        	width="30%"
+        	border="0"
+        	cellpadding="0"
+        	cellspacing="0"
+        	bgcolor="#F7F6F4"
+        	class="content"
+        	style="font-size: 12px;">
+          <tr>
+            <td height="10" colspan="5"> </td> 
+          </tr>
+          <tr>
+          	<td class="label"><?=$this->form->cio_tipo->getLabel();?>:</td>
+          	<td width="10"></td>
+            <td><?=$this->form->cio_tipo->removeDecorator('tag')->removeDecorator('label');?></td>
+          </tr>
+
+          <tr> 
+            <td height="10" colspan="5"> </td> 
+          </tr>
+          <tr>
+          	<td class="label"><?=$this->form->cio_dhd->getLabel();?>:</td>
+          	<td width="10"></td>
+            <td>
+              <?=$this->form->cio_dhd->removeDecorator('tag')->removeDecorator('label');?>
+              <?=$this->form->cio_dhh->removeDecorator('tag')->removeDecorator('label');?>
+            </td>
+          </tr>
+          <tr>
+            <td height="10" colspan="5"> </td> 
+          </tr>
+
+        </table>
+
+      </fieldset>
+    </td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
 </div>
 <div id="tab2">
     <table
@@ -149,20 +366,201 @@ $this->headLink()
     <td height="10" colspan="5"></td>
   </tr>
   <tr>
-    <td width="20"></td>
-    <td class="label"><?=$this->form->touro_cod->getLabel();?>:</td>
-    <td width="10"></td>
-    <td class="element">
-      <?=$this->form->touro_id->removeDecorator('tag')->removeDecorator('label');?>
-      <?=$this->form->touro_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <?=$this->form->touro->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal','pai');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
+    <td colspan="5">
+
+      <fieldset style="width: 96%;">
+        <legend align="left"><b>Inseminações / Montas</b></legend>
+
+        <table
+        	align="left"
+        	border="0"
+        	cellpadding="0"
+        	cellspacing="0"
+        	bgcolor="#F7F6F4"
+        	class="content"
+        	style="font-size: 12px;">
+          <tr>
+          	<td class="label"><?=$this->form->touro_cod->getLabel();?>:</td>
+          	<td width="10"></td>
+            <td>
+              <?=$this->form->touro_id->removeDecorator('tag')->removeDecorator('label');?>
+              <?=$this->form->touro_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+              <?=$this->form->touro->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+              <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal','pai');">
+                <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+              </a>
+            </td>
+          	<td width="30"></td>
+          </tr>
+        </table>
+
+        <fieldset style="width: 90%;">
+          <legend>1&ordf;</legend>
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              bgcolor="#F7F6F4"
+              class="content"
+              style="font-size: 12px;">
+            <tr>
+              <td height="10" colspan="16"> </td> 
+            </tr>
+            <tr>
+              <td class="label" width="45"><?=$this->form->insemina_dh1d->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->insemina_dh1d->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="45"><?=$this->form->insemina_dh1h->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->insemina_dh1h->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="55"><?=$this->form->dose1->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->dose1->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="60"><?=$this->form->partida1->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->partida1->removeDecorator('tag')->removeDecorator('label');?></td>
+            </tr>
+            <tr>
+              <td height="10" colspan="16"> </td> 
+            </tr>
+          </table>
+        </fieldset>
+
+        <fieldset style="width: 90%;">
+          <legend>2&ordf;</legend>
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              bgcolor="#F7F6F4"
+              class="content"
+              style="font-size: 12px;">
+            <tr>
+              <td height="10" colspan="16"> </td> 
+            </tr>
+            <tr>
+              <td class="label" width="45"><?=$this->form->insemina_dh2d->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->insemina_dh2d->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="45"><?=$this->form->insemina_dh2h->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->insemina_dh2h->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="55"><?=$this->form->dose2->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->dose2->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="60"><?=$this->form->partida2->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->partida2->removeDecorator('tag')->removeDecorator('label');?></td>
+            </tr>
+            <tr>
+              <td height="10" colspan="16"> </td> 
+            </tr>
+          </table>
+        </fieldset>
+
+        <fieldset style="width: 90%;">
+          <legend>3&ordf;</legend>
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              bgcolor="#F7F6F4"
+              class="content"
+              style="font-size: 12px;">
+            <tr>
+              <td height="10" colspan="16"> </td> 
+            </tr>
+            <tr>
+              <td class="label" width="45"><?=$this->form->insemina_dh3d->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->insemina_dh3d->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="45"><?=$this->form->insemina_dh3h->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->insemina_dh3h->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="55"><?=$this->form->dose3->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->dose3->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="60"><?=$this->form->partida3->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->partida3->removeDecorator('tag')->removeDecorator('label');?></td>
+            </tr>
+            <tr>
+              <td height="10" colspan="16"> </td> 
+            </tr>
+          </table>
+        </fieldset>
+
+        <fieldset style="width: 90%;">
+          <legend>4&ordf;</legend>
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              bgcolor="#F7F6F4"
+              class="content"
+              style="font-size: 12px;">
+            <tr>
+              <td height="10" colspan="16"> </td> 
+            </tr>
+            <tr>
+              <td class="label" width="45"><?=$this->form->insemina_dh4d->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->insemina_dh4d->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="45"><?=$this->form->insemina_dh4h->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->insemina_dh4h->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="55"><?=$this->form->dose4->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->dose4->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="60"><?=$this->form->partida4->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->partida4->removeDecorator('tag')->removeDecorator('label');?></td>
+            </tr>
+            <tr>
+              <td height="10" colspan="16"> </td> 
+            </tr>
+          </table>
+        </fieldset>
+
+
+
+      </fieldset>
+
+
+
+
+
+
     </td>
-    <td width="50"></td>
   </tr>
-  
 
   <tr>
     <td height="10" colspan="5"></td>
@@ -196,13 +594,6 @@ $this->headLink()
 
 <!-- START OF GENEALOGIA -->
 
-
-<?php
-$this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.qtip.js')
-	;
-?>
-<br/>
 
 <table id="genealogia" border="0" align="center" cellpadding="0" cellspacing="0">
 <tr><td>x</td></tr>
@@ -278,6 +669,7 @@ $this->headScript()
   </tr>
  
 </table>
+<?=$this->form->obs->removeDecorator('tag')->removeDecorator('label');?>
 </form>
 
 <div id="dlg" style="display: none;">
