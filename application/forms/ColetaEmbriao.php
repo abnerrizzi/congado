@@ -466,50 +466,50 @@ class Form_ColetaEmbriao extends Form_Default
 		));
 
 		$this->addElement('text', 'avalia_od', array(
-			'label' => 'avalia_od',
+			'label' => 'Ovário Direito',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 4,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'avalia_oe', array(
-			'label' => 'avalia_oe',
+			'label' => 'Ovário Esquerdo',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 4,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'viavel', array(
-			'label' => 'viavel',
+			'label' => 'Viáveis',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 4,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'nao_viavel', array(
-			'label' => 'nao_viavel',
+			'label' => 'Não Viáveis',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 4,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'fecundada', array(
-			'label' => 'fecundada',
+			'label' => 'Fecundadas',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 4,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'nao_fecundada', array(
-			'label' => 'nao_fecundada',
+			'label' => 'Não Fecundadas',
 			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
+			'maxlength' => 4,
+			'size' => 4,
 			'class'	=> 'input',
 		));
 
