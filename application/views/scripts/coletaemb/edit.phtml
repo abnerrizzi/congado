@@ -245,7 +245,7 @@ $this->headLink()
         	cellspacing="0"
         	bgcolor="#F7F6F4"
         	class="content"
-        	style="font-size: 12px;">
+        	style="font-size: 11px;">
           <tr>
             <td height="10" colspan="5"> </td> 
           </tr>
@@ -293,7 +293,7 @@ $this->headLink()
         	cellspacing="0"
         	bgcolor="#F7F6F4"
         	class="content"
-        	style="font-size: 12px;">
+        	style="font-size: 11px;">
           <tr>
             <td height="10" colspan="5"> </td> 
           </tr>
@@ -360,7 +360,7 @@ $this->headLink()
 				border-bottom: 1px solid #CCCCCC;
 				border-left: 1px solid #919191;
 				border-top: 1px solid #919191;
-				font-size: 12px;">
+				font-size: 11px;">
 
   <tr>
     <td height="10" colspan="5"></td>
@@ -378,7 +378,7 @@ $this->headLink()
         	cellspacing="0"
         	bgcolor="#F7F6F4"
         	class="content"
-        	style="font-size: 12px;">
+        	style="font-size: 11px;">
           <tr>
           	<td class="label"><?=$this->form->touro_cod->getLabel();?>:</td>
           	<td width="10"></td>
@@ -403,7 +403,7 @@ $this->headLink()
               cellspacing="0"
               bgcolor="#F7F6F4"
               class="content"
-              style="font-size: 12px;">
+              style="font-size: 11px;">
             <tr>
               <td height="10" colspan="16"> </td> 
             </tr>
@@ -442,7 +442,7 @@ $this->headLink()
               cellspacing="0"
               bgcolor="#F7F6F4"
               class="content"
-              style="font-size: 12px;">
+              style="font-size: 11px;">
             <tr>
               <td height="10" colspan="16"> </td> 
             </tr>
@@ -481,7 +481,7 @@ $this->headLink()
               cellspacing="0"
               bgcolor="#F7F6F4"
               class="content"
-              style="font-size: 12px;">
+              style="font-size: 11px;">
             <tr>
               <td height="10" colspan="16"> </td> 
             </tr>
@@ -520,7 +520,7 @@ $this->headLink()
               cellspacing="0"
               bgcolor="#F7F6F4"
               class="content"
-              style="font-size: 12px;">
+              style="font-size: 11px;">
             <tr>
               <td height="10" colspan="16"> </td> 
             </tr>
@@ -584,38 +584,211 @@ $this->headLink()
 				border-bottom: 1px solid #CCCCCC;
 				border-left: 1px solid #919191;
 				border-top: 1px solid #919191;
-				font-size: 12px;">
-	<tr>
-		<td>
+				font-size: 11px;"
+				>
+
+  <tr>
+    <td width="20"></td>
+    <td height="10" colspan="3"></td>
+    <td width="20"></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td>
+
+        <fieldset>
+          <legend>Estruturas Avaliadas</legend>
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              bgcolor="#F7F6F4"
+              class="content"
+              style="font-size: 11px;">
+            <tr>
+              <td height="10" colspan="7"></td> 
+            </tr>
+            <tr>
+              <td class="label" width="120"><?=$this->form->avalia_od->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->avalia_od->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="120"><?=$this->form->avalia_oe->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->avalia_oe->removeDecorator('tag')->removeDecorator('label');?></td>
+            </tr>
+            <tr>
+              <td height="10" colspan="7"></td> 
+            </tr>
+          </table>
+        </fieldset>
+
+    </td>
+    <td width="20"></td>
+    <td width="20"></td>
+    <td width="20"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
 
 
 
 
 
-<!-- START OF GENEALOGIA -->
+  <tr>
+    <td></td>
+    <td>
+
+        <fieldset>
+          <legend>Fecundadas</legend>
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              bgcolor="#F7F6F4"
+              class="content"
+              style="font-size: 11px;">
+            <tr>
+              <td height="10" colspan="7"></td> 
+            </tr>
+            <tr>
+              <td class="label" width="120"><?=$this->form->fecundada->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->fecundada->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="120"><?=$this->form->nao_fecundada->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->nao_fecundada->removeDecorator('tag')->removeDecorator('label');?></td>
+            </tr>
+            <tr>
+              <td height="10" colspan="7"></td> 
+            </tr>
+          </table>
+        </fieldset>
+
+    </td>
+    <td width="20"></td>
+    <td width="20"></td>
+    <td width="20"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
 
 
-<table id="genealogia" border="0" align="center" cellpadding="0" cellspacing="0">
-<tr><td>x</td></tr>
+
+
+
+  <tr>
+    <td></td>
+    <td>
+
+        <fieldset>
+          <legend>Estruturas Viáveis</legend>
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              bgcolor="#F7F6F4"
+              class="content"
+              style="font-size: 11px;">
+            <tr>
+              <td height="10" colspan="7"></td> 
+            </tr>
+            <tr>
+              <td class="label" width="120"><?=$this->form->viavel->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->viavel->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="120"><?=$this->form->nao_viavel->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->nao_viavel->removeDecorator('tag')->removeDecorator('label');?></td>
+            </tr>
+            <tr>
+              <td height="10" colspan="7"></td> 
+            </tr>
+          </table>
+        </fieldset>
+
+    </td>
+    <td width="20"></td>
+    <td width="20"></td>
+    <td width="20"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+
+
+
+
+<!--
+  <tr>
+    <td></td>
+    <td>
+
+        <fieldset>
+          <legend></legend>
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              bgcolor="#F7F6F4"
+              class="content"
+              style="font-size: 11px;">
+            <tr>
+              <td height="10" colspan="7"></td> 
+            </tr>
+            <tr>
+              <td class="label" width="120"><?=$this->form->avalia_od->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->avalia_od->removeDecorator('tag')->removeDecorator('label');?></td>
+              <td width="30"></td>
+
+              <td class="label" width="120"><?=$this->form->avalia_oe->getLabel();?>:</td>
+              <td width="10"></td>
+              <td><?=$this->form->avalia_oe->removeDecorator('tag')->removeDecorator('label');?></td>
+            </tr>
+            <tr>
+              <td height="10" colspan="7"></td> 
+            </tr>
+          </table>
+        </fieldset>
+
+    </td>
+    <td width="20"></td>
+    <td width="20"></td>
+    <td width="20"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
+-->
+
+
+
+
+
+
+
+
 </table>
 
 
 
-<!-- END OF GENEALOGIA -->
-
-
-
-
-
-
-
-
-
-
-
-		</td>
-	</tr>
-</table>
 </div>
 
 </div>
