@@ -1,8 +1,9 @@
 $(document).ready(function() {
 
-	$('#vaca, #vaca_cod').css('font-size', '16px');
-	$('#vaca, #vaca_cod').css('font-weight', 'bold');
-	$('#vaca, #vaca_cod').css('border', '2px solid #f63');
+	$('#vaca, #vaca_cod')
+		.css('font-size', '16px')
+		.css('font-weight', 'bold')
+		.css('border', '2px solid #f63');
 
 	$('#dlg').bind('dialogbeforeclose', function(event, ui) {
 		hide_filter();
