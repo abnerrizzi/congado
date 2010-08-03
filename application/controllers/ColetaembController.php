@@ -103,6 +103,47 @@ class ColetaembController extends Zend_Controller_Action
 				->addMultiOption($fazenda['id'], $fazenda['descricao']);
 		}
 
+		// Disable form elements
+		$disable_elements = array(
+			'vaca_cod',
+			'dt_coleta',
+			'touro_cod',
+			'insemina_dh1d',
+			'insemina_dh1h',
+			'dose1',
+			'partida1',
+			'insemina_dh2d',
+			'insemina_dh2h',
+			'dose2',
+			'partida2',
+			'insemina_dh3d',
+			'insemina_dh3h',
+			'dose3',
+			'partida3',
+			'insemina_dh4d',
+			'insemina_dh4h',
+			'dose4',
+			'partida4',
+//			'',
+//			'',
+//			'',
+//			'',
+//			'',
+//			'',
+//			'',
+//			'',
+//			'',
+		);
+		foreach ($disable_elements as $el) {
+			$coletaForm->getElement($el)
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('disable', true);
+		}
+
+//		$coletaForm->getElement('vaca_cod')
+//			->setAttrib('readonly', 'readonly')
+//			->setAttrib('disable', true);
+
     	$this->view->form = $coletaForm;
     	$this->view->elements = array(
     		'id',
