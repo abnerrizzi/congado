@@ -80,4 +80,11 @@ class Model_Db_ColetaEmbriao extends Model_Db
 		}
 		return $return;
 	}
+
+	public function updateColeta($post)
+	{
+		Zend_Debug::dump($post);
+		die('vai alterar');
+	}
+
 }

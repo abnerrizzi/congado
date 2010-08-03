@@ -75,6 +75,7 @@ class Form_ColetaEmbriao extends Form_Default
 		$this->addElement('text', 'vaca', array(
 			'class'	=> 'input',
 			'readonly' => 'readonly',
+			'size' => 32,
 			'disable' => true,
 		));
 

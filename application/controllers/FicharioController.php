@@ -123,7 +123,7 @@ class FicharioController extends Zend_Controller_Action
 		$request		= $this->getRequest();
 		$ficharioId		= (int)$request->getParam('id');
 		$ficharioForm	= new Form_Fichario();
-		
+
 		$ficharioForm->setAction('/fichario/edit');
 		$ficharioForm->setMethod('post');
 		$ficharioModel = new Model_Db_Fichario();

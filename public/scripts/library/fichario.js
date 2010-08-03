@@ -2,9 +2,9 @@ $(document).ready(function() {
 
 	$('#nome').css('font-size', '16px');
 	$('#nome').css('font-weight', 'bold');
+	$('#nome').css('border', '2px solid #f63');
 //	$('#nome').css('background-color', '#cacaca');
 //	$('#nome').css('color', '#a60');
-	$('#nome').css('border', '2px solid #f63');
 	$('#dlg').bind('dialogbeforeclose', function(event, ui) {
 		hide_filter();
 	});
