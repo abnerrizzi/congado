@@ -115,17 +115,23 @@ class ColetaembController extends Zend_Controller_Action
     		'trata_final',
     		'dosagem',
     		'distribuicao',
-
     		'soro_nome',
     		'soro_partida',
-//    		'meio_nome',
-//    		'meio_partida'
     	);
 
     	$coletaModel = new Model_Db_ColetaEmbriao();
 
     	if ($request->isPost()) {
 
+    		if ($coletaForm->isValid($request->getPost())) {
+    			throw new Zend_Controller_Exception('forumlario isValid()');
+    			$values = $coletaForm->getValue(true);
+    			unset($values['submit'], $values['cancel'], $values['delete']);
+    			$coletaModel->updateColeta($values);
+    			$this->_redirect('/'. $this->getRequest()->getControllerName());
+    		} else {
+    			throw new Zend_Controller_Exception('formulario esta invalido');
+    		}
 //			if ($doencaForm->isValid($request->getPost())) {
 //				$values = $doencaForm->getValues(true);
 //				unset($values['submit'], $values['cancel'], $values['delete']);
