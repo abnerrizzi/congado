@@ -1,5 +1,5 @@
 /*
- * jQuery UI Tabs 1.7.2
+ * jQuery UI Tabs 1.7.3
  *
  * Copyright (c) 2009 AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT (MIT-LICENSE.txt)
@@ -11,6 +11,9 @@
  *	ui.core.js
  */
 (function($) {
+
+var tabId = 0,
+	listId = 0;
 
 $.widget("ui.tabs", {
 
@@ -39,7 +42,7 @@ $.widget("ui.tabs", {
 
 	_tabId: function(a) {
 		return a.title && a.title.replace(/\s/g, '_').replace(/[^A-Za-z0-9\-_:\.]/g, '') ||
-			this.options.idPrefix + $.data(a);
+			this.options.idPrefix + (++tabId);
 	},
 
 	_sanitizeSelector: function(hash) {
@@ -47,7 +50,7 @@ $.widget("ui.tabs", {
 	},
 
 	_cookie: function() {
-		var cookie = this.cookie || (this.cookie = this.options.cookie.name || 'ui-tabs-' + $.data(this.list[0]));
+		var cookie = this.cookie || (this.cookie = this.options.cookie.name || 'ui-tabs-' + (++listId));
 		return $.cookie.apply(null, [cookie].concat($.makeArray(arguments)));
 	},
 
@@ -612,7 +615,7 @@ $.widget("ui.tabs", {
 });
 
 $.extend($.ui.tabs, {
-	version: '1.7.2',
+	version: '1.7.3',
 	getter: 'length',
 	defaults: {
 		ajaxOptions: null,
