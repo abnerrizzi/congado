@@ -8,7 +8,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Form
- * @version $Id: User.php 342 2010-06-09 20:13:22Z bacteria_ $
+ * @version $Id$
  * 
  */
 class Form_User extends Form_Default

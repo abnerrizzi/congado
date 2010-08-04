@@ -9,7 +9,7 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Model
  * @subpackage Db
- * @version $Id: System.php 342 2010-06-09 20:13:22Z bacteria_ $
+ * @version $Id$
  * 
  */
 class Model_Db_System extends Model_Db

@@ -11,7 +11,7 @@
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
- * @version $Id: ColetaembController.php 353 2010-06-22 19:25:16Z bacteria_ $
+ * @version $Id$
  */
 class ColetaembController extends Zend_Controller_Action
 {
@@ -124,25 +124,12 @@ class ColetaembController extends Zend_Controller_Action
 			'insemina_dh4h',
 			'dose4',
 			'partida4',
-//			'',
-//			'',
-//			'',
-//			'',
-//			'',
-//			'',
-//			'',
-//			'',
-//			'',
 		);
 		foreach ($disable_elements as $el) {
 			$coletaForm->getElement($el)
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('disable', true);
 		}
-
-//		$coletaForm->getElement('vaca_cod')
-//			->setAttrib('readonly', 'readonly')
-//			->setAttrib('disable', true);
 
     	$this->view->form = $coletaForm;
     	$this->view->elements = array(
@@ -194,5 +181,9 @@ class ColetaembController extends Zend_Controller_Action
 
     }
 
+    public function addAction()
+    {
+    	throw new Zend_Controller_Action_Exception('Funcionalidade não implementada.');
+    }
 }
 

@@ -10,7 +10,7 @@
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
- * @version $Id: SystemController.php 342 2010-06-09 20:13:22Z bacteria_ $
+ * @version $Id$
  */
 
 class SystemController extends Zend_Controller_Action

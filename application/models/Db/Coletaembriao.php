@@ -9,7 +9,7 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Model
  * @subpackage Db
- * @version $Id: Pelagem.php 105 2010-03-01 14:11:12Z bacteria_ $
+ * @version $Id$
  * 
  */
 class Model_Db_ColetaEmbriao extends Model_Db

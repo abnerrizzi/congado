@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: CoberturaController.php 337 2010-06-08 13:40:22Z bacteria_ $
+ * @version $Id$
  * 
  */
 
@@ -76,7 +76,7 @@ class Movimentacao_CoberturaController extends Zend_Controller_Action
 
 	public function addAction()
 	{
-		throw new Zend_Controller_Action_Exception('Controlador não implementado');
+		throw new Zend_Controller_Action_Exception('Funcionalidade não implementada.');
 	}
 
 }
