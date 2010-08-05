@@ -157,8 +157,8 @@ class ColetaembController extends Zend_Controller_Action
     			unset($values['submit'], $values['cancel'], $values['delete']);
     			$coletaModel->updateColeta($values);
     			$this->_redirect('/'. $this->getRequest()->getControllerName());
-    		} else {
-    			throw new Zend_Controller_Exception('formulario esta invalido');
+//    		} else {
+//    			throw new Zend_Controller_Exception('formulario esta invalido');
     		}
 //			if ($doencaForm->isValid($request->getPost())) {
 //				$values = $doencaForm->getValues(true);
@@ -167,7 +167,6 @@ class ColetaembController extends Zend_Controller_Action
 //				$this->_redirect('/'. $this->getRequest()->getControllerName());
 //			}
 
-    		throw new Zend_Controller_Exception('sequencia de alteracao nao implementada');
 		} else {
 
 			if ($coletaId > 0) {

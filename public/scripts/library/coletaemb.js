@@ -114,6 +114,7 @@ $(document).ready(function() {
 		}
 	});
 
+	$("#coleta_de_embrioes:form").submit(function() { toggleFields(false); });
 });
 
 function hide_filter() {
@@ -125,3 +126,39 @@ function hide_filter() {
 	$("#dlg-grid").remove();
 	$("#dlg").append('<div id="dlg-grid"></div>');
 }
+
+function toggleFields(opt) {
+
+
+	objs = Array(
+		"#vaca_cod",
+		"#vaca",
+		"#dt_coleta",
+		"#touro_cod",
+		"#touro",
+		"#insemina_dh1d",
+		"#insemina_dh1h",
+		"#dose1",
+		"#partida1",
+		"#insemina_dh2d",
+		"#insemina_dh2h",
+		"#dose2",
+		"#partida2",
+		"#insemina_dh3d",
+		"#insemina_dh3h",
+		"#dose3",
+		"#partida3",
+		"#insemina_dh4d",
+		"#insemina_dh4h",
+		"#dose4",
+		"#partida4"
+	);
+
+	for (i=0; i < objs.length; i++)
+	{
+		$(objs[i]).attr('disabled', opt);
+		$(objs[i]).attr('readonly', opt);
+	}
+
+}
+
