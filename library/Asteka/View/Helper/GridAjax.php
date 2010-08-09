@@ -8,14 +8,15 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Helper
  * @subpackage Helper_Grid
- * @version $Id$
+ * @version $Id: Grid.php 341 2010-06-09 20:04:49Z bacteria_ $
  * 
  */
 
-class Asteka_View_Helper_Grid extends Zend_View_Helper_Abstract
+class Asteka_View_Helper_GridAjax extends Zend_View_Helper_Abstract
 {
 
 	public $view;
+	private $__grid ;
 
 	/**
 	 * setView() - set view interface
@@ -35,41 +36,74 @@ class Asteka_View_Helper_Grid extends Zend_View_Helper_Abstract
 	 * @param Model_Grid $grid
 	 * @return string
 	 */
-	public function grid(Model_Grid $grid)
+	public function gridAjax()
 	{
 
-		if ($grid->getEdit()) {
-			$edit = $grid->getEdit();
-			$editModule = $edit['module'];
-			$editAction = $edit['action'];
-			$this->view->headScript()->prependScript("var editUrl = '/$editModule/$editAction';");
-		}
-		
+//		$this->setGrid($grid);
+		return $this->__headScripts();
+	}
+
+	public function __headScripts()
+	{
+
+
 		// Add default script for grid
-		$this->view->headScript()->appendFile($grid->getBaseUrl() . '/scripts/grid.js');
-		$this->view->headScript()->appendFile($grid->getBaseUrl() . '/scripts/library/jquery/jquery.text_selection.js');
+//		$this->view->headScript()->appendFile($this->getGrid()->getBaseUrl() . '/scripts/grid.js');
+		$this->view->headScript()->appendFile($this->getGrid()->getBaseUrl() . '/scripts/gridajax.js');
+		$this->view->headScript()->appendFile($this->getGrid()->getBaseUrl() . '/scripts/library/jquery/jquery.text_selection.js');
 
 		// talking value of sort using Front controller getRequest() method.
 		$_sort = Zend_Controller_Front::getInstance()->getRequest()->getParam('sort', 'asc');
 		$_by = Zend_Controller_Front::getInstance()->getRequest()->getParam('by', 'id');
-		$_colSpan = (count($grid->getFields())*3);
-		
+		$_colSpan = (count($this->getGrid()->getFields())*3);
+
+		// start constructing the grid.
+		$output  = '<div id="grid">'."\n";
+		$output .= '
+<table id="null" border="0" width="800" cellpadding="5" style="border:0px; background-color: #fff;">
+
+<tbody><tr><td></td></tr></tbody>
+
+</table>
+</div>
+';
+		return $output;
+		}
+
+	public function __headScriptsOriginal()
+	{
+
+		if ($this->getGrid()->getEdit()) {
+			$edit = $this->getGrid()->getEdit();
+			$editModule = $edit['module'];
+			$editAction = $edit['action'];
+			$this->view->headScript()->prependScript("var editUrl = '/$editModule/$editAction';");
+		}
+
+		// Add default script for grid
+		$this->view->headScript()->appendFile($this->getGrid()->getBaseUrl() . '/scripts/grid.js');
+		$this->view->headScript()->appendFile($this->getGrid()->getBaseUrl() . '/scripts/library/jquery/jquery.text_selection.js');
+
+		// talking value of sort using Front controller getRequest() method.
+		$_sort = Zend_Controller_Front::getInstance()->getRequest()->getParam('sort', 'asc');
+		$_by = Zend_Controller_Front::getInstance()->getRequest()->getParam('by', 'id');
+		$_colSpan = (count($this->getGrid()->getFields())*3);
+
 		// start constructing the grid.
 		$output  = '<div id="grid">'."\n";
 		$output .= '
 <table id="null" border="0" width="800" cellpadding="5" style="border:0px; background-color: #fff;">
 
 	<tr>
-	  <td align="left" width="480"><h3 style="margin-left: 10px;">'.$grid->getName().'</h3></td>
+	  <td align="left" width="480"><h3 id="formtitle" style="margin-left: 10px;">'.$this->getGrid()->getName().'</h3></td>
 	  <td align="right" colspan="1">';
-		if ($grid->getAdd()) {
-			$add = $grid->getAdd();
+		if ($this->getGrid()->getAdd()) {
+			$add = $this->getGrid()->getAdd();
 			$addModule = $add['module'];
 			$addAction = $add['action'];
-//			$output .= '<a id="add" href="'.$grid->getBaseUrl().'/'.$addModule.'/'.$addAction.'"><img src="'.$grid->getBaseUrl().'/images/button/add.gif" alt="" height="32" width="66"/></a>'."\n";
 			$output .= '
         <div id="add" class="rfloat">
-          <a class="UIButton UIButton_Gray UIActionButton" href="'.$grid->getBaseUrl().'/'.$addModule.'/'.$addAction.'">
+          <a class="UIButton UIButton_Gray UIActionButton" href="'.$this->getGrid()->getBaseUrl().'/'.$addModule.'/'.$addAction.'">
             <span class="UIButton_Text">
               <span class="UIButton_Icon UIButton_IconNoSpriteMap UIButton_IconSmallMonochromatic" style="background-position: 0pt -361px;">&nbsp;</span>
               Adicionar
@@ -90,12 +124,12 @@ $output .= '</td>
 '."\n"
 		;
 
-		for($i=0; $i < count($grid->getFields()); $i++ )
+		for($i=0; $i < count($this->getGrid()->getFields()); $i++ )
 		{
-			$__fields = $grid->getFields();
+			$__fields = $this->getGrid()->getFields();
 			$__fields = $__fields[$i];
-			$arrow = $grid->getBaseUrl(). '/images/grid/';
-			if ($grid->getSorting()) {
+			$arrow = $this->getGrid()->getBaseUrl(). '/images/grid/';
+			if ($this->getGrid()->getSorting()) {
 				if ($_by == $__fields->getColum() && $_sort == 'asc') {
 					$title = "<a href=\"".$this->view->url(array('sort'=>'desc', 'by'=>$__fields->getColum()))."\">".$__fields->getTitle()."</a>";
 					$arrow .= 'arrow_asc_on.gif';
@@ -110,23 +144,23 @@ $output .= '</td>
 				$title = $__fields[$i]['title'];
 			}
 			$output .= ' 
-		  <td width="20" height="20" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');">
+		  <td width="20" height="20" style="background: url(\''.$this->getGrid()->getBaseUrl().'/images/grid/bg_title.gif\');">
 			<img src="'.$arrow.'" alt=""/>
 		  </td>
 
-		  <td width="'.$__fields->getSize().'" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');">
+		  <td width="'.$__fields->getSize().'" style="background: url(\''.$this->getGrid()->getBaseUrl().'/images/grid/bg_title.gif\');">
 			'.$title.'
 		  </td>
 
-		  <td width="0" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');">
-			<img src="'.$grid->getBaseUrl().'/images/grid/divisor_title.gif" alt=""/>
+		  <td width="0" style="background: url(\''.$this->getGrid()->getBaseUrl().'/images/grid/bg_title.gif\');">
+			<img src="'.$this->getGrid()->getBaseUrl().'/images/grid/divisor_title.gif" alt=""/>
 		  </td>
 
 '."\n";
 		}
-		if ($grid->getAction()) {
+		if ($this->getGrid()->getAction()) {
 			$output .= '
-		  <td align="center" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');" width="65" >
+		  <td align="center" style="background: url(\''.$this->getGrid()->getBaseUrl().'/images/grid/bg_title.gif\');" width="65" >
 			A&ccedil;&otilde;es
 		  </td>
 ';
@@ -140,8 +174,8 @@ $output .= '</td>
 		<tr>'."\n";
 
 
-		for($i=0; $i < count($grid->getFields()); $i++ ) {
-			$__fields = $grid->getFields();
+		for($i=0; $i < count($this->getGrid()->getFields()); $i++ ) {
+			$__fields = $this->getGrid()->getFields();
 			$__fields = $__fields[$i];
 			if ($_by == $__fields->getColum()) {
 				$output .= '
@@ -161,13 +195,13 @@ $output .= '</td>
 		</tr>
 		';
 
-		if (!$grid->getPaginator()->getTotalItemCount()) {
+		if (!$this->getGrid()->getPaginator()->getTotalItemCount()) {
 			$output .= '<tr class="row0">
   <td colspan="'.$_colSpan.'" height="4" align="center">* NENHUM REGISTRO ENCONTRADO *</td>
 </tr>';
 		}
 		$i=0;
-		foreach ($grid->getPaginator() as $post)
+		foreach ($this->getGrid()->getPaginator() as $post)
 		{
 			$i++;
 			$class = 'row' . ($i%2);
@@ -177,19 +211,19 @@ $output .= '</td>
 </tr>
 <tr class="'.$class.'" id="id'.$post['id'].'">
 ';
-			for ($x = 0; $x < count($grid->getFields()); $x++)
+			for ($x = 0; $x < count($this->getGrid()->getFields()); $x++)
 			{
-				$_colum = $grid->getFields();
+				$_colum = $this->getGrid()->getFields();
 				$_colum = $_colum[$x]->getColum();
 				$output .= '
   <td align="center">
 	</td>
 	';
-				if ($x != count($grid->getFields())-1) { 
+				if ($x != count($this->getGrid()->getFields())-1) { 
 					$output .='
   <td
 	>'.utf8_decode($post[$_colum]).'</td>
-  <td style="background: url(\''.$grid->getBaseUrl().'/images/grid/divisor_content.gif\');"></td>
+  <td style="background: url(\''.$this->getGrid()->getBaseUrl().'/images/grid/divisor_content.gif\');"></td>
 ';
 				} else {
 					$output .='
@@ -197,30 +231,30 @@ $output .= '</td>
 ';
 				}
 			}
-			if ($grid->getAction()) {
+			if ($this->getGrid()->getAction()) {
 			$output .= '
 
   <td align="center">';
 
-			if ($grid->getEdit()) {
-				$edit = $grid->getEdit();
+			if ($this->getGrid()->getEdit()) {
+				$edit = $this->getGrid()->getEdit();
 				$editModule = $edit['module'];
 				$editAction = $edit['action'];
-				$output .= '<a href="'.$grid->getBaseUrl().'/'.$editModule.'/'.$editAction.'/id/'.$post['id'].'"><img src="'.$grid->getBaseUrl().'/images/edit.png" alt=""/></a>'."\n";
+				$output .= '<a href="'.$this->getGrid()->getBaseUrl().'/'.$editModule.'/'.$editAction.'/id/'.$post['id'].'"><img src="'.$this->getGrid()->getBaseUrl().'/images/edit.png" alt=""/></a>'."\n";
 			}
 
-			if ($grid->getGenealogia()) {
-				$genealogia = $grid->getGenealogia();
+			if ($this->getGrid()->getGenealogia()) {
+				$genealogia = $this->getGrid()->getGenealogia();
 				$genealogiaModule = $genealogia['module'];
 				$genealogiaAction = $genealogia['action'];
-				$output .= '<a href="'.$grid->getBaseUrl().'/'.$genealogiaModule.'/'.$genealogiaAction.'/id/'.$post['id'].'"><img src="'.$grid->getBaseUrl().'/images/genealogia_small.gif" alt=""/></a>'."\n";
+				$output .= '<a href="'.$this->getGrid()->getBaseUrl().'/'.$genealogiaModule.'/'.$genealogiaAction.'/id/'.$post['id'].'"><img src="'.$this->getGrid()->getBaseUrl().'/images/genealogia_small.gif" alt=""/></a>'."\n";
 			}
 
-			if ($grid->getDelete()) {
-				$delete = $grid->getDelete();
+			if ($this->getGrid()->getDelete()) {
+				$delete = $this->getGrid()->getDelete();
 				$deleteModule = $delete['module'];
 				$deleteAction = $delete['action'];
-				$output .= '<a href="#" onclick="check_delete('.$post['id'].', \''.$deleteModule.'\',\''.$grid->getBaseUrl().'/'.$deleteModule.'/'.$deleteAction.'\');"><img src="'.$grid->getBaseUrl().'/images/trash.png" alt=""/></a>'."\n";
+				$output .= '<a href="#" onclick="check_delete('.$post['id'].', \''.$deleteModule.'\',\''.$this->getGrid()->getBaseUrl().'/'.$deleteModule.'/'.$deleteAction.'\');"><img src="'.$this->getGrid()->getBaseUrl().'/images/trash.png" alt=""/></a>'."\n";
 			}
 
 			$output .= '
@@ -232,7 +266,7 @@ $output .= '</td>
 
 
 
-			if ($grid->getPaginator()->getCurrentItemCount() != $i) {
+			if ($this->getGrid()->getPaginator()->getCurrentItemCount() != $i) {
 				$output .= '
 <tr class="content">
   <td height="2" colspan="'.$_colSpan.'"></td>
@@ -252,7 +286,7 @@ $output .= '</td>
 </tr>
 
 <tr>
-  <td height="10" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_bottom.gif\');" colspan="'.$_colSpan.'"></td>
+  <td height="10" style="background: url(\''.$this->getGrid()->getBaseUrl().'/images/grid/bg_bottom.gif\');" colspan="'.$_colSpan.'"></td>
 </tr>
 
 </table>
@@ -262,7 +296,7 @@ $output .= '</td>
 
 <div class="pagination">
 ' . $this->view->paginationControl(
-	$grid->getPaginator(),
+	$this->getGrid()->getPaginator(),
 	'Elastic',
 	'/pagination_control_item.phtml'
 );
@@ -280,6 +314,18 @@ function highligth(cell, className) {
 		return $output;
 	}
 
+	/**
+	 * @return the $__grid
+	 */
+	private final function getGrid() {
+		return $this->__grid;
+	}
 
+	/**
+	 * @param $__grid the $__grid to set
+	 */
+	private final function setGrid($__grid) {
+		$this->__grid = $__grid;
+	}
 
 }
