@@ -216,7 +216,7 @@ function changeSelect() {
 			, 2000);
 			return false;
 		}
-		$("#ajax_loader").fadeOut(100);
+		$("#ajax_loader").fadeOut(30);
 	}, "json");
 }
 

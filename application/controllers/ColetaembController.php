@@ -108,22 +108,10 @@ class ColetaembController extends Zend_Controller_Action
 			'vaca_cod',
 			'dt_coleta',
 			'touro_cod',
-			'insemina_dh1d',
-			'insemina_dh1h',
-			'dose1',
-			'partida1',
-			'insemina_dh2d',
-			'insemina_dh2h',
-			'dose2',
-			'partida2',
-			'insemina_dh3d',
-			'insemina_dh3h',
-			'dose3',
-			'partida3',
-			'insemina_dh4d',
-			'insemina_dh4h',
-			'dose4',
-			'partida4',
+			'insemina_dh1d', 'insemina_dh1h', 'dose1', 'partida1',
+			'insemina_dh2d', 'insemina_dh2h', 'dose2', 'partida2',
+			'insemina_dh3d', 'insemina_dh3h', 'dose3', 'partida3',
+			'insemina_dh4d', 'insemina_dh4h', 'dose4', 'partida4',
 		);
 		foreach ($disable_elements as $el) {
 			$coletaForm->getElement($el)
@@ -182,7 +170,38 @@ class ColetaembController extends Zend_Controller_Action
 
     public function addAction()
     {
-    	throw new Zend_Controller_Action_Exception('Funcionalidade não implementada.');
+    	$coletaForm		= new Form_ColetaEmbriao();
+
+    	/*
+		 * Populando select de fazendas
+		 */
+		$fazendaModel = new Model_Db_Fazenda();
+		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
+		$coletaForm->getElement('fazenda_id')
+			->addMultiOption(false, '--')
+			->setAttrib('disabled', 'disabled')
+		;
+		foreach ($fazendas as $fazenda) {
+			$coletaForm->getElement('fazenda_id')
+				->addMultiOption($fazenda['id'], $fazenda['descricao']);
+		}
+
+    	$this->view->form = $coletaForm;
+    	$this->view->elements = array(
+    		'id',
+    		array('vaca'),
+    		'fazenda_id',
+    		'dt_coleta',
+    		'ciotipo',
+    		'hormonio',
+    		'trata_inicio',
+    		'trata_final',
+    		'dosagem',
+    		'distribuicao',
+    		'soro_nome',
+    		'soro_partida',
+    	);
+//		throw new Zend_Controller_Action_Exception('Funcionalidade não implementada.');
     }
 }
 

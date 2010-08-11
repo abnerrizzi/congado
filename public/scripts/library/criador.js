@@ -39,7 +39,7 @@ function changeState() {
 					+ '</option>';
 		}
 		$("select#cidades_id").html(options);
-		$("#ajax_loader").fadeOut(100);
+		$("#ajax_loader").fadeOut(30);
 	}, "json");
 }
 
@@ -55,7 +55,7 @@ function changeStateCorresp() {
 					+ '</option>';
 		}
 		$("select#corresp_cidades_id").html(options);
-		$("#ajax_loader").fadeOut(100);
+		$("#ajax_loader").fadeOut(30);
 	}, "json");
 }
 
