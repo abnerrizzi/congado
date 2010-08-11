@@ -576,6 +576,30 @@ function checkEditUrl(url) {
 
 
 
+function checkAddUrl(url) {
+	__url = url.split('/');
+	__edit = false;
+	for ( var i = 0; i < __url.length; i++) {
+		if (__url[i] == "add") {
+			__edit = true;
+		}
+	}
+	return __edit;
+}
+
+
+function checkInUrl(url, search)
+{
+	__url = url.split('/');
+	__check = false;
+	for ( var i = 0; i < __url.length; i++) {
+		if (__url[i] == search) {
+			__check = true;
+		}
+	}
+	return __check;
+}
+
 
 function checkDate(field)
 {
