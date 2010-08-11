@@ -87,4 +87,81 @@ class Model_Db_ColetaEmbriao extends Model_Db
 		die('vai alterar');
 	}
 
+
+
+	public function listJsonColetaEmbriao($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
+	{
+
+		if ($orderby == 'data_coleta') {
+			$orderby = 'dt_coleta';
+		}
+
+		$col_id = $this->_name.'.id';
+		$col_id = 'id';
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('c' => $this->_name), array(
+				'id',
+				'vaca_cod' => 'fv.cod',
+				'data_coleta' => new Zend_Db_Expr("DATE_FORMAT(dt_coleta, '%d/%m/%Y')"),
+				'touro_cod' => 'ft.cod',
+				'fecundada',
+				'nao_viavel',
+			), $this->_schema)
+			->joinLeft(array('fv' => 'fichario'), 'c.vaca_id = fv.id', array(), $this->_schema)
+			->joinLeft(array('ft' => 'fichario'), 'c.touro_id = ft.id', array(), $this->_schema)
+		;
+
+		if ($orderby && $order) {
+			$this->_select->order($orderby .' '. $order);
+		}
+
+		if ($qtype && $query) {
+			if ($like == 'false') {
+				$this->_select->where($qtype .' = ?', $query);
+			} else {
+				$this->_select->where($qtype .' LIKE ?', '%'.$query.'%');
+			}
+		}
+
+		if (array_key_exists('sexo', $params) && $params['sexo'] != false) {
+			$this->_select->where($this->_name.'.sexo = ?', $params['sexo']);
+		}
+
+//		print '<pre>'.$this->_select;
+//		die();
+		$return = array(
+			'page' => $page,
+			'total' => $this->fetchAll($this->_select)->count(),
+		);
+
+		if ($page && $limit) {
+			$this->_select->limitPage($page, $limit);
+		}
+
+		$array = $this->fetchAll($this->_select)->toArray();
+		for ($i=0; $i < count($array); $i++)
+		{
+			$row = $array[$i];
+
+			$current = array(
+				'id' => $row[$col_id]
+			);
+			foreach ($row as $key => $val)
+			{
+				if ($key == $col_id) {
+					continue;
+				} else {
+					if ($val == null) {
+						$current['cell'][] = '';
+					} else {
+						$current['cell'][] = ($val);
+					}
+				}
+			}
+			$return['rows'][] = $current;
+		}
+		return $return;
+
+	}
 }

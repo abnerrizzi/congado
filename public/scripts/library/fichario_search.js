@@ -96,12 +96,3 @@ function getFichario(row) {
 	$(location).attr('href', url);
 	$("#search").dialog('close');
 }
-
-function checkBrowser()
-{
-	if ($.browser.mozilla) {
-		return parseInt(20);
-	} else {
-		return parseInt(0);
-	}
-}

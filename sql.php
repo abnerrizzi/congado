@@ -7,6 +7,7 @@ gw 192.163.1.11
 
 proxy 192.163.2.8:1082
  */
+/*
 $file = 'scripts/array.csv';
 $handle = fopen ($file, 'r');
 $i=0;
@@ -21,6 +22,7 @@ while (!feof($handle))
 }
 
 die(time());
+*/
 
 $link = mysql_connect('127.0.0.1', 'root', '') or die(mysql_error());
 $file = 'scripts/coletaem.csv';
