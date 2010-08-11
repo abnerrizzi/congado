@@ -448,7 +448,7 @@ function changeSelectAnimal() {
 			, 2000);
 			return false;
 		}
-		$("#ajax_loader").fadeOut(100);
+		$("#ajax_loader").fadeOut(30);
 	}, "json");
 
 }
@@ -506,7 +506,7 @@ function updateField(__fld, __jsonUrl, __qtype)
 					, 2000);
 					return false;
 				}
-				$("#ajax_loader").fadeOut(100);
+				$("#ajax_loader").fadeOut(30);
 			},
 
 			error: function() {
@@ -559,3 +559,65 @@ function searchAnimalById(cod)
     	}
     }, "json");
 }
+
+
+
+
+function checkEditUrl(url) {
+	__url = url.split('/');
+	__edit = false;
+	for ( var i = 0; i < __url.length; i++) {
+		if (__url[i] == "edit") {
+			__edit = true;
+		}
+	}
+	return __edit;
+}
+
+
+
+
+function checkDate(field)
+{
+	_d = parseInt(field.value.substring(0,2), 10);
+	_m = parseInt(field.value.substring(3,5), 10);
+	_y = parseInt(field.value.substring(6,10), 10);
+
+	if (field.value.length != 10)
+		return;
+
+	isValid = true;
+
+	// check day
+	if ((_d < 1) || (_d < 1 || _d > 30) && (_m == 4 || _m == 6 || _m == 9 || _m == 11) || _d > 31) {
+		isValid = false;
+	}
+
+	// check mounth
+	if (_m < 1 || _m > 12) {
+		isValid = false;
+	}
+
+	// check bisext year
+	if (_m == 2 && (_d < 1 || _d > 29 || (_d > 28 && (parseInt(_y / 4) != _y / 4)))) {
+		isValid = false;
+	}
+
+	if (field.value == "") {
+		isValid = false;
+	}
+
+	if (!isValid) {
+		window.alert('Data invalida!: ' + field.value);
+		field.value = '';
+		field.focus();
+		return false;
+	} else {
+		return true;
+	}
+
+}
+
+
+
+

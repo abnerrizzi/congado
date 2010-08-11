@@ -112,7 +112,7 @@ function updateField(__fld, __jsonUrl, __qtype)
 					, 2000);
 					return false;
 				}
-				$("#ajax_loader").fadeOut(100);
+				$("#ajax_loader").fadeOut(30);
 			},
 
 			error: function() {
@@ -170,7 +170,7 @@ function addAnimal(j, time)
 	}
 	divheight = parseInt($("#gridAnimal").height());
 	$("#divGridAnimal").animate({scrollTop: divheight}, 300);
-	$("#ajax_loader").fadeOut(100);
+	$("#ajax_loader").fadeOut(30);
 }
 
 

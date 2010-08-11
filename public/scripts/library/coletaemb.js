@@ -9,13 +9,10 @@ $(document).ready(function() {
 		hide_filter();
 	});
 
-//	$("#criador_cod, #pelagem_cod, #raca_cod, #rebanho_cod, #categoria_cod, #local_cod, #grausangue_cod").change(changeSelect);
-//	$("#pai_cod, #mae_cod, #receptora_cod").change(changeSelectAnimal);
-//	$("#grausangue_manual").click(changeGrauSangue);
-//	$("#obs").keyup(function() {this.value = this.value.toUpperCase();});
-//	$("#fichario:form").submit(function() { toggleFields(false); });
-//	toggleFields(true);
-//	changeGrauSangue();
+	$("#vaca_cod").change(function(){
+		changeSelectAnimalBySexo(this, 'F', checkFields());
+	});
+	$("#touro_cod").change(function(){changeSelectAnimalBySexo(this, 'M');});
 
 	$("#dt_coleta, #trata_inicio, #trata_final").datepicker({
 
@@ -98,6 +95,7 @@ $(document).ready(function() {
 	});
 
 	$("#tabs").tabs();
+	
 
 	// if obs exists Dialogs appers
 	if ($('#obs').val() != '') {
@@ -114,8 +112,34 @@ $(document).ready(function() {
 		}
 	});
 
+	// check edit mode and put correct icons
+	__editMode = checkEditUrl(window.location.href);
+	if (__editMode) {
+		$('#touro').next().remove();
+	} else {
+		$('#tabs').hide();
+	}
+
+
+	$("#dt_coleta").change(function() {
+		checkDate(this);
+		checkFields();
+	});
+	$("#dt_coleta, #vaca_cod").blur(checkFields);
+
 	$("#coleta_de_embrioes:form").submit(function() { toggleFields(false); });
 });
+
+
+function checkFields()
+{
+	if ($("#vaca_id").val() != "" && $("#dt_coleta").val() != "") {
+		$('#tabs').show();
+		$("#submit_").parent().parent().parent().show();
+	}
+}
+
+
 
 function hide_filter() {
 	$("#dlg").fadeOut(200);
@@ -161,4 +185,63 @@ function toggleFields(opt) {
 	}
 
 }
+
+
+
+function changeSelectAnimalBySexo(field, __sexo, onSuccess) {
+
+	__sexo = typeof(__sexo) != 'undefined' ? __sexo : '';
+	onSuccess = typeof(onSuccess) != 'undefined' ? onSuccess : false;
+
+	field.value = field.value.toUpperCase();
+	suffix = '_cod';
+	__fieldName = field.name.substr(0,(field.name.length - suffix.length));
+	__fieldValue = field.value;
+	__url = baseUrl + '/json/animal';
+
+	if (__fieldValue == '') {
+		$("#" + __fieldName + "_id").val('');
+		$("#" + __fieldName + "_cod").val('');
+		$("#" + __fieldName).val('');
+		return true;
+	} else if (__fieldValue == $("#cod").val()) {
+		$("#ajax_loader").html("Código não pode ser o mesmo do animal atual.").show();
+		setTimeout(function(){
+			$("#ajax_loader").fadeOut(300); }
+		, 2000);
+		return false;
+	}
+
+	__qtype = 'fichario.cod';
+
+	$("#ajax_loader").html("Buscando dados...").show();
+	suffix = '_cod';
+	$.post(__url, {
+		qtype	: __qtype,
+		query	: __fieldValue,
+		sexo	: __sexo,
+		like	: 'false',
+		ajax	: 'true'
+	}, function(j) {
+		j = j.rows;
+		if (j && j.length == 1) {
+			$("#" + __fieldName + "_id").val(j[0].id);
+			$("#" + __fieldName + "_cod").val(j[0].cell[0]);
+			$("#" + __fieldName).val(j[0].cell[1]);
+		} else {
+			$("#ajax_loader").html("Código não encontrado").show();
+			$("#" + __fieldName + "_id").val(null);
+			$("#" + __fieldName).val(null);
+			setTimeout(function(){
+				$("#ajax_loader").fadeOut(300); }
+			, 2000);
+			return false;
+		}
+		checkFields();
+		$("#ajax_loader").fadeOut(30);
+	}, "json");
+	return true;
+
+}
+
 

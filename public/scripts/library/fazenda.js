@@ -44,7 +44,7 @@ function changeState() {
 					+ '</option>';
 		}
 		$("select#cidades_id").html(options);
-		$("#ajax_loader").fadeOut(100);
+		$("#ajax_loader").fadeOut(30);
 	}, "json");
 }
 

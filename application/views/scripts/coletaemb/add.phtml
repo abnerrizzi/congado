@@ -14,6 +14,7 @@ $this->headScript()
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.resizable.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.qtip.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
+	->appendFile($this->baseUrl() . '/scripts/library/_filters.js')
 	;
 
 $this->headLink()
@@ -64,6 +65,9 @@ $this->headLink()
       <?=$this->form->vaca_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->vaca_cod->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->vaca->removeDecorator('tag')->removeDecorator('label');?>
+      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/f','vaca');">
+        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -391,6 +395,9 @@ $this->headLink()
               <?=$this->form->touro_id->removeDecorator('tag')->removeDecorator('label');?>
               <?=$this->form->touro_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
               <?=$this->form->touro->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
+              <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/m','touro');">
+        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
+      </a>
             </td>
           	<td width="30"></td>
           </tr>
@@ -913,6 +920,44 @@ $this->headLink()
   </tr>
 
 
+
+
+
+<tr>
+    <td></td>
+    <td>
+
+        <fieldset style="width: 400px;">
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              bgcolor="#F7F6F4"
+              class="content"
+              style="font-size: 11px;">
+            <tr>
+              <td height="10" colspan="7"></td> 
+            </tr>
+            <tr>
+              <td class="label" width="120">Último Embrião Cadastrado:</td>
+              <td width="10"></td>
+              <td><input type="text" class="input" id="ultimo" name="ultimo"/></td>
+            </tr>
+            <tr>
+              <td height="10" colspan="7"></td> 
+            </tr>
+          </table>
+        </fieldset>
+
+    </td>
+    <td width="20"></td>
+    <td width="20"></td>
+  </tr>
+
+  <tr>
+    <td height="10" colspan="5"></td>
+  </tr>
 
 
 
