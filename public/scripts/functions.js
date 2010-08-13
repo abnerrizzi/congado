@@ -440,9 +440,9 @@ function changeSelectAnimal() {
 			$("#" + __fieldName).val(j[0].cell[1]);
 		} else {
 			$("#ajax_loader").html("Código não encontrado").show();
-			$("#" + __fieldName + "_id").val(null);
+			$("#" + __fieldName + "_id").val('');
 //			$("#" + __fieldName + "_cod").val(null);
-			$("#" + __fieldName).val(null);
+			$("#" + __fieldName).val('');
 			setTimeout(function(){
 				$("#ajax_loader").fadeOut(300); }
 			, 2000);
@@ -472,9 +472,9 @@ function updateField(__fld, __jsonUrl, __qtype)
 		__url = baseUrl + '/json/' + __jsonUrl;
 
 		if (__fieldValue == '') {
-			$("#" + __fieldName + "_id").val(null);
-			$("#" + __fieldName + "_cod").val(null);
-			$("#" + __fieldName).val(null);
+			$("#" + __fieldName + "_id").val('');
+			$("#" + __fieldName + "_cod").val('');
+			$("#" + __fieldName).val('');
 			return false;
 		}
 
@@ -643,5 +643,62 @@ function checkDate(field)
 }
 
 
+
+
+function changeSelectAnimalBySexo(field, __sexo, onSuccess) {
+
+	__sexo = typeof(__sexo) != 'undefined' ? __sexo : '';
+	onSuccess = typeof(onSuccess) != 'undefined' ? onSuccess : false;
+
+	field.value = field.value.toUpperCase();
+	suffix = '_cod';
+	__fieldName = field.name.substr(0,(field.name.length - suffix.length));
+	__fieldValue = field.value;
+	__url = baseUrl + '/json/animal';
+
+	if (__fieldValue == '') {
+		$("#" + __fieldName + "_id").val('');
+		$("#" + __fieldName + "_cod").val('');
+		$("#" + __fieldName).val('');
+		return true;
+	} else if (__fieldValue == $("#cod").val()) {
+		$("#ajax_loader").html("Código não pode ser o mesmo do animal atual.").show();
+		setTimeout(function(){
+			$("#ajax_loader").fadeOut(300); }
+		, 2000);
+		return false;
+	}
+
+	__qtype = 'fichario.cod';
+
+	$("#ajax_loader").html("Buscando dados...").show();
+	suffix = '_cod';
+	$.post(__url, {
+		qtype	: __qtype,
+		query	: __fieldValue,
+		sexo	: __sexo,
+		like	: 'false',
+		ajax	: 'true'
+	}, function(j) {
+		j = j.rows;
+		if (j && j.length == 1) {
+			$("#" + __fieldName + "_id").val(j[0].id);
+			$("#" + __fieldName + "_cod").val(j[0].cell[0]);
+			$("#" + __fieldName).val(j[0].cell[1]);
+		} else {
+			$("#ajax_loader").html("Código não encontrado").show();
+			$("#" + __fieldName + "_id").val('');
+			$("#" + __fieldName).val('');
+			setTimeout(function(){
+				$("#ajax_loader").fadeOut(300); }
+			, 2000);
+			return false;
+		}
+		checkFields();
+		$("#ajax_loader").fadeOut(30);
+	}, "json");
+	return true;
+
+}
 
 
