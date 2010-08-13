@@ -1,9 +1,9 @@
 <?php
 
-//$this->headScript()
-//	->appendScript("\t__title = 'Coleta de Embriões';\n")
-//	->appendFile($this->baseUrl() . '/scripts/library/default_search.js')
-//	;
+$this->headScript()
+	->appendScript("\t__title = 'Estoque de Embriões';\n")
+	->appendFile($this->baseUrl() . '/scripts/library/search_estoqueemb.js')
+	;
 
 echo $this->grid($this->grid);
 

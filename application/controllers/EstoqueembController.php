@@ -65,15 +65,15 @@ class EstoqueembController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'estoqueembriao',
+			'module'	=> 'estoqueemb',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'estoqueembriao',
+			'module'	=> 'estoqueemb',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'estoqueembriao',
+			'module'	=> 'estoqueemb',
 			'action'	=> 'add',
 		));
 
@@ -81,4 +81,50 @@ class EstoqueembController extends Zend_Controller_Action
 		$this->view->grid = $gridModel;
     }
 
+    public function editAction()
+    {
+
+    	$request		= $this->getRequest();
+    	$estoqueId		= $request->getParam('id');
+		$estoqueForm	= new Form_EstoqueEmbriao();
+
+		$estoqueForm->setACtion('/estoqueemb/edit');
+		$estoqueForm->setMethod('post');
+
+		// Disable form elements
+		$disable_elements = array(
+			'embriao',
+		);
+		foreach ($disable_elements as $el) {
+			$estoqueForm->getElement($el)
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('disable', true);
+		}
+
+		$this->view->form = $estoqueForm;
+    	$this->view->elements = array(
+    		'id',
+    		'embriao',
+    		'dt_coleta',
+    		array('doadora'),
+    		array('touro'),
+    		'classificacao',
+    		'grau',
+    		'sexo',
+    		array('criador'),
+    	);
+
+    	$estoqueModel = new Model_Db_EstoqueEmbriao();
+
+    	if ($request->isPost()) {
+    		die("is post");
+    	} else {
+    		if ($estoqueId > 0) {
+    			$result = $estoqueModel->getEstoqueEmbriao($estoqueId);
+    			$estoqueForm->populate($result);
+    		} else {
+    			throw new Exception("invalid record number");
+    		}
+    	}
+    }
 }

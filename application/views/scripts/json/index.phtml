@@ -1,1 +1,7 @@
-<?php echo Zend_Json::prettyPrint($this->content); ?>
+<?php
+if (APPLICATION_ENV == 'development') {
+	echo Zend_Json::prettyPrint($this->content);
+} else {
+	echo $this->content;
+}
+?>
