@@ -67,7 +67,7 @@ class Form_EstoqueEmbriao extends Form_Default
 		$this->addElement('text', 'embriao', array(
 			'label' => 'Embrião',
 			'required' => true,
-			'filters' => array('StringTrim', 'Alnum'),
+			'filters' => array('StringTrim', 'Alnum', 'StringToUpper'),
 			'maxlength' => 16,
 			'size' => 10,
 			'class'	=> 'input',
@@ -118,7 +118,7 @@ class Form_EstoqueEmbriao extends Form_Default
 
 		$this->addElement('text', 'classificacao', array(
 			'label' => 'Classificacao',
-			'filters' => array('StringTrim', 'Alnum'),
+			'filters' => array('StringTrim', 'Alnum', 'StringToUpper'),
 			'maxlength' => 16,
 			'size' => 10,
 			'class'	=> 'input',
@@ -126,7 +126,7 @@ class Form_EstoqueEmbriao extends Form_Default
 
 		$this->addElement('text', 'grau', array(
 			'label' => 'Grau',
-			'filters' => array('StringTrim', 'Alnum'),
+			'filters' => array('StringTrim', 'Alnum', 'StringToUpper'),
 			'maxlength' => 16,
 			'size' => 10,
 			'class'	=> 'input',

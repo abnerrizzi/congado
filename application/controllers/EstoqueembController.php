@@ -98,7 +98,9 @@ class EstoqueembController extends Zend_Controller_Action
 		foreach ($disable_elements as $el) {
 			$estoqueForm->getElement($el)
 			->setAttrib('readonly', 'readonly')
-			->setAttrib('disable', true);
+			->setAttrib('disable', true)
+			->setRequired(false)
+			;
 		}
 
 		$this->view->form = $estoqueForm;
@@ -112,12 +114,18 @@ class EstoqueembController extends Zend_Controller_Action
     		'grau',
     		'sexo',
     		array('criador'),
+    		'delete',
     	);
 
     	$estoqueModel = new Model_Db_EstoqueEmbriao();
 
     	if ($request->isPost()) {
-    		die("is post");
+
+    		if ($estoqueForm->isValid($request->getPost())) {
+    			$estoqueModel->updateEstoque($estoqueForm->getValues());
+    			$this->_redirect('/'. $this->getRequest()->getControllerName());
+    		}
+
     	} else {
     		if ($estoqueId > 0) {
     			$result = $estoqueModel->getEstoqueEmbriao($estoqueId);
@@ -159,4 +167,29 @@ class EstoqueembController extends Zend_Controller_Action
 		}
 
 	}
+
+	public function deleteAction()
+	{
+
+		$request = $this->getRequest();
+		$estoqueForm = new Form_EstoqueEmbriao();
+		$estoqueForm->setAction('estoqueemb/delete');
+		$estoqueForm->setMethod('post');
+		$estoqueModel = new Model_Db_EstoqueEmbriao();
+
+		if ($request->isPost() && $request->getParam('param', false) == 'estoqueemb') {
+			$estoqueId = (int)$request->getParam('id');
+			$estoqueModel->deleteEstoque($estoqueId);
+			$this->view->error = false;
+			$this->view->msg = 'Registro apagado com sucesso.';
+		} else {
+			$estoqueId = (int)$request->getParam('id');
+			$this->view->error = true;
+			$this->view->msg = 'Erro tentando apagar registro('.$estoqueId.')';
+		}
+
+		$this->view->url = 'estoqueemb/index';
+
+	}
+
 }

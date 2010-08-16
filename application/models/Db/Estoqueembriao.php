@@ -83,10 +83,34 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 		return $return;
 	}
 
-	public function updateColeta($post)
+	public function updateEstoque($post)
 	{
-		Zend_Debug::dump($post);
-		die('vai alterar');
+		if (!array_key_exists('sexo', $post)) {
+			$post['sexo'] = NULL;
+		}
+		$_dt = explode('/', $post['dt_coleta']);
+		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
+
+		$posts = array(
+			'dt_coleta'			=> $_dt,
+			'doadora_id'		=> $post['doadora_id'],
+			'touro_id'			=> $post['touro_id'],
+			'classificacao'		=> utf8_encode($post['classificacao']),
+			'grau'				=> utf8_encode($post['grau']),
+			'criador_id'		=> $post['criador_id'],
+			'sexo'				=> $post['sexo'],
+		);
+
+		foreach ($posts as $key => $val) {
+			if ($val == '') {
+				$data[$key] = null;
+			} else {
+				$data[$key] = utf8_encode($val);
+			}
+		}
+
+		$where = 'id = '.(int)$post['id'];
+		$this->update($data, $where);
 	}
 
 	public function addEstoque($post)
@@ -121,6 +145,11 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 		} else {
 			return false;
 		}
+	}
+
+	public function deleteEstoque($id)
+	{
+		$this->delete('id = ' . intval($id));
 	}
 
 	public function listJsonEstoqueEmbriao($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
