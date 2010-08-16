@@ -686,8 +686,8 @@ class JsonController extends Zend_Controller_Action
 	 */
 	public function estoqueembriaoAction()
 	{
-		$estoqueEmbriaoModel = new Model_Db_EstoqueEmbriao();
-		$estoques = $estoqueEmbriaoModel->listJsonEstoqueEmbriao(
+		$estoqueModel = new Model_Db_EstoqueEmbriao();
+		$estoques = $estoqueModel->listJsonEstoqueEmbriao(
 			array(),
 			$this->getRequest()->getParam('sortname','cod'),
 			$this->getRequest()->getParam('sortorder','asc'),
@@ -698,6 +698,17 @@ class JsonController extends Zend_Controller_Action
 			$this->getRequest()->getParam('like', false)
 		);
 		$this->view->content = utf8_encode(json_encode($estoques));
+		$this->render('index');
+	}
+
+	public function ultimoembriaoAction()
+	{
+		$estoqueModel = new Model_Db_EstoqueEmbriao();
+		$__id = (int)$this->getRequest()->getParam('id', false);
+		if ($__id > 0) {
+			$ultimo = $estoqueModel->listJsonUltimo($__id);
+		}
+		$this->view->content = utf8_encode(json_encode($ultimo));
 		$this->render('index');
 	}
 

@@ -5,12 +5,15 @@ $(document).ready(function() {
 		.css('font-weight', 'bold')
 		.css('border', '2px solid #f63');
 
+	$('#ultimo').addClass('readonly');
+	$('#ultimo').attr('disabled', 'disabled');
+
 	$('#dlg').bind('dialogbeforeclose', function(event, ui) {
 		hide_filter();
 	});
 
 	$("#vaca_cod").change(function(){
-		changeSelectAnimalBySexo(this, 'F', true);
+		changeSelectAnimalBySexo(this, 'F', buscaUltimoEmbriao);
 	});
 	$("#touro_cod").change(function(){
 		changeSelectAnimalBySexo(this, 'M');
@@ -135,10 +138,17 @@ $(document).ready(function() {
 
 function checkFields()
 {
+	__return = false;
 	if ($("#vaca_id").val() != "" && $("#dt_coleta").val() != "") {
 		$('#tabs').show();
 		$("#submit_").parent().parent().parent().show();
+		__return = true;
+	} else {
+		__return = false;
 	}
+
+	return __return;
+
 }
 
 
@@ -188,5 +198,34 @@ function toggleFields(opt) {
 
 }
 
+function buscaUltimoEmbriao(el)
+{
+	$("#ajax_loader").html("Buscando dados...").show();
+
+	__url = baseUrl + '/json/ultimoembriao';
+	$.post(__url, {
+		id		: $('#vaca_id').val(),
+		ajax	: 'true'
+	}, function(j) {
+		$('#ultimo').val(j.embriao);
+		/*
+		if (j && j.length == 1) {
+			$("#" + __fieldName + "_id").val(j[0].id);
+			$("#" + __fieldName + "_cod").val(j[0].cell[0]);
+			$("#" + __fieldName).val(j[0].cell[1]);
+		} else {
+			$("#ajax_loader").html("Código não encontrado").show();
+			$("#" + __fieldName + "_id").val('');
+//			$("#" + __fieldName + "_cod").val(null);
+			$("#" + __fieldName).val('');
+			setTimeout(function(){
+				$("#ajax_loader").fadeOut(300); }
+			, 2000);
+			return false;
+		}
+		*/
+		$("#ajax_loader").fadeOut(30);
+	}, "json");
+}
 
 

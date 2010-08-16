@@ -52,7 +52,7 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 			->joinLeft(array('criador' => 'criador'), $this->_name.'.criador_id = criador.id',array('criador_cod' => 'cod', 'criador' => 'dsc'),$this->_schema)
 			->where($this->_name.'.id = ?', (int)$id)
 			;
-//		die('<pre>'.$this->_select);
+		die('<pre>'.$this->_select);
 		$row = $this->fetchRow($this->_select);
 		if (!$row) {
 			throw new Exception("Count not find row $id");
@@ -228,4 +228,25 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 
 	}
 
+	public function listJsonUltimo($id)
+	{
+		$id = (int)$id;
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from($this->_name, array('embriao'), $this->_schema)
+			->joinLeft(array('doadora' => 'fichario'), $this->_name.'.doadora_id = doadora.id',array(),$this->_schema)
+			->where('doadora.id = ?', (int)$id)
+			->order('dt_coleta desc')
+			->order('embriao desc')
+			->limit(1)
+			;
+//		die('<pre>'.$this->_select);
+		$row = $this->fetchRow($this->_select);
+		if (!$row) {
+			$row['embriao'] = '';
+			return $row;
+//			throw new Exception("Count not find row $id");
+		}
+		return $row->toArray();
+	}
 }
