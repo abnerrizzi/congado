@@ -343,7 +343,7 @@ function dump(array, level) {
 	};
 })(jQuery);
 
-function changeSelect() {
+function changeSelectRaca() {
 
 	this.value = this.value.toUpperCase();
 	suffix = '_cod';
@@ -645,10 +645,10 @@ function checkDate(field)
 
 
 
-function changeSelectAnimalBySexo(field, __sexo, onSuccess) {
+function changeSelectAnimalBySexo(field, __sexo, checkField) {
 
 	__sexo = typeof(__sexo) != 'undefined' ? __sexo : '';
-	onSuccess = typeof(onSuccess) != 'undefined' ? onSuccess : false;
+	checkField = typeof(checkField) != 'undefined' ? checkField : false;
 
 	field.value = field.value.toUpperCase();
 	suffix = '_cod';
@@ -694,11 +694,78 @@ function changeSelectAnimalBySexo(field, __sexo, onSuccess) {
 			, 2000);
 			return false;
 		}
-		checkFields();
+		if (checkField) {
+			checkFields();
+		}
 		$("#ajax_loader").fadeOut(30);
 	}, "json");
 	return true;
 
+}
+
+
+
+
+/*
+ * Busca via ajax os valores de id e descricao dos campos de acordo com o codigo digitado
+ */
+function changeSelect() {
+
+	this.value = this.value.toUpperCase();
+	suffix = '_cod';
+	__fieldName = this.name.substr(0,(this.name.length - suffix.length));
+	__fieldValue = this.value;
+	__json = __fieldName;
+
+	__url = baseUrl + '/json/' + __json;
+
+	if (__fieldName == 'local') {
+		__qtype = 'local';
+		if (!$('#fazenda_id').val().length > 0) {
+			if ($("#ajax_loader")) {
+				$("#ajax_loader").html("Por favor selecione uma fazenda.").show();
+				setTimeout(function(){
+					$("#ajax_loader").fadeOut(300);
+				}
+				, 2000);
+			}
+			return false;
+		}
+	} else {
+		__qtype = 'cod';
+	}
+	if (__fieldValue == '') {
+		$("#" + __fieldName + "_id").val(null);
+		$("#" + __fieldName + "_cod").val(null);
+		$("#" + __fieldName).val(null);
+		return false;
+	}
+	$("#ajax_loader").html("Buscando dados...").show();
+	suffix = '_cod';
+	$.post(__url, {
+		fazenda_id: $('#fazenda_id').val(),
+		qtype : __qtype,
+		query : __fieldValue,
+		like : 'false',
+		ajax : 'true'
+	}, function(j) {
+		j = j.rows;
+		if (j && j.length == 1) {
+			$("#" + __fieldName + "_id").val(j[0].id);
+			$("#" + __fieldName + "_cod").val(j[0].cell[0]);
+			$("#" + __fieldName).val(j[0].cell[1]);
+		} else {
+			$("#ajax_loader").html("Código não encontrado").show();
+			$("#" + __fieldName + "_id").val(null);
+//			$("#" + __fieldName + "_cod").val(null);
+			$("#" + __fieldName).val(null);
+			setTimeout(function(){
+				$("#ajax_loader").fadeOut(300); }
+			, 2000);
+			return false;
+		}
+		$("#ajax_loader").fadeOut(30);
+	}, "json");
 }
 
 

@@ -127,4 +127,39 @@ class EstoqueembController extends Zend_Controller_Action
     		}
     	}
     }
+
+	public function addAction()
+	{
+
+		$estoqueForm = new Form_EstoqueEmbriao();
+		$estoqueForm->setAction('/estoqueemb/add');
+		$estoqueForm->setMethod('post');
+		$this->view->form = $estoqueForm;
+		$this->view->elements = array(
+			'embriao',
+    		'dt_coleta',
+    		array('doadora'),
+    		array('touro'),
+    		'classificacao',
+    		'grau',
+    		'sexo',
+    		array('criador'),
+		);
+
+		if ($this->getRequest()->isPost()) {
+			$formData = $this->getRequest()->getPost();
+			throw new Zend_Controller_Action_Exception('vai add');
+			if ($destinoForm->isValid($formData)) {
+				$cod = $destinoForm->getValue('cod');
+				$dsc = $destinoForm->getValue('dsc');
+				$destinoModel = new Model_Db_Destino();
+				if ($destinoModel->addDestino($cod, $dsc)) {
+					$this->_redirect('/'. $this->getRequest()->getControllerName());
+				}
+			} else {
+				$destinoForm->populate($formData);
+			}
+		}
+
+	}
 }
