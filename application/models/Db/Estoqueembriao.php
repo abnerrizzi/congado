@@ -89,6 +89,39 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 		die('vai alterar');
 	}
 
+	public function addEstoque($post)
+	{
+		if (!array_key_exists('sexo', $post)) {
+			$post['sexo'] = NULL;
+		}
+		$_dt = explode('/', $post['dt_coleta']);
+		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
+
+		$posts = array (
+			'embriao'			=> utf8_encode($post['embriao']),
+			'dt_coleta'			=> $_dt,
+			'doadora_id'		=> $post['doadora_id'],
+			'touro_id'			=> $post['touro_id'],
+			'classificacao'		=> utf8_encode($post['classificacao']),
+			'grau'				=> utf8_encode($post['grau']),
+			'criador_id'		=> $post['criador_id'],
+			'sexo'				=> $post['sexo'],
+		);
+
+		foreach ($posts as $key => $val) {
+			if ($val == '') {
+				$data[$key] = NULL;
+			} else {
+				$data[$key] = utf8_encode($val);
+			}
+		}
+
+		if ($this->insert($data)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public function listJsonEstoqueEmbriao($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
 	{

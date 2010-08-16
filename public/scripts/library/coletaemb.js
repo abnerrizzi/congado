@@ -12,7 +12,9 @@ $(document).ready(function() {
 	$("#vaca_cod").change(function(){
 		changeSelectAnimalBySexo(this, 'F', true);
 	});
-	$("#touro_cod").change(function(){changeSelectAnimalBySexo(this, 'M');});
+	$("#touro_cod").change(function(){
+		changeSelectAnimalBySexo(this, 'M');
+	});
 
 	$("#dt_coleta, #trata_inicio, #trata_final").datepicker({
 
