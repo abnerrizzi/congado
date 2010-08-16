@@ -148,16 +148,13 @@ class EstoqueembController extends Zend_Controller_Action
 
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
-			throw new Zend_Controller_Action_Exception('vai add');
-			if ($destinoForm->isValid($formData)) {
-				$cod = $destinoForm->getValue('cod');
-				$dsc = $destinoForm->getValue('dsc');
-				$destinoModel = new Model_Db_Destino();
-				if ($destinoModel->addDestino($cod, $dsc)) {
+			if ($estoqueForm->isValid($formData)) {
+				$estoqueModel = new Model_Db_EstoqueEmbriao();
+				if ($estoqueModel->addEstoque($formData)) {
 					$this->_redirect('/'. $this->getRequest()->getControllerName());
 				}
 			} else {
-				$destinoForm->populate($formData);
+				$estoqueForm->populate($formData);
 			}
 		}
 

@@ -60,12 +60,13 @@ class Form_EstoqueEmbriao extends Form_Default
 
 		$this->addElement('select', 'fazenda_id', array(
 			'label' => 'Fazenda',
-			'required' => true,
+//			'required' => true,
 			'class'	=> 'input',
 		));
 
 		$this->addElement('text', 'embriao', array(
 			'label' => 'Embrião',
+			'required' => true,
 			'filters' => array('StringTrim', 'Alnum'),
 			'maxlength' => 16,
 			'size' => 10,
@@ -85,7 +86,9 @@ class Form_EstoqueEmbriao extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('hidden', 'doadora_id');
+		$this->addElement('hidden', 'doadora_id', array(
+			'required' => true
+		));
 		$this->addElement('text', 'doadora_cod', array(
 			'label' => 'Doadora',
 			'filters' => array('StringTrim', 'Alnum'),
@@ -131,7 +134,6 @@ class Form_EstoqueEmbriao extends Form_Default
 
 		$this->addElement('radio', 'sexo', array(
 			'label' => 'Sexo',
-			'required' => true,
 			'separator' => "\n",
 			'multiOptions' => array(
 				'M' => 'Macho',
