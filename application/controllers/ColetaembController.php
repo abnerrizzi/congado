@@ -203,5 +203,6 @@ class ColetaembController extends Zend_Controller_Action
     	);
 //		throw new Zend_Controller_Action_Exception('Funcionalidade não implementada.');
     }
+
 }
 

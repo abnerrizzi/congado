@@ -1,13 +1,5 @@
 $(document).ready(function() {
 
-/*
-
-  <a href="javascript:void(0);" onclick="return showfilter_criador('<?=$this->baseUrl();?>/json/criador','criador');">
-    <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-  </a>
-
- */
-
 	$('#doadora').after(
 		'<a href="javascript:void(0);" onclick="return showfilter_animal(\''+baseUrl+'/json/animal/sexo/f\', \'doadora\')">\n'+
 		'<img alt="" src="'+baseUrl+'/images/search.png"/>\n'+

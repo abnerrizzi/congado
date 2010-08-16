@@ -1,3 +1,4 @@
+var ajax_request;
 /**
  * 
  */
@@ -673,7 +674,7 @@ function changeSelectAnimalBySexo(field, __sexo, checkField) {
 
 	$("#ajax_loader").html("Buscando dados...").show();
 	suffix = '_cod';
-	$.post(__url, {
+	ajax_request = $.post(__url, {
 		qtype	: __qtype,
 		query	: __fieldValue,
 		sexo	: __sexo,
@@ -695,6 +696,9 @@ function changeSelectAnimalBySexo(field, __sexo, checkField) {
 			return false;
 		}
 		if (checkField) {
+			if (typeof(checkField) == 'function') {
+				checkField();
+			}
 			checkFields();
 		}
 		$("#ajax_loader").fadeOut(30);
