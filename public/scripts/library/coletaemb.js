@@ -10,7 +10,7 @@ $(document).ready(function() {
 	});
 
 	$("#vaca_cod").change(function(){
-		changeSelectAnimalBySexo(this, 'F', checkFields());
+		changeSelectAnimalBySexo(this, 'F', true);
 	});
 	$("#touro_cod").change(function(){changeSelectAnimalBySexo(this, 'M');});
 

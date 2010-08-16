@@ -20,12 +20,20 @@ $(document).ready(function() {
 			'</a>\n'
 	);
 
+	$('#criador').after(
+			'<a href="javascript:void(0);" onclick="return showfilter_criador(\''+baseUrl+'/json/criador\', \'criador\')">\n'+
+			'<img alt="" src="'+baseUrl+'/images/search.png"/>\n'+
+			'</a>\n'
+	);
+
 	$("#doadora_cod").change(function(){
 		changeSelectAnimalBySexo(this, 'F');
 	});
 	$("#touro_cod").change(function(){
 		changeSelectAnimalBySexo(this, 'M');
 	});
+
+	$("#criador_cod").change(changeSelect);
 
 	$("#dt_coleta").datepicker({
 

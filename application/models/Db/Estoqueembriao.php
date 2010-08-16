@@ -47,8 +47,9 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
 			->from($this->_name, '*', $this->_schema)
-			->joinLeft(array('doadora' => 'fichario'), 'doadora_id = doadora.id',array('doadora_id' => 'id', 'doadora_cod' => 'cod', 'doadora' => 'nome'),$this->_schema)
-			->joinLeft(array('touro' => 'fichario'), 'touro_id = touro.id',array('touro_cod' => 'cod', 'touro' => 'nome'),$this->_schema)
+			->joinLeft(array('doadora' => 'fichario'), $this->_name.'.doadora_id = doadora.id',array('doadora_id' => 'id', 'doadora_cod' => 'cod', 'doadora' => 'nome'),$this->_schema)
+			->joinLeft(array('touro' => 'fichario'), $this->_name.'.touro_id = touro.id',array('touro_cod' => 'cod', 'touro' => 'nome'),$this->_schema)
+			->joinLeft(array('criador' => 'criador'), $this->_name.'.criador_id = criador.id',array('criador_cod' => 'cod', 'criador' => 'dsc'),$this->_schema)
 			->where($this->_name.'.id = ?', (int)$id)
 			;
 //		die('<pre>'.$this->_select);
