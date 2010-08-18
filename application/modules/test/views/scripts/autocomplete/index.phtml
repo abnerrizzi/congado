@@ -1,14 +1,14 @@
 <html>
 
-<script type="text/javascript" src="/congado/public/scripts/library/jquery/jquery.fcbkcomplete.js"></script>
-<link rel="stylesheet" href="/congado/public/styles/jquery/fcbkcomplete.css" type="text/css" media="screen" title="Test Stylesheet" charset="utf-8" />
+<script type="text/javascript" src="<?=$this->baseUrl();?>/scripts/library/jquery/jquery.fcbkcomplete.js"></script>
+<link rel="stylesheet" href="<?=$this->baseUrl();?>/styles/jquery/fcbkcomplete.css" type="text/css" media="screen" title="Test Stylesheet" charset="utf-8" />
 
 <script language="JavaScript">
         $(document).ready(function() 
         {        
           
           $("#select2").fcbkcomplete({
-            json_url: "/congado/public/json/fcbk",
+            json_url: "<?=$this->baseUrl();?>/json/fcbk",
             filter_case: false,
             filter_hide: true,
 			firstselected: true,
