@@ -43,6 +43,9 @@ function campoData(fields, __maxDate)
 function open_page(page, data)
 {
 	if (typeof(data) == 'undefined') {
+		if (page == '/') {
+			page = '';
+		}
 		window.location = baseUrl + '/' + page;
 	} else {
 		if ($("#open_page").length < 1) {
