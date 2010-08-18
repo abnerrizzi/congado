@@ -32,7 +32,7 @@ $this->headLink()
 			border-left: 1px solid #919191;
 			font-size: 12px;">
 
-  <tr style="background: url('/congado/public/images/grid/bg_title.gif');">
+  <tr style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');">
     <td width="20" ></td>
     <td colspan="8" height="20" width="480" style="font-size: 11px;"><b><?=str_replace('_', ' ', strtoupper($this->form->getName()));?></b></td>
   </tr>
@@ -110,40 +110,40 @@ $this->headLink()
 <!-- START OF TABLE HEAD -->
 	  <tr class="head">
 
-		  <td width="5" style="background: url('/congado/public/images/grid/bg_title.gif');"/>
-		  <td width="60" style="background: url('/congado/public/images/grid/bg_title.gif');">
+		  <td width="5" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');"/>
+		  <td width="60" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');">
 			<a href="javascript:void(0);">Animal</a>
 		  </td>
 
-		  <td width="0" style="background: url('/congado/public/images/grid/bg_title.gif');">
-			<img src="/congado/public/images/grid/divisor_title.gif" alt=""/>
+		  <td width="0" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');">
+			<img src="<?=$this->baseUrl();?>/images/grid/divisor_title.gif" alt=""/>
 		  </td>
 
-		  <td width="15" style="background: url('/congado/public/images/grid/bg_title.gif');"/>
-		  <td width="150" style="background: url('/congado/public/images/grid/bg_title.gif');">
+		  <td width="15" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');"/>
+		  <td width="150" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');">
 			<a href="javascript:void(0);">Nome</a>
 		  </td>
 
-		  <td width="0" style="background: url('/congado/public/images/grid/bg_title.gif');">
-			<img src="/congado/public/images/grid/divisor_title.gif" alt=""/>
+		  <td width="0" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');">
+			<img src="<?=$this->baseUrl();?>/images/grid/divisor_title.gif" alt=""/>
 		  </td>
 
-		  <td width="5" style="background: url('/congado/public/images/grid/bg_title.gif');"/>
-          <td width="80" style="background: url('/congado/public/images/grid/bg_title.gif');">
+		  <td width="5" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');"/>
+          <td width="80" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');">
             <a href="javascript:void(0);">Horário</a>
           </td>
 
-          <td width="0" style="background: url('/congado/public/images/grid/bg_title.gif');">
-			<img src="/congado/public/images/grid/divisor_title.gif" alt=""/>
+          <td width="0" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');">
+			<img src="<?=$this->baseUrl();?>/images/grid/divisor_title.gif" alt=""/>
 		  </td>
 
-		  <td width="5" style="background: url('/congado/public/images/grid/bg_title.gif');"/>
-          <td width="70" style="background: url('/congado/public/images/grid/bg_title.gif');" align="center">
+		  <td width="5" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');"/>
+          <td width="70" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');" align="center">
             <a href="javascript:void(0);">Remover</a>
           </td>
 
-          <td width="0" style="background: url('/congado/public/images/grid/bg_title.gif');">
-			<img src="/congado/public/images/grid/divisor_title.gif" alt=""/>
+          <td width="0" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');">
+			<img src="<?=$this->baseUrl();?>/images/grid/divisor_title.gif" alt=""/>
 		  </td>
 
 		</tr>
@@ -167,15 +167,15 @@ if ($i==0){?>
 <tr class="row1" id="id<?=$animal['id'];?>">
   <td/>
   <td><?=$animal['cod'];?></td>
-  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
+  <td style="background: url('<?=$this->baseUrl();?>/images/grid/divisor_content.gif');"></td>
 
   <td/>
   <td align="left"><?=$animal['nome'];?></td>
-  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td>
+  <td style="background: url('<?=$this->baseUrl();?>/images/grid/divisor_content.gif');"></td>
 
   <td/>
   <td align="left" style="padding-left: 10px;"><?=$animal['time'];?></td>
-  <td style="background: url('/congado/public/images/grid/divisor_content.gif');"></td> 
+  <td style="background: url('<?=$this->baseUrl();?>/images/grid/divisor_content.gif');"></td> 
 
   <td/>
   <td align="center">
@@ -195,7 +195,7 @@ if ($i==0){?>
 </tr>
 
 <tr>
-  <td height="10" colspan="12" style="background: url('/congado/public/images/grid/bg_bottom.gif');"></td>
+  <td height="10" colspan="12" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_bottom.gif');"></td>
 </tr>
 
 </table>
@@ -226,9 +226,9 @@ if ($i==0){?>
 </span>
 
 
-<span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = '/congado/public/movimentacao/sanitariopreventivo'; return false;">
+<span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = '<?=$this->baseUrl();?>/movimentacao/sanitariopreventivo'; return false;">
 <span class="UIIcon UIIcon_Cancel">&nbsp;</span>
-  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="cancel" id="cancel" onclick="location.href = '/congado/public/movimentacao/sanitariopreventivo'; return false;"/>
+  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="cancel" id="cancel" onclick="location.href = '<?=$this->baseUrl();?>/movimentacao/sanitariopreventivo'; return false;"/>
 </span>
 
     </td>
