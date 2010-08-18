@@ -16,7 +16,7 @@ a, a:visited{cursor:pointer;color:#3b5998;-moz-outline-style:none;text-decoratio
 
 
 .typeahead_list .typeahead_suggestion .with_pic small{padding-left:0}
-.UIButton{background-image:url(/congado/public/styles/images/fb-buttons.png);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px;vertical-align:bottom;white-space: nowrap;}
+.UIButton{background-image:url(/styles/images/fb-buttons.png);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px;vertical-align:bottom;white-space: nowrap;}
 .UIButton:hover,
 .UIButton:active{text-decoration:none}
 .UIButton:active{-moz-box-shadow:0 1px 0 rgba(0,0,0,.05);-webkit-box-shadow:0 1px 0 rgba(0,0,0,.05)}
@@ -35,7 +35,7 @@ a, a:visited{cursor:pointer;color:#3b5998;-moz-outline-style:none;text-decoratio
 .UIButton_Green .UIButton_Text{color:#fff}
 .UIButton_Suppressed{background:transparent;border-color:transparent;-moz-box-shadow:none;-webkit-box-shadow:none}
 .ie6 .UIButton_Suppressed,
-.UIButton_Suppressed:hover{background-image:url(/congado/public/styles/images/fb-buttons.png);border-color:#999 #999 #888;-moz-box-shadow:0 1px 0 rgba(0,0,0,.1);-webkit-box-shadow:0 1px 0 rgba(0,0,0,.1)}
+.UIButton_Suppressed:hover{background-image:url(/styles/images/fb-buttons.png);border-color:#999 #999 #888;-moz-box-shadow:0 1px 0 rgba(0,0,0,.1);-webkit-box-shadow:0 1px 0 rgba(0,0,0,.1)}
 .UIButton_Suppressed:active{background-color:#ddd;background-image:none;border-color:#999;-moz-box-shadow:0 1px 0 rgba(0,0,0,.05);-webkit-box-shadow:0 1px 0 rgba(0,0,0,.05)}
 .UIButton_Disabled,
 .UIButton_Disabled:active{background-color:#f2f2f2;background-image:none;border-color:#c8c8c8;cursor:default;-moz-box-shadow:none;-webkit-box-shadow:none}
@@ -50,7 +50,7 @@ a, a:visited{cursor:pointer;color:#3b5998;-moz-outline-style:none;text-decoratio
 span.UIButton_IconSmallMonochromatic{margin:-2px 1px 0 -4px;_margin-left:-1px}
 i.UIButton_Icon,
 img.UIButton_Icon{margin-top:0}
-span.UIButton_IconNoSpriteMap{background-image:url(/congado/public/styles/images/fb-buttons.png);margin-top:-1px;margin-bottom:-1px}
+span.UIButton_IconNoSpriteMap{background-image:url(/styles/images/fb-buttons.png);margin-top:-1px;margin-bottom:-1px}
 .ff2 span.UIButton_IconNoSpriteMap{margin-top:-2px}
 a.UIActionButton_SuppressText{padding:3px 0 3px 4px}
 .UIActionButton_SuppressText .UIButton_Icon{margin:0}
@@ -64,7 +64,7 @@ a.UIActionButton_SuppressText{padding:3px 0 3px 4px}
 
 
 #navSearch{background-color:#fff;border:1px solid #3b5998;}
-#navSearch button{background:#fff url(/congado/public/styles/images/fb-logo.png) no-repeat -1px 0;border:0;cursor:pointer;padding:0;}
+#navSearch button{background:#fff url(/styles/images/fb-logo.png) no-repeat -1px 0;border:0;cursor:pointer;padding:0;}
 #navSearch button span{display:none}
 #navSearch .inputtext{border:0;border-right:1px solid #e5e5e5;outline:none;width:269px}
 #navSearch .inputsubmit{position:absolute;top:-1000px}
@@ -75,7 +75,7 @@ a.UIActionButton_SuppressText{padding:3px 0 3px 4px}
 
 
 .UIButton_Search {
-	background-image: url(/congado/public/styles/images/fb-chat.png);
+	background-image: url(/styles/images/fb-chat.png);
 	border-style: solid;
 	border-width: 1px;
 	display: -moz-inline-box;
@@ -93,14 +93,14 @@ a.UIActionButton_SuppressText{padding:3px 0 3px 4px}
     margin-top:-1px;margin-bottom:-1px
 }
 
-span.UIButton_IconNoSpriteMap_Search{background-image:url(/congado/public/styles/images/fb-chat.png);margin-top:-1px;margin-bottom:-1px}
-span.UIButton_IconNoSpriteMap_Icons{background-image:url(/congado/public/styles/images/fb-icons.png);margin-top:-1px;margin-bottom:-1px}
+span.UIButton_IconNoSpriteMap_Search{background-image:url(/styles/images/fb-chat.png);margin-top:-1px;margin-bottom:-1px}
+span.UIButton_IconNoSpriteMap_Icons{background-image:url(/styles/images/fb-icons.png);margin-top:-1px;margin-bottom:-1px}
 
 
 
 .UIIcon{
 	height:16px;margin:-2px 5px 0 0;float:left;width:16px !important;
-background-image:url(/congado/public/styles/images/fb-icons.png);margin-top:-1px;margin-bottom:-1px;
+background-image:url(/styles/images/fb-icons.png);margin-top:-1px;margin-bottom:-1px;
 position: relative;
 top: 4px;
 height: 12px;
@@ -123,8 +123,8 @@ height: 12px;
 	height: 15px;
 	}
 /*
-.UIIcon_Save{background-image:url(/congado/public/styles/images/fb-icons.png);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px;vertical-align:bottom;white-space: nowrap;background-position: 0% -216px;}
-.UIIcon_Cancel{background-image:url(/congado/public/styles/images/fb-icons.png);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px;vertical-align:bottom;white-space: nowrap;background-position: 0% -216px;}
+.UIIcon_Save{background-image:url(/styles/images/fb-icons.png);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px;vertical-align:bottom;white-space: nowrap;background-position: 0% -216px;}
+.UIIcon_Cancel{background-image:url(/styles/images/fb-icons.png);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px;vertical-align:bottom;white-space: nowrap;background-position: 0% -216px;}
 */
 
 
@@ -136,7 +136,7 @@ height: 12px;
 .UISearchSummaryBar_Pager{padding:4px 6px}
 .UISearchSummaryBar_Pager .UIPager{float:right}
 .UIWell{background:#f2f2f2;border-top:1px solid #ccc;zoom:1}
-.UIPager_Button{background-image:url(/congado/public/styles/images/fb-arrows.png);background-repeat:no-repeat;float:left;height:23px;position:relative;width:43px;z-index:2}
+.UIPager_Button{background-image:url(/styles/images/fb-arrows.png);background-repeat:no-repeat;float:left;height:23px;position:relative;width:43px;z-index:2}
 .UIPager_ButtonBack{margin-right:-1px}
 .UIPager_ButtonBack:active{background-position:0 -23px}
 .UIPager_ButtonForward{background-position:-43px 0}
@@ -156,5 +156,5 @@ height: 12px;
 .UIPager .UIPager_PageNum{color:#000;float:left;font-size:12px;line-height:22px;padding-right:10px}
 .UIPager .UIPager_PageResult{color:#000;float:left;font-size:12px;line-height:22px;padding-right:10px}
 
-.UIObjectListing_RemoveLink{background:transparent url(/congado/public/styles/images/fb-delete.gif) no-repeat top left;width:18px;height:18px;display:block}
+.UIObjectListing_RemoveLink{background:transparent url(/styles/images/fb-delete.gif) no-repeat top left;width:18px;height:18px;display:block}
 .UIObjectListing_RemoveLink:hover{text-decoration:none;background-position:top right}
