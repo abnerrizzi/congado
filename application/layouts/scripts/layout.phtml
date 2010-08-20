@@ -27,8 +27,14 @@
 		->prependFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.core.js')
 		->prependFile($this->baseUrl() . '/scripts/jquery-1.3.2.js')
 	;
-    
-    $this->headScript()->appendScript('var baseUrl = "' . $this->baseUrl() . '";');
+
+	if ($this->baseUrl() == "") {
+		$__baseUrl = "http://" . $_SERVER["HTTP_HOST"];
+	} else {
+		$__baseUrl = $this->baseUrl();
+	}
+
+    $this->headScript()->appendScript('var baseUrl = "' . $__baseUrl. '";');
     echo $this->headTitle();
     ?>
 
