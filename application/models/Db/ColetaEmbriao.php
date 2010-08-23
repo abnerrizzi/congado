@@ -87,6 +87,60 @@ class Model_Db_ColetaEmbriao extends Model_Db
 		die('vai alterar');
 	}
 
+	public function addColeta($post)
+	{
+		unset($post['vaca_cod'], $post['vaca'], $post['touro_cod'], $post['touro'], $post['id']);
+
+		$_datas = array(
+			'dt_coleta',
+			'trata_inicio',
+			'trata_final',
+
+		);
+		$_dh = array(
+			'prost_dhd',
+			'cio_dhd',
+			'gnrh_dhd',
+			'insemina_dh1d',
+			'insemina_dh2d',
+			'insemina_dh3d',
+			'insemina_dh4d',
+		);
+		foreach ($post as $key => $val) {
+			if (in_array($key, $_datas) && $val != NULL) {
+				$x = explode('/', $val);
+				$val = $x[2] .'-'. $x[1] .'-'. $x[0];
+			}
+			$return[$key] = utf8_decode($val);
+		}
+
+		/*
+		 * funcao q remove apenas o ultimo caractere da string
+		 * substr($qwe, 0, -1);
+		 */
+		foreach ($post as $key => $val) {
+			if (in_array($key, $_dh) && $val != NULL) {
+				$x = explode('/', $val);
+				$val = $x[2] .'-'. $x[1] .'-'. $x[0];
+			}
+			$return[$key] = utf8_decode($val);
+		}
+
+		Zend_Debug::dump($return);
+		return;
+
+		foreach ($post as $key => $val) {
+			if (is_int($val) && $val <= 0) {
+				$post[$key] = null;
+			} elseif ($val == "") {
+				$post[$key] = null;
+			}
+		}
+
+//		$return = $this->insert($post);
+//		Zend_Debug::dump($return);
+//		die('Model_Db_ColetaEmbriao->addColeta()');
+	}
 
 
 	public function listJsonColetaEmbriao($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())

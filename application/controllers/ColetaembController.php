@@ -201,7 +201,21 @@ class ColetaembController extends Zend_Controller_Action
     		'soro_nome',
     		'soro_partida',
     	);
-//		throw new Zend_Controller_Action_Exception('Funcionalidade não implementada.');
+
+		if ($this->getRequest()->isPost()) {
+			$formData = $this->getRequest()->getPost();
+			if ($coletaForm->isValid($formData)) {
+				print "isValid()";
+				$coletaModel = new Model_Db_ColetaEmbriao();
+				$post = $coletaForm->getValues();
+				unset($post['cancel'], $post['submit'], $post['delete'], $post['obs']);
+				$coletaModel->addColeta($post);
+			} else {
+				Zend_Debug::dump($coletaForm->getErrorMessages());
+				$coletaForm->populate($formData);
+			}
+		}
+
     }
 
 }

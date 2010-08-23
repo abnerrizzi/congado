@@ -132,6 +132,10 @@ $(document).ready(function() {
 	});
 	$("#dt_coleta, #vaca_cod").blur(checkFields);
 
+	if ($("#dt_coleta").val() != "" && $("#vaca_cod").val() != "") {
+		checkFields();
+	}
+
 	$("#coleta_de_embrioes:form").submit(function() { toggleFields(false); });
 });
 
