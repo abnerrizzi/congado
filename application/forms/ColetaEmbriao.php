@@ -60,7 +60,6 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('select', 'fazenda_id', array(
 			'label' => 'Fazenda',
-			'required' => true,
 			'class'	=> 'input',
 		));
 
@@ -93,7 +92,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'hormonio', array(
 			'label' => 'Hormônio',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'StringToUpper'),
 			'maxlength' => 32,
 			'size' => 16,
 			'class'	=> 'input',
@@ -117,7 +116,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'dosagem', array(
 			'label' => 'Dosagem',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 6,
 			'size' => 4,
 			'class'	=> 'input',
@@ -125,7 +124,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'distribuicao', array(
 			'label' => 'Distribuição',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'StringToUpper'),
 			'maxlength' => 32,
 			'size' => 16,
 			'class'	=> 'input',
@@ -133,7 +132,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'prost_nome', array(
 			'label' => 'Nome',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'StringToUpper'),
 			'maxlength' => 32,
 			'size' => 20,
 			'class'	=> 'input',
@@ -157,7 +156,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'prost_dosagem', array(
 			'label' => 'Dosagem',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
 			'class'	=> 'input',
@@ -165,7 +164,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'cio_tipo', array(
 			'label' => 'Tipo',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'StringToUpper'),
 			'maxlength' => 32,
 			'size' => 20,
 			'class'	=> 'input',
@@ -189,7 +188,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'gnrh_nome', array(
 			'label' => 'Nome',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'StringToUpper'),
 			'maxlength' => 32,
 			'size' => 20,
 			'class'	=> 'input',
@@ -213,7 +212,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'gnrh_dosagem', array(
 			'label' => 'Dosagem',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
 			'class'	=> 'input',
@@ -267,7 +266,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'dose1', array(
 			'label' => 'Doses',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
 			'class'	=> 'input',
@@ -307,7 +306,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'dose2', array(
 			'label' => 'Doses',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
 			'class'	=> 'input',
@@ -347,7 +346,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'dose3', array(
 			'label' => 'Doses',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
 			'class'	=> 'input',
@@ -387,7 +386,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'dose4', array(
 			'label' => 'Doses',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
 			'class'	=> 'input',
@@ -467,7 +466,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'avalia_od', array(
 			'label' => 'Ovário Direito',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
 			'class'	=> 'input',
@@ -475,7 +474,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'avalia_oe', array(
 			'label' => 'Ovário Esquerdo',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
 			'class'	=> 'input',
@@ -483,7 +482,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'viavel', array(
 			'label' => 'Viáveis',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
 			'class'	=> 'input',
@@ -491,7 +490,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'nao_viavel', array(
 			'label' => 'Não Viáveis',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
 			'class'	=> 'input',
@@ -499,7 +498,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'fecundada', array(
 			'label' => 'Fecundadas',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
 			'class'	=> 'input',
@@ -507,7 +506,7 @@ class Form_ColetaEmbriao extends Form_Default
 
 		$this->addElement('text', 'nao_fecundada', array(
 			'label' => 'Não Fecundadas',
-			'filters' => array('StringTrim'),
+			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
 			'class'	=> 'input',
