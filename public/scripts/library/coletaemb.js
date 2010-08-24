@@ -45,7 +45,9 @@ $(document).ready(function() {
 	        	val = val +'/';
 	        	$(this).val(val);
 	        }
-	});
+	}).focus(function() { 
+        $('#ui-datepicker-div').css('left', $(this).offset().left + 80); 
+    });
 
 	$("#prost_dhd, #gnrh_dhd, #cio_dhd, #insemina_dh1d, #insemina_dh2d, #insemina_dh3d, #insemina_dh4d").datepicker({
 
@@ -73,7 +75,9 @@ $(document).ready(function() {
 	        	val = val +'/';
 	        	$(this).val(val);
 	        }
-	});
+	}).focus(function() { 
+        $('#ui-datepicker-div').css('left', $(this).offset().left + 80); 
+    });
 
 	// Filtro para campos de hora
 	$('#prost_dhh, #gnrh_dhh, #cio_dhh, #insemina_dh1h, #insemina_dh2h, #insemina_dh3h, #insemina_dh4h').keypress(function(event){
