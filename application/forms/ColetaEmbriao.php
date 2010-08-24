@@ -432,38 +432,6 @@ class Form_ColetaEmbriao extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'injet_cd', array(
-			'label' => 'injet_cd',
-			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
-			'class'	=> 'input',
-		));
-
-		$this->addElement('text', 'injet_ce', array(
-			'label' => 'injet_ce',
-			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
-			'class'	=> 'input',
-		));
-
-		$this->addElement('text', 'colet_cd', array(
-			'label' => 'colet_cd',
-			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
-			'class'	=> 'input',
-		));
-
-		$this->addElement('text', 'colet_ce', array(
-			'label' => 'colet_ce',
-			'filters' => array('StringTrim'),
-			'maxlength' => 32,
-			'size' => 16,
-			'class'	=> 'input',
-		));
-
 		$this->addElement('text', 'avalia_od', array(
 			'label' => 'Ovário Direito',
 			'filters' => array('StringTrim', 'Int'),

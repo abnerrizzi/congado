@@ -89,7 +89,14 @@ class Model_Db_ColetaEmbriao extends Model_Db
 
 	public function addColeta($post)
 	{
-		unset($post['vaca_cod'], $post['vaca'], $post['touro_cod'], $post['touro'], $post['id']);
+		unset(
+			$post['vaca_cod'],
+			$post['vaca'],
+			$post['touro_cod'],
+			$post['touro'],
+			$post['id'],
+			$post['obs']
+		);
 
 		$_datas = array(
 			'dt_coleta',
@@ -120,26 +127,30 @@ class Model_Db_ColetaEmbriao extends Model_Db
 		 */
 		foreach ($post as $key => $val) {
 			if (in_array($key, $_dh) && $val != NULL) {
+				$__key = substr($key, 0, -1);
 				$x = explode('/', $val);
-				$val = $x[2] .'-'. $x[1] .'-'. $x[0];
+				$__val = $x[2] .'-'. $x[1] .'-'. $x[0];
+				if ($post[$__key.'h'] == "") {
+					$__val .= ' 00:00';
+				} else {
+					$__val .= ' ' . $post[$__key.'h'];
+				}
+				unset($return[$__key.'d'], $return[$__key.'h']);
+				$return[$__key] = utf8_decode($__val);
 			}
-			$return[$key] = utf8_decode($val);
 		}
 
-		Zend_Debug::dump($return);
-		return;
-
-		foreach ($post as $key => $val) {
+		foreach ($return as $key => $val) {
 			if (is_int($val) && $val <= 0) {
-				$post[$key] = null;
+				$return[$key] = null;
 			} elseif ($val == "") {
-				$post[$key] = null;
+				$return[$key] = null;
 			}
 		}
 
-//		$return = $this->insert($post);
-//		Zend_Debug::dump($return);
-//		die('Model_Db_ColetaEmbriao->addColeta()');
+		$insert = $this->insert($return);
+		Zend_Debug::dump($insert);
+		die('Model_Db_ColetaEmbriao->addColeta()');
 	}
 
 
