@@ -140,20 +140,10 @@ class ColetaembController extends Zend_Controller_Action
     	if ($request->isPost()) {
 
     		if ($coletaForm->isValid($request->getPost())) {
-    			throw new Zend_Controller_Exception('forumlario isValid()');
-    			$values = $coletaForm->getValue(true);
-    			unset($values['submit'], $values['cancel'], $values['delete']);
-    			$coletaModel->updateColeta($values);
+    			$data = $this->adjustFormsValues($coletaForm);
+    			$coletaModel->updateColeta($data);
     			$this->_redirect('/'. $this->getRequest()->getControllerName());
-//    		} else {
-//    			throw new Zend_Controller_Exception('formulario esta invalido');
     		}
-//			if ($doencaForm->isValid($request->getPost())) {
-//				$values = $doencaForm->getValues(true);
-//				unset($values['submit'], $values['cancel'], $values['delete']);
-//				$doencaModel->updateDoenca($values);
-//				$this->_redirect('/'. $this->getRequest()->getControllerName());
-//			}
 
 		} else {
 
@@ -164,7 +154,6 @@ class ColetaembController extends Zend_Controller_Action
 				throw new Exception("invalid record number");
 			}
 		}
-
 
     }
 
@@ -219,6 +208,85 @@ class ColetaembController extends Zend_Controller_Action
 			}
 		}
 
+    }
+
+    private function adjustFormsValues(Zend_Form $form)
+    {
+    	$post = $form->getValues();
+
+    	// remove buttons and complementary fields
+    	$__buttons = array(
+    		'submit',
+    		'cancel',
+    		'delete',
+			'vaca_cod',
+			'vaca',
+			'touro_cod',
+			'touro',
+			'obs'
+    	);
+    	for ($i=0; $i < count($__buttons); $i++)
+    	{
+    		unset($post[$__buttons[$i]]);
+    	}
+
+    	// change DATE fields format
+    	$_datas = array(
+			'dt_coleta',
+			'trata_inicio',
+			'trata_final',
+
+		);
+		foreach ($post as $key => $val) {
+			if (in_array($key, $_datas) && $val != NULL) {
+				$x = explode('/', $val);
+				$val = $x[2] .'-'. $x[1] .'-'. $x[0];
+			}
+			$return[$key] = utf8_decode($val);
+		}
+
+		// change DATETIME fields format
+    	$_dh = array(
+			'prost_dhd',
+			'cio_dhd',
+			'gnrh_dhd',
+			'insemina_dh1d',
+			'insemina_dh2d',
+			'insemina_dh3d',
+			'insemina_dh4d',
+		);
+		foreach ($post as $key => $val) {
+			if (in_array($key, $_dh) && $val != NULL) {
+				$__key = substr($key, 0, -1);
+				$x = explode('/', $val);
+				$__val = $x[2] .'-'. $x[1] .'-'. $x[0];
+				if ($post[$__key.'h'] == "") {
+					$__val .= ' 00:00';
+				} else {
+					$__val .= ' ' . $post[$__key.'h'];
+				}
+				unset($return[$__key.'d'], $return[$__key.'h']);
+				$return[$__key] = utf8_decode($__val);
+			} elseif (in_array($key, $_dh) && $val == NULL) {
+				$__key = substr($key, 0, -1);
+				if ($post[$__key.'d'] == null && $post[$__key.'h'] == null) {
+					unset($return[$__key.'d'], $return[$__key.'h']);
+				} elseif ($post[$__key.'d'] == null && $post[$__key.'h'] != null) {
+//					throw new Zend_Controller_Exception('Existe um horario sem data:');
+					die('erro ... horario sem data');
+				}
+			}
+		}
+
+		foreach ($return as $key => $val) {
+			if (is_int($val) && $val <= 0) {
+				$return[$key] = null;
+			} elseif ($val == "") {
+				$return[$key] = null;
+			}
+		}
+
+    	return $return;
     }
 
 }
