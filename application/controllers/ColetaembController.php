@@ -178,8 +178,11 @@ class ColetaembController extends Zend_Controller_Action
 		$fazendaModel = new Model_Db_Fazenda();
 		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
 		$coletaForm->getElement('fazenda_id')
-			->addMultiOption(false, '--')
-			->setAttrib('disabled', 'disabled')
+			->addMultiOption(false, '--');
+		foreach ($fazendas as $fazenda) {
+			$coletaForm->getElement('fazenda_id')
+				->addMultiOption($fazenda['id'], $fazenda['descricao']);
+		}
 		;
 		foreach ($fazendas as $fazenda) {
 			$coletaForm->getElement('fazenda_id')
@@ -205,13 +208,13 @@ class ColetaembController extends Zend_Controller_Action
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
 			if ($coletaForm->isValid($formData)) {
-				print "isValid()";
 				$coletaModel = new Model_Db_ColetaEmbriao();
 				$post = $coletaForm->getValues();
 				unset($post['cancel'], $post['submit'], $post['delete'], $post['obs']);
-				$coletaModel->addColeta($post);
+				if ($coletaModel->addColeta($post)) {
+					$this->_redirect('/'. $this->getRequest()->getControllerName());
+				}
 			} else {
-				Zend_Debug::dump($coletaForm->getErrorMessages());
 				$coletaForm->populate($formData);
 			}
 		}

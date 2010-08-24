@@ -148,9 +148,12 @@ class Model_Db_ColetaEmbriao extends Model_Db
 			}
 		}
 
-		$insert = $this->insert($return);
-		Zend_Debug::dump($insert);
-		die('Model_Db_ColetaEmbriao->addColeta()');
+		if ($this->insert($return)) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 
