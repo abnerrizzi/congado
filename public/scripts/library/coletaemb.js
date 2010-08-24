@@ -171,6 +171,7 @@ function toggleFields(opt) {
 
 
 	objs = Array(
+		"#fazenda_id",
 		"#vaca_cod",
 		"#vaca",
 		"#dt_coleta",
