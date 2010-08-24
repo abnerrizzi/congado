@@ -104,7 +104,7 @@ $(document).ready(function() {
 	});
 
 	$("#tabs").tabs();
-	
+
 
 	// if obs exists Dialogs appers
 	if ($('#obs').val() != '') {

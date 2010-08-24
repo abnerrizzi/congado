@@ -83,8 +83,10 @@ class Model_Db_ColetaEmbriao extends Model_Db
 
 	public function updateColeta($post)
 	{
-		Zend_Debug::dump($post);
-		die('vai alterar');
+
+		$where = 'id = '.(int)$post['id'];
+		$this->update($post , $where);
+
 	}
 
 	public function addColeta($post)
@@ -104,6 +106,14 @@ class Model_Db_ColetaEmbriao extends Model_Db
 			'trata_final',
 
 		);
+		foreach ($post as $key => $val) {
+			if (in_array($key, $_datas) && $val != NULL) {
+				$x = explode('/', $val);
+				$val = $x[2] .'-'. $x[1] .'-'. $x[0];
+			}
+			$return[$key] = utf8_decode($val);
+		}
+
 		$_dh = array(
 			'prost_dhd',
 			'cio_dhd',
@@ -113,18 +123,6 @@ class Model_Db_ColetaEmbriao extends Model_Db
 			'insemina_dh3d',
 			'insemina_dh4d',
 		);
-		foreach ($post as $key => $val) {
-			if (in_array($key, $_datas) && $val != NULL) {
-				$x = explode('/', $val);
-				$val = $x[2] .'-'. $x[1] .'-'. $x[0];
-			}
-			$return[$key] = utf8_decode($val);
-		}
-
-		/*
-		 * funcao q remove apenas o ultimo caractere da string
-		 * substr($qwe, 0, -1);
-		 */
 		foreach ($post as $key => $val) {
 			if (in_array($key, $_dh) && $val != NULL) {
 				$__key = substr($key, 0, -1);
