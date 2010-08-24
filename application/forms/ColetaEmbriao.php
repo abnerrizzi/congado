@@ -59,6 +59,7 @@ class Form_ColetaEmbriao extends Form_Default
 		$this->addElement('hidden', 'id');
 
 		$this->addElement('select', 'fazenda_id', array(
+			'required' => true,
 			'label' => 'Fazenda',
 			'class'	=> 'input',
 		));
