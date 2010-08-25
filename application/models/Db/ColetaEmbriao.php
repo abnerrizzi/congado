@@ -68,6 +68,7 @@ class Model_Db_ColetaEmbriao extends Model_Db
 			'insemina_dh2',
 			'insemina_dh3',
 			'insemina_dh4',
+			'cio_dh',
 		);
 		foreach ($array as $key => $val) {
 			if (in_array($key, $_datas) && $val != NULL) {
@@ -84,6 +85,9 @@ class Model_Db_ColetaEmbriao extends Model_Db
 	public function updateColeta($post)
 	{
 
+		print '<pre>';
+		print_r($post);
+		print '</pre>';
 		$where = 'id = '.(int)$post['id'];
 		$this->update($post , $where);
 
