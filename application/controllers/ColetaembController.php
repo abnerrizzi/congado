@@ -198,8 +198,9 @@ class ColetaembController extends Zend_Controller_Action
 			$formData = $this->getRequest()->getPost();
 			if ($coletaForm->isValid($formData)) {
 				$coletaModel = new Model_Db_ColetaEmbriao();
-				$post = $coletaForm->getValues();
-				unset($post['cancel'], $post['submit'], $post['delete'], $post['obs']);
+//				$post = $coletaForm->getValues();
+//				unset($post['cancel'], $post['submit'], $post['delete'], $post['obs']);
+				$post = $this->adjustFormsValues($coletaForm);
 				if ($coletaModel->addColeta($post)) {
 					$this->_redirect('/'. $this->getRequest()->getControllerName());
 				}
@@ -207,6 +208,28 @@ class ColetaembController extends Zend_Controller_Action
 				$coletaForm->populate($formData);
 			}
 		}
+
+    }
+
+    public function deleteAction()
+    {
+    	$request = $this->getRequest();
+    	$coletaForm = new Form_ColetaEmbriao();
+    	$coletaForm->setAction('coletaemb/delete');
+		$coletaForm->setMethod('post');
+		$coletaModel = new Model_Db_ColetaEmbriao();
+
+		if ($request->isPost() && $request->getParam('param', false) == 'coletaemb') {
+			$coletaId	= (int)$request->getParam('id');
+			$coletaModel->deleteColeta($coletaId);
+			$this->view->error = false;
+			$this->view->msg = 'Registro apagado com sucesso.';
+		} else {
+			$coletaId	= (int)$request->getParam('id');
+			$this->view->error = true;
+			$this->view->msg = 'Erro tentando apagar registro('.$coletaId.')';
+		}
+		$this->view->url = 'coletaemb/index';
 
     }
 
