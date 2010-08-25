@@ -91,62 +91,8 @@ class Model_Db_ColetaEmbriao extends Model_Db
 
 	public function addColeta($post)
 	{
-		unset(
-			$post['vaca_cod'],
-			$post['vaca'],
-			$post['touro_cod'],
-			$post['touro'],
-			$post['id'],
-			$post['obs']
-		);
 
-		$_datas = array(
-			'dt_coleta',
-			'trata_inicio',
-			'trata_final',
-
-		);
-		foreach ($post as $key => $val) {
-			if (in_array($key, $_datas) && $val != NULL) {
-				$x = explode('/', $val);
-				$val = $x[2] .'-'. $x[1] .'-'. $x[0];
-			}
-			$return[$key] = utf8_decode($val);
-		}
-
-		$_dh = array(
-			'prost_dhd',
-			'cio_dhd',
-			'gnrh_dhd',
-			'insemina_dh1d',
-			'insemina_dh2d',
-			'insemina_dh3d',
-			'insemina_dh4d',
-		);
-		foreach ($post as $key => $val) {
-			if (in_array($key, $_dh) && $val != NULL) {
-				$__key = substr($key, 0, -1);
-				$x = explode('/', $val);
-				$__val = $x[2] .'-'. $x[1] .'-'. $x[0];
-				if ($post[$__key.'h'] == "") {
-					$__val .= ' 00:00';
-				} else {
-					$__val .= ' ' . $post[$__key.'h'];
-				}
-				unset($return[$__key.'d'], $return[$__key.'h']);
-				$return[$__key] = utf8_decode($__val);
-			}
-		}
-
-		foreach ($return as $key => $val) {
-			if (is_int($val) && $val <= 0) {
-				$return[$key] = null;
-			} elseif ($val == "") {
-				$return[$key] = null;
-			}
-		}
-
-		if ($this->insert($return)) {
+		if ($this->insert($post)) {
 			return true;
 		} else {
 			return false;
@@ -154,6 +100,10 @@ class Model_Db_ColetaEmbriao extends Model_Db
 
 	}
 
+	public function deleteColeta($id)
+	{
+		$this->delete('id = ' . intval($id));
+	}
 
 	public function listJsonColetaEmbriao($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
 	{
