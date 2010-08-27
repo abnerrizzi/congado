@@ -149,6 +149,8 @@ class ColetaembController extends Zend_Controller_Action
 
 			if ($coletaId > 0) {
 				$result = $coletaModel->getColetaEmbriao($coletaId);
+				$embriaoModel = new Model_Db_EstoqueEmbriao();
+				$this->view->embrioes = $embriaoModel->getByColeta($coletaId);
 				$coletaForm->populate($result);
 			} else {
 				throw new Exception("invalid record number");
