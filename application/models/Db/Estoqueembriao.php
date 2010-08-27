@@ -249,4 +249,35 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 		}
 		return $row->toArray();
 	}
+
+	public function getByColeta($coletaId)
+	{
+		$_cols = array(
+			'embriao',
+			'classificacao',
+			'grau',
+		);
+		$id = (int)$coletaId;
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('e' => $this->_name), $_cols, $this->_schema)
+			->joinRight(array('c' => 'coletaembriao'),
+				'e.doadora_id = c.vaca_id and e.touro_id = c.touro_id and e.dt_coleta = c.dt_coleta',
+				array(), $this->_schema)
+			->joinLeft('criador', 'e.criador_id = criador.id', array('criador_cod' => 'cod'),$this->_schema)
+			->where('c.id = ?', $id)
+			;
+		$return = array();
+		$i = 0;
+		$resutls = $this->fetchAll($this->_select)->toArray();
+		foreach ($resutls as $row) {
+			foreach ($row as $key => $val) {
+				$return[$i][$key] = utf8_encode($val);
+			};
+			$i++;
+		}
+
+		return $return;
+
+	}
 }

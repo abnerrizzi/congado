@@ -671,8 +671,8 @@ $this->form->getElement('delete')->setAttrib('onclick', "check_delete(".$this->f
 
 
 
-
-<table cellspacing="0" cellpadding="0" border="0" bgcolor="#f7f6f1" align="center" style="border-right: 1px solid rgb(204, 204, 204); border-left: 1px solid rgb(145, 145, 145); -moz-user-select: none;">
+<div id="divGridEmbriao" style="height: 220px; scroll; overflow-x: hidden;">
+<table id="emb" cellspacing="0" cellpadding="0" border="0" bgcolor="#f7f6f1" align="center" style="border-right: 1px solid rgb(204, 204, 204); border-left: 1px solid rgb(145, 145, 145); -moz-user-select: none;">
 
 <!-- START OF TABLE HEAD -->
 	  <tbody>
@@ -735,6 +735,7 @@ $this->form->getElement('delete')->setAttrib('onclick', "check_delete(".$this->f
 		</tr>
 <!-- END OF TABLE HEAD -->
 
+<?foreach ($this->embrioes as $embriao):?>
 
 		<tr>
 		  <td height="2" bgcolor="#bfbdb3" colspan="12"/>
@@ -751,62 +752,16 @@ $this->form->getElement('delete')->setAttrib('onclick', "check_delete(".$this->f
 
 <tr class="row1" id="id1">
   <td align="center"></td>
-  <td>EMBCOD1</td>
+  <td><?=$embriao['embriao'];?></td>
   <td style="background: url('<?=$this->baseUrl();?>/images/grid/divisor_content.gif');"></td>
   <td align="center"></td>
-  <td>HP</td>
+  <td><?=$embriao['criador_cod'];?></td>
   <td style="background: url('<?=$this->baseUrl();?>/images/grid/divisor_content.gif');"></td>
   <td align="center"></td>
-  <td>-</td>
+  <td><?=$embriao['classificacao'];?></td>
   <td style="background: url('<?=$this->baseUrl();?>/images/grid/divisor_content.gif');"></td>
   <td align="center"></td>
-  <td colspan="2">-</td>
-</tr>
-
-
-<tr class="content">
-  <td height="4" colspan="12"/>
-</tr>
-<tr>
-  <td height="1" bgcolor="#bfbdb3" colspan="12"/>
-</tr>
-
-
-<tr class="row1" id="id2">
-  <td align="center"></td>
-  <td>EMBCOD2</td>
-  <td style="background: url('<?=$this->baseUrl();?>/images/grid/divisor_content.gif');"></td>
-  <td align="center"></td>
-  <td>HP</td>
-  <td style="background: url('<?=$this->baseUrl();?>/images/grid/divisor_content.gif');"></td>
-  <td align="center"></td>
-  <td>-</td>
-  <td style="background: url('<?=$this->baseUrl();?>/images/grid/divisor_content.gif');"></td>
-  <td align="center"></td>
-  <td colspan="2">-</td>
-</tr>
-
-
-<tr class="content">
-  <td height="4" colspan="12"/>
-</tr>
-<tr>
-  <td height="1" bgcolor="#bfbdb3" colspan="12"/>
-</tr>
-
-
-<tr class="row1" id="id3">
-  <td align="center"></td>
-  <td>EMBCOD3</td>
-  <td style="background: url('<?=$this->baseUrl();?>/images/grid/divisor_content.gif');"></td>
-  <td align="center"></td>
-  <td>HP</td>
-  <td style="background: url('<?=$this->baseUrl();?>/images/grid/divisor_content.gif');"></td>
-  <td align="center"></td>
-  <td>-</td>
-  <td style="background: url('<?=$this->baseUrl();?>/images/grid/divisor_content.gif');"></td>
-  <td align="center"></td>
-  <td colspan="2">-</td>
+  <td><?=$embriao['grau'];?></td>
 </tr>
 
 
@@ -815,6 +770,7 @@ $this->form->getElement('delete')->setAttrib('onclick', "check_delete(".$this->f
 </tr>
 
 
+<?endforeach;?>
 
 
 
@@ -824,7 +780,7 @@ $this->form->getElement('delete')->setAttrib('onclick', "check_delete(".$this->f
 
 </tbody></table>
 
-
+</div>
 
     </td>
     <td width="20"></td>
