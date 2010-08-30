@@ -1,4 +1,31 @@
 var ajax_request;
+
+/**
+ * Funcao que pede confirmacao antes de sair de uma pagina
+ * de alteracao ou inclusao de registros
+ * 
+ * - Implementando funcao para verificar se algum campo foi alteraco
+ *   caso nenhum campo nao tenha sido alterado, ignorar confirmacao.
+ */
+$(document).ready(function() {
+
+	url = window.location.href.split('/');
+	for (var i = 0; i < url.length; i++)
+	{
+		if (url[i] == 'edit') {
+			window.onbeforeunload = function(){
+				return 'Deseja descartar as alteracoes e sair desta página sem salvar os dados?';
+			};
+		}
+	}
+
+});
+
+//$(window).unload(function() {
+//	
+//});
+
+
 /**
  * 
  */
