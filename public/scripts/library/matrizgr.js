@@ -1,8 +1,10 @@
 $(document).ready(function() {
 
-	addSearchIcon('raca', baseUrl+'/json/raca', 'Raça', 'showfilter_raca', 600, 240);
-	addSearchIcon('pai', baseUrl+'/json/grausangue', 'Matriz Grau Sangue', 'showfilter_grausangue', 600, 240);
-	addSearchIcon('mae', baseUrl+'/json/grausangue', 'Matriz Grau Sangue', 'showfilter_grausangue', 600, 240);
+	if (checkAddUrl(window.location.href) == true) {
+		addSearchIcon('raca', baseUrl+'/json/raca', 'Raça', 'showfilter_raca', 600, 240);
+		addSearchIcon('pai', baseUrl+'/json/grausangue', 'Matriz Grau Sangue', 'showfilter_grausangue', 600, 240);
+		addSearchIcon('mae', baseUrl+'/json/grausangue', 'Matriz Grau Sangue', 'showfilter_grausangue', 600, 240);
+	}
 	addSearchIcon('cria', baseUrl+'/json/grausangue', 'Matriz Grau Sangue', 'showfilter_grausangue', 600, 240);
 
 	$("#pai, #mae, #cria, #raca").change(changeCod);
