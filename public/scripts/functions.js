@@ -1,4 +1,6 @@
 var ajax_request;
+var __changed = false;
+var __url = false;
 
 /**
  * Funcao que pede confirmacao antes de sair de uma pagina
@@ -7,24 +9,42 @@ var ajax_request;
  * - Implementando funcao para verificar se algum campo foi alteraco
  *   caso nenhum campo nao tenha sido alterado, ignorar confirmacao.
  */
+window.onbeforeunload = function(evt) {
+	var msg = 'Deseja descartar as alteracoes e sair desta página sem salvar os dados?';
+	if (__changed == true) {
+
+		__changed == null;
+
+		if (typeof evt == 'undefined') {
+			evt = window.event;
+		}
+
+		if (evt) {
+			evt.returnValue = msg;
+		}
+
+		return msg;
+	}
+};
+
 $(document).ready(function() {
 
 	url = window.location.href.split('/');
+
 	for (var i = 0; i < url.length; i++)
 	{
-		if (url[i] == 'edit') {
-			window.onbeforeunload = function(){
-				return 'Deseja descartar as alteracoes e sair desta página sem salvar os dados?';
-			};
+		if (url[i] == 'edit' || url[i] == 'add') {
+			$('input[type=text][class=input]')
+			.change(function(){
+				__changed = true;
+			});
 		}
 	}
+	$("form").submit(function() {
+	      __changed = null;
+	});
 
 });
-
-//$(window).unload(function() {
-//	
-//});
-
 
 /**
  * 
@@ -801,5 +821,3 @@ function changeSelect() {
 		$("#ajax_loader").fadeOut(30);
 	}, "json");
 }
-
-
