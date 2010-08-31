@@ -97,9 +97,6 @@ $this->headLink()
       <?=$this->form->cria_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->cria_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->cria->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_grausangue('<?=$this->baseUrl();?>/json/grausangue','cria');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
