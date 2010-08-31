@@ -11,7 +11,7 @@
  * @version $Id$
  * 
  */
-class Form_Matrizgr extends Form_Default
+class Form_MatrizGr extends Form_Default
 {
 
 	protected $_standardElementDecorator = array(
