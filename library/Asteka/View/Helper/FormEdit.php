@@ -166,7 +166,7 @@ class Asteka_View_Helper_FormEdit extends Zend_View_Helper_Abstract
 <span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = \''.$baseUrl."/".$moduleName.Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;">
 <span class="UIIcon UIIcon_Cancel">&nbsp;</span>
   <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="'.$form->getElement('cancel')->getName().'" id="'.$form->getElement('cancel')->getId().'"
-  onclick="location.href = \''.$baseUrl."/".$moduleName.Zend_Controller_Front::getInstance()->getRequest()->getControllerName().'\'; return false;"/>
+  />
 </span>
 
     </td>
