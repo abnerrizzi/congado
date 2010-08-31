@@ -81,7 +81,7 @@ class MatrizgrController extends Zend_Controller_Action
 	public function addAction()
 	{
 
-		$matrizgrForm = new Form_Matrizgr();
+		$matrizgrForm = new Form_MatrizGr();
 		$matrizgrForm->setAction('/matrizgr/add');
 		$matrizgrForm->setMethod('post');
 		$this->view->elements = array(array('raca'), array('pai'), array('mae'), array('cria'));
@@ -143,7 +143,7 @@ class MatrizgrController extends Zend_Controller_Action
 
 		$request		= $this->getRequest();
 		$matrizgrId		= (int)$request->getParam('id');
-		$matrizgrForm	= new Form_Matrizgr();
+		$matrizgrForm	= new Form_MatrizGr();
 		$racaModel	= new Model_Db_Raca();
 		
 		$matrizgrForm->setAction('/matrizgr/edit');
@@ -243,7 +243,7 @@ class MatrizgrController extends Zend_Controller_Action
 	{
 
 		$request = $this->getRequest();
-		$matrizgrForm = new Form_Matrizgr();
+		$matrizgrForm = new Form_MatrizGr();
 		$matrizgrForm->setAction('matrizgr/delete');
 		$matrizgrForm->setMethod('post');
 		$matrizgrModel = new Model_Db_MatrizGrauSangue();
