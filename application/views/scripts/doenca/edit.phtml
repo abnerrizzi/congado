@@ -16,7 +16,7 @@
 
   <tr style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');">
     <td width="20" ></td>
-    <td colspan="5" height="20" width="480" style="font-size: 11px;"><b>RACAS</b></td>
+    <td colspan="5" height="20" width="480" style="font-size: 11px;"><b><?=str_replace('_', ' ', strtoupper($this->form->getName()));?></b></td>
   </tr>
  
   <tr>
@@ -172,7 +172,7 @@
 <span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = '<?=$this->baseUrl()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName();?>'; return false;">
 <span class="UIIcon UIIcon_Cancel">&nbsp;</span>
   <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="<?=$this->form->getElement('cancel')->getName();?>" id="<?=$this->form->getElement('cancel')->getId();?>"
-  onclick="location.href = '<?=$this->baseUrl()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName();?>'; return false;"/>
+  >
 </span>
 
 

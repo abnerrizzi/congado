@@ -120,7 +120,7 @@ class Form_ColetaEmbriao extends Form_Default
 			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 6,
 			'size' => 4,
-			'class'	=> 'input',
+			'class'	=> 'input_num',
 		));
 
 		$this->addElement('text', 'distribuicao', array(
@@ -160,7 +160,7 @@ class Form_ColetaEmbriao extends Form_Default
 			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
-			'class'	=> 'input',
+			'class'	=> 'input_num',
 		));
 
 		$this->addElement('text', 'cio_tipo', array(
@@ -216,7 +216,7 @@ class Form_ColetaEmbriao extends Form_Default
 			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
-			'class'	=> 'input',
+			'class'	=> 'input_num',
 		));
 
 		$this->addElement('hidden', 'touro_id');
@@ -270,7 +270,7 @@ class Form_ColetaEmbriao extends Form_Default
 			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
-			'class'	=> 'input',
+			'class'	=> 'input_num',
 		));
 
 		$this->addElement('text', 'partida1', array(
@@ -310,7 +310,7 @@ class Form_ColetaEmbriao extends Form_Default
 			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
-			'class'	=> 'input',
+			'class'	=> 'input_num',
 		));
 
 		$this->addElement('text', 'partida2', array(
@@ -350,7 +350,7 @@ class Form_ColetaEmbriao extends Form_Default
 			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
-			'class'	=> 'input',
+			'class'	=> 'input_num',
 		));
 
 		$this->addElement('text', 'partida3', array(
@@ -390,7 +390,7 @@ class Form_ColetaEmbriao extends Form_Default
 			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
-			'class'	=> 'input',
+			'class'	=> 'input_num',
 		));
 
 		$this->addElement('text', 'partida4', array(
@@ -438,7 +438,7 @@ class Form_ColetaEmbriao extends Form_Default
 			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
-			'class'	=> 'input',
+			'class'	=> 'input_num',
 		));
 
 		$this->addElement('text', 'avalia_oe', array(
@@ -446,7 +446,7 @@ class Form_ColetaEmbriao extends Form_Default
 			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
-			'class'	=> 'input',
+			'class'	=> 'input_num',
 		));
 
 		$this->addElement('text', 'viavel', array(
@@ -454,7 +454,7 @@ class Form_ColetaEmbriao extends Form_Default
 			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
-			'class'	=> 'input',
+			'class'	=> 'input_num',
 		));
 
 		$this->addElement('text', 'nao_viavel', array(
@@ -462,7 +462,7 @@ class Form_ColetaEmbriao extends Form_Default
 			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
-			'class'	=> 'input',
+			'class'	=> 'input_num',
 		));
 
 		$this->addElement('text', 'fecundada', array(
@@ -470,7 +470,7 @@ class Form_ColetaEmbriao extends Form_Default
 			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
-			'class'	=> 'input',
+			'class'	=> 'input_num',
 		));
 
 		$this->addElement('text', 'nao_fecundada', array(
@@ -478,7 +478,7 @@ class Form_ColetaEmbriao extends Form_Default
 			'filters' => array('StringTrim', 'Int'),
 			'maxlength' => 4,
 			'size' => 4,
-			'class'	=> 'input',
+			'class'	=> 'input_num',
 		));
 
 		$this->addElement('text', 'cdg', array(
