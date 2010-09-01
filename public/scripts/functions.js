@@ -34,7 +34,7 @@ $(document).ready(function() {
 	for (var i = 0; i < url.length; i++)
 	{
 		if (url[i] == 'edit' || url[i] == 'add') {
-			$('input[type=text][class=input], input[type=text][class=input_num], input[type=checkbox], input[type=radio], select[class=input]')
+			$('input[type=text][class=input], input[type=text][class=input_num], input[type=checkbox], input[type=radio], select[class=input], textarea[class=input]')
 			.change(function(){
 				__changed = true;
 			});
