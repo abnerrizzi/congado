@@ -21,6 +21,7 @@ $portugues['stringEmpty'] = "'%value%' é uma string vazia";
  * Email
  */
 $portugues['emailAddressInvalid'] = 'Não é um email válido no formato nome@servidor';
+$portugues['emailAddressInvalidFormat'] = "'%value%' Não é um endereço de email válido no formato básico usuario@servidor";
 
 /*
  * Hostname
