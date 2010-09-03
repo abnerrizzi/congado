@@ -196,12 +196,37 @@ class ColetaembController extends Zend_Controller_Action
     		'soro_partida',
     	);
 
+    	$__integerElements = array(
+    		'dosagem',
+    		'gnrh_dosagem',
+    		'prost_dosagem',
+    		'dose1',
+    		'dose2',
+    		'dose3',
+    		'dose4',
+    		'avalia_od',
+    		'avalia_oe',
+    		'fecundada',
+    		'nao_fecundada',
+    		'viavel',
+    		'nao_viavel',
+    	);
+    	/*
+
+			$('#viavel').css('background-color','#F7F6F4');
+			$('#viavel').css('border','0px');
+
+		*/
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
+			// Adicionando filtro de inteiro
+			foreach ($__integerElements as $var) {
+				$coletaForm->getElement($var)->addFilter('Int');
+				
+			}
+			die();
 			if ($coletaForm->isValid($formData)) {
 				$coletaModel = new Model_Db_ColetaEmbriao();
-//				$post = $coletaForm->getValues();
-//				unset($post['cancel'], $post['submit'], $post['delete'], $post['obs']);
 				$post = $this->adjustFormsValues($coletaForm);
 				if ($coletaModel->addColeta($post)) {
 					$this->_redirect('/'. $this->getRequest()->getControllerName());

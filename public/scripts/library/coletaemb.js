@@ -1,4 +1,29 @@
+function checkInts()
+{
+	for ( var int = 0; int < $('#tab3 .input_num').length; int++) {
+		var __el =  $('#tab3 .input_num')[int];
+		if (isNaN(parseInt(__el.value))) {
+			__el.value = 0;
+		}
+	}
+}
+
 $(document).ready(function() {
+
+		// implementar validacao
+		/*
+		 * (viavel + nao_viavel) = fecundada
+		 * num_emb_na_lista = viavel
+		 */
+
+	// verifica o numero de estruturas viaves/nao viaveis x fecundadas
+	// ((parseInt($('#viavel').val()) + parseInt($('#nao_viavel').val())) == parseInt($('#fecundada').val()));
+
+	/*
+	 * msg d aviso do congado
+	 * O número de embriões lançados está menor que o número de estruturas viáveis.
+	 */
+
 
 	$('#vaca, #vaca_cod')
 		.css('font-size', '16px')
@@ -45,8 +70,8 @@ $(document).ready(function() {
 	        	val = val +'/';
 	        	$(this).val(val);
 	        }
-	}).focus(function() { 
-        $('#ui-datepicker-div').css('left', $(this).offset().left + 80); 
+	}).focus(function() {
+        $('#ui-datepicker-div').css('left', $(this).offset().left + 80);
     });
 
 	$("#prost_dhd, #gnrh_dhd, #cio_dhd, #insemina_dh1d, #insemina_dh2d, #insemina_dh3d, #insemina_dh4d").datepicker({
