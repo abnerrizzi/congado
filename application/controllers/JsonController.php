@@ -701,6 +701,11 @@ class JsonController extends Zend_Controller_Action
 		$this->render('index');
 	}
 
+	public function estoqueembAction()
+	{
+		return $this->estoqueembriaoAction();
+	}
+
 	public function ultimoembriaoAction()
 	{
 		$estoqueModel = new Model_Db_EstoqueEmbriao();
