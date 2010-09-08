@@ -23,6 +23,9 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 
 		if ($orderby == 'data_coleta') {
 			$orderby = 'dt_coleta';
+		// ordenacao natural
+//		} elseif ($orderby == 'embriao') {
+//			$orderby = "natsort_canon(`embriao`, 'natural')";
 		}
 
 		$this->_select = $this->select()
@@ -52,7 +55,6 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 			->joinLeft(array('criador' => 'criador'), $this->_name.'.criador_id = criador.id',array('criador_cod' => 'cod', 'criador' => 'dsc'),$this->_schema)
 			->where($this->_name.'.id = ?', (int)$id)
 			;
-		die('<pre>'.$this->_select);
 		$row = $this->fetchRow($this->_select);
 		if (!$row) {
 			throw new Exception("Count not find row $id");
@@ -157,6 +159,8 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 
 		if ($orderby == 'data_coleta') {
 			$orderby = 'dt_coleta';
+		} elseif ($orderby == 'embriao') {
+			$orderby = "natsort_canon(`embriao`, 'natural')";
 		}
 
 		$col_id = $this->_name.'.id';
@@ -266,18 +270,42 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 				array(), $this->_schema)
 			->joinLeft('criador', 'e.criador_id = criador.id', array('criador_cod' => 'cod'),$this->_schema)
 			->where('c.id = ?', $id)
+			->order("natsort_canon(`embriao`, 'natural')")
 			;
 		$return = array();
 		$i = 0;
 		$resutls = $this->fetchAll($this->_select)->toArray();
 		foreach ($resutls as $row) {
+			$is_numeric = false;
 			foreach ($row as $key => $val) {
+				if ($key == 'embriao') {
+					for ($index = 0; $index < strlen($val); $index++) {
+						if (is_numeric(substr($val, $index, 1))) {
+							$codAtual = substr($val, 0, ($index-1));
+							break;
+						}
+					}
+				}
 				$return[$i][$key] = utf8_encode($val);
 			};
 			$i++;
 		}
 
+		foreach ($return as $row => $array) {
+			$temp[$row] = $array['embriao'];
+		}
+
 		return $return;
 
+	}
+
+	private function sortByNaturalOrder($results, $fieldNameInArray)
+	{
+		foreach ($results as $row => $array) {
+			$temp[$row] = $array[$fieldNameInArray];
+		}
+		usort($temp, 'strnatcmp');
+		
+		return $results;
 	}
 }
