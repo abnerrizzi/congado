@@ -61,6 +61,9 @@ class Model_Db_Fichario extends Model_Db
 	public function listJsonFicharios($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
 	{
 
+//		if ($orderby == 'cod') {
+//			$orderby = "natsort_canon(`cod`, 'natural')";
+//		}
 		$col_id = $this->_name.'.id';
 		$col_id = 'id';
 		$this->_select = $this->select()
