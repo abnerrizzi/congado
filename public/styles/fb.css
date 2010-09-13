@@ -122,6 +122,13 @@ height: 12px;
 	background-position: 0 -973px;
 	height: 15px;
 	}
+
+.UIIcon_Update{
+	background-image:url(/images/update.gif);
+	background-position: -3 0px;
+	background-repeat: no-repeat;
+	}
+
 /*
 .UIIcon_Save{background-image:url(/styles/images/fb-icons.png);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px;vertical-align:bottom;white-space: nowrap;background-position: 0% -216px;}
 .UIIcon_Cancel{background-image:url(/styles/images/fb-icons.png);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px;vertical-align:bottom;white-space: nowrap;background-position: 0% -216px;}
