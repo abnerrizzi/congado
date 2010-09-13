@@ -8,6 +8,53 @@ function checkInts()
 	}
 }
 
+function checkEmbrioes()
+{
+	checkInts();
+
+	var avaliadas	= parseInt($('#avalia_od').val()) + parseInt($('#avalia_oe').val());
+	var fecundadas	= parseInt($('#fecundada').val()) + parseInt($('#nao_fecundada').val());
+	var viaveis		= parseInt($('#viavel').val()) + parseInt($('#nao_viavel').val());
+
+	if (avaliadas != fecundadas) {
+		window.alert('O total de estruturas fecundadas e não fecundadas deve ser igual ao número de estruturas avaliadas.');
+		return false;
+	} else if (viaveis != parseInt($('#fecundada').val())) {
+		window.alert('O total de estruturas viáveis e não viáveis deve ser igual ao número de estruturas fecundadas.');
+		return false;
+	} else if (parseInt($('#vaca_id').val()) > 0) {
+		window.alert('aguarde enquanto o grid eh criado');
+		// chama a funcao de criar as linhas na tabela de embrioes
+	} else {
+		window.alert('ocorreu um erro inesperado');
+	}
+
+	if ($('#ultimo').val() != "") {
+		var _ultimo = $('#ultimo').val();
+		for (var int = (_ultimo.length - 1); int >= 0; int--) {
+			if (parseInt(_ultimo.substr(int,1)) >= 0) {
+				var firstInt = int;
+				console.log('Int: ' + int);
+			} else {
+				break;
+			}
+		}
+		console.log('ultima' + '(' + _ultimo.substr(firstInt) + ')');
+		console.log('str:  ' + '(' + _ultimo.substr(0, firstInt) + ')');
+	}
+	/*
+
+	$('#fazenda_id').val(1);$('#dt_coleta').val('10/09/2010');
+	$('#vaca_cod').val(101);$('#vaca_cod').change();
+
+	$('#tabs').show();$('#tabs').tabs('option', 'selected', 2);
+	$('#avalia_od').val(11);$('#avalia_oe').val(10);
+	$('#fecundada').val(21);$('#nao_fecundada').val(0);
+	$('#viavel').val(21);$('#nao_viavel').val(0);
+
+	 */
+}
+
 $(document).ready(function() {
 
 		// implementar validacao
