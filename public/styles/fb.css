@@ -20,7 +20,22 @@ a, a:visited{cursor:pointer;color:#3b5998;-moz-outline-style:none;text-decoratio
 .UIButton:hover,
 .UIButton:active{text-decoration:none}
 .UIButton:active{-moz-box-shadow:0 1px 0 rgba(0,0,0,.05);-webkit-box-shadow:0 1px 0 rgba(0,0,0,.05)}
-.UIButton_Text{background-color:transparent;border:none;cursor:pointer;display:block;font-size:11px;font-weight:bold;line-height:14px;*line-height:13px;margin:0;overflow:visible;padding:0;*padding-bottom:1px;width:auto}
+.UIButton_Text{
+	background-color:transparent;
+	border:none;
+	cursor:pointer;
+	display:block;
+	font-size:11px;
+	font-weight:bold;
+	line-height:14px;
+	*line-height:13px;
+	margin:0;
+	overflow:visible;
+	padding:0;
+	*padding-bottom:1px;
+	width:auto;
+	height: 16px;
+}
 .UIButton_Large{padding:4px 8px 5px}
 .UIButton_Large .UIButton_Text{font-size:13px;line-height:16px}
 .UIButton_CustomIcon .UIButton_Text{line-height:16px}
@@ -93,7 +108,12 @@ a.UIActionButton_SuppressText{padding:3px 0 3px 4px}
     margin-top:-1px;margin-bottom:-1px
 }
 
-span.UIButton_IconNoSpriteMap_Search{background-image:url(/styles/images/fb-chat.png);margin-top:-1px;margin-bottom:-1px}
+span.UIButton_IconNoSpriteMap_Search{
+	background:url(/images/search.png) no-repeat;
+	margin-top:0px;
+	margin-bottom:0px;
+	background-position: 4pt 1px;
+}
 span.UIButton_IconNoSpriteMap_Icons{background-image:url(/styles/images/fb-icons.png);margin-top:-1px;margin-bottom:-1px}
 
 
