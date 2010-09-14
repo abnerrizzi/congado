@@ -1,3 +1,16 @@
+function _xf()
+{
+	$('#fazenda_id').val(1);$('#dt_coleta').val('10/09/2010');
+	$('#vaca_cod').val(101);$('#vaca_cod').change();
+	$('#tabs').show();$('#tabs').tabs('option', 'selected', 2);
+	$('#avalia_od').val(11);$('#avalia_oe').val(10);
+	$('#fecundada').val(21);$('#nao_fecundada').val(0);
+	$('#viavel').val(21);$('#nao_viavel').val(0);
+}
+
+
+
+
 function checkInts()
 {
 	for ( var int = 0; int < $('#tab3 .input_num').length; int++) {
@@ -23,7 +36,9 @@ function checkEmbrioes()
 		window.alert('O total de estruturas viáveis e não viáveis deve ser igual ao número de estruturas fecundadas.');
 		return false;
 	} else if (parseInt($('#vaca_id').val()) > 0) {
-		window.alert('aguarde enquanto o grid eh criado');
+		// Ta tudo OK
+		// Continua o script ate chamar a funcao e gerar o grid
+		// window.alert('aguarde enquanto o grid eh criado');
 		// chama a funcao de criar as linhas na tabela de embrioes
 	} else {
 		window.alert('ocorreu um erro inesperado');
@@ -34,25 +49,17 @@ function checkEmbrioes()
 		for (var int = (_ultimo.length - 1); int >= 0; int--) {
 			if (parseInt(_ultimo.substr(int,1)) >= 0) {
 				var firstInt = int;
-				console.log('Int: ' + int);
 			} else {
 				break;
 			}
 		}
-		console.log('ultima' + '(' + _ultimo.substr(firstInt) + ')');
-		console.log('str:  ' + '(' + _ultimo.substr(0, firstInt) + ')');
+//		console.log('ultima' + '(' + _ultimo.substr(firstInt) + ')');
+//		console.log('str:  ' + '(' + _ultimo.substr(0, firstInt) + ')');
+		_ultimoInt = _ultimo.substr(firstInt);
+		_ultimoStr = _ultimo.substr(0, firstInt);
+
+		createGridData(_ultimoInt, _ultimoStr, parseInt($('#viavel').val()));
 	}
-	/*
-
-	$('#fazenda_id').val(1);$('#dt_coleta').val('10/09/2010');
-	$('#vaca_cod').val(101);$('#vaca_cod').change();
-
-	$('#tabs').show();$('#tabs').tabs('option', 'selected', 2);
-	$('#avalia_od').val(11);$('#avalia_oe').val(10);
-	$('#fecundada').val(21);$('#nao_fecundada').val(0);
-	$('#viavel').val(21);$('#nao_viavel').val(0);
-
-	 */
 }
 
 $(document).ready(function() {
@@ -310,3 +317,108 @@ function buscaUltimoEmbriao(el)
 }
 
 
+function createGridData(int, str, size)
+{
+	int++;
+	console.log('Int: ' + int + '\n' + 'Str: ' + str + '\n' + 'siz: ' + size);
+	// remove default row
+	$('#id1').remove();
+
+	// total rows except bottom
+	for (var i = 0; i < size; i++) {
+		sequence = str + (parseInt(int)+parseInt(i));
+//		_lastRow = $('#embrioes')[0].rows.length-2;
+		// insere tr;
+
+
+
+		// espacamento anterior
+		if (i > 0) {
+			_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+				_r1.className = 'content';
+			_c0 = _r1.insertCell(0);
+				_c0.height = 2;
+				_c0.colSpan = 12;
+		}
+
+		// Conteudo
+		_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+			_r1.className = 'row' + (i%2);
+
+		currentCell = 0;
+		cell = _r1.insertCell(currentCell);
+
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		cell.innerHTML = sequence;
+
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		cell.style.backgroundImage = "url(/images/grid/divisor_content.gif)";
+
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		cell.innerHTML = 'innerHTML';
+
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		cell.style.backgroundImage = "url(/images/grid/divisor_content.gif)";
+
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		cell.innerHTML = 'xxx';
+
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		cell.style.backgroundImage = "url(/images/grid/divisor_content.gif)";
+
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		cell.innerHTML = 'yyy';
+		cell = _r1.insertCell(currentCell);
+		cell.style.backgroundImage = "url(/images/grid/divisor_content.gif)";
+
+		if (i < (size-1)) {
+			_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+			_c0 = _r1.insertCell(0);
+			_c0.colSpan = 12;
+			_c0.height = 2;
+
+			_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+			_c0 = _r1.insertCell(0);
+			_c0.bgColor = "#bfbdb3";
+			_c0.colSpan = 12;
+			_c0.height = 1;
+//			_line = '';
+//			_line = _line + '<tr class="row'+(i%2)+'">';
+//			_line = _line + '<td align="center"></td>';
+//			_line = _line + '<td>'+sequence+'</td>';
+//			_line = _line + '<td style="background: url(/images/grid/divisor_content.gif);"></td>';
+//			_line = _line + '<td align="center"></td>';
+//			_line = _line + '<td>CRIADOR</td>';
+//			_line = _line + '<td style="background: url(/images/grid/divisor_content.gif);"></td>';
+//			_line = _line + '<td align="center"></td>';
+//			_line = _line + '<td>Classificacao</td>';
+//			_line = _line + '<td style="background: url(/images/grid/divisor_content.gif);"></td>';
+//			_line = _line + '<td align="center"></td>';
+//			_line = _line + '<td>Grau</td>';
+//			_line = _line + '</tr>';
+//			$('#embrioes tr:eq('+parseInt($('#embrioes')[0].rows.length-2)+')').html(_line);
+//			$('#embrioes')[0].insertRow($('#embrioes')[0].rows.length-2);
+//			$('#embrioes tr:eq('+parseInt(($('#embrioes')[0].rows.length-2))+')').html('<tr><td height="1" bgcolor="#bfbdb3" colspan="*"/></tr>');
+		} else {
+			// ultima linha 
+//			_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+//			_r1.className = 'content';
+//			_c0 = _r1.insertCell(0);
+//			_c0.colSpan = 12;
+//			_c0.height = 4;
+		}
+	}
+
+}
