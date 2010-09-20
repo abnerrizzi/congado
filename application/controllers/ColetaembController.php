@@ -224,10 +224,14 @@ class ColetaembController extends Zend_Controller_Action
 				$coletaForm->getElement($var)->addFilter('Int');
 				
 			}
-			die();
 			if ($coletaForm->isValid($formData)) {
 				$coletaModel = new Model_Db_ColetaEmbriao();
 				$post = $this->adjustFormsValues($coletaForm);
+				Zend_Debug::dump($post);
+				print '<pre>';
+				print_r($this->getRequest()->getParams());
+				print '</pre>';
+				die();
 				if ($coletaModel->addColeta($post)) {
 					$this->_redirect('/'. $this->getRequest()->getControllerName());
 				}

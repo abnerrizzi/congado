@@ -1,5 +1,29 @@
 <?php
-
+/*
+function AUTHAD($host, $domain, $user, $pass) {
+    if ((strlen($user) >= 3) && (strlen($pass) >= 4)) {
+        $conecta = ldap_connect($host);
+		ldap_set_option($conecta, LDAP_OPT_PROTOCOL_VERSION, 3);
+		ldap_set_option($conecta, LDAP_OPT_REFERRALS, 0);
+        $bind 	 = ldap_bind($conecta, $user . "@" . $domain, $pass);
+        if (!$conecta) {
+            return false; //echo ldap_error($conecta);
+        } elseif (!$bind) {
+            return false; //echo ldap_error($conecta);
+        } else {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
+if (AUTHAD('192.163.1.200', 'HPTRANSPORTES', 'testej', 'teste')) {
+	print 'LOGOU';
+} else {
+	print 'ERRO';
+}
+die();
+*/
 /**
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>

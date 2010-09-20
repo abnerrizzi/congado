@@ -53,8 +53,6 @@ function checkEmbrioes()
 				break;
 			}
 		}
-//		console.log('ultima' + '(' + _ultimo.substr(firstInt) + ')');
-//		console.log('str:  ' + '(' + _ultimo.substr(0, firstInt) + ')');
 		_ultimoInt = _ultimo.substr(firstInt);
 		_ultimoStr = _ultimo.substr(0, firstInt);
 
@@ -319,19 +317,52 @@ function buscaUltimoEmbriao(el)
 
 function createGridData(int, str, size)
 {
+
+	__str = window.prompt('Qual codigo sera utilizado para gerar os embriões?', str);
+	if (__str == null) {
+		return false;
+	} else {
+		str = __str;
+	}
+
+	__int = window.prompt('Qual o numero para continuar a sequencia?', int);
+	if (__int == null && __int != int) {
+		return false;
+	}
+
+	// delete linhas caso existam linhas na tabela.
+	if ($('#embrioes tr').length > 7) {
+		while ($('#embrioes tr').length > 7)
+		{
+			$('#embrioes tr:eq(5)').remove();
+		}
+	}
+
 	int++;
-	console.log('Int: ' + int + '\n' + 'Str: ' + str + '\n' + 'siz: ' + size);
 	// remove default row
 	// $('#id1').remove();
 	// add empty line
+	_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+	_c0 = _r1.insertCell(0);
+	_c0.colSpan = 12;
+	_c0.height = 4;
+
+	_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+	_c0 = _r1.insertCell(0);
+	_c0.colSpan = 12;
+	_c0.height = 2;
+
+	_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+	_c0 = _r1.insertCell(0);
+	_c0.bgColor = "#bfbdb3";
+	_c0.colSpan = 12;
+	_c0.height = 1;
 
 	// total rows except bottom
 	for (var i = 0; i < size; i++) {
 		sequence = str + (parseInt(int)+parseInt(i));
 //		_lastRow = $('#embrioes')[0].rows.length-2;
 		// insere tr;
-
-
 
 		// espacamento anterior
 		if (i > 0) {
@@ -351,7 +382,12 @@ function createGridData(int, str, size)
 
 		currentCell++;
 		cell = _r1.insertCell(currentCell);
-		cell.innerHTML = sequence;
+		$(cell).html(sequence);
+		$('<input type="text" name="embriao['+i+'][cod]" value="'+sequence+'"/>').appendTo(cell).hide();
+		$(cell).click(function(){
+			$('[name*=embriao\['+i+'\]][name*=\[cod\]]').show();
+			window.alert('clicado: embriao\\['+i+'\\]\\[cod\\]');
+		});
 
 		currentCell++;
 		cell = _r1.insertCell(currentCell);
@@ -363,6 +399,9 @@ function createGridData(int, str, size)
 		currentCell++;
 		cell = _r1.insertCell(currentCell);
 		cell.innerHTML = 'innerHTML';
+		$(cell).click(function(){
+			window.alert('jquery click');
+		});
 
 		currentCell++;
 		cell = _r1.insertCell(currentCell);
@@ -372,7 +411,16 @@ function createGridData(int, str, size)
 		cell = _r1.insertCell(currentCell);
 		currentCell++;
 		cell = _r1.insertCell(currentCell);
-		cell.innerHTML = 'xxx';
+		_name = 'embriao['+i+'][class]';
+		$('<input type="text" name="'+_name+'" value="xxaa"/>').appendTo(cell).hide();
+		$(cell).html($("embriao['+i+'][class]").val());
+		$(cell).click(function()
+		{
+			window.alert(i);
+			console.log(_name);
+			$('[name*=embriao['+i+']][name*=cod]').show();
+			window.alert('criko: [name*=embriao['+i+']][name*=cod]');
+		});
 
 		currentCell++;
 		cell = _r1.insertCell(currentCell);
@@ -381,6 +429,7 @@ function createGridData(int, str, size)
 		currentCell++;
 		cell = _r1.insertCell(currentCell);
 		cell.innerHTML = 'yyy';
+		input = $('<input type="text" name="embriao['+i+'][grau]" value=""/>').appendTo(cell).hide();
 		cell = _r1.insertCell(currentCell);
 		cell.style.backgroundImage = "url(/images/grid/divisor_content.gif)";
 
@@ -398,4 +447,11 @@ function createGridData(int, str, size)
 		}
 	}
 
+}
+
+
+
+function toogleInput(i)
+{
+	window.alert(i);
 }
