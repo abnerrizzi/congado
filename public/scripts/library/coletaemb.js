@@ -408,7 +408,7 @@ function createGridData(int, str, size)
 		$(cell).click(function(){
 			CurrentId = $(this).parent().attr('lang');
 			CurrentField = $('[name*=embriao['+CurrentId+']][name*=cod]');
-			CurrentField.keyup(function(){$(this).val($(this).val().toUpperCase());})
+			CurrentField.keyup(function(){$(this).val($(this).val().toUpperCase());});
 			$('#cod'+CurrentId).hide();
 			CurrentField.show().focus().blur(function(){
 				$('#cod'+CurrentId).html(CurrentField.val()).show();
@@ -455,24 +455,21 @@ function createGridData(int, str, size)
 
 		currentCell++;
 		cell = _r1.insertCell(currentCell);
+
 		// Class
 		currentCell++;
 		cell = _r1.insertCell(currentCell);
-		$(cell).html('<span id="class'+i+'">class</span>');
+		$(cell).html('<span id="class'+i+'"></span>');
 		$('<input type="text" name="embriao['+i+'][class]" value="" size="7"/>').appendTo(cell).hide();
 		$(cell).html($("embriao['+i+'][class]").val());
 		$(cell).click(function(){
 			CurrentId = $(this).parent().attr('lang');
 			CurrentField = $('[name*=embriao['+CurrentId+']][name*=class]');
-
-			if ($('#criador0 select').length == 0) {
+			CurrentField.keyup(function(){$(this).val($(this).val().toUpperCase());});
+			$('#class'+CurrentId).hide();
+			CurrentField.show().focus().blur(function(){
 				$('#class'+CurrentId).html(CurrentField.val()).show();
-				window.alert('nao existe');
-			} else {
-				window.alert('ja existe');
-			}
-			CurrentField.change(function(){
-				window.alert('onChange');
+				CurrentField.hide();
 			});
 		});
 
@@ -483,8 +480,19 @@ function createGridData(int, str, size)
 		// Grau
 		currentCell++;
 		cell = _r1.insertCell(currentCell);
-		$(cell).html();
-		input = $('<input type="text" name="embriao['+i+'][grau]" value=""/>').appendTo(cell).hide();
+		$(cell).html('<span id="grau'+i+'"></span>');
+		$('<input type="text" name="embriao['+i+'][grau]" value="" size="7"/>').appendTo(cell).hide();
+		$(cell).html($("embriao['+i+'][grau]").val());
+		$(cell).click(function(){
+			CurrentId = $(this).parent().attr('lang');
+			CurrentField = $('[name*=embriao['+CurrentId+']][name*=grau]');
+			CurrentField.keyup(function(){$(this).val($(this).val().toUpperCase());});
+			$('#grau'+CurrentId).hide();
+			CurrentField.show().focus().blur(function(){
+				$('#grau'+CurrentId).html(CurrentField.val()).show();
+				CurrentField.hide();
+			});
+		});
 		cell = _r1.insertCell(currentCell);
 		cell.style.backgroundImage = "url(/images/grid/divisor_content.gif)";
 
