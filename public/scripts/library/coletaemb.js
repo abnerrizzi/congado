@@ -19,7 +19,7 @@ $(document).ready(function() {
 		ajax : 'true'
 	}, function(j) {
 		j = j.rows;
-		criadorJson = '<select name="criador"><option value=""> -- Selecione uma cidade --</option>';
+		criadorJson = '<select name="criador"><option value="">-- Selecione um criador --</option>';
 		for ( var i = 0; i < j.length; i++) {
 			criadorJson += '<option value="' + j[i].id + '">' + j[i].cell[0] +' - '+ j[i].cell[1]
 					+ '</option>';
@@ -426,16 +426,18 @@ function createGridData(int, str, size)
 		// Criador
 		currentCell++;
 		cell = _r1.insertCell(currentCell);
-		input = '<input type="hidden" name="embriao['+i+'][criador]" value="'+sequence+'" size="7"/>';
-		$(cell).html(input+'<span id="criador'+i+'">Criador</span>');
+		input = '<input type="hidden" name="embriao['+i+'][criador]" value="" size="7"/>';
+		$(cell).html(input+'<span id="criador'+i+'"> - </span>');
 		$(cell).click(function(){
 			CurrentId = $(this).parent().attr('lang');
 			CurrentField = $('[name*=embriao['+CurrentId+']][name*=criador]');
 			if ($('#criador'+CurrentId+' select').length == 0) {
 				$('#criador'+CurrentId).html(criadorJson);
 				$('#criador'+CurrentId+' select').focus();
+				$('#criador'+CurrentId+' select').val(CurrentField.val());
 			} else {
 				$('#criador'+CurrentId+' select').show();
+				$('#criador'+CurrentId+' select').val(CurrentField.val());
 			}
 			$('#criador'+CurrentId + ' select').change(function(){
 				CurrentField.val($('#criador'+CurrentId+' select').val());
