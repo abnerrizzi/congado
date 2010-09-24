@@ -1,4 +1,5 @@
-var criadorJson = '';
+var jsonCriador = '';
+var jsonCriado = false;
 $(document).ready(function() {
 
 		// implementar validacao
@@ -19,12 +20,12 @@ $(document).ready(function() {
 		ajax : 'true'
 	}, function(j) {
 		j = j.rows;
-		criadorJson = '<select name="criador"><option value="">-- Selecione um criador --</option>';
+		jsonCriador = '<select name="criador"><option value="">-- Selecione um criador --</option>';
 		for ( var i = 0; i < j.length; i++) {
-			criadorJson += '<option value="' + j[i].id + '">' + j[i].cell[0] +' - '+ j[i].cell[1]
+			jsonCriador += '<option value="' + j[i].id + '">' + j[i].cell[0] +' - '+ j[i].cell[1]
 					+ '</option>';
 		}
-		criadorJson += '</select>';
+		jsonCriador += '</select>';
 	}, "json");
 
 	$('#vaca, #vaca_cod')
@@ -182,9 +183,9 @@ function _xf()
 	$('#fazenda_id').val(1);$('#dt_coleta').val('10/09/2010');
 	$('#vaca_cod').val(101);$('#vaca_cod').change();
 	$('#tabs').show();$('#tabs').tabs('option', 'selected', 2);
-	$('#avalia_od').val(11);$('#avalia_oe').val(10);
-	$('#fecundada').val(21);$('#nao_fecundada').val(0);
-	$('#viavel').val(21);$('#nao_viavel').val(0);
+	$('#avalia_od').val(60);$('#avalia_oe').val(50);
+	$('#fecundada').val(110);$('#nao_fecundada').val(0);
+	$('#viavel').val(110);$('#nao_viavel').val(0);
 }
 
 
@@ -336,6 +337,11 @@ function buscaUltimoEmbriao(el)
 function createGridData(int, str, size)
 {
 
+	$('#ajax_loader').html('Gerando dados...').show();
+	if (jsonCriado == true)
+		if (!window.confirm("Deseja gerar novamente a tabela de embrioes? (Os dados anteriores serao substituidos)"))
+			return false;
+
 	__str = window.prompt('Qual codigo sera utilizado para gerar os embriões?', str);
 	if (__str == null) {
 		return false;
@@ -432,7 +438,7 @@ function createGridData(int, str, size)
 			CurrentId = $(this).parent().attr('lang');
 			CurrentField = $('[name*=embriao['+CurrentId+']][name*=criador]');
 			if ($('#criador'+CurrentId+' select').length == 0) {
-				$('#criador'+CurrentId).html(criadorJson);
+				$('#criador'+CurrentId).html(jsonCriador);
 				$('#criador'+CurrentId+' select').focus();
 				$('#criador'+CurrentId+' select').val(CurrentField.val());
 			} else {
@@ -508,7 +514,13 @@ function createGridData(int, str, size)
 			_c0.colSpan = 12;
 			_c0.height = 1;
 		}
+
+		setTimeout("", 500);
+
 	}
+	jsonCriado = true;
+	$('#ajax_loader').fadeOut(100);
+	window.title = i;
 
 }
 
