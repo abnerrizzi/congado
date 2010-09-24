@@ -155,6 +155,7 @@ $(document).ready(function() {
 		$('#touro').next().remove();
 	} else {
 		$('#tabs').hide();
+		$('#submit_').parent().hide();
 	}
 
 
@@ -245,6 +246,7 @@ function checkFields()
 	__return = false;
 	if ($("#vaca_id").val() != "" && $("#dt_coleta").val() != "") {
 		$('#tabs').show();
+		$('#submit_').parent().show();
 		$("#submit_").parent().parent().parent().show();
 		__return = true;
 	} else {
