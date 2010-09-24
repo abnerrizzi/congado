@@ -6,6 +6,7 @@
 $this->javascript();
 
 $this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/jskata.nofreeze.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.core.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.tabs.js')
@@ -756,7 +757,7 @@ $this->headLink()
 <tr class="row1" id="id1">
   <td align="center"></td>
   <td colspan="10" align="center">
-  <span class="UIButton UIButton_Large UIFormButton UIButton_Gray" onclick="">
+  <span class="UIButton UIButton_Large UIFormButton UIButton_Gray" onclick="checkEmbrioes()">
   <span class="UIIcon UIIcon_Update">&nbsp;</span>
     <input
 		style="display: inline-block;" 
@@ -765,7 +766,6 @@ $this->headLink()
 		value="Atualizar"
 		name="atualizar"
 		id="atualizar"
-		onclick="checkEmbrioes()"
 	/>
 </span>
 

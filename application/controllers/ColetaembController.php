@@ -227,11 +227,23 @@ class ColetaembController extends Zend_Controller_Action
 			if ($coletaForm->isValid($formData)) {
 				$coletaModel = new Model_Db_ColetaEmbriao();
 				$post = $this->adjustFormsValues($coletaForm);
-				Zend_Debug::dump($post);
-				print '<pre>';
-				print_r($this->getRequest()->getParams());
-				print '</pre>';
-				die();
+
+				if ((int)$post['viavel'] == count($this->getRequest()->getParam('embriao'))) {
+				$embriaoPost = $this->getRequest()->getParam('embriao');
+					foreach ($embriaoPost as $embriao)
+					{
+						$embriao['classificacao'] = $embriao['class'];
+						$embriao['criador_id'] = $embriao['criador'];
+						$embriao['fazenda_id'] = $post['fazenda_id'];
+						$embriao['dt_coleta'] = $post['dt_coleta'];
+						$embriao['doadora_id'] = $post['vaca_id'];
+						$embriao['touro_id'] = $post['touro_id'];
+						unset($embriao['class']);
+						$embrioes[] = $embriao;
+					}
+				} else {
+					throw new Zend_Controller_Action_Exception('erro inesperado.');
+				}
 				if ($coletaModel->addColeta($post)) {
 					$this->_redirect('/'. $this->getRequest()->getControllerName());
 				}
