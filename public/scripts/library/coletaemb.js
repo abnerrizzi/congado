@@ -184,9 +184,9 @@ function _xf()
 	$('#fazenda_id').val(1);$('#dt_coleta').val('10/09/2010');
 	$('#vaca_cod').val(101);$('#vaca_cod').change();
 	$('#tabs').show();$('#tabs').tabs('option', 'selected', 2);
-	$('#avalia_od').val(60);$('#avalia_oe').val(50);
-	$('#fecundada').val(110);$('#nao_fecundada').val(0);
-	$('#viavel').val(110);$('#nao_viavel').val(0);
+	$('#avalia_od').val(6);$('#avalia_oe').val(5);
+	$('#fecundada').val(11);$('#nao_fecundada').val(0);
+	$('#viavel').val(11);$('#nao_viavel').val(0);
 }
 
 
