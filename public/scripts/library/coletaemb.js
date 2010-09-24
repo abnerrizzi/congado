@@ -171,6 +171,7 @@ $(document).ready(function() {
 
 	$("#coleta_de_embrioes:form").submit(function() { toggleFields(false); });
 
+	checkFields();
 
 //	_xf();
 
@@ -184,9 +185,9 @@ function _xf()
 	$('#fazenda_id').val(1);$('#dt_coleta').val('10/09/2010');
 	$('#vaca_cod').val(101);$('#vaca_cod').change();
 	$('#tabs').show();$('#tabs').tabs('option', 'selected', 2);
-	$('#avalia_od').val(6);$('#avalia_oe').val(5);
-	$('#fecundada').val(11);$('#nao_fecundada').val(0);
-	$('#viavel').val(11);$('#nao_viavel').val(0);
+	$('#avalia_od').val(60);$('#avalia_oe').val(50);
+	$('#fecundada').val(110);$('#nao_fecundada').val(0);
+	$('#viavel').val(110);$('#nao_viavel').val(0);
 }
 
 
@@ -341,8 +342,10 @@ function createGridData(int, str, size)
 
 	$('#ajax_loader').html('Gerando dados...').show();
 	if (jsonCriado == true)
-		if (!window.confirm("Deseja gerar novamente a tabela de embrioes? (Os dados anteriores serao substituidos)"))
+		if (!window.confirm("Deseja gerar novamente a tabela de embrioes? (Os dados anteriores serao substituidos)")) {
+			$('#ajax_loader').fadeOut(100);
 			return false;
+		}
 
 	__str = window.prompt('Qual codigo sera utilizado para gerar os embriões?', str);
 	if (__str == null) {
@@ -387,8 +390,6 @@ function createGridData(int, str, size)
 	// total rows except bottom
 	for (var i = 0; i < size; i++) {
 		sequence = str + (parseInt(int)+parseInt(i));
-//		_lastRow = $('#embrioes')[0].rows.length-2;
-		// insere tr;
 
 		// espacamento anterior
 		if (i > 0) {
@@ -517,12 +518,9 @@ function createGridData(int, str, size)
 			_c0.height = 1;
 		}
 
-		setTimeout("", 500);
-
 	}
 	jsonCriado = true;
 	$('#ajax_loader').fadeOut(100);
-	window.title = i;
 
 }
 
