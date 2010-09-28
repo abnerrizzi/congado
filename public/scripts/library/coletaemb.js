@@ -2,20 +2,6 @@ var jsonCriador = '';
 var jsonCriado = false;
 $(document).ready(function() {
 
-		// implementar validacao
-		/*
-		 * (viavel + nao_viavel) = fecundada
-		 * num_emb_na_lista = viavel
-		 */
-
-	// verifica o numero de estruturas viaves/nao viaveis x fecundadas
-	// ((parseInt($('#viavel').val()) + parseInt($('#nao_viavel').val())) == parseInt($('#fecundada').val()));
-
-	/*
-	 * msg d aviso do congado
-	 * O número de embriões lançados está menor que o número de estruturas viáveis.
-	 */
-
 	$.post(baseUrl + '/json/criador', {
 		ajax : 'true'
 	}, function(j) {
@@ -173,7 +159,10 @@ $(document).ready(function() {
 
 	checkFields();
 
-//	_xf();
+	if ((typeof(jsonEmbrioes) != 'undefined') && jsonEmbrioes.length > 0) {
+		createGridDataJson(jsonEmbrioes);
+	}
+
 
 });
 
@@ -185,9 +174,9 @@ function _xf()
 	$('#fazenda_id').val(1);$('#dt_coleta').val('10/09/2010');
 	$('#vaca_cod').val(101);$('#vaca_cod').change();
 	$('#tabs').show();$('#tabs').tabs('option', 'selected', 2);
-	$('#avalia_od').val(60);$('#avalia_oe').val(50);
-	$('#fecundada').val(110);$('#nao_fecundada').val(0);
-	$('#viavel').val(110);$('#nao_viavel').val(0);
+	$('#avalia_od').val(6);$('#avalia_oe').val(5);
+	$('#fecundada').val(11);$('#nao_fecundada').val(0);
+	$('#viavel').val(11);$('#nao_viavel').val(0);
 }
 
 
@@ -295,7 +284,8 @@ function toggleFields(opt) {
 		"#insemina_dh4d",
 		"#insemina_dh4h",
 		"#dose4",
-		"#partida4"
+		"#partida4",
+		"#ultimo"
 	);
 
 	for (i=0; i < objs.length; i++)
@@ -529,4 +519,185 @@ function createGridData(int, str, size)
 function toogleInput(i)
 {
 	window.alert(i);
+}
+
+
+
+function createGridDataJson(json)
+{
+
+	$('#ajax_loader').html('Gerando dados...').show();
+
+	// delete linhas caso existam linhas na tabela.
+	if ($('#embrioes tr').length > 7) {
+		while ($('#embrioes tr').length > 7)
+		{
+			$('#embrioes tr:eq(5)').remove();
+		}
+	}
+
+	// remove default row
+	// $('#id1').remove();
+	// add empty line
+	_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+	_c0 = _r1.insertCell(0);
+	_c0.colSpan = 12;
+	_c0.height = 4;
+
+	_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+	_c0 = _r1.insertCell(0);
+	_c0.colSpan = 12;
+	_c0.height = 2;
+
+	_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+	_c0 = _r1.insertCell(0);
+	_c0.bgColor = "#bfbdb3";
+	_c0.colSpan = 12;
+	_c0.height = 1;
+
+	// total rows except bottom
+	size = json.length;
+	for (var i = 0; i < size; i++) {
+		row = json[i];
+
+		// espacamento anterior
+		if (i > 0) {
+			_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+				_r1.className = 'content';
+			_c0 = _r1.insertCell(0);
+				_c0.height = 2;
+				_c0.colSpan = 12;
+		}
+
+		// Conteudo
+		_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+			_r1.className = 'row' + (i%2);
+			_r1.lang = i;
+
+
+		currentCell = 0;
+		cell = _r1.insertCell(currentCell);
+
+		// Codigo
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		$(cell).html('<span id="cod'+i+'">'+row.cod+'</span>');
+		$('<input type="text" name="embriao['+i+'][cod]" value="'+row.cod+'" size="7"/>').appendTo(cell).hide();
+		$(cell).click(function(){
+			CurrentId = $(this).parent().attr('lang');
+			CurrentField = $('[name*=embriao['+CurrentId+']][name*=cod]');
+			CurrentField.keyup(function(){$(this).val($(this).val().toUpperCase());});
+			$('#cod'+CurrentId).hide();
+			CurrentField.show().focus().blur(function(){
+				$('#cod'+CurrentId).html(CurrentField.val()).show();
+				CurrentField.hide();
+			});
+		});
+
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		cell.style.backgroundImage = "url(/images/grid/divisor_content.gif)";
+
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+
+		// Criador
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		input = '<input type="hidden" name="embriao['+i+'][criador]" value="'+row.criador+'" size="7"/>';
+		$(cell).html(input+'<span id="criador'+i+'"> - </span>');
+		if (row.criador != '') {
+			$('#criador'+i).html(criadorJson[row.criador]);
+		}
+		$(cell).click(function(){
+			CurrentId = $(this).parent().attr('lang');
+			CurrentField = $('[name*=embriao['+CurrentId+']][name*=criador]');
+			if ($('#criador'+CurrentId+' select').length == 0) {
+				$('#criador'+CurrentId).html(jsonCriador);
+				$('#criador'+CurrentId+' select').focus();
+				$('#criador'+CurrentId+' select').val(CurrentField.val());
+			} else {
+				$('#criador'+CurrentId+' select').show();
+				$('#criador'+CurrentId+' select').val(CurrentField.val());
+			}
+			$('#criador'+CurrentId + ' select').change(function(){
+				CurrentField.val($('#criador'+CurrentId+' select').val());
+				$('#criador'+CurrentId).html($('#criador'+CurrentId+' select :selected').text().substr(0, strpos($('#criador'+CurrentId+' select :selected').text(), ' - ')));
+			});
+			$('#criador'+CurrentId + ' select').blur(function(){
+				CurrentField.val($('#criador'+CurrentId+' select').val());
+				$('#criador'+CurrentId).html($('#criador'+CurrentId+' select :selected').text().substr(0, strpos($('#criador'+CurrentId+' select :selected').text(), ' - ')));
+			});
+		});
+
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		cell.style.backgroundImage = "url(/images/grid/divisor_content.gif)";
+
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+
+		// Class
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		if (row.class != "") {
+			$(cell).html('<span id="class'+i+'">'+row.class+'</span>');
+		} else {
+			$(cell).html('<span id="class'+i+'"></span>');
+		}
+		$('<input type="text" name="embriao['+i+'][class]" value="'+row.class+'" size="7"/>').appendTo(cell).hide();
+		$(cell).click(function(){
+			CurrentId = $(this).parent().attr('lang');
+			CurrentField = $('[name*=embriao['+CurrentId+']][name*=class]');
+			CurrentField.keyup(function(){$(this).val($(this).val().toUpperCase());});
+			$('#class'+CurrentId).hide();
+			CurrentField.show().focus().blur(function(){
+				$('#class'+CurrentId).html(CurrentField.val()).show();
+				CurrentField.hide();
+			});
+		});
+
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		cell.style.backgroundImage = "url(/images/grid/divisor_content.gif)";
+
+		// Grau
+		currentCell++;
+		cell = _r1.insertCell(currentCell);
+		if (row.grau != "") {
+			$(cell).html('<span id="grau'+i+'">'+row.grau+'</span>');
+		} else {
+			$(cell).html('<span id="grau'+i+'"></span>');
+		}
+		$('<input type="text" name="embriao['+i+'][grau]" value="'+row.grau+'" size="7"/>').appendTo(cell).hide();
+		$(cell).click(function(){
+			CurrentId = $(this).parent().attr('lang');
+			CurrentField = $('[name*=embriao['+CurrentId+']][name*=grau]');
+			CurrentField.keyup(function(){$(this).val($(this).val().toUpperCase());});
+			$('#grau'+CurrentId).hide();
+			CurrentField.show().focus().blur(function(){
+				$('#grau'+CurrentId).html(CurrentField.val()).show();
+				CurrentField.hide();
+			});
+		});
+		cell = _r1.insertCell(currentCell);
+		cell.style.backgroundImage = "url(/images/grid/divisor_content.gif)";
+
+		if (i < (size-1)) {
+			_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+			_c0 = _r1.insertCell(0);
+			_c0.colSpan = 12;
+			_c0.height = 2;
+
+			_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
+			_c0 = _r1.insertCell(0);
+			_c0.bgColor = "#bfbdb3";
+			_c0.colSpan = 12;
+			_c0.height = 1;
+		}
+
+	}
+	jsonCriado = true;
+	$('#ajax_loader').fadeOut(100);
+
 }
