@@ -228,8 +228,9 @@ class ColetaembController extends Zend_Controller_Action
 				$coletaModel = new Model_Db_ColetaEmbriao();
 				$post = $this->adjustFormsValues($coletaForm);
 
-				if ((int)$post['viavel'] == count($this->getRequest()->getParam('embriao'))) {
+				// faz a contagem de embrioes passados vs. numero de embrioes viaveis
 				$embriaoPost = $this->getRequest()->getParam('embriao');
+				if ((int)$post['viavel'] != count($this->getRequest()->getParam('embriao'))) {
 					foreach ($embriaoPost as $embriao)
 					{
 						$embriao['classificacao'] = $embriao['class'];
@@ -242,11 +243,25 @@ class ColetaembController extends Zend_Controller_Action
 						$embrioes[] = $embriao;
 					}
 				} else {
-					throw new Zend_Controller_Action_Exception('erro inesperado.');
+					$json_Embriao = json_encode($this->getRequest()->getParam('embriao'));
+					$this->view->embriao = $json_Embriao;
+					$this->view->ultimo = $this->getRequest()->getParam('ultimo');
+					$coletaForm->populate($formData);
+					print '<pre>';
+//					print_r($this->getRequest()->getParam('embriao'));
+					$_criadores = array();
+					foreach ($this->getRequest()->getParam('embriao') as $_temp) {
+						if ($_temp['criador'] != "") {
+							$_criadores[] = $_temp['criador'];
+						}
+					}
+					$criadorModel = new Model_Db_Criador();
+					$this->view->criadorJson = json_encode($criadorModel->getCods($_criadores));
 				}
-				if ($coletaModel->addColeta($post)) {
-					$this->_redirect('/'. $this->getRequest()->getControllerName());
-				}
+				
+//				if ($coletaModel->addColeta($post)) {
+//					$this->_redirect('/'. $this->getRequest()->getControllerName());
+//				}
 			} else {
 				$coletaForm->populate($formData);
 			}
