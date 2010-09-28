@@ -140,4 +140,27 @@ class Model_Db_Criador extends Model_Db
 		$this->delete('id = ' . (int)$id);
 	}
 
+	public function getCods(array $ids)
+	{
+		$query = $this->select()
+			->setIntegrityCheck(false)
+			->from($this->_name, array('id', 'cod'), $this->_schema)
+			;
+
+		foreach ($ids as $id) {
+			$query->orWhere('id = ?', (int)$id);
+		}
+
+		$rows = $this->fetchAll($query);
+		if (!$rows) {
+			throw new Exception("Count not find rows");
+		}
+		$array = $rows->toArray();
+		foreach ($rows as $row) {
+			$row = $row->toArray();
+			$return[$row['id']] = utf8_decode($row['cod']);
+		}
+		return $return;
+	}
+
 }
