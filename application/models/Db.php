@@ -91,7 +91,7 @@ class Model_Db extends Zend_Db_Table_Abstract
 		}
 
 		if ($qtype && $query) {
-			if ($like == 'false') {
+			if ($like == 'false' || $like == false) {
 				$this->_select->where($qtype .' = ?', $query);
 			} else {
 				$this->_select->where($qtype .' LIKE ?', '%'.$query.'%');
