@@ -3,6 +3,13 @@
 //echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
 //echo $this->form;
 
+if (isset($this->embriao)) {
+	$this->headScript()->appendScript('var jsonEmbrioes = ' . $this->embriao . ';');
+}
+if (isset($this->criadorJson)) {
+	$this->headScript()->appendScript('var criadorJson = ' . $this->criadorJson .';');
+}
+
 $this->javascript();
 
 $this->headScript()
@@ -914,7 +921,7 @@ $this->headLink()
             <tr>
               <td class="label" width="120">Último Embrião Cadastrado:</td>
               <td width="10"></td>
-              <td><input type="text" class="input" id="ultimo" name="ultimo"/></td>
+              <td><input type="text" class="input" id="ultimo" name="ultimo" value="<?=$this->ultimo;?>"/></td>
             </tr>
             <tr>
               <td height="10" colspan="7"></td> 
@@ -996,4 +1003,5 @@ $this->headLink()
 <div id="dlg" style="display: none;">
   <div id="dlg-grid" style="padding: 0px; margin: 0px"></div>
 </div>
+
 
