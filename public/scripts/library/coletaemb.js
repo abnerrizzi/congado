@@ -484,7 +484,7 @@ function createGridData(int, str, size)
 		currentCell++;
 		cell = _r1.insertCell(currentCell);
 		$(cell).html('<span id="class'+i+'"></span>');
-		$('<input type="text" name="embriao['+i+'][class]" value="" size="7"/>').appendTo(cell).hide();
+		$('<input type="text" name="embriao['+i+'][class]" value="" size="7" maxlength="1"/>').appendTo(cell).hide();
 		$(cell).html($("embriao['+i+'][class]").val());
 		$(cell).click(function(){
 			CurrentId = $(this).parent().attr('lang');
@@ -505,7 +505,7 @@ function createGridData(int, str, size)
 		currentCell++;
 		cell = _r1.insertCell(currentCell);
 		$(cell).html('<span id="grau'+i+'"></span>');
-		$('<input type="text" name="embriao['+i+'][grau]" value="" size="7"/>').appendTo(cell).hide();
+		$('<input type="text" name="embriao['+i+'][grau]" value="" size="7" maxlength="1"/>').appendTo(cell).hide();
 		$(cell).html($("embriao['+i+'][grau]").val());
 		$(cell).click(function(){
 			CurrentId = $(this).parent().attr('lang');
@@ -670,7 +670,7 @@ function createGridDataJson(json)
 		} else {
 			$(cell).html('<span id="class'+i+'"></span>');
 		}
-		$('<input type="text" name="embriao['+i+'][class]" value="'+row.class+'" size="7"/>').appendTo(cell).hide();
+		$('<input type="text" name="embriao['+i+'][class]" value="'+row.class+'" size="7" maxlength="1"/>').appendTo(cell).hide();
 		$(cell).click(function(){
 			CurrentId = $(this).parent().attr('lang');
 			CurrentField = $('[name*=embriao['+CurrentId+']][name*=class]');
@@ -694,7 +694,7 @@ function createGridDataJson(json)
 		} else {
 			$(cell).html('<span id="grau'+i+'"></span>');
 		}
-		$('<input type="text" name="embriao['+i+'][grau]" value="'+row.grau+'" size="7"/>').appendTo(cell).hide();
+		$('<input type="text" name="embriao['+i+'][grau]" value="'+row.grau+'" size="7" maxlength="1"/>').appendTo(cell).hide();
 		$(cell).click(function(){
 			CurrentId = $(this).parent().attr('lang');
 			CurrentField = $('[name*=embriao['+CurrentId+']][name*=grau]');

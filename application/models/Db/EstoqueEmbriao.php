@@ -151,7 +151,6 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 
 	public function addEmbrioes(array $embrioes)
 	{
-		print '<pre>';
 		foreach ($embrioes as $embriao)
 		{
 			foreach ($embriao as $key => $val) {
@@ -177,9 +176,19 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 		if ($x['cnt'] > 0) {
 			throw new Zend_Db_Exception('Foi encontrado um embriao com um dos códigos informados');
 		} else {
-			print '<pre>';
-			print_r($data);
-			print '</pre>';
+			foreach ($data as $row) {
+//				print '<pre>';
+//				print_r($row);
+//				print '</pre>';
+//				die();
+
+				if ($this->insert($row)) {
+					continue;
+				} else {
+					return false;
+				}
+			}
+			return true;
 		}
 		die("\n\n-- OK --");
 	}
