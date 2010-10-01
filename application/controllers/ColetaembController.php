@@ -235,7 +235,7 @@ class ColetaembController extends Zend_Controller_Action
 						$embriao['dt_coleta']		= $post['dt_coleta'];
 						$embriao['doadora_id']		= $post['vaca_id'];
 						$embriao['touro_id']		= $post['touro_id'];
-						unset($embriao['class'], $embriao['cod']);
+						unset($embriao['class'], $embriao['cod'], $embriao['criador']);
 						$embrioes[] = $embriao;
 					}
 					$embriaoModel = new Model_Db_EstoqueEmbriao();
