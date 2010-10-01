@@ -211,12 +211,7 @@ class ColetaembController extends Zend_Controller_Action
     		'viavel',
     		'nao_viavel',
     	);
-    	/*
 
-			$('#viavel').css('background-color','#F7F6F4');
-			$('#viavel').css('border','0px');
-
-		*/
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
 			// Adicionando filtro de inteiro
@@ -230,25 +225,31 @@ class ColetaembController extends Zend_Controller_Action
 
 				// faz a contagem de embrioes passados vs. numero de embrioes viaveis
 				$embriaoPost = $this->getRequest()->getParam('embriao');
-				if ((int)$post['viavel'] != count($this->getRequest()->getParam('embriao'))) {
+				if ((int)$post['viavel'] == count($this->getRequest()->getParam('embriao'))) {
 					foreach ($embriaoPost as $embriao)
 					{
-						$embriao['classificacao'] = $embriao['class'];
-						$embriao['criador_id'] = $embriao['criador'];
-						$embriao['fazenda_id'] = $post['fazenda_id'];
-						$embriao['dt_coleta'] = $post['dt_coleta'];
-						$embriao['doadora_id'] = $post['vaca_id'];
-						$embriao['touro_id'] = $post['touro_id'];
-						unset($embriao['class']);
+						$embriao['embriao']			= $embriao['cod'];
+						$embriao['classificacao']	= $embriao['class'];
+						$embriao['criador_id']		= $embriao['criador'];
+						$embriao['fazenda_id']		= $post['fazenda_id'];
+						$embriao['dt_coleta']		= $post['dt_coleta'];
+						$embriao['doadora_id']		= $post['vaca_id'];
+						$embriao['touro_id']		= $post['touro_id'];
+						unset($embriao['class'], $embriao['cod']);
 						$embrioes[] = $embriao;
 					}
+					$embriaoModel = new Model_Db_EstoqueEmbriao();
+					if ($coletaModel->addColeta($post)) {
+						if ($embriaoModel->addEmbrioes($embrioes)) {
+							$this->_redirect('/'. $this->getRequest()->getControllerName());
+						}
+					}
+
 				} else {
 					$json_Embriao = json_encode($this->getRequest()->getParam('embriao'));
 					$this->view->embriao = $json_Embriao;
 					$this->view->ultimo = $this->getRequest()->getParam('ultimo');
 					$coletaForm->populate($formData);
-					print '<pre>';
-//					print_r($this->getRequest()->getParam('embriao'));
 					$_criadores = array();
 					foreach ($this->getRequest()->getParam('embriao') as $_temp) {
 						if ($_temp['criador'] != "") {
@@ -258,7 +259,7 @@ class ColetaembController extends Zend_Controller_Action
 					$criadorModel = new Model_Db_Criador();
 					$this->view->criadorJson = json_encode($criadorModel->getCods($_criadores));
 				}
-				
+
 //				if ($coletaModel->addColeta($post)) {
 //					$this->_redirect('/'. $this->getRequest()->getControllerName());
 //				}
