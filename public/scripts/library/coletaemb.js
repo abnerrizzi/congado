@@ -155,7 +155,32 @@ $(document).ready(function() {
 		checkFields();
 	}
 
-	$("#coleta_de_embrioes:form").submit(function() { toggleFields(false); });
+	$("#coleta_de_embrioes:form").submit(function(){
+
+
+		checkInts();
+
+		var avaliadas	= parseInt($('#avalia_od').val()) + parseInt($('#avalia_oe').val());
+		var fecundadas	= parseInt($('#fecundada').val()) + parseInt($('#nao_fecundada').val());
+		var viaveis		= parseInt($('#viavel').val()) + parseInt($('#nao_viavel').val());
+
+		if (avaliadas != fecundadas) {
+			window.alert('O total de estruturas fecundadas e não fecundadas deve ser igual ao número de estruturas avaliadas.');
+			return false;
+		} else if (viaveis != parseInt($('#fecundada').val())) {
+			window.alert('O total de estruturas viáveis e não viáveis deve ser igual ao número de estruturas fecundadas.');
+			return false;
+		} else if (parseInt($('[name*=embriao][name*=cod]').length) != parseInt($('#viavel').val())) {
+			window.alert('Quantidade de embrioes diferente da quantidade de estruturas viaveis.');
+			return false;
+		} else if (viaveis == 0) {
+			return window.confirm('Deseja realmente cadastrar uma coleta de embriões sem embriões viáveis?');
+		} else {
+			// ta tudo ok
+		}
+
+		toggleFields(false);
+	});
 
 	checkFields();
 

@@ -149,6 +149,41 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 		}
 	}
 
+	public function addEmbrioes(array $embrioes)
+	{
+		print '<pre>';
+		foreach ($embrioes as $embriao)
+		{
+			foreach ($embriao as $key => $val) {
+				if ($val == '') {
+					$row[$key] = NULL;
+				} else {
+					$row[$key] = utf8_encode($val);
+				}
+				if ($key == 'embriao') {
+					$__cod[] = $val;
+				}
+			}
+			$data[] = $row;
+			unset($row);
+		}
+
+		$query_cnt = $this->select()->from($this->_name, array('cnt' => new Zend_Db_Expr('count(id)')), $this->_schema);
+		foreach ($__cod as $cod)
+		{
+			$query_cnt->orWhere('embriao = ?', $cod);
+		}
+		$x = $this->fetchRow($query_cnt)->toArray();
+		if ($x['cnt'] > 0) {
+			throw new Zend_Db_Exception('Foi encontrado um embriao com um dos códigos informados');
+		} else {
+			print '<pre>';
+			print_r($data);
+			print '</pre>';
+		}
+		die("\n\n-- OK --");
+	}
+
 	public function deleteEstoque($id)
 	{
 		$this->delete('id = ' . intval($id));
