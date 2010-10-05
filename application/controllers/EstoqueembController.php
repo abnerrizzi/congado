@@ -11,7 +11,7 @@
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
- * @version $Id: ColetaembController.php 376 2010-08-11 13:06:45Z bacteria_ $
+ * @version $Id$
  */
 class EstoqueembController extends Zend_Controller_Action
 {

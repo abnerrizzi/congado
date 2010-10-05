@@ -4,10 +4,14 @@
  */
 
 /**
+ * Plugin_GridSession
+ * 
+ * Plugin responsavel pelo armazenamento de opcoes do grid na sessao e restauracao
+ * ao voltar para o mesmo grid, informacoes como ordenamento e paginacao.
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Plugin
- * @version $Id: Auth.php 188 2010-04-09 19:04:15Z bacteria_ $
+ * @version $Id$
  * 
  */
 
