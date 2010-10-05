@@ -4,8 +4,8 @@
  */
 /**
  * @package Helper
- * @author abner
- *
+ * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
+ * @version $Id$
  */
 class Zend_View_Helper_CssHelper extends Zend_View_Helper_Abstract
 {
