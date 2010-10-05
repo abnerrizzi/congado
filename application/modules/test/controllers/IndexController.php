@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: IndexController.php 342 2010-06-09 20:13:22Z bacteria_ $
+ * @version $Id$
  * 
  */
 

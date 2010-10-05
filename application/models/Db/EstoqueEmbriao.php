@@ -9,7 +9,7 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Model
  * @subpackage Db
- * @version $Id: Coletaembriao.php 372 2010-08-04 18:09:09Z bacteria_ $
+ * @version $Id$
  * 
  */
 class Model_Db_EstoqueEmbriao extends Model_Db
