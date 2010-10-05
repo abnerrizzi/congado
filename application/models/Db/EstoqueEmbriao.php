@@ -174,23 +174,19 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 		}
 		$x = $this->fetchRow($query_cnt)->toArray();
 		if ($x['cnt'] > 0) {
-			throw new Zend_Db_Exception('Foi encontrado um embriao com um dos códigos informados');
+			throw new Zend_Db_Exception('Foi encontrado um embrião com um dos códigos informados');
 		} else {
 			foreach ($data as $row) {
-//				print '<pre>';
-//				print_r($row);
-//				print '</pre>';
-//				die();
-
 				if ($this->insert($row)) {
 					continue;
 				} else {
+					Zend_Debug::dump($row);
+					die();
 					return false;
 				}
 			}
 			return true;
 		}
-		die("\n\n-- OK --");
 	}
 
 	public function deleteEstoque($id)
@@ -352,4 +348,36 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 		
 		return $results;
 	}
+
+	public function checkEmbrioesNames($fazenda_id, $embrioes)
+	{
+		$__return = array();
+		$__where = false;
+		$__query = $this->select()
+			->setIntegrityCheck(false)
+			->from($this->_name, 'embriao', $this->_schema)
+		;
+
+		$__query->where('fazenda_id = ?', $fazenda_id);
+
+		foreach ($embrioes as $embriao) {
+			if (!$__where) {
+				$__query->where('embriao = ?', $embriao);
+				$__where = true;
+			} else {
+				$__query->orWhere('embriao = ?', $embriao);
+			}
+		}
+
+		$__rows = $this->fetchAll($__query);
+		$__rowsNum = $__rows->count();
+		$__rowsArray = $__rows->toArray();
+
+		foreach ($__rowsArray as $__row) {
+			$__return[] = utf8_encode($__row['embriao']);
+		}
+
+		return $__return;
+	}
+
 }

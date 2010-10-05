@@ -96,10 +96,10 @@ class Model_Db_ColetaEmbriao extends Model_Db
 	public function addColeta($post)
 	{
 
-		return true;
 		if ($this->insert($post)) {
 			return true;
 		} else {
+			throw new Zend_Db_Exception('Erro inesperando.');
 			return false;
 		}
 

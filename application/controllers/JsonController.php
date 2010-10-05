@@ -678,6 +678,27 @@ class JsonController extends Zend_Controller_Action
 	}
 
 	/**
+	 * verifyEmbrioesAction
+	 *
+	 * Retorna uma string no formato JSON com a lista de embrioes ja cadastrados
+	 * no banco dedados. Caso nao exista, retorna uma string JSON vazia.
+	 *
+	 * @param (array|cod) Codigos para serem verificados se ja estao cadastrado no banco de dados.
+	 * @return (string|JSON)
+	 */
+	public function verifyembrioesAction()
+	{
+		$__fazenda_id = (int)$this->getRequest()->getParam('fazenda_id');
+		$__embrioes = (array)$this->getRequest()->getParam('cod');
+
+		$estoqueModel = new Model_Db_EstoqueEmbriao();
+		$__embrioes = $estoqueModel->checkEmbrioesNames($__fazenda_id, $__embrioes);
+
+		$this->view->content = utf8_encode(json_encode($__embrioes));
+		$this->render('index');
+	}
+
+	/**
 	 * estoqueEmbriaoAction
 	 * 
 	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
