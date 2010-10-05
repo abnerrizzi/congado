@@ -160,23 +160,32 @@ $(document).ready(function() {
 
 		checkInts();
 
-		var avaliadas	= parseInt($('#avalia_od').val()) + parseInt($('#avalia_oe').val());
-		var fecundadas	= parseInt($('#fecundada').val()) + parseInt($('#nao_fecundada').val());
-		var viaveis		= parseInt($('#viavel').val()) + parseInt($('#nao_viavel').val());
+		if (checkAddUrl(window.location.href) == true) {
+			var avaliadas	= parseInt($('#avalia_od').val()) + parseInt($('#avalia_oe').val());
+			var fecundadas	= parseInt($('#fecundada').val()) + parseInt($('#nao_fecundada').val());
+			var viaveis		= parseInt($('#viavel').val()) + parseInt($('#nao_viavel').val());
 
-		if (avaliadas != fecundadas) {
-			window.alert('O total de estruturas fecundadas e não fecundadas deve ser igual ao número de estruturas avaliadas.');
-			return false;
-		} else if (viaveis != parseInt($('#fecundada').val())) {
-			window.alert('O total de estruturas viáveis e não viáveis deve ser igual ao número de estruturas fecundadas.');
-			return false;
-		} else if (parseInt($('[name*=embriao][name*=cod]').length) != parseInt($('#viavel').val())) {
-			window.alert('Quantidade de embrioes diferente da quantidade de estruturas viaveis.');
-			return false;
-		} else if (viaveis == 0) {
-			return window.confirm('Deseja realmente cadastrar uma coleta de embriões sem embriões viáveis?');
-		} else {
-			// ta tudo ok
+			if (avaliadas != fecundadas) {
+				window.alert('O total de estruturas fecundadas e não fecundadas deve ser igual ao número de estruturas avaliadas.');
+				return false;
+			} else if (viaveis != parseInt($('#fecundada').val())) {
+				window.alert('O total de estruturas viáveis e não viáveis deve ser igual ao número de estruturas fecundadas.');
+				return false;
+			} else if (parseInt($('[name*=embriao][name*=cod]').length) != parseInt($('#viavel').val())) {
+				window.alert('Quantidade de embrioes diferente da quantidade de estruturas viaveis.');
+				return false;
+			} else if (viaveis == 0) {
+				return window.confirm('Deseja realmente cadastrar uma coleta de embriões sem embriões viáveis?');
+			} else {
+				// ta tudo ok
+			}
+			if (verificaEmbrioesNames() == true) {
+				return false;
+				window.alert('true');
+			} else {
+				return false;
+				window.alert('false');
+			}
 		}
 
 		toggleFields(false);
@@ -191,9 +200,6 @@ $(document).ready(function() {
 
 });
 
-
-
-
 function _xf()
 {
 	$('#fazenda_id').val(1);$('#dt_coleta').val('10/09/2010');
@@ -203,9 +209,6 @@ function _xf()
 	$('#fecundada').val(11);$('#nao_fecundada').val(0);
 	$('#viavel').val(11);$('#nao_viavel').val(0);
 }
-
-
-
 
 function checkInts()
 {
@@ -271,8 +274,6 @@ function checkFields()
 	return __return;
 
 }
-
-
 
 function hide_filter() {
 	$("#dlg").fadeOut(200);
@@ -351,7 +352,6 @@ function buscaUltimoEmbriao(el)
 	}, "json");
 }
 
-
 function createGridData(int, str, size)
 {
 
@@ -372,6 +372,8 @@ function createGridData(int, str, size)
 	__int = window.prompt('Qual o numero para continuar a sequencia?', int);
 	if (__int == null && __int != int) {
 		return false;
+	} else {
+		int = __int;
 	}
 
 	// delete linhas caso existam linhas na tabela.
@@ -436,6 +438,7 @@ function createGridData(int, str, size)
 			$('#cod'+CurrentId).hide();
 			CurrentField.show().focus().blur(function(){
 				$('#cod'+CurrentId).html(CurrentField.val()).show();
+				$('#cod'+CurrentId).parent().css('background', '');
 				CurrentField.hide();
 			});
 		});
@@ -539,14 +542,10 @@ function createGridData(int, str, size)
 
 }
 
-
-
 function toogleInput(i)
 {
 	window.alert(i);
 }
-
-
 
 function createGridDataJson(json)
 {
@@ -615,6 +614,7 @@ function createGridDataJson(json)
 			$('#cod'+CurrentId).hide();
 			CurrentField.show().focus().blur(function(){
 				$('#cod'+CurrentId).html(CurrentField.val()).show();
+				$('#cod'+CurrentId).parent().css('background', '');
 				CurrentField.hide();
 			});
 		});
@@ -724,5 +724,40 @@ function createGridDataJson(json)
 	}
 	jsonCriado = true;
 	$('#ajax_loader').fadeOut(100);
+
+}
+
+function verificaEmbrioesNames()
+{
+
+	$("#ajax_loader").html("Carregando...").show();
+	var __fields = $('[name*=embriao][name*=cod]');
+	var __values = new Array();
+	for ( var i = 0; i < __fields.length; i++) {
+		__values.push(__fields[i].value);
+	}
+	$.post(baseUrl + '/json/verifyembrioes', {
+		'cod[]'		: __values,
+		fazenda_id	: $('#fazenda_id').val(),
+		ajax		: 'true',
+		rkey		: Math.random()
+	}, function(j) {
+		if (j.length > 0) {
+			window.alert('Existem codigos sendo usados que já foram cadastrados anteriormente no banco de dados');
+			__fieldCods = $('[name*=embriao][name*=cod]');
+			for (var i = 0; i < j.length; i++)
+			{
+				for (z=0; z <= __fieldCods.length; z++)
+				{
+					__field = $(__fieldCods[z]);
+					if (__field.val() == j[i] || __field.val().toUpperCase() == j[i]) {
+						__field.parent().parent().attr('lang');
+						$('#cod'+__field.parent().parent().attr('lang')).parent().css('background', '#f99');
+					}
+				}
+			}
+		}
+		$("#ajax_loader").fadeOut(30);
+	}, "json");
 
 }
