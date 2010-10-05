@@ -179,12 +179,8 @@ $(document).ready(function() {
 			} else {
 				// ta tudo ok
 			}
-			if (verificaEmbrioesNames() == true) {
+			if (verificaEmbrioesExists() == true) {
 				return false;
-				window.alert('true');
-			} else {
-				return false;
-				window.alert('false');
 			}
 		}
 
@@ -196,7 +192,6 @@ $(document).ready(function() {
 	if ((typeof(jsonEmbrioes) != 'undefined') && jsonEmbrioes.length > 0) {
 		createGridDataJson(jsonEmbrioes);
 	}
-
 
 });
 
@@ -727,12 +722,15 @@ function createGridDataJson(json)
 
 }
 
-function verificaEmbrioesNames()
+function verificaEmbrioesExists()
 {
 
 	$("#ajax_loader").html("Carregando...").show();
+
 	var __fields = $('[name*=embriao][name*=cod]');
 	var __values = new Array();
+	var __return = false;
+
 	for ( var i = 0; i < __fields.length; i++) {
 		__values.push(__fields[i].value);
 	}
@@ -751,13 +749,15 @@ function verificaEmbrioesNames()
 				{
 					__field = $(__fieldCods[z]);
 					if (__field.val() == j[i] || __field.val().toUpperCase() == j[i]) {
-						__field.parent().parent().attr('lang');
-						$('#cod'+__field.parent().parent().attr('lang')).parent().css('background', '#f99');
+						__row_id = __field.parent().parent().attr('lang');
+						$('#cod' + __row_id).parent().css('background', '#f99');
+						__return = true;
 					}
 				}
 			}
 		}
 		$("#ajax_loader").fadeOut(30);
+		return __return;
 	}, "json");
 
 }
