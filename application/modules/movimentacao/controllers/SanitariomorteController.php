@@ -48,6 +48,7 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 		 * Fields
 		 */
 		$fields[] = new Model_Grid_Fields('dt', 'Data', 20);
+		$fields[] = new Model_Grid_Fields('cod', 'Animal', 80);
 		$fields[] = new Model_Grid_Fields('nome', 'Animal', 150);
 		$fields[] = new Model_Grid_Fields('old', 'Causa', 250);
 
@@ -190,10 +191,6 @@ class Movimentacao_SanitariomorteController extends Zend_Controller_Action
 				$data['tiposisbov'] = $values['tiposisbov'];
 				$morteModel->updateSanitario($values);
 				$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
-			} else {
-				print '<pre>';
-				print_r($morteForm->getErrors());
-				print '</pre>';
 			}
 
 		} else {
