@@ -308,12 +308,4 @@ class CriadorController extends Zend_Controller_Action
 		$this->view->url = 'criador/index';
 	}
 
-
 }
-
-
-
-
-
-
-

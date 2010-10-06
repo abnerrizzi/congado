@@ -214,5 +214,4 @@ class Model_Db_Local extends Model_Db
 		$this->delete('id = ' . intval($id));
 	}
 
-
 }

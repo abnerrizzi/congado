@@ -79,4 +79,3 @@ class Movimentacao_LocalController extends Zend_Controller_Action
 	}
 
 }
-

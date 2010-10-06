@@ -164,12 +164,4 @@ class InseminadorController extends Zend_Controller_Action
 
 	}
 
-
 }
-
-
-
-
-
-
-

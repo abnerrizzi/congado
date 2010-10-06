@@ -30,7 +30,8 @@ class Plugin_Validate_Date_Between extends Zend_Validate_Abstract
      *
      * @var array
      */
-    protected $_messageTemplates = array(
+    protected $_messageTemplates = array
+    (
         self::NOT_BETWEEN        => "'%value%' is not between '%min%' and '%max%', inclusively",
         self::NOT_BETWEEN_STRICT => "'%value%' is not strictly between '%min%' and '%max%'"
     );
@@ -40,7 +41,8 @@ class Plugin_Validate_Date_Between extends Zend_Validate_Abstract
      *
      * @var array
      */
-    protected $_messageVariables = array(
+    protected $_messageVariables = array
+    (
         'min' => '_min',
         'max' => '_max'
     );

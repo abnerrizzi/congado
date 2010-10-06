@@ -181,5 +181,4 @@ class BackupController extends Zend_Controller_Action
 		exit;
 	}
 
-
 }

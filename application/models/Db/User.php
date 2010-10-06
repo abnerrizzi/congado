@@ -140,4 +140,5 @@ class Model_Db_User extends Model_Db
 			return true;
 		}
 	}
+
 }

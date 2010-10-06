@@ -372,4 +372,3 @@ class ColetaembController extends Zend_Controller_Action
     }
 
 }
-

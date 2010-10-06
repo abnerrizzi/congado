@@ -170,10 +170,3 @@ class CategoriaController extends Zend_Controller_Action
 	}
 
 }
-
-
-
-
-
-
-

@@ -80,4 +80,3 @@ class Movimentacao_CoberturaController extends Zend_Controller_Action
 	}
 
 }
-

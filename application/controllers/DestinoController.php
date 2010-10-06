@@ -163,5 +163,4 @@ class DestinoController extends Zend_Controller_Action
 
 	}
 
-
 }

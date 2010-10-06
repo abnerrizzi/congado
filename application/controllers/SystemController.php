@@ -102,6 +102,3 @@ class SystemController extends Zend_Controller_Action
     }
 
 }
-
-
-
