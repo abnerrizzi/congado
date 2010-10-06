@@ -201,6 +201,7 @@ class Plugin_Validate_Date_Between extends Zend_Validate_Abstract
      */
     public function isValid($value)
     {
+    	$valueUnformated = $value;
     	$unformated  = substr($value, strpos($this->_format, 'Y'), (strrpos($this->_format, 'Y') - strpos($this->_format, 'Y'))+1)
     				 . substr($value, strpos($this->_format, 'm'), (strrpos($this->_format, 'm') - strpos($this->_format, 'm'))+1)
     				 . substr($value, strpos($this->_format, 'd'), (strrpos($this->_format, 'd') - strpos($this->_format, 'd'))+1);
@@ -217,6 +218,7 @@ class Plugin_Validate_Date_Between extends Zend_Validate_Abstract
                 $this->_min = $_min;
                 $this->_max = $_max;
 
+                $this->_setValue($valueUnformated);
                 $this->_error(self::NOT_BETWEEN);
                 return false;
             }
@@ -231,6 +233,7 @@ class Plugin_Validate_Date_Between extends Zend_Validate_Abstract
                 $this->_min = $_min;
                 $this->_max = $_max;
 
+                $this->_setValue($valueUnformated);
             	$this->_error(self::NOT_BETWEEN_STRICT);
                 return false;
             }
