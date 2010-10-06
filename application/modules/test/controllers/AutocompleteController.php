@@ -16,4 +16,3 @@ class Test_AutocompleteController extends Zend_Controller_Action
 	}
 
 }
-

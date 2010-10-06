@@ -167,10 +167,3 @@ class RacaController extends Zend_Controller_Action
 	}
 
 }
-
-
-
-
-
-
-

@@ -69,4 +69,5 @@ class Plugin_Validate_Cnpj extends Zend_Validate_Abstract
 		}
 		return true;
 	}
+
 }

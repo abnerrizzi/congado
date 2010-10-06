@@ -50,5 +50,4 @@ class Model_Grid_Fields
 		return $this->colum;
 	}
 
-
 }

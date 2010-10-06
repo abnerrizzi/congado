@@ -783,7 +783,6 @@ class JsonController extends Zend_Controller_Action
 		return $flexigrid;
 	}
 
-
 	public function fcbkAction()
 	{
 		$ficharioModel = new Model_Db_Fichario();

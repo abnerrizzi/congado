@@ -33,7 +33,7 @@ class PelagemController extends Zend_Controller_Action
 		$_by	= $this->_getParam('by', 'cod');
 		$_order	= $this->_getParam('sort', 'asc');
 		$result	= $pelagemModel->getPaginatorAdapter($_by, $_order, array('id', 'cod', 'dsc'));
-		
+
 		/*
 		 * Paginator
 		 */

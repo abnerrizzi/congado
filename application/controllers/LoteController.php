@@ -197,12 +197,4 @@ class LoteController extends Zend_Controller_Action
 
 	}
 
-
 }
-
-
-
-
-
-
-
