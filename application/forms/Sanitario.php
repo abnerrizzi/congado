@@ -85,6 +85,7 @@ class Form_Sanitario extends Form_Default
 			'filters' => array('StringTrim'),
 			'validators' => array(
 				new Zend_Validate_Date('dd/MM/YYYY'),
+				new Plugin_Validate_Date_Between('01/01/1900', date('d/m/Y', time()), 'dd/mm/YYYY', true),
 			),
 			'maxlength' => 10,
 			'size' => 10,

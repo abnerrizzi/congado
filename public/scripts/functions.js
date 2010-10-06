@@ -74,13 +74,14 @@ function campoData(fields, __maxDate)
 	    nextText: 'Próximo',
 	    prevText: 'Anterior',
 	    maxDate: __maxDate
-		}).keyup(function(event){
+	}).keyup(function(event){
 			val = $(this).val();
 	        if (val.length == 2 || val.length == 5) {
 	        	val = val +'/';
 	        	$(this).val(val);
 	        }
-		});
+	});
+
 }
 
 

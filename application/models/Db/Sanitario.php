@@ -48,7 +48,7 @@ class Model_Db_Sanitario extends Model_Db
 			->setIntegrityCheck(false)
 			->from($this->_name, $cols, $this->_schema)
 			->joinLeft(array('t' => 'sanitario_tipo'), 'tipo_id = t.id', array(), $this->_schema)
-			->joinLeft(array('f' => 'fichario'), 'fichario_id = f.id', array('nome'), $this->_schema)
+			->joinLeft(array('f' => 'fichario'), 'fichario_id = f.id', array('nome', 'cod'), $this->_schema)
 			->joinLeft(array('d' => 'doenca'), 'ocorrencia_id = d.id', array('doenca' => 'dsc'), $this->_schema)
 		;
 
