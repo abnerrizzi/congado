@@ -32,7 +32,7 @@ $(document).ready(function() {
 			}).attr('id', 'search');
 	$dialog.html('<div id="search-default"></div>');
 
-	$('a#search').click(function(){
+	$('#add a#search').click(function(){
 		$dialog.dialog('open');
 		$("#search-default").flexigrid(
 		{
