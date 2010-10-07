@@ -60,7 +60,7 @@ class Asteka_View_Helper_Grid extends Zend_View_Helper_Abstract
 <table id="null" border="0" width="800" cellpadding="5" style="border:0px; background-color: #fff;">
 
 	<tr>
-	  <td align="left" width="480"><h3 style="margin-left: 10px;">'.$grid->getName().'</h3></td>
+	  <td align="left" width="480"><div id="grid-title" style="margin-left: 10px;">'.$grid->getName().'</div></td>
 	  <td align="right" colspan="1">';
 		if ($grid->getAdd()) {
 			$add = $grid->getAdd();
