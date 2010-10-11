@@ -56,6 +56,7 @@ var ja_mandou_ajax_anteriormente = false;
 			 procmsg: 'Processing, please wait ...',
 			 query: '',
 			 qtype: '',
+			 like: false,
 			 nomsg: 'No items',
 			 minColToggle: 1, //minimum allowed column to be hidden
 			 showToggleBtn: true, //show or hide column toggle popup
@@ -621,6 +622,7 @@ var ja_mandou_ajax_anteriormente = false;
 					,{ name : 'sortorder', value : p.sortorder }
 					,{ name : 'query', value : p.query}
 					,{ name : 'qtype', value : p.qtype}
+					,{ name : 'like', value : p.like}
 				];							 
 							 
 				if (p.params)
