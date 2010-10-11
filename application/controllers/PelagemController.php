@@ -92,12 +92,12 @@ class PelagemController extends Zend_Controller_Action
 		if ($request->isPost()) {
 
 			if ($pelagemForm->isValid($request->getPost())) {
-				$pelagemModel->updatePelagem($pelagemForm->getValues());
+				$pelagemModel->update($pelagemForm->getValues());
 				$this->_redirect('/'. $this->getRequest()->getControllerName());
 			}
 		} else {
 			if ($pelagemId > 0) {
-				$result = $pelagemModel->getPelagem($pelagemId);
+				$result = $pelagemModel->getById($pelagemId);
 				$pelagemForm->populate( $result );
 			} else {
 				throw new Exception("invalid record number.");

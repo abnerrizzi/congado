@@ -12,7 +12,7 @@
  * @version $Id$
  * 
  */
-class Model_Db_Pelagem extends Model_Db
+class Model_Db_Pelagem extends Model_Db implements Model_Db_Interface_Pelagem
 {
 
 	protected $_name = 'pelagem';
@@ -20,6 +20,7 @@ class Model_Db_Pelagem extends Model_Db
 
 	public function getPelagens($orderby = null, $order = null)
 	{
+		die('getPelagens');
 		$query = $this->select()
 			->from($this->_name)
 			->order($orderby .' '. $order)
@@ -28,7 +29,7 @@ class Model_Db_Pelagem extends Model_Db
 		return $result->toArray();
 	}
 
-	public function getPelagem($id)
+	public function getById($id)
 	{
 		$id = (int)$id;
 		$row = $this->fetchRow('id = ' . $id);
@@ -49,6 +50,7 @@ class Model_Db_Pelagem extends Model_Db
 	public function listPelagens($cols = '*')
 	{
 
+		die('listPelagens');
 		if (!is_array($cols)) {
 			$cols = array($cols);
 		}
@@ -66,7 +68,7 @@ class Model_Db_Pelagem extends Model_Db
 		
 	}
 
-	public function updatePelagem($post)
+	public function update($post)
 	{
 		$data = array(
 			'cod'=> utf8_encode($post['cod']),
@@ -76,7 +78,7 @@ class Model_Db_Pelagem extends Model_Db
 		$this->update($data , $where );
 	}
 
-	public function addPelagem($cod, $dsc)
+	public function add($cod, $dsc)
 	{
 
 		if ($this->checkCodPelagem($cod)) {
@@ -92,12 +94,12 @@ class Model_Db_Pelagem extends Model_Db
 
 	}
 
-	public function deletePelagem($id)
+	public function delete($id)
 	{
 		$this->delete('id = ' . intval($id));
 	}
 
-	private function checkCodPelagem($cod)
+	function checkCod($cod)
 	{
 		$query = $this->select()
 			->from($this->_name)
