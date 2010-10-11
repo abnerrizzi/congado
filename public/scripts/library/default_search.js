@@ -61,6 +61,7 @@ $(document).ready(function() {
 				}],
 			sortname: "dsc",
 			sortorder: "asc",
+			like: true,
 			usepager: true,
 			title: false,
 			useRp: true,
