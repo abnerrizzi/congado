@@ -109,9 +109,6 @@ class ColetaembController extends Zend_Controller_Action
 			'dt_coleta',
 			'touro_cod',
 			'insemina_dh1d', 'insemina_dh1h', 'dose1', 'partida1',
-			'insemina_dh2d', 'insemina_dh2h', 'dose2', 'partida2',
-			'insemina_dh3d', 'insemina_dh3h', 'dose3', 'partida3',
-			'insemina_dh4d', 'insemina_dh4h', 'dose4', 'partida4',
 		);
 		foreach ($disable_elements as $el) {
 			$coletaForm->getElement($el)
@@ -186,24 +183,10 @@ class ColetaembController extends Zend_Controller_Action
     		array('vaca'),
     		'fazenda_id',
     		'dt_coleta',
-    		'ciotipo',
-    		'hormonio',
-    		'trata_inicio',
-    		'trata_final',
-    		'dosagem',
-    		'distribuicao',
-    		'soro_nome',
-    		'soro_partida',
     	);
 
     	$__integerElements = array(
-    		'dosagem',
-    		'gnrh_dosagem',
-    		'prost_dosagem',
     		'dose1',
-    		'dose2',
-    		'dose3',
-    		'dose4',
     		'avalia_od',
     		'avalia_oe',
     		'fecundada',

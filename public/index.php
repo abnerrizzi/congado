@@ -8,6 +8,28 @@
  * 
  */
 
+/*
+#coleta embrioes
+
+deixar somente a primeira, retirar hora
+dados gerais retirar
+
+
+
+Cobertura ....
+verificar se ja possui "gestacao positiva" ... com opcao de continuar ou nao!
+-- mostrar o tipo da ultima cobertura
+
+
+transferencia de embriao
+retirar *tipo / *tecnica (dias de cio) / *ultimo cio
+adicionar tipo ... tipo de transferencia (FIV/TE)
+
+
+retirar do menu
+acasalamento
+ */
+
 // Define path to application directory
 defined('APPLICATION_PATH')
 	|| define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
