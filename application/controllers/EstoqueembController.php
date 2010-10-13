@@ -110,8 +110,6 @@ class EstoqueembController extends Zend_Controller_Action
     		'dt_coleta',
     		array('doadora'),
     		array('touro'),
-    		'classificacao',
-    		'grau',
     		'sexo',
     		array('criador'),
     		'delete',
@@ -148,8 +146,6 @@ class EstoqueembController extends Zend_Controller_Action
     		'dt_coleta',
     		array('doadora'),
     		array('touro'),
-    		'classificacao',
-    		'grau',
     		'sexo',
     		array('criador'),
 		);

@@ -298,8 +298,6 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 	{
 		$_cols = array(
 			'embriao',
-			'classificacao',
-			'grau',
 		);
 		$id = (int)$coletaId;
 		$this->_select = $this->select()
@@ -314,6 +312,7 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 			;
 		$return = array();
 		$i = 0;
+
 		$resutls = $this->fetchAll($this->_select)->toArray();
 		foreach ($resutls as $row) {
 			$is_numeric = false;
