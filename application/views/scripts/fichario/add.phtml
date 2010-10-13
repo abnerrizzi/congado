@@ -5,6 +5,7 @@ $this->javascript();
 $this->headScript()
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.tabs.js')
+	->appendFile($this->baseUrl() . '/scripts/library/_filters.js')
 	;
 	
 ?>
@@ -288,7 +289,7 @@ $this->headScript()
       <?=$this->form->pai_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->pai_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->pai->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal','pai');">
+      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/m','pai');">
         <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
       </a>
     </td>
@@ -306,7 +307,7 @@ $this->headScript()
       <?=$this->form->mae_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->mae_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->mae->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal','mae');">
+      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/f','mae');">
         <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
       </a>
     </td>
@@ -324,7 +325,7 @@ $this->headScript()
       <?=$this->form->receptora_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->receptora_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->receptora->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal','receptora');">
+      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/f','receptora');">
         <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
       </a>
     </td>

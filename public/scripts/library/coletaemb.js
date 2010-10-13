@@ -199,7 +199,7 @@ function _xf()
 {
 	$('#fazenda_id').val(1);$('#dt_coleta').val('10/09/2010');
 	$('#vaca_cod').val(101);$('#vaca_cod').change();
-	$('#tabs').show();$('#tabs').tabs('option', 'selected', 2);
+	$('#tabs').show();$('#tabs').tabs('option', 'selected', 1);
 	$('#avalia_od').val(6);$('#avalia_oe').val(5);
 	$('#fecundada').val(11);$('#nao_fecundada').val(0);
 	$('#viavel').val(11);$('#nao_viavel').val(0);
@@ -470,53 +470,6 @@ function createGridData(int, str, size)
 				$('#criador'+CurrentId).html($('#criador'+CurrentId+' select :selected').text().substr(0, strpos($('#criador'+CurrentId+' select :selected').text(), ' - ')));
 			});
 		});
-
-		currentCell++;
-		cell = _r1.insertCell(currentCell);
-		cell.style.backgroundImage = "url(/images/grid/divisor_content.gif)";
-
-		currentCell++;
-		cell = _r1.insertCell(currentCell);
-
-		// Class
-		currentCell++;
-		cell = _r1.insertCell(currentCell);
-		$(cell).html('<span id="class'+i+'"></span>');
-		$('<input type="text" name="embriao['+i+'][class]" value="" size="7" maxlength="1"/>').appendTo(cell).hide();
-		$(cell).html($("embriao['+i+'][class]").val());
-		$(cell).click(function(){
-			CurrentId = $(this).parent().attr('lang');
-			CurrentField = $('[name*=embriao['+CurrentId+']][name*=class]');
-			CurrentField.keyup(function(){$(this).val($(this).val().toUpperCase());});
-			$('#class'+CurrentId).hide();
-			CurrentField.show().focus().blur(function(){
-				$('#class'+CurrentId).html(CurrentField.val()).show();
-				CurrentField.hide();
-			});
-		});
-
-		currentCell++;
-		cell = _r1.insertCell(currentCell);
-		cell.style.backgroundImage = "url(/images/grid/divisor_content.gif)";
-
-		// Grau
-		currentCell++;
-		cell = _r1.insertCell(currentCell);
-		$(cell).html('<span id="grau'+i+'"></span>');
-		$('<input type="text" name="embriao['+i+'][grau]" value="" size="7" maxlength="1"/>').appendTo(cell).hide();
-		$(cell).html($("embriao['+i+'][grau]").val());
-		$(cell).click(function(){
-			CurrentId = $(this).parent().attr('lang');
-			CurrentField = $('[name*=embriao['+CurrentId+']][name*=grau]');
-			CurrentField.keyup(function(){$(this).val($(this).val().toUpperCase());});
-			$('#grau'+CurrentId).hide();
-			CurrentField.show().focus().blur(function(){
-				$('#grau'+CurrentId).html(CurrentField.val()).show();
-				CurrentField.hide();
-			});
-		});
-		cell = _r1.insertCell(currentCell);
-		cell.style.backgroundImage = "url(/images/grid/divisor_content.gif)";
 
 		if (i < (size-1)) {
 			_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));

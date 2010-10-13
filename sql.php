@@ -5,6 +5,8 @@ ip 192.163.2.44
 gw 192.163.1.11
 
 proxy 192.163.2.8:1082
+route add 189.27.63.243 mask 255.255.255.255 192.163.2.8
+route delete 189.27.63.243
  */
 /*
 $file = 'scripts/array.csv';
