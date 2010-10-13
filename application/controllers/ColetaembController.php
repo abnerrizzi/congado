@@ -212,7 +212,6 @@ class ColetaembController extends Zend_Controller_Action
 					foreach ($embriaoPost as $embriao)
 					{
 						$embriao['embriao']			= $embriao['cod'];
-						$embriao['classificacao']	= $embriao['class'];
 						$embriao['criador_id']		= $embriao['criador'];
 						$embriao['fazenda_id']		= $post['fazenda_id'];
 						$embriao['dt_coleta']		= $post['dt_coleta'];

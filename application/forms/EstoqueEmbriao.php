@@ -78,22 +78,6 @@ class Form_EstoqueEmbriao extends Form_Default
 			'disable' => true,
 		));
 
-		$this->addElement('text', 'classificacao', array(
-			'label' => 'Classificacao',
-			'filters' => array('StringTrim', 'Alnum', 'StringToUpper'),
-			'maxlength' => 16,
-			'size' => 10,
-			'class'	=> 'input',
-		));
-
-		$this->addElement('text', 'grau', array(
-			'label' => 'Grau',
-			'filters' => array('StringTrim', 'Alnum', 'StringToUpper'),
-			'maxlength' => 16,
-			'size' => 10,
-			'class'	=> 'input',
-		));
-
 		$this->addElement('radio', 'sexo', array(
 			'label' => 'Sexo',
 			'separator' => "\n",
