@@ -24,7 +24,7 @@ class Model_Db_Cobertura extends Model_Db
 			->setIntegrityCheck(false)
 			->from(array('c' => $this->_name), array(
 				'id',
-				'dh' => new Zend_Db_Expr("DATE_FORMAT(dh, '%d/%m/%Y')"),
+				'dh' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')"),
 			), $this->_schema)
 			->joinLeft(array('v' => 'fichario'), 'c.fichario_id = v.id', array('vaca' => 'cod'), $this->_schema)
 			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro' => 'cod'), $this->_schema)

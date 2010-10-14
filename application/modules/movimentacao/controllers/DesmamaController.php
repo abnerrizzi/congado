@@ -15,7 +15,7 @@ class Movimentacao_DesmamaController extends Zend_Controller_Action
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Movimentação de Desmana';
+		$this->view->title = 'Movimentação :: Desmana';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 

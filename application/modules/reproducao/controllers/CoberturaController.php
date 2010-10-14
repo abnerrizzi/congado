@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: CoberturaController.php 457 2010-10-06 14:35:29Z bacteria_ $
+ * @version $Id$
  * 
  */
 
@@ -15,7 +15,7 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Reproducao - Cobertura';
+		$this->view->title = 'Reproducao :: Cobertura';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 

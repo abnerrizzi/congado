@@ -15,7 +15,7 @@ class Movimentacao_LoteController extends Zend_Controller_Action
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Movimentação de Lote';
+		$this->view->title = 'Movimentação :: Lote';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
