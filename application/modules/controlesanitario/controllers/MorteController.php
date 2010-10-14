@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: SanitariomorteController.php 458 2010-10-06 20:24:46Z bacteria_ $
+ * @version $Id$
  * 
  */
 

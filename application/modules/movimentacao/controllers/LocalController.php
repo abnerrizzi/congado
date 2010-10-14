@@ -15,7 +15,7 @@ class Movimentacao_LocalController extends Zend_Controller_Action
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Movimentação de Local';
+		$this->view->title = 'Movimentação :: Local';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 

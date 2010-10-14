@@ -15,7 +15,7 @@ class Movimentacao_RebanhoController extends Zend_Controller_Action
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Movimentação de Rebanho';
+		$this->view->title = 'Movimentação :: Rebanho';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 

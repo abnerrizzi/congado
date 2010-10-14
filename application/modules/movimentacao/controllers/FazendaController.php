@@ -15,7 +15,7 @@ class Movimentacao_FazendaController extends Zend_Controller_Action
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Movimentação de Fazenda';
+		$this->view->title = 'Movimentação :: Fazenda';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
