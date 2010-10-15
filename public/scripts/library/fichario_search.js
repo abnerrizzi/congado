@@ -77,6 +77,7 @@ function fichario_search($dialog, _Height){
 		usepager: true,
 		title: false,
 		useRp: true,
+		like: true,
 		rp: 10,
 		showTableToggleBtn: false,
 		pagestat: 'Mostrando {from} até {to} de {total} itens',
