@@ -15,7 +15,7 @@ class Controlesanitario_DoencaController extends Zend_Controller_Action
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'CControle Sanitário :: Doença';
+		$this->view->title = 'Controle Sanitário :: Doença';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
