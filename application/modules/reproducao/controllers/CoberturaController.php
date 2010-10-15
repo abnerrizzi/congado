@@ -15,7 +15,7 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Reproducao :: Cobertura';
+		$this->view->title = 'Reprodução :: Cobertura';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
@@ -44,11 +44,10 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		 * Fields
 		 */
 		$fields[] = new Model_Grid_Fields('vaca', 'Vaca', 80);
-		$fields[] = new Model_Grid_Fields('dh', 'Data Cobertura', 100);
+		$fields[] = new Model_Grid_Fields('data', 'Data Cobertura', 100);
 		$fields[] = new Model_Grid_Fields('touro', 'Touro', 80);
 		$fields[] = new Model_Grid_Fields('inseminador', 'Inseminador', 120);
 		$fields[] = new Model_Grid_Fields('lote_dsc', 'Lote', 120);
-//		$fields[] = new Model_Grid_Fields('touro_id', 'Touro', 150);
 
 		/*
 		 * Grid Model
@@ -58,15 +57,15 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'cobertura/local',
+			'module'	=> 'reproducao/cobertura',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'cobertura/local',
+			'module'	=> 'reproducao/cobertura',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'cobertura/local',
+			'module'	=> 'reproducao/cobertura',
 			'action'	=> 'add',
 		));
 
@@ -76,7 +75,7 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 
 	public function addAction()
 	{
-		throw new Zend_Controller_Action_Exception('Funcionalidade não implementada.');
+		throw new Zend_Controller_Action_Exception('Funcionalidade ainda não implementada.');
 	}
 
 }
