@@ -150,6 +150,7 @@ class Model_Db_Local extends Model_Db
 			$this->_select->limitPage($page, $limit);
 		}
 
+		die($this->_select);
 		$array = $this->fetchAll($this->_select)->toArray();
 		for ($i=0; $i < count($array); $i++)
 		{

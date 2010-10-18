@@ -1,8 +1,8 @@
 <?php
 
 $this->headScript()
-//	->appendScript("\t__title = 'Pelagem';\n")
-	->appendFile($this->baseUrl() . '/scripts/library/default_search.js')
+	->appendScript("\t__module = 'reproducao';\n")
+	->appendFile($this->baseUrl() . '/scripts/library/reproducao/search_cobertura.js')
 	;
 
 echo $this->grid($this->grid);

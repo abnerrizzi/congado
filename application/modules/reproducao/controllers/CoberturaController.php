@@ -44,7 +44,7 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		 * Fields
 		 */
 		$fields[] = new Model_Grid_Fields('vaca', 'Vaca', 80);
-		$fields[] = new Model_Grid_Fields('data', 'Data Cobertura', 100);
+		$fields[] = new Model_Grid_Fields('dh', 'Data Cobertura', 100);
 		$fields[] = new Model_Grid_Fields('touro', 'Touro', 80);
 		$fields[] = new Model_Grid_Fields('inseminador', 'Inseminador', 120);
 		$fields[] = new Model_Grid_Fields('lote_dsc', 'Lote', 120);
