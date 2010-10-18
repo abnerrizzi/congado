@@ -80,7 +80,11 @@ class Controlesanitario_PreventivoController extends Zend_Controller_Action
 
 		$morteForm = new Form_Sanitario();
 		$morteForm->setName('controle_sanitario_-_preventivo');
-		$morteForm->setAction('/controlesanitario/preventivo/add');
+		$__action = 	($this->getRequest()->getBaseUrl())
+				. '/' .	($this->getRequest()->getModuleName())
+				. '/' .	($this->getRequest()->getControllerName())
+				. '/' . 'add';
+		$morteForm->setAction($__action);
 		$morteForm->setMethod('post');
 
 		$fazendaModel = new Model_Db_Fazenda();
@@ -164,7 +168,11 @@ class Controlesanitario_PreventivoController extends Zend_Controller_Action
 		$morteForm = new Form_Sanitario();
 
 		$morteForm->setName('controle_sanitario_-_preventivo');
-		$morteForm->setAction('/controlesanitario/preventivo/edit');
+		$__action = 	($this->getRequest()->getBaseUrl())
+				. '/' .	($this->getRequest()->getModuleName())
+				. '/' .	($this->getRequest()->getControllerName())
+				. '/' . 'edit';
+		$morteForm->setAction($__action);
 		$morteForm->setMethod('post');
 
 		$fazendaModel = new Model_Db_Fazenda();

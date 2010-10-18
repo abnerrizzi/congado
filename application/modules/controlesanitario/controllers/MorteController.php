@@ -81,7 +81,11 @@ class Controlesanitario_MorteController extends Zend_Controller_Action
 
 		$morteForm = new Form_Sanitario();
 		$morteForm->setName('controle_sanitario_-_morte');
-		$morteForm->setAction('/controlesanitario/morte/add');
+		$__action = 	($this->getRequest()->getBaseUrl())
+				. '/' .	($this->getRequest()->getModuleName())
+				. '/' .	($this->getRequest()->getControllerName())
+				. '/' . 'add';
+		$morteForm->setAction($__action);
 		$morteForm->setMethod('post');
 
 		$morteForm->getElement('fichario')
@@ -141,7 +145,11 @@ class Controlesanitario_MorteController extends Zend_Controller_Action
 		$morteForm	= new Form_Sanitario();
 
 		$morteForm->setName('controle_sanitario_-_morte');
-		$morteForm->setAction('/'.$request->getModuleName().'/'.$request->getControllerName().'/edit');
+		$__action = 	($this->getRequest()->getBaseUrl())
+				. '/' .	($this->getRequest()->getModuleName())
+				. '/' .	($this->getRequest()->getControllerName())
+				. '/' . 'edit';
+		$morteForm->setAction($__action);
 		$morteForm->setMethod('post');
 		$morteModel = new Model_Db_Sanitario();
 		$morteModel->setTipo(0);
@@ -220,7 +228,11 @@ class Controlesanitario_MorteController extends Zend_Controller_Action
 	{
 		$request		= $this->getRequest();
 		$morteForm	= new Form_Sanitario();
-		$morteForm->setAction('/'.$request->getModuleName().'/'.$request->getControllerName().'/delete');
+		$__action = 	($this->getRequest()->getBaseUrl())
+				. '/' .	($this->getRequest()->getModuleName())
+				. '/' .	($this->getRequest()->getControllerName())
+				. '/' . 'delete';
+		$morteForm->setAction($__action);
 		$morteForm->setMethod('post');
 		$morteModel = new Model_Db_Sanitario();
 		$morteModel->setTipo(0);

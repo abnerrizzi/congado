@@ -107,4 +107,19 @@ class Model_Db_Cobertura extends Model_Db
 		}
 		return $return;
 	}
+
+	public function getCobertura($id)
+	{
+		$id = (int)$id;
+		$row = $this->fetchRow('id = ' . $id);
+		if (!$row) {
+			throw new Exception("Count not find row $id");
+		}
+		$array = $row->toArray();
+		foreach ($array as $key => $val) {
+			$return[$key] = utf8_decode($val);
+		}
+		return $return;
+	}
+
 }

@@ -81,7 +81,12 @@ class Controlesanitario_DoencaController extends Zend_Controller_Action
 
 		$doencaForm = new Form_Sanitario();
 		$doencaForm->setName('controle_sanitario_-_doenca');
-		$doencaForm->setAction('/controlesanitario/doenca/add');
+		$__action = 	($this->getRequest()->getBaseUrl())
+				. '/' .	($this->getRequest()->getModuleName())
+				. '/' .	($this->getRequest()->getControllerName())
+				. '/' . 'add';
+
+		$doencaForm->setAction($__action);
 		$doencaForm->setMethod('post');
 
 		$doencaForm->getElement('fichario')
@@ -145,7 +150,11 @@ class Controlesanitario_DoencaController extends Zend_Controller_Action
 		$doencaForm	= new Form_Sanitario();
 
 		$doencaForm->setName('controle_sanitario_-_doenca');
-		$doencaForm->setAction('/'.$request->getModuleName().'/'.$request->getControllerName().'/edit');
+		$__action = 	($this->getRequest()->getBaseUrl())
+				. '/' .	($this->getRequest()->getModuleName())
+				. '/' .	($this->getRequest()->getControllerName())
+				. '/' . 'edit';
+		$doencaForm->setAction($__action);
 		$doencaForm->setMethod('post');
 		$doencaModel = new Model_Db_Sanitario();
 		$doencaModel->setTipo(1);
@@ -226,7 +235,12 @@ class Controlesanitario_DoencaController extends Zend_Controller_Action
 	{
 		$request		= $this->getRequest();
 		$doencaForm	= new Form_Sanitario();
-		$doencaForm->setAction('/'.$request->getModuleName().'/'.$request->getControllerName().'/delete');
+
+		$__action = 	($this->getRequest()->getBaseUrl())
+				. '/' .	($this->getRequest()->getModuleName())
+				. '/' .	($this->getRequest()->getControllerName())
+				. '/' . 'delete';
+		$doencaForm->setAction($__action);
 		$doencaForm->setMethod('post');
 		$doencaModel = new Model_Db_Sanitario();
 		$doencaModel->setTipo(1);
