@@ -74,7 +74,11 @@ class Movimentacao_ExamerepController extends Zend_Controller_Action
 	public function addAction()
 	{
 		$exameForm = new Form_ExameReprodutivo();
-		$exameForm->setAction('/movimentacao/examerep/add');
+		$__action = 	($this->getRequest()->getBaseUrl())
+				. '/' .	($this->getRequest()->getModuleName())
+				. '/' .	($this->getRequest()->getControllerName())
+				. '/' . 'add';
+		$exameForm->setAction($__action);
 		$exameForm->setMethod('post');
 		$this->view->form = $exameForm;
 
@@ -111,7 +115,11 @@ class Movimentacao_ExamerepController extends Zend_Controller_Action
 		$exameId			= (int)$request->getParam('id');
 		$exameForm			= new Form_ExameReprodutivo();
 
-		$exameForm->setAction('/movimentacao/examerep/edit');
+		$__action = 	($this->getRequest()->getBaseUrl())
+				. '/' .	($this->getRequest()->getModuleName())
+				. '/' .	($this->getRequest()->getControllerName())
+				. '/' . 'edit';
+		$exameForm->setAction($__action);
 		$exameForm->setMethod('post');
 		$exameModel = new Model_Db_Examerep();
 

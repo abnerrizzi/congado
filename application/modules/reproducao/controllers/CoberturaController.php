@@ -78,4 +78,54 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		throw new Zend_Controller_Action_Exception('Funcionalidade ainda não implementada.');
 	}
 
+	public function editAction()
+	{
+
+		$request	= $this->getRequest();
+		$coberturaId	= (int)$request->getParam('id');
+		$coberturaForm	= new Form_Cobertura();
+
+		$__action = 	($this->getRequest()->getBaseUrl())
+				. '/' .	($this->getRequest()->getModuleName())
+				. '/' .	($this->getRequest()->getControllerName())
+				. '/' . 'edit';
+
+		$coberturaForm->setAction($__action);
+		$coberturaForm->setMethod('post');
+		$coberturaModel = new Model_Db_Cobertura();
+
+
+
+		if ($request->isPost()) {
+
+//			if ($doencaForm->isValid($request->getPost())) {
+//				$values = $doencaForm->getValues(true);
+//				unset($values['submit'], $values['cancel'], $values['delete']);
+//				$doencaModel->updateDoenca($values);
+//				$this->_redirect('/'. $this->getRequest()->getControllerName());
+//			}
+
+		} else {
+
+			if ($coberturaId > 0) {
+				$result = $coberturaModel->getCobertura($coberturaId);
+				$coberturaForm->populate($result);
+			} else {
+				throw new Exception("invalid record number");
+			}
+		}
+
+		$this->view->elements = array(
+			'id',
+			array('vaca'),
+			'dt_coleta',
+			array('touro'),
+			array('inseminador'),
+			array('lote'),
+			'delete',
+		);
+		$this->view->form = $coberturaForm;
+
+	}
+
 }
