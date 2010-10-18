@@ -44,7 +44,12 @@ class Asteka_View_Helper_Grid extends Zend_View_Helper_Abstract
 			$editAction = $edit['action'];
 			$this->view->headScript()->prependScript("var editUrl = '/$editModule/$editAction';");
 		}
-		
+
+		if (isset($this->view->title)) {
+			$this->view->headScript()->appendScript("\t__title = '".$this->view->title."';\n");
+		} else {
+			throw new Zend_Exception('title of page is not set, please verify');
+		}
 		// Add default script for grid
 		$this->view->headScript()->appendFile($grid->getBaseUrl() . '/scripts/grid.js');
 		$this->view->headScript()->appendFile($grid->getBaseUrl() . '/scripts/library/jquery/jquery.text_selection.js');
