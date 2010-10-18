@@ -23,24 +23,6 @@ class Form_Backup extends Form_Default
 		$this->addElement('file', 'backupfile', array(
 			'label' => 'Escolha o arquivo para restaurar',
 		));
-
-		$this->addElement('image', 'cancel', array(
-			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/cancel.gif',
-		));
-
-		$this->getElement('cancel')
-			->removeDecorator('Label')
-			->removeDecorator('Tag')
-		;
-
-		$this->addElement('image', 'submit', array(
-			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/save.gif',
-		));
-
-		$this->getElement('submit')
-			->removeDecorator('Label')
-			->removeDecorator('Tag')
-		;
 			
 	}
 

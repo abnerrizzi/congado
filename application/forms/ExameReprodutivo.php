@@ -70,22 +70,6 @@ class Form_ExameReprodutivo extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('image', 'submit', array(
-			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/save.gif',
-		));
-		$this->getElement('submit')
-			->removeDecorator('Label')
-			->removeDecorator('Tag')
-		;
-
-		$this->addElement('image', 'cancel', array(
-			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/cancel.gif',
-		));
-		$this->getElement('cancel')
-			->removeDecorator('Label')
-			->removeDecorator('Tag')
-		;
-
 	}
 
 }

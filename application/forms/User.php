@@ -82,29 +82,6 @@ class Form_User extends Form_Default
 			'label' => 'Administrador',
 		));
 
-		$this->addElement('image', 'delete', array(
-			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/delete.gif',
-		));
-		$this->addElement('image', 'submit', array(
-			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/save.gif',
-		));
-		$this->getElement('submit')
-			->removeDecorator('Label')
-			->removeDecorator('Tag')
-		;
-
-		$this->addElement('image', 'cancel', array(
-			'image' => Zend_Controller_Front::getInstance()->getBaseUrl().'/images/button/cancel.gif',
-		));
-		$this->getElement('cancel')
-			->removeDecorator('Label')
-			->removeDecorator('Tag')
-		;
-
-		$this->getElement('delete')
-			->removeDecorator('Label')
-			->removeDecorator('Tag')
-		;
 	}
 
 }
