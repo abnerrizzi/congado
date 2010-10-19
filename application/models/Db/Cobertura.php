@@ -17,17 +17,42 @@ class Model_Db_Cobertura extends Model_Db
 
 	protected $_name = 'cobertura';
 	protected $_select = false;
+	protected $_dependentTables = array(
+		'Model_Db_Lote',
+		'Model_Db_Inseminador',
+		'Model_Db_Fichario',
+		'Model_Db_Fazenda',
+	);
+	/*
+	protected $_referenceMap	= array(
+		'fazenda' => array(
+            'columns'           => array('fazenda_id'),
+            'refTableClass'     => 'Model_Db_Fazenda',
+            'refColumns'        => array('id')
+        ),
+        'vaca' => array(
+            'columns'           => array('fichario_id'),
+            'refTableClass'     => 'Model_Db_Fichario',
+            'refColumns'        => array('id')
+        ),
+        'touro' => array(
+            'columns'           => array('touro_id'),
+            'refTableClass'     => 'Model_Db_Fichario',
+            'refColumns'        => array('id')
+        ),
+	);
+	*/
 
 	public function getPaginatorAdapter($orderby = null, $order = null)
 	{
 		if ($orderby == 'dh') {
-			$orderby = 'data';
+			$orderby = 'dt_cobertura';
 		}
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
 			->from(array('c' => $this->_name), array(
 				'id',
-				'dh' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')"),
+				'dh' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
 			), $this->_schema)
 			->joinLeft(array('v' => 'fichario'), 'c.fichario_id = v.id', array('vaca' => 'cod'), $this->_schema)
 			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro' => 'cod'), $this->_schema)
@@ -110,8 +135,22 @@ class Model_Db_Cobertura extends Model_Db
 
 	public function getCobertura($id)
 	{
+
 		$id = (int)$id;
-		$row = $this->fetchRow('id = ' . $id);
+
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('c' => $this->_name), array(
+				'dt_cobertura' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')")
+			), $this->_schema)
+			->joinLeft(array('v' => 'fichario'), 'c.fichario_id = v.id', array('vaca_id' => 'v.id', 'vaca_cod' => 'v.cod', 'vaca' => 'nome'), $this->_schema)
+			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro_id' => 't.id', 'touro_cod' => 't.cod', 'touro' => 'nome'), $this->_schema)
+			->joinLeft(array('i' => 'inseminador'), 'c.inseminador_id = i.id', array('inseminador_id' => 'i.id', 'inseminador_cod' => 't.cod', 'inseminador' => 'i.dsc'), $this->_schema)
+			->joinLeft(array('l' => 'lote'), 'c.lote_id = l.id', array('lote_id' => 'l.id', 'lote_cod' => 'l.cod', 'lote' => 'l.dsc'), $this->_schema)
+			->where('c.id = ?', $id)
+			;
+
+		$row = $this->fetchRow($this->_select);
 		if (!$row) {
 			throw new Exception("Count not find row $id");
 		}

@@ -118,7 +118,7 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		$this->view->elements = array(
 			'id',
 			array('vaca'),
-			'dt_coleta',
+			'dt_cobertura',
 			array('touro'),
 			array('inseminador'),
 			array('lote'),

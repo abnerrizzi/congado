@@ -39,7 +39,7 @@ class Form_Cobertura extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'dt_coleta', array(
+		$this->addElement('text', 'dt_cobertura', array(
 			'label' => 'Coleta',
 			'required' => true,
 			'filters' => array('StringTrim'),
@@ -94,9 +94,15 @@ class Form_Cobertura extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'doses');
-		$this->addElement('text', 'partida');
-		$this->addElement('text', 'doses');
+		$this->addElement('text', 'doses', array(
+			'class'	=> 'input',
+		));
+		$this->addElement('text', 'partida', array(
+			'class'	=> 'input',
+		));
+		$this->addElement('text', 'doses', array(
+			'class'	=> 'input',
+		));
 
 
 	}
