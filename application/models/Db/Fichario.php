@@ -17,6 +17,18 @@ class Model_Db_Fichario extends Model_Db
 
 	protected $_name = 'fichario';
 	protected $_select = false;
+	protected $_referenceMap	= array(
+        'CoberturaVaca' => array(
+            'columns'           => array('id'),
+            'refTableClass'     => 'Model_Db_Cobertura',
+            'refColumns'        => array('fichario_id')
+        ),
+        'CoberturaTouro' => array(
+            'columns'           => array('id'),
+            'refTableClass'     => 'Model_Db_Cobertura',
+            'refColumns'        => array('touro_id')
+        ),
+	);
 
 	public function getPaginatorAdapter($orderby = null, $order = null)
 	{

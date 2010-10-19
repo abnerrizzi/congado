@@ -17,6 +17,13 @@ class Model_Db_Lote extends Model_Db
 
 	protected $_name = 'lote';
 	protected $_select = false;
+	protected $_referenceMap	= array(
+        'Cobertura' => array(
+            'columns'           => array('id'),
+            'refTableClass'     => 'Model_Db_Cobertura',
+            'refColumns'        => array('lote_id')
+        ),
+	);
 
 	public function getPaginatorAdapter($orderby, $order)
 	{

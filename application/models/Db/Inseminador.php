@@ -17,6 +17,13 @@ class Model_Db_Inseminador extends Model_Db
 
 	protected $_name = 'inseminador';
 	protected $_select = false;
+	protected $_referenceMap	= array(
+        'Cobertura' => array(
+            'columns'           => array('id'),
+            'refTableClass'     => 'Model_Db_Cobertura',
+            'refColumns'        => array('inseminador_id')
+        ),
+	);
 
 	public function getInseminadores($orderby = null, $order = null)
 	{
