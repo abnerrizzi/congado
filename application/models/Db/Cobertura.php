@@ -141,6 +141,8 @@ class Model_Db_Cobertura extends Model_Db
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
 			->from(array('c' => $this->_name), array(
+				'id',
+				'fazenda_id',
 				'dt_cobertura' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')")
 			), $this->_schema)
 			->joinLeft(array('v' => 'fichario'), 'c.fichario_id = v.id', array('vaca_id' => 'v.id', 'vaca_cod' => 'v.cod', 'vaca' => 'nome'), $this->_schema)

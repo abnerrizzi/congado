@@ -70,20 +70,14 @@ class Model_Db_Fichario extends Model_Db
 	 * @param array $params
 	 * @return array
 	 */
-	public function listJsonFicharios($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
+	public function listJsonFicharios($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $fazenda_id = false, $like = false, $params = array())
 	{
 
-//		if ($orderby == 'cod') {
-//			$orderby = "natsort_canon(`cod`, 'natural')";
-//		}
 		$col_id = $this->_name.'.id';
 		$col_id = 'id';
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
-			->from($this->_name, array('id', 'cod', 'nome', 'rgn', 'sisbov', 'sexo'), $this->_schema)
-			->joinLeft(array('categoria'), 'categoria_id = categoria.id', array('categoria' => 'dsc'), $this->_schema)
-			->joinLeft(array('raca'), 'raca_id = raca.id', array('raca' => 'dsc'), $this->_schema)
-			->joinLeft(array('grausangue'), 'grausangue_id = grausangue.id', array('grausangue' => 'dsc'), $this->_schema)
+			->from($this->_name, array('id', 'cod', 'nome'), $this->_schema)
 		;
 
 		if ($orderby && $order) {
@@ -102,8 +96,13 @@ class Model_Db_Fichario extends Model_Db
 			$this->_select->where($this->_name.'.sexo = ?', $params['sexo']);
 		}
 
-//		print '<pre>'.$this->_select;
-//		die();
+		if ($fazenda_id) {
+			$this->_select->where('fazenda_id = ?', (int)$fazenda_id);
+		} else {
+			$this->_select->where('1 = ?', 2);
+		}
+
+//		die('<pre>'.$this->_select);
 		$return = array(
 			'page' => $page,
 			'total' => $this->fetchAll($this->_select)->count(),
@@ -137,6 +136,74 @@ class Model_Db_Fichario extends Model_Db
 		}
 		return $return;
 
+	}
+
+	public function listJsonAnimal($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
+	{
+
+//		if ($orderby == 'cod') {
+//			$orderby = "natsort_canon(`cod`, 'natural')";
+//		}
+		$col_id = $this->_name.'.id';
+		$col_id = 'id';
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from($this->_name, array('id', 'cod', 'nome', 'rgn', 'sisbov', 'sexo'), $this->_schema)
+			->joinLeft(array('categoria'), 'categoria_id = categoria.id', array('categoria' => 'dsc'), $this->_schema)
+			->joinLeft(array('raca'), 'raca_id = raca.id', array('raca' => 'dsc'), $this->_schema)
+			->joinLeft(array('grausangue'), 'grausangue_id = grausangue.id', array('grausangue' => 'dsc'), $this->_schema)
+		;
+
+		if ($orderby && $order) {
+			$this->_select->order($orderby .' '. $order);
+		}
+
+		if ($qtype && $query) {
+			if ($like == 'false') {
+				$this->_select->where($qtype .' = ?', $query);
+			} else {
+				$this->_select->where($qtype .' LIKE ?', '%'.$query.'%');
+			}
+		}
+
+		if (array_key_exists('sexo', $params) && $params['sexo'] != false) {
+			$this->_select->where($this->_name.'.sexo = ?', $params['sexo']);
+		}
+
+		print '<pre>'.$this->_select;
+		die();
+		$return = array(
+			'page' => $page,
+			'total' => $this->fetchAll($this->_select)->count(),
+		);
+
+		if ($page && $limit) {
+			$this->_select->limitPage($page, $limit);
+		}
+
+		$array = $this->fetchAll($this->_select)->toArray();
+		for ($i=0; $i < count($array); $i++)
+		{
+			$row = $array[$i];
+
+			$current = array(
+				'id' => $row[$col_id]
+			);
+			foreach ($row as $key => $val)
+			{
+				if ($key == $col_id) {
+					continue;
+				} else {
+					if ($val == null) {
+						$current['cell'][] = '';
+					} else {
+						$current['cell'][] = ($val);
+					}
+				}
+			}
+			$return['rows'][] = $current;
+		}
+		return $return;
 	}
 
 	public function getFicharios($orderby = null, $order = null)

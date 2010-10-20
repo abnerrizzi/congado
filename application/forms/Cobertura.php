@@ -22,6 +22,7 @@ class Form_Cobertura extends Form_Default
 
 		$this->addElement('select', 'fazenda_id', array(
 			'label' => 'Fazenda',
+			'required' => true,
 			'class'	=> 'input',
 		));
 
