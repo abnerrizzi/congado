@@ -95,6 +95,19 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		$coberturaModel = new Model_Db_Cobertura();
 
 
+		/*
+		 * Populando select de fazendas
+		 */
+		$fazendaModel = new Model_Db_Fazenda();
+		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
+		$coberturaForm->getElement('fazenda_id')
+			->addMultiOption(false, '--')
+			->setAttrib('disabled', 'disabled')
+		;
+		foreach ($fazendas as $fazenda) {
+			$coberturaForm->getElement('fazenda_id')
+				->addMultiOption($fazenda['id'], $fazenda['descricao']);
+		}
 
 		if ($request->isPost()) {
 
@@ -117,6 +130,7 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 
 		$this->view->elements = array(
 			'id',
+			'fazenda_id',
 			array('vaca'),
 			'dt_cobertura',
 			array('touro'),
