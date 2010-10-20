@@ -31,16 +31,18 @@ class Form_Cobertura extends Form_Default
 		$this->addElement('text', 'vaca_cod', array(
 			'label' => 'Vaca',
 			'filters' => array('StringTrim', 'Alnum'),
-			'maxlength' => 3,
-			'size' => 4,
+			'maxlength' => 16,
+			'size' => 16,
 			'class'	=> 'input',
 		));
 		$this->addElement('text', 'vaca', array(
 			'class'	=> 'input',
+			'maxlength' => 21,
+			'size' => 21,
 		));
 
 		$this->addElement('text', 'dt_cobertura', array(
-			'label' => 'Coleta',
+			'label' => 'Data Cobertura',
 			'required' => true,
 			'filters' => array('StringTrim'),
 			'validators' => array(
@@ -58,8 +60,8 @@ class Form_Cobertura extends Form_Default
 		$this->addElement('text', 'touro_cod', array(
 			'label' => 'Touro',
 			'filters' => array('StringTrim', 'Alnum'),
-			'maxlength' => 3,
-			'size' => 4,
+			'maxlength' => 21,
+			'size' => 21,
 			'class'	=> 'input',
 		));
 		$this->addElement('text', 'touro', array(

@@ -467,9 +467,9 @@ function changeSelectAnimal() {
 		return false;
 	}
 
-	if (__fieldName == 'mae' || __fieldName == 'receptora') {
+	if (__fieldName == 'mae' || __fieldName == 'receptora' || __fieldName == 'vaca') {
 		__sexo = 'F';
-	} else if (__fieldName == 'pai') {
+	} else if (__fieldName == 'pai' || __fieldName == 'touro') {
 		__sexo = 'M';
 	} else {
 		__sexo = '';
@@ -822,8 +822,6 @@ function changeSelect() {
 		$("#ajax_loader").fadeOut(30);
 	}, "json");
 }
-
-
 
 
 
