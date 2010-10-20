@@ -562,6 +562,34 @@ class JsonController extends Zend_Controller_Action
 	}
 
 	/**
+	 * inseminadorAction
+	 * 
+	 * Retorna uma string no formato JSON com a lista de graus de sangue com o padrao jqGrid
+	 *  
+	 * @return (string|JSON)
+	 */
+	public function loteAction()
+	{
+		$grausangueModel = new Model_Db_Lote();
+		$graus = $grausangueModel->listJson(
+			array(
+				'id',
+				'cod',
+				'dsc',
+			),
+			$this->getRequest()->getParam('sortname','cod'),
+			$this->getRequest()->getParam('sortorder','asc'),
+			$this->getRequest()->getParam('page','1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($graus));
+		$this->render('index');
+	}
+
+	/**
 	 * animalAction
 	 * 
 	 * Retorna uma string no formato JSON com a lista de animais com o padrao
