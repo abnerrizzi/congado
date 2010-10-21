@@ -128,6 +128,20 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 			}
 		}
 
+		// Disable form elements
+		$disable_elements = array(
+			'vaca',
+			'touro',
+			'inseminador',
+			'lote',
+		);
+		foreach ($disable_elements as $el) {
+			$coberturaForm->getElement($el)
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('class', 'readonly')
+			;
+		}
+
 		$this->view->elements = array(
 			'id',
 			'fazenda_id',

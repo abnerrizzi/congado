@@ -77,7 +77,7 @@ class Model_Db_Fichario extends Model_Db
 		$col_id = 'id';
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
-			->from($this->_name, array('id', 'cod', 'nome'), $this->_schema)
+			->from($this->_name, array('id', 'cod', 'nome', 'rgn', 'sisbov', 'sexo'), $this->_schema)
 		;
 
 		if ($orderby && $order) {

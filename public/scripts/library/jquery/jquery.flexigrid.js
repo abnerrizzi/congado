@@ -57,6 +57,7 @@ var ja_mandou_ajax_anteriormente = false;
 			 query: '',
 			 qtype: '',
 			 like: false,
+			 fazenda_id: null,
 			 nomsg: 'No items',
 			 minColToggle: 1, //minimum allowed column to be hidden
 			 showToggleBtn: true, //show or hide column toggle popup
@@ -623,6 +624,7 @@ var ja_mandou_ajax_anteriormente = false;
 					,{ name : 'query', value : p.query}
 					,{ name : 'qtype', value : p.qtype}
 					,{ name : 'like', value : p.like}
+					,{ name : 'fazenda_id', value : p.fazenda_id}
 				];							 
 							 
 				if (p.params)

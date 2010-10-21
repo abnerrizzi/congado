@@ -643,6 +643,7 @@ class JsonController extends Zend_Controller_Action
 			$rp,
 			$this->getRequest()->getParam('qtype'),
 			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('fazenda_id', false),
 			$this->getRequest()->getParam('like', false),
 			array(
 				'sexo' => $this->getRequest()->getParam('sexo', false),
