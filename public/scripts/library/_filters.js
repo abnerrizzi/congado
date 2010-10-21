@@ -527,6 +527,7 @@ function showfilter_animal(url, input)
 			title: false,
 			useRp: true,
 			rp: 10,
+			fazenda_id: $('#fazenda_id').val(),
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
@@ -850,6 +851,104 @@ function showfilter_destino(url, input)
 			usepager: true,
 			title: false,
 			useRp: true,
+			rp: 10,
+			showTableToggleBtn: false,
+			pagestat: 'Mostrando {from} até {to} de {total} itens',
+			width: 600,
+			height: (240 + _Height),
+			onSelect: function(row) {
+				changeField(row, input);
+			}
+		});
+		$("#dlg").fadeIn(200);
+	}
+}
+
+
+function showfilter_lote(url, input)
+{
+	createDialog('Lote');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
+		{
+			url: url,
+			dataType: 'json',
+			colModel : [{
+					display: 'Lote',
+					name : 'cod',
+					width : 40,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Descrição',
+					name : 'dsc',
+					width : 180,
+					sortable : true,
+					align: 'left'
+				}],
+			searchitems : [{
+					display: 'Lote',
+					name : 'cod'
+				}, {
+					display: 'Descrição',
+					name : 'dsc',
+					isdefault: true
+				}],
+			sortname: "cod",
+			sortorder: "asc",
+			usepager: true,
+			title: false,
+			useRp: true,
+			fazenda_id: $('#fazenda_id').val(),
+			like: true,
+			rp: 10,
+			showTableToggleBtn: false,
+			pagestat: 'Mostrando {from} até {to} de {total} itens',
+			width: 600,
+			height: (240 + _Height),
+			onSelect: function(row) {
+				changeField(row, input);
+			}
+		});
+		$("#dlg").fadeIn(200);
+	}
+}
+
+function showfilter_inseminador(url, input)
+{
+	createDialog('Inseminador');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
+		{
+			url: url,
+			dataType: 'json',
+			colModel : [{
+					display: 'Código',
+					name : 'cod',
+					width : 40,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Inseminador',
+					name : 'dsc',
+					width : 180,
+					sortable : true,
+					align: 'left'
+				}],
+			searchitems : [{
+					display: 'Código',
+					name : 'cod'
+				}, {
+					display: 'Inseminador',
+					name : 'dsc',
+					isdefault: true
+				}],
+			sortname: "cod",
+			sortorder: "asc",
+			usepager: true,
+			title: false,
+			useRp: true,
+			like: true,
 			rp: 10,
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',

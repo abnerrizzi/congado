@@ -431,6 +431,12 @@ function changeSelectRaca() {
 
 /**
  * Funcao criada para globalizar o metodo de implementacao do incone de pesquisa
+ * @param __parent - elemento onde ficara o icone
+ * @param __jsonUrl - url pra fazer json
+ * @param title - titulo da div q vai abrir
+ * @param function_call - string com nome da funcao a ser executada
+ * @param w - largura
+ * @param h - altura
  */
 function addSearchIcon(__parent, __jsonUrl, title, function_call, w, h)
 {
@@ -854,7 +860,7 @@ function changeAnimal() {
 	$.post(__url, {
 		fazenda_id: $('#fazenda_id').val(),
 		sexo: __sexo,
-		qtype : __qtype,
+		qtype : 'cod',
 		query : __fieldValue,
 		like : 'false',
 		ajax : 'true'
