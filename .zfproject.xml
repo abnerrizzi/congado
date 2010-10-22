@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <projectProfile>
   <projectDirectory>
-    <projectProfileFile/>
-    <applicationDirectory>
+    <projectProfileFile filesystemName=".zfproject.xml"/>
+    <applicationDirectory classNamePrefix="Application_">
       <apisDirectory enabled="false"/>
       <configsDirectory>
         <applicationConfigFile type="ini"/>
@@ -162,6 +162,9 @@
         <controllerFile controllerName="estoqueemb">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Indextest">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory/>
@@ -182,6 +185,18 @@
                 <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
+            <viewHelpersDirectory/>
+            <viewFiltersDirectory/>
+          </viewsDirectory>
+        </moduleDirectory>
+        <moduleDirectory moduleName="test">
+          <apisDirectory enabled="false"/>
+          <configsDirectory enabled="false"/>
+          <controllersDirectory/>
+          <layoutsDirectory enabled="false"/>
+          <modelsDirectory/>
+          <viewsDirectory>
+            <viewScriptsDirectory/>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
           </viewsDirectory>
@@ -465,11 +480,14 @@
           <viewControllerScriptsDirectory forControllerName="estoqueemb">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Indextest">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
       </viewsDirectory>
-      <bootstrapFile/>
+      <bootstrapFile filesystemName="Bootstrap.php"/>
     </applicationDirectory>
     <dataDirectory enabled="false">
       <cacheDirectory enabled="false"/>
@@ -486,52 +504,53 @@
       <publicStylesheetsDirectory enabled="false"/>
       <publicScriptsDirectory enabled="false"/>
       <publicImagesDirectory enabled="false"/>
-      <publicIndexFile/>
-      <htaccessFile/>
+      <publicIndexFile filesystemName="index.php"/>
+      <htaccessFile filesystemName=".htaccess"/>
     </publicDirectory>
     <projectProvidersDirectory enabled="false"/>
     <temporaryDirectory enabled="false"/>
     <testsDirectory>
-      <testPHPUnitConfigFile/>
+      <testPHPUnitConfigFile filesystemName="phpunit.xml"/>
       <testApplicationDirectory>
-        <testApplicationBootstrapFile/>
+        <testApplicationBootstrapFile filesystemName="bootstrap.php"/>
         <testApplicationControllerDirectory>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
-          <testApplicationControllerFile/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="ControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="IndextestControllerTest.php"/>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
       <testLibraryDirectory>
-        <testLibraryBootstrapFile/>
+        <testLibraryBootstrapFile filesystemName="bootstrap.php"/>
       </testLibraryDirectory>
     </testsDirectory>
   </projectDirectory>

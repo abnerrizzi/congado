@@ -114,7 +114,7 @@ function showfilter_pelagem(url, input)
 			showTableToggleBtn: false,
 			pagestat: 'Mostrando {from} até {to} de {total} itens',
 			width: 600,
-			height: 240,
+			height: (240 + _Height),
 			onSelect: function(row) {
 				changeField(row, input);
 			}
@@ -384,85 +384,6 @@ function showfilter_grausangue(url, input)
 		$("#dlg").fadeIn(200);
 	}
 }
-
-function showfilter_animal_OLD(url, input)
-{
-
-	$("#filter-bg").show();
-	if ($("#dlg").length) {
-		$("#filter-grid").flexigrid(
-		{
-			url: url,
-			dataType: 'json',
-			colModel : [{
-					display: 'Animal',
-					name : 'cod',
-					width : 80,
-					sortable : true,
-					align: 'left'
-				}, {
-					display: 'Nome',
-					name : 'nome',
-					width : 160,
-					sortable : true,
-					align: 'left'
-				}, {
-					display: 'RGN',
-					name : 'rgn',
-					width : 80,
-					sortable : true,
-					align: 'left'
-				}, {
-					display: 'SISBOV',
-					name : 'sisbov',
-					width : 80,
-					sortable : true,
-					align: 'left'
-				}, {
-					display: 'Sexo',
-					name : 'sexo',
-					width : 40,
-					sortable : true,
-					align: 'left'
-				}],
-			searchitems : [{
-					display: 'Animal',
-					name : 'fichario.cod'
-				}, {
-					display: 'Nome',
-					name : 'nome',
-					isdefault: true
-				}, {
-					display: 'RGN',
-					name : 'rgn',
-					isdefault: true
-				}, {
-					display: 'SISBOV',
-					name : 'fichario.sisbov',
-					isdefault: true
-				}],
-			sortname: "nome",
-			sortorder: "asc",
-			usepager: true,
-			title: 'Animal',
-			useRp: true,
-			rp: 10,
-			showTableToggleBtn: false,
-			pagestat: 'Mostrando {from} até {to} de {total} itens',
-			width: 600,
-			height: (240 + _Height),
-			onSelect: function(row) {
-				changeField(row, input);
-			}
-		});
-		$("#dlg").fadeIn(200);
-	}
-	$("#dlg").centerx();
-	$(window).bind('resize', function() {$("#dlg").centerx();});
-	$(window).bind('scroll', function() {$("#dlg").centerx();});
-}
-
-
 
 
 function showfilter_animal(url, input)
