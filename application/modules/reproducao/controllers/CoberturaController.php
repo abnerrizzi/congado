@@ -147,6 +147,8 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 			'fazenda_id',
 			array('vaca'),
 			'dt_cobertura',
+			'numerocobertura',
+			'ultima_cobertura',
 			array('touro'),
 			array('inseminador'),
 			array('lote'),

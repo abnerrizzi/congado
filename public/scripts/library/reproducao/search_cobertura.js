@@ -56,6 +56,12 @@ $(document).ready(function() {
 					width : 160,
 					sortable : true,
 					align: 'left'
+				}, {
+					display: 'Cobertura N°',
+					name : 'numerocobertura',
+					width : 120,
+					sortable : true,
+					align: 'left'
 				}],
 			searchitems : [{
 					display: 'Animal',
