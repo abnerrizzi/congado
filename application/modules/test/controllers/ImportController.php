@@ -140,11 +140,11 @@ class Test_ImportController extends Zend_Controller_Action
 
 			$z++;
 			if ($z == 16) {
-				die();
 			}
 		}
 
 		fclose($handle);
+		$this->renderScript('import/index.phtml');
 	}
 
 	private function converte_data($date) {
