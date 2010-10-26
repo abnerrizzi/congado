@@ -1,0 +1,11 @@
+<?php
+
+$this->headScript()
+	->appendScript("\t__module = 'reproducao';\n")
+	->appendFile($this->baseUrl() . '/scripts/library/reproducao/search_cobertura.js')
+	;
+
+echo $this->grid($this->grid);
+
+?>
+
