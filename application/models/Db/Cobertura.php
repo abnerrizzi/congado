@@ -15,7 +15,7 @@
 class Model_Db_Cobertura extends Model_Db
 {
 
-	protected $_name = 'cobertura';
+	protected $_name = 'cobertura'	;
 	protected $_select = false;
 	protected $_dependentTables = array(
 		'Model_Db_Lote',
@@ -69,16 +69,22 @@ class Model_Db_Cobertura extends Model_Db
 	{
 
 		if ($orderby == 'dh') {
-			$orderby = 'data';
+			$orderby = 'dt_cobertura';
 		}
 
 		$col_id = $this->_name.'.id';
 		$col_id = 'id';
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
-			->from($this->_name, array('id', 'dh' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')")), $this->_schema)
-			->joinLeft(array('vaca' => 'fichario'), 'fichario_id = vaca.id', array('vaca' => 'vaca.cod'), $this->_schema)
-			->joinLeft(array('touro' => 'fichario'), 'touro_id = touro.id', array('touro' => 'touro.cod'), $this->_schema)
+			->from($this->_name, array(
+				'id',
+				'dh' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
+				'vaca' => 'vaca.cod',
+				'touro' => 'touro.cod',
+				'numerocobertura'
+			), $this->_schema)
+			->joinLeft(array('vaca' => 'fichario'), 'fichario_id = vaca.id', array(), $this->_schema)
+			->joinLeft(array('touro' => 'fichario'), 'touro_id = touro.id', array(), $this->_schema)
 		;
 
 		if ($orderby && $order) {
@@ -143,7 +149,8 @@ class Model_Db_Cobertura extends Model_Db
 			->from(array('c' => $this->_name), array(
 				'id',
 				'fazenda_id',
-				'dt_cobertura' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')")
+				'dt_cobertura' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
+				'numerocobertura',
 			), $this->_schema)
 			->joinLeft(array('v' => 'fichario'), 'c.fichario_id = v.id', array('vaca_id' => 'v.id', 'vaca_cod' => 'v.cod', 'vaca' => 'nome'), $this->_schema)
 			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro_id' => 't.id', 'touro_cod' => 't.cod', 'touro' => 'nome'), $this->_schema)
@@ -157,6 +164,26 @@ class Model_Db_Cobertura extends Model_Db
 			throw new Exception("Count not find row $id");
 		}
 		$array = $row->toArray();
+
+		$_last = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('c' => $this->_name), array(
+				'ultima_cobertura' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
+			), $this->_schema)
+			->where('c.fichario_id = ?', $array['vaca_id'])
+			->where('c.fazenda_id = ?', $array['fazenda_id'])
+			->where('c.dt_cobertura <= STR_TO_DATE(?, \'%d/%m/%y\')', $array['dt_cobertura'])
+			->where('c.numerocobertura < ?', $array['numerocobertura'])
+			->order('dt_cobertura DESC')
+		;
+
+		$_lastRow = $this->fetchRow($_last);
+		if ($_lastRow != NULL) {
+			$_lastRow = $_lastRow->toArray();
+		}
+
+		$array['ultima_cobertura'] = $_lastRow['ultima_cobertura'];
+
 		foreach ($array as $key => $val) {
 			$return[$key] = utf8_decode($val);
 		}

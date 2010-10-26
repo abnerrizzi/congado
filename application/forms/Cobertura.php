@@ -33,7 +33,7 @@ class Form_Cobertura extends Form_Default
 			'label' => 'Vaca',
 			'filters' => array('StringTrim', 'Alnum'),
 			'maxlength' => 16,
-			'size' => 16,
+			'size' => 10,
 			'class'	=> 'input',
 		));
 		$this->addElement('text', 'vaca', array(
@@ -55,14 +55,29 @@ class Form_Cobertura extends Form_Default
 			'class'	=> 'input',
 		));
 
+
+		$this->addElement('text', 'numerocobertura', array(
+			'label' => 'Cobertura N°',
+			'class' => 'readonly_num',
+			'size' => 6,
+		));
+
+		$this->addElement('text', 'ultima_cobertura', array(
+			'label' => 'Última Cobertura',
+			'class' => 'readonly_num',
+			'size' => 10
+		));
+
+
+
 		$this->addElement('hidden', 'touro_id', array(
 			'required' => true
 		));
 		$this->addElement('text', 'touro_cod', array(
 			'label' => 'Touro',
 			'filters' => array('StringTrim', 'Alnum'),
-			'maxlength' => 21,
-			'size' => 21,
+			'maxlength' => 16,
+			'size' => 10,
 			'class'	=> 'input',
 		));
 		$this->addElement('text', 'touro', array(
