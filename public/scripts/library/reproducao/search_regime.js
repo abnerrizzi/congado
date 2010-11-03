@@ -39,27 +39,33 @@ $(document).ready(function() {
 			url: baseUrl +'/'+ __module +'/json/'+ __action,
 			dataType: 'json',
 			colModel : [{
-					display: 'Data',
-					name : 'dh',
-					width : 80,
+					display: 'Animal',
+					name : 'vaca.cod',
+					width : 140,
 					sortable : true,
 					align: 'left'
 				}, {
-					display: 'Animal',
-					name : 'vaca.cod',
-					width : 160,
+					display: 'Data Inicio',
+					name : 'dhi',
+					width : 70,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Data Fim',
+					name : 'dhf',
+					width : 70,
 					sortable : true,
 					align: 'left'
 				}, {
 					display: 'Touro',
 					name : 'touro.cod',
-					width : 160,
+					width : 140,
 					sortable : true,
 					align: 'left'
 				}, {
 					display: 'Cobertura N°',
 					name : 'numerocobertura',
-					width : 120,
+					width : 100,
 					sortable : true,
 					align: 'left'
 				}],
@@ -71,7 +77,7 @@ $(document).ready(function() {
 					display: 'Touro',
 					name : 'touro.cod'
 				}],
-			sortname: "dh",
+			sortname: "dhi",
 			sortorder: "asc",
 			usepager: true,
 			title: false,

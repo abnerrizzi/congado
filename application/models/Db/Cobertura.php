@@ -58,7 +58,8 @@ class Model_Db_Cobertura extends Model_Db
 			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro' => 'cod'), $this->_schema)
 			->joinLeft(array('i' => 'inseminador'), 'c.inseminador_id = i.id', array('inseminador' => 'dsc'), $this->_schema)
 			->joinLeft(array('l' => 'lote'), 'c.lote_id = l.id', array('lote_dsc' => 'dsc'), $this->_schema)
-			->where('tipo IN (?)', array('C', 'I', 'M'))
+			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array(), $this->_schema)
+			->where('tipo.cod IN (?)', array('C', 'I', 'M'))
 			->order($orderby .' '. $order)
 			;
 
@@ -81,7 +82,8 @@ class Model_Db_Cobertura extends Model_Db
 			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro' => 'cod'), $this->_schema)
 			->joinLeft(array('i' => 'inseminador'), 'c.inseminador_id = i.id', array('inseminador' => 'dsc'), $this->_schema)
 			->joinLeft(array('l' => 'lote'), 'c.lote_id = l.id', array('lote_dsc' => 'dsc'), $this->_schema)
-			->where('tipo = ?', 'R')
+			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array(), $this->_schema)
+			->where('tipo.cod = ?', 'R')
 			->order($orderby .' '. $order)
 			;
 
@@ -167,8 +169,10 @@ class Model_Db_Cobertura extends Model_Db
 	public function listJsonRegime($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
 	{
 
-		if ($orderby == 'dh') {
+		if ($orderby == 'dhi') {
 			$orderby = 'dt_cobertura';
+		} elseif ($orderby == 'dhf') {
+			$orderby = 'dataCio';
 		}
 
 		$col_id = $this->_name.'.id';
@@ -177,14 +181,16 @@ class Model_Db_Cobertura extends Model_Db
 			->setIntegrityCheck(false)
 			->from($this->_name, array(
 				'id',
-				'dh' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
 				'vaca' => 'vaca.cod',
+				'dhi' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
+				'dhf' => new Zend_Db_Expr("DATE_FORMAT(dataCio, '%d/%m/%Y')"),
 				'touro' => 'touro.cod',
 				'numerocobertura'
 			), $this->_schema)
 			->joinLeft(array('vaca' => 'fichario'), 'fichario_id = vaca.id', array(), $this->_schema)
 			->joinLeft(array('touro' => 'fichario'), 'touro_id = touro.id', array(), $this->_schema)
-			->where('tipo = ?', 'R')
+			->joinLeft(array('tipo' => 'cobertura_tipo'), 'cobertura_tipo_id = tipo.id', array(), $this->_schema)
+			->where('tipo.cod = ?', 'R')
 		;
 
 		if ($orderby && $order) {
@@ -251,17 +257,18 @@ class Model_Db_Cobertura extends Model_Db
 				'fazenda_id',
 				'dt_cobertura' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
 				'numerocobertura',
-				'tipo',
 			), $this->_schema)
 			->joinLeft(array('v' => 'fichario'), 'c.fichario_id = v.id', array('vaca_id' => 'v.id', 'vaca_cod' => 'v.cod', 'vaca' => 'nome'), $this->_schema)
 			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro_id' => 't.id', 'touro_cod' => 't.cod', 'touro' => 'nome'), $this->_schema)
 			->joinLeft(array('i' => 'inseminador'), 'c.inseminador_id = i.id', array('inseminador_id' => 'i.id', 'inseminador_cod' => 'i.cod', 'inseminador' => 'i.dsc'), $this->_schema)
 			->joinLeft(array('l' => 'lote'), 'c.lote_id = l.id', array('lote_id' => 'l.id', 'lote_cod' => 'l.cod', 'lote' => 'l.dsc'), $this->_schema)
+			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array('tipo' => 'tipo.cod'), $this->_schema)
 //			->where('tipo IN (?)', array('C', 'I', 'M'))
 			->where('c.id = ?', $id)
 			;
 
 		$row = $this->fetchRow($this->_select);
+
 		if (!$row) {
 			throw new Exception("Count not find row $id");
 		} elseif (!(($row['tipo'] == 'C') || ($row['tipo'] == 'I') || ($row['tipo'] == 'M'))) {
@@ -274,12 +281,12 @@ class Model_Db_Cobertura extends Model_Db
 				->setIntegrityCheck(false)
 				->from(array('c' => $this->_name), array(
 					'ultima_cobertura' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
-					'ultima_tipo' => 'tipo',
 				), $this->_schema)
 				->where('c.fichario_id = ?', $array['vaca_id'])
 				->where('c.fazenda_id = ?', $array['fazenda_id'])
 				->where('c.dt_cobertura <= STR_TO_DATE(?, \'%d/%m/%y\')', $array['dt_cobertura'])
 				->where('c.numerocobertura < ?', $array['numerocobertura'])
+				->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array('ultima_tipo' => 'tipo.cod'), $this->_schema)
 				->order('dt_cobertura DESC')
 			;
 
