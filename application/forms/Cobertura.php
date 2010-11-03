@@ -55,6 +55,10 @@ class Form_Cobertura extends Form_Default
 			'class'	=> 'input',
 		));
 
+		$this->addElement('select', 'tipo', array(
+			'label' => 'Tipo da Cobertura',
+			'class'	=> 'input',
+		));
 
 		$this->addElement('text', 'numerocobertura', array(
 			'label' => 'Cobertura N°',
@@ -66,6 +70,11 @@ class Form_Cobertura extends Form_Default
 			'label' => 'Última Cobertura',
 			'class' => 'readonly_num',
 			'size' => 10
+		));
+
+		$this->addElement('select', 'ultima_tipo', array(
+			'label' => 'Última Cobertura Tipo',
+			'class' => 'input',
 		));
 
 

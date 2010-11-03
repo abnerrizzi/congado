@@ -49,4 +49,21 @@ class Reproducao_JsonController extends Zend_Controller_Action
 		$this->render('index');
 	}
 
+	public function regimeAction()
+	{
+		$coberturaModel = new Model_Db_Cobertura();
+		$coberturas = $coberturaModel->listJsonRegime(
+			array(),
+			$this->getRequest()->getParam('sortname', 'vaca'),
+			$this->getRequest()->getParam('sortorder', 'asc'),
+			$this->getRequest()->getParam('page', '1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($coberturas));
+		$this->render('index');
+	}
+
 }

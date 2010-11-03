@@ -4,30 +4,30 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id$
+ * @version $Id: CoberturaController.php 500 2010-10-26 12:36:32Z bacteria_ $
  * 
  */
 
-class Reproducao_CoberturaController extends Zend_Controller_Action
+class Reproducao_RegimeController extends Zend_Controller_Action
 {
 
 	public function init()
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Reprodução :: Cobertura';
+		$this->view->title = 'Reprodução :: Regime de Pasto';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
 	public function indexAction()
 	{
 		$gridModel = new Model_Grid($this->view->title);
-		$coberturaModel = new Model_Db_Cobertura();
+		$regimeModel = new Model_Db_Cobertura();
 
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $coberturaModel->getPaginatorAdapter($_by, $_order);
+		$result	= $regimeModel->getPaginatorAdapterRegime($_by, $_order);
 		
 		/*
 		 * Paginator
@@ -57,15 +57,15 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'reproducao/cobertura',
+			'module'	=> 'reproducao/regime',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'reproducao/cobertura',
+			'module'	=> 'reproducao/regime',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'reproducao/cobertura',
+			'module'	=> 'reproducao/regime',
 			'action'	=> 'add',
 		));
 
@@ -73,12 +73,12 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		$this->view->grid = $gridModel;
 	}
 
-	public function addAction()
+	public function _addAction()
 	{
 		throw new Zend_Controller_Action_Exception('Funcionalidade ainda não implementada.');
 	}
 
-	public function editAction()
+	public function _editAction()
 	{
 
 		$request	= $this->getRequest();
@@ -174,7 +174,7 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 
 	}
 
-	private function populateTipos($coberturaForm)
+	private function _populateTipos($coberturaForm)
 	{
 		$coberturaForm->getElement('tipo')
 			->addMultiOption(false, '--');
