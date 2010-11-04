@@ -44,10 +44,11 @@ class Reproducao_RegimeController extends Zend_Controller_Action
 		 * Fields
 		 */
 		$fields[] = new Model_Grid_Fields('vaca', 'Vaca', 80);
-		$fields[] = new Model_Grid_Fields('dhi', 'Data Cobertura', 100);
-		$fields[] = new Model_Grid_Fields('dhf', 'Data Cobertura', 100);
+		$fields[] = new Model_Grid_Fields('dhi', 'Data Cobertura', 1);
+		$fields[] = new Model_Grid_Fields('dhf', 'Data Cobertura', 1);
 		$fields[] = new Model_Grid_Fields('touro', 'Touro', 80);
-		$fields[] = new Model_Grid_Fields('numerocobertura', 'Conertura N°', 120);
+		$fields[] = new Model_Grid_Fields('numerocobertura', 'Conertura N°', 1);
+		$fields[] = new Model_Grid_Fields('vaca_fazenda_id', 'Fazenda', 1);
 
 		/*
 		 * Grid Model

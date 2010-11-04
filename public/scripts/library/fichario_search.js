@@ -23,7 +23,7 @@ function fichario_search($dialog, _Height){
 	$dialog.dialog('open');
 	$("#search-grid").flexigrid(
 	{
-		url: baseUrl + '/json/animal',
+		url: baseUrl + '/json/fichario',
 		dataType: 'json',
 		colModel : [{
 				display: 'Animal',
