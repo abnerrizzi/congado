@@ -15,7 +15,7 @@
 class Model_Db_Cobertura extends Model_Db
 {
 
-	protected $_name = 'cobertur_new'	;
+	protected $_name = 'cobertura';
 	protected $_select = false;
 	protected $_dependentTables = array(
 		'Model_Db_Lote',
@@ -58,7 +58,7 @@ class Model_Db_Cobertura extends Model_Db
 			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro' => 'cod'), $this->_schema)
 			->joinLeft(array('i' => 'inseminador'), 'c.inseminador_id = i.id', array('inseminador' => 'dsc'), $this->_schema)
 			->joinLeft(array('l' => 'lote'), 'c.lote_id = l.id', array('lote_dsc' => 'dsc'), $this->_schema)
-			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array(), $this->_schema)
+			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array('tipo' => 'tipo.cod'), $this->_schema)
 			->where('tipo.cod IN (?)', array('C', 'I', 'M'))
 			->order($orderby .' '. $order)
 			;
@@ -79,6 +79,7 @@ class Model_Db_Cobertura extends Model_Db
 			->from(array('c' => $this->_name), array(
 				'id',
 				'vaca' => 'vaca.cod',
+				'vaca_fazenda_id' => 'fazenda_id',
 				'dhi' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
 				'dhf' => new Zend_Db_Expr("DATE_FORMAT(dataCio, '%d/%m/%Y')"),
 				'touro' => 'touro.cod',
