@@ -69,20 +69,30 @@ class Model_Db_Cobertura extends Model_Db
 
 	public function getPaginatorAdapterRegime($orderby = null, $order = null)
 	{
-		if ($orderby == 'dh') {
+		if ($orderby == 'dhi') {
 			$orderby = 'dt_cobertura';
+		} elseif ($orderby == 'dhf') {
+			$orderby = 'dataCio';
 		}
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
 			->from(array('c' => $this->_name), array(
 				'id',
-				'dh' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
+				'vaca' => 'vaca.cod',
+				'dhi' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
+				'dhf' => new Zend_Db_Expr("DATE_FORMAT(dataCio, '%d/%m/%Y')"),
+				'touro' => 'touro.cod',
+				'numerocobertura'
 			), $this->_schema)
-			->joinLeft(array('v' => 'fichario'), 'c.fichario_id = v.id', array('vaca' => 'cod'), $this->_schema)
-			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro' => 'cod'), $this->_schema)
-			->joinLeft(array('i' => 'inseminador'), 'c.inseminador_id = i.id', array('inseminador' => 'dsc'), $this->_schema)
-			->joinLeft(array('l' => 'lote'), 'c.lote_id = l.id', array('lote_dsc' => 'dsc'), $this->_schema)
-			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array(), $this->_schema)
+			->joinLeft(array('vaca' => 'fichario'), 'fichario_id = vaca.id', array(), $this->_schema)
+			->joinLeft(array('touro' => 'fichario'), 'touro_id = touro.id', array(), $this->_schema)
+			->joinLeft(array('tipo' => 'cobertura_tipo'), 'cobertura_tipo_id = tipo.id', array(), $this->_schema)
+			
+//			->joinLeft(array('v' => 'fichario'), 'c.fichario_id = v.id', array('vaca' => 'cod'), $this->_schema)
+//			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro' => 'cod'), $this->_schema)
+//			->joinLeft(array('i' => 'inseminador'), 'c.inseminador_id = i.id', array('inseminador' => 'dsc'), $this->_schema)
+//			->joinLeft(array('l' => 'lote'), 'c.lote_id = l.id', array('lote_dsc' => 'dsc'), $this->_schema)
+//			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array(), $this->_schema)
 			->where('tipo.cod = ?', 'R')
 			->order($orderby .' '. $order)
 			;
@@ -185,7 +195,8 @@ class Model_Db_Cobertura extends Model_Db
 				'dhi' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
 				'dhf' => new Zend_Db_Expr("DATE_FORMAT(dataCio, '%d/%m/%Y')"),
 				'touro' => 'touro.cod',
-				'numerocobertura'
+				'numerocobertura',
+				'vaca_fazenda_id'	=> 'fazenda_id',
 			), $this->_schema)
 			->joinLeft(array('vaca' => 'fichario'), 'fichario_id = vaca.id', array(), $this->_schema)
 			->joinLeft(array('touro' => 'fichario'), 'touro_id = touro.id', array(), $this->_schema)
