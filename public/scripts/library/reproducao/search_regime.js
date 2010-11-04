@@ -41,7 +41,7 @@ $(document).ready(function() {
 			colModel : [{
 					display: 'Animal',
 					name : 'vaca.cod',
-					width : 140,
+					width : 130,
 					sortable : true,
 					align: 'left'
 				}, {
@@ -59,13 +59,19 @@ $(document).ready(function() {
 				}, {
 					display: 'Touro',
 					name : 'touro.cod',
-					width : 140,
+					width : 130,
 					sortable : true,
 					align: 'left'
 				}, {
 					display: 'Cobertura N°',
 					name : 'numerocobertura',
-					width : 100,
+					width : 80,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Faz.',
+					name : 'vaca_fazenda_id',
+					width : 40,
 					sortable : true,
 					align: 'left'
 				}],
