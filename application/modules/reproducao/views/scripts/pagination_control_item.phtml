@@ -4,10 +4,8 @@
     <div class="UISearchSummaryBar_Pager clearfix" style="height: 24px;">
       <span class="UIPager">
         <span class="UIPager_PageResult">(mostrando <?=$this->firstItemNumber;?>-<?=$this->lastItemNumber;?> de <?=$this->totalItemCount;?> resultados)</span>
-        <span class="UIPager_PageNum">Página <?=$this->current;?> de <?=$this->pageCount;?>
+        <span class="UIPager_PageNum">Página <span id="page"><?=$this->current;?></span> de <span id="pages"><?=$this->pageCount;?></span>
       </span>
-
-
 
 <!-- First page link -->
 <!--
