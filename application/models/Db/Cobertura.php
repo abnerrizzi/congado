@@ -274,8 +274,8 @@ class Model_Db_Cobertura extends Model_Db
 			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro_id' => 't.id', 'touro_cod' => 't.cod', 'touro' => 'nome'), $this->_schema)
 			->joinLeft(array('i' => 'inseminador'), 'c.inseminador_id = i.id', array('inseminador_id' => 'i.id', 'inseminador_cod' => 'i.cod', 'inseminador' => 'i.dsc'), $this->_schema)
 			->joinLeft(array('l' => 'lote'), 'c.lote_id = l.id', array('lote_id' => 'l.id', 'lote_cod' => 'l.cod', 'lote' => 'l.dsc'), $this->_schema)
-			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array('tipo' => 'tipo.cod'), $this->_schema)
-//			->where('tipo IN (?)', array('C', 'I', 'M'))
+			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array('tipo' => 'tipo.dsc', 'tipo_cod' => 'tipo.cod'), $this->_schema)
+			->where('tipo.cod IN (?)', array('C', 'I', 'M'))
 			->where('c.id = ?', $id)
 			;
 
@@ -283,7 +283,7 @@ class Model_Db_Cobertura extends Model_Db
 
 		if (!$row) {
 			throw new Exception("Count not find row $id");
-		} elseif (!(($row['tipo'] == 'C') || ($row['tipo'] == 'I') || ($row['tipo'] == 'M'))) {
+		} elseif (!(($row['tipo_cod'] == 'C') || ($row['tipo_cod'] == 'I') || ($row['tipo_cod'] == 'M'))) {
 			throw new Zend_Db_Exception("Tipo diferente (". $row['tipo'] .")");
 		} 
 		$array = $row->toArray();
@@ -298,7 +298,7 @@ class Model_Db_Cobertura extends Model_Db
 				->where('c.fazenda_id = ?', $array['fazenda_id'])
 				->where('c.dt_cobertura <= STR_TO_DATE(?, \'%d/%m/%y\')', $array['dt_cobertura'])
 				->where('c.numerocobertura < ?', $array['numerocobertura'])
-				->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array('ultima_tipo' => 'tipo.cod'), $this->_schema)
+				->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array('ultima_tipo' => 'tipo.dsc'), $this->_schema)
 				->order('dt_cobertura DESC')
 			;
 

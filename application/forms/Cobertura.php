@@ -55,7 +55,7 @@ class Form_Cobertura extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('select', 'tipo', array(
+		$this->addElement('radio', 'tipo', array(
 			'label' => 'Tipo da Cobertura',
 			'class'	=> 'input',
 		));
@@ -72,7 +72,7 @@ class Form_Cobertura extends Form_Default
 			'size' => 10
 		));
 
-		$this->addElement('select', 'ultima_tipo', array(
+		$this->addElement('text', 'ultima_tipo', array(
 			'label' => 'Última Cobertura Tipo',
 			'class' => 'input',
 		));

@@ -132,6 +132,9 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		// Read Only form elements
 		$readonly_elements = array(
 			'vaca',
+			'vaca_cod',
+			'dt_cobertura',
+			'tipo',
 			'touro',
 			'inseminador',
 			'lote',
@@ -148,6 +151,7 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		$disabled_elements = array(
 			'fazenda_id',
 			'ultima_tipo',
+			'tipo',
 		);
 		if (count($disabled_elements) > 0) {
 			foreach ($disabled_elements as $el)
@@ -177,17 +181,11 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 
 	private function populateTipos($coberturaForm)
 	{
-		$coberturaForm->getElement('tipo')
-			->addMultiOption(false, '--');
-
 		$tipoModel = new Model_Db_CoberturaTipo();
 		$tipos = $tipoModel->getTipos();
-		$coberturaForm->getElement('tipo')
-			->addMultiOption(false, '--');
 		foreach ($tipos as $tipo) {
+			if ($tipo['cod'] == 'M' || $tipo['cod'] == 'C' || $tipo['cod'] == 'I')
 			$coberturaForm->getElement('tipo')
-				->addMultiOption($tipo['cod'], $tipo['dsc']);
-			$coberturaForm->getElement('ultima_tipo')
 				->addMultiOption($tipo['cod'], $tipo['dsc']);
 		}
 	}
