@@ -3,7 +3,11 @@ $(document).ready(function(){
 	current = parseInt($('span:#page').html(),10);
 	total = parseInt($('span:#pages').html(),10);
 	percentage = parseInt( (current/total)*100, 10);
-	$('#pb1').progressBar(percentage, {steps: 0, stepDuration: 0, barImage: {0: '/images/progressbar/progressbg_green.gif'}});
+	$('#pb1').progressBar(percentage, {
+		steps: 0,
+		stepDuration: 0,
+		barImage: {0: '/images/progressbar/progressbg_green.gif'}
+	});
 });
 
 
