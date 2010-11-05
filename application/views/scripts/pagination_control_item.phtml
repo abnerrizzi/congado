@@ -3,18 +3,9 @@
   <div class="UIWell">
     <div class="UISearchSummaryBar_Pager clearfix" style="height: 24px;">
       <span class="UIPager">
-        <span class="UIPager_PageResult" id="pb1"></span>
         <span class="UIPager_PageResult">(mostrando <?=$this->firstItemNumber;?>-<?=$this->lastItemNumber;?> de <?=$this->totalItemCount;?> resultados)</span>
-        <span class="UIPager_PageNum">Página <?=$this->current;?> de <?=$this->pageCount;?>
+        <span class="UIPager_PageNum">Página <span id="page"><?=$this->current;?></span> de <span id="pages"><?=$this->pageCount;?></span>
       </span>
-
-<script type="text/javascript">
-	current = parseInt('<?=$this->current;?>', 10);
-	total = parseInt('<?=$this->pageCount;?>', 10);
-	percentage = parseInt( (current/total)*100, 10);
-	$('#pb1').progressBar(percentage, {steps: 0, stepDuration: 0});
-</script>
-
 
 <!-- First page link -->
 <!--
