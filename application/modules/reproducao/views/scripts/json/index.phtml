@@ -1,7 +1,3 @@
 <?php
-if (APPLICATION_ENV == 'development') {
-	echo Zend_Json::prettyPrint($this->content);
-} else {
-	echo $this->content;
-}
+include_once('../application/views/scripts/json/index.phtml');
 ?>

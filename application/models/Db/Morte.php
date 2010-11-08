@@ -18,6 +18,11 @@ class Model_Db_Morte extends Model_Db
 	protected $_name = 'morte';
 	protected $_select = false;
 
+	public function listJsonMorte()
+	{
+		die('x');
+	}
+
 	public function getMortes($orderby = null, $order = null)
 	{
 		$query = $this->select()

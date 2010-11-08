@@ -122,7 +122,8 @@ class Model_Db_Cobertura extends Model_Db
 			), $this->_schema)
 			->joinLeft(array('vaca' => 'fichario'), 'fichario_id = vaca.id', array(), $this->_schema)
 			->joinLeft(array('touro' => 'fichario'), 'touro_id = touro.id', array(), $this->_schema)
-			->where('tipo IN (?)', array('C', 'I', 'M'))
+			->joinLeft(array('tipo' => 'cobertura_tipo'), 'cobertura_tipo_id = tipo.id', array(), $this->_schema)
+			->where('tipo.cod IN (?)', array('C', 'I', 'M'))
 		;
 
 		if ($orderby && $order) {
