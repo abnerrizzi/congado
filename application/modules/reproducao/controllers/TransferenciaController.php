@@ -4,30 +4,30 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: CoberturaController.php 500 2010-10-26 12:36:32Z bacteria_ $
+ * @version $Id$
  * 
  */
 
-class Reproducao_CoberturaController extends Zend_Controller_Action
+class Reproducao_TransferenciaController extends Zend_Controller_Action
 {
 
 	public function init()
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Reprodução :: Cobertura';
+		$this->view->title = 'Reprodução :: Transferência de Embrião';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
 	public function indexAction()
 	{
 		$gridModel = new Model_Grid($this->view->title);
-		$coberturaModel = new Model_Db_Cobertura();
+		$transferenciaModel = new Model_Db_Transferencia();
 
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $coberturaModel->getPaginatorAdapter($_by, $_order);
+		$result	= $transferenciaModel->getPaginatorAdapter($_by, $_order);
 		
 		/*
 		 * Paginator
@@ -43,11 +43,13 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		/*
 		 * Fields
 		 */
-		$fields[] = new Model_Grid_Fields('vaca', 'Vaca', 80);
-		$fields[] = new Model_Grid_Fields('dh', 'Data Cobertura', 100);
-		$fields[] = new Model_Grid_Fields('touro', 'Touro', 80);
-		$fields[] = new Model_Grid_Fields('inseminador', 'Inseminador', 120);
-		$fields[] = new Model_Grid_Fields('lote_dsc', 'Lote', 120);
+		$fields[] = new Model_Grid_Fields('receptora', 'Receptora', 80);
+		$fields[] = new Model_Grid_Fields('dh', 'Data', 70);
+		$fields[] = new Model_Grid_Fields('embriao', 'Embrião', 80);
+		$fields[] = new Model_Grid_Fields('tecnico', 'Técnico', 1);
+		$fields[] = new Model_Grid_Fields('tipo', 'Tipo', 1);
+		$fields[] = new Model_Grid_Fields('tecnica', 'Técnica', 1);
+//		$fields[] = new Model_Grid_Fields('lote_dsc', 'Lote', 120);
 
 		/*
 		 * Grid Model
@@ -57,15 +59,15 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'reproducao/cobertura',
+			'module'	=> 'reproducao/transferencia',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'reproducao/cobertura',
+			'module'	=> 'reproducao/transferencia',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'reproducao/cobertura',
+			'module'	=> 'reproducao/transferencia',
 			'action'	=> 'add',
 		));
 
