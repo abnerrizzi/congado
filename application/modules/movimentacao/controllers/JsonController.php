@@ -182,7 +182,7 @@ class Movimentacao_JsonController extends Zend_Controller_Action
 		$this->render('index');
 	}
 
-	public function sanitariomorteAction()
+	public function morteAction()
 	{
 
 		$preventivoModel = new Model_Db_Sanitario();
