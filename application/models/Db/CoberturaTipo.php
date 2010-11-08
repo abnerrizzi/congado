@@ -9,7 +9,7 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Model
  * @subpackage Db
- * @version $Id: Estado.php 457 2010-10-06 14:35:29Z bacteria_ $
+ * @version $Id$
  * 
  */
 class Model_Db_CoberturaTipo extends Model_Db

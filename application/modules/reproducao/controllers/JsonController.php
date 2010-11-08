@@ -14,7 +14,7 @@
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
- * @version $Id: JsonController.php 372 2010-08-04 18:09:09Z bacteria_ $
+ * @version $Id$
  */
 
 class Reproducao_JsonController extends Zend_Controller_Action
@@ -46,6 +46,23 @@ class Reproducao_JsonController extends Zend_Controller_Action
 			$this->getRequest()->getParam('like', false)
 		);
 		$this->view->content = utf8_encode(json_encode($coberturas));
+		$this->render('index');
+	}
+
+	public function transferenciaAction()
+	{
+		$transferenciaModel = new Model_Db_Transferencia();
+		$transferencias = $transferenciaModel->listJsonTransferencia(
+			array(),
+			$this->getRequest()->getParam('sortname', 'vaca'),
+			$this->getRequest()->getParam('sortorder', 'asc'),
+			$this->getRequest()->getParam('page', '1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($transferencias));
 		$this->render('index');
 	}
 

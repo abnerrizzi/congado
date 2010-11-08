@@ -8,7 +8,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Form
- * @version $Id: Acompanhamento.php 468 2010-10-11 19:13:06Z bacteria_ $
+ * @version $Id$
  * 
  */
 class Form_Cobertura extends Form_Default

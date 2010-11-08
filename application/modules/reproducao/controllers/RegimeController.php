@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: CoberturaController.php 500 2010-10-26 12:36:32Z bacteria_ $
+ * @version $Id$
  * 
  */
 
