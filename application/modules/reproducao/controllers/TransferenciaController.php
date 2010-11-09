@@ -78,9 +78,28 @@ class Reproducao_TransferenciaController extends Zend_Controller_Action
 	public function addAction()
 	{
 		throw new Zend_Controller_Action_Exception('Funcionalidade ainda não implementada.');
+		$destinoForm = new Form_Destino();
+		$destinoForm->setAction('/destino/add');
+		$destinoForm->setMethod('post');
+		$this->view->form = $destinoForm;
+		$this->view->elements = array('cod', 'dsc');
+
+		if ($this->getRequest()->isPost()) {
+			$formData = $this->getRequest()->getPost();
+			if ($destinoForm->isValid($formData)) {
+				$cod = $destinoForm->getValue('cod');
+				$dsc = $destinoForm->getValue('dsc');
+				$destinoModel = new Model_Db_Destino();
+				if ($destinoModel->addDestino($cod, $dsc)) {
+					$this->_redirect('/'. $this->getRequest()->getControllerName());
+				}
+			} else {
+				$destinoForm->populate($formData);
+			}
+		}
 	}
 
-	public function editAction()
+	public function _editAction()
 	{
 
 		$request	= $this->getRequest();

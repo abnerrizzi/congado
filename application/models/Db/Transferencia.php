@@ -9,7 +9,7 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Model
  * @subpackage Db
- * @version $Id: Cobertura.php 511 2010-11-08 12:22:40Z bacteria_ $
+ * @version $Id$
  * 
  */
 class Model_Db_Transferencia extends Model_Db
