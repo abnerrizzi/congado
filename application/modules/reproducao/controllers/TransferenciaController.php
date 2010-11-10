@@ -77,24 +77,34 @@ class Reproducao_TransferenciaController extends Zend_Controller_Action
 
 	public function addAction()
 	{
-		throw new Zend_Controller_Action_Exception('Funcionalidade ainda não implementada.');
-		$destinoForm = new Form_Destino();
-		$destinoForm->setAction('/destino/add');
-		$destinoForm->setMethod('post');
-		$this->view->form = $destinoForm;
-		$this->view->elements = array('cod', 'dsc');
+		$tranferenciaForm = new Form_Transferencia();
+
+		$tranferenciaForm->setAction('/reproducao/transferencia/add');
+		$tranferenciaForm->setMethod('post');
+		$this->view->form = $tranferenciaForm;
+		$this->view->elements = array(
+			array('fichario'),
+			'dt_transferencia',
+			array('tecnico'),
+			array('embriao'),
+			'tipo',
+			'tecnica',
+		);
 
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
-			if ($destinoForm->isValid($formData)) {
+			if ($tranferenciaForm->isValid($formData)) {
 				$cod = $destinoForm->getValue('cod');
 				$dsc = $destinoForm->getValue('dsc');
 				$destinoModel = new Model_Db_Destino();
+				$transferenciaModel = new Model_Db_Transferencia();
+				$transferenciaModel->addTransferencia($posts);
+				die('ok');
 				if ($destinoModel->addDestino($cod, $dsc)) {
 					$this->_redirect('/'. $this->getRequest()->getControllerName());
 				}
 			} else {
-				$destinoForm->populate($formData);
+				$tranferenciaForm->populate($formData);
 			}
 		}
 	}
