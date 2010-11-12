@@ -10,4 +10,8 @@ $(document).ready(function(){
 	addSearchIcon('tecnico', baseUrl+'/json/tecnico', 'Técnico', 'showfilter_tecnico', 600, 240);
 	addSearchIcon('embriao', baseUrl+'/json/reproeducao/embriao', 'Embrião', 'showfilter_embriao', 600, 240);
 
+	minDate = new Date();
+	minDate.setFullYear(2010, 10, 5);
+	makeDateField('#dt_transferencia', minDate);
 });
+

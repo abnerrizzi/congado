@@ -982,3 +982,53 @@ function showfilter_embriao(url, input)
 	}
 }
 
+function showfilter_acompanhamento(url, input)
+{
+	if ($('#'+input).attr('readonly'))
+		return;
+	createDialog('Acompanhamento');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
+		{
+			url: url,
+			dataType: 'json',
+			colModel : [{
+					display: 'Acompanhamento',
+					name : 'cod',
+					width : 40,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Descrição',
+					name : 'dsc',
+					width : 180,
+					sortable : true,
+					align: 'left'
+				}],
+			searchitems : [{
+					display: 'Acompanhamento',
+					name : 'cod'
+				}, {
+					display: 'Descrição',
+					name : 'dsc',
+					isdefault: true
+				}],
+			sortname: "cod",
+			sortorder: "asc",
+			usepager: true,
+			title: false,
+			useRp: true,
+			rp: 10,
+			showTableToggleBtn: false,
+			pagestat: 'Mostrando {from} até {to} de {total} itens',
+			width: 600,
+			height: 240,
+			onSelect: function(row) {
+				changeField(row, input);
+			}
+		});
+		$("#dlg").fadeIn(200);
+	}
+}
+
+

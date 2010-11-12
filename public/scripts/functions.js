@@ -904,3 +904,44 @@ function strpos (haystack, needle, offset) {
     var i = (haystack+'').indexOf(needle, (offset || 0));
     return i === -1 ? false : i;
 }
+
+
+function makeDateField(field, minDate, maxDate)
+{
+	if ($(field).attr('readonly'))
+		return;
+
+	$(field).datepicker({
+
+		changeMonth: true,
+		changeYear: true,
+		showAnim: 'fadeIn',
+
+		dateFormat: 'dd/mm/yy',
+		autoSize: true,
+		dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+		dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+		dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+		monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+		             'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+		],
+	    monthNames: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+	                 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+	    ],
+	    nextText: 'Próximo',
+	    prevText: 'Anterior',
+	    minDate: minDate,
+	    maxDate: maxDate,
+	    showOn: "both",
+	    buttonImage: baseUrl + '/images/icons/calendar_view_month.png',
+		buttonImageOnly: true,
+		buttonText: 'Clique para selecionar uma data'
+	}).keyup(function(event){
+	        val = $(this).val();
+	        if (val.length == 2 || val.length == 5) {
+	        	val = val +'/';
+	        	$(this).val(val);
+	        }
+	});
+
+}
