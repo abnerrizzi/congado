@@ -17,7 +17,7 @@ class Form_Transferencia extends Form_Default
 	public function __construct()
 	{
 		parent::__construct();
-		$this->setName('transferência_de_embrião');
+		$this->setName('transferencia_de_embriao');
 		$this->addElement('hidden', 'id');
 
 		$this->addElement('select', 'fazenda_id', array(

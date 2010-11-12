@@ -882,3 +882,103 @@ function showfilter_inseminador(url, input)
 		$("#dlg").fadeIn(200);
 	}
 }
+
+
+
+function showfilter_tecnico(url, input)
+{
+	createDialog('Técnico');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
+		{
+			url: url,
+			dataType: 'json',
+			colModel : [{
+					display: 'Técnico',
+					name : 'cod',
+					width : 40,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Descrição',
+					name : 'dsc',
+					width : 180,
+					sortable : true,
+					align: 'left'
+				}],
+			searchitems : [{
+					display: 'Técnico',
+					name : 'cod'
+				}, {
+					display: 'Descrição',
+					name : 'dsc',
+					isdefault: true
+				}],
+			sortname: "cod",
+			sortorder: "asc",
+			usepager: true,
+			title: false,
+			useRp: true,
+			like: true,
+			rp: 10,
+			showTableToggleBtn: false,
+			pagestat: 'Mostrando {from} até {to} de {total} itens',
+			width: 600,
+			height: (240 + _Height),
+			onSelect: function(row) {
+				changeField(row, input);
+			}
+		});
+		$("#dlg").fadeIn(200);
+	}
+}
+
+
+function showfilter_embriao(url, input)
+{
+	createDialog('Embrião');
+	if ($("#dlg").length) {
+		$("#dlg-grid").flexigrid(
+		{
+			url: url,
+			dataType: 'json',
+			colModel : [{
+					display: 'Embrião',
+					name : 'cod',
+					width : 40,
+					sortable : true,
+					align: 'left'
+				}, {
+					display: 'Descrição',
+					name : 'dsc',
+					width : 180,
+					sortable : true,
+					align: 'left'
+				}],
+			searchitems : [{
+					display: 'Embrião',
+					name : 'cod'
+				}, {
+					display: 'Descrição',
+					name : 'dsc',
+					isdefault: true
+				}],
+			sortname: "cod",
+			sortorder: "asc",
+			usepager: true,
+			title: false,
+			useRp: true,
+			like: true,
+			rp: 10,
+			showTableToggleBtn: false,
+			pagestat: 'Mostrando {from} até {to} de {total} itens',
+			width: 600,
+			height: (240 + _Height),
+			onSelect: function(row) {
+				changeField(row, input);
+			}
+		});
+		$("#dlg").fadeIn(200);
+	}
+}
+
