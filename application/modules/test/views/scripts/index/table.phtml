@@ -1,0 +1,48 @@
+<style type="text/css">
+
+.class1 {
+	background-color: #ff0000;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	tds = $('#master > tbody > tr > td > table > tbody > tr > td');
+	for (i = 0; i <= tds.length; i++)
+	{
+		$(tds[i]).mouseover(function(){
+			$(this).parent().parent().children().children().addClass('class1');
+		});
+
+		$(tds[i]).mouseout(function(){
+			$(this).parent().parent().children().children().removeClass('class1');
+		});
+	}
+});
+
+</script>
+
+<table id="master" style="border: 5px solid #f00;">
+
+ <tr>
+   <td>
+     <table style="border: 1px solid;">
+       <tr><td width="80" style="border: 1px solid;">1</td><td width="400" style="border: 1px solid;">zxc</td></tr>
+       <tr><td>&nbsp;</td><td style="border: 1px solid;">asd</td></tr>
+       <tr><td>&nbsp;</td><td style="border: 1px solid;">qwe</td></tr>
+     </table>
+   </td>
+ </tr>
+ <tr>
+   <td>
+     <table style="border: 1px solid;">
+       <tr><td width="80" style="border: 1px solid;">2</td><td width="400" style="border: 1px solid;">678</td></tr>
+       <tr><td>&nbsp;</td><td style="border: 1px solid;">234</td></tr>
+       <tr><td>&nbsp;</td><td style="border: 1px solid;">456</td></tr>
+     </table>
+   </td>
+ </tr>
+
+</table>

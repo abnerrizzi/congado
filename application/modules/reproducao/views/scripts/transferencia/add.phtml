@@ -4,4 +4,8 @@ $this->javascript();
 
 echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
 
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/library/_filters.js')
+	;
+
 ?>
