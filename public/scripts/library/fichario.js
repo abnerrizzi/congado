@@ -28,35 +28,7 @@ $(document).ready(function() {
 		$("#local_cod").val('');
 	});
 
-	$("#dt_nascimento").datepicker({
-
-		changeMonth: true,
-		changeYear: true,
-		showAnim: 'fadeIn',
-
-		dateFormat: 'dd/mm/yy',
-		autoSize: true,
-		dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-		dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-		dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-		monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-		             'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-		],
-	    monthNames: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-	                 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
-	    ],
-	    nextText: 'Próximo',
-	    prevText: 'Anterior',
-	    maxDate: new Date()
-	});
-
-	$("#dt_nascimento").keyup(function(event){
-	        val = $(this).val();
-	        if (val.length == 2 || val.length == 5) {
-	        	val = val +'/';
-	        	$(this).val(val);
-	        }
-	});
+	makeDateField("#dt_nascimento", null, new Date());
 
 	$("#tabs").tabs();
 

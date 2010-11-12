@@ -40,7 +40,7 @@ String.prototype.lpad = function(pSize, pCharPad)
 	var ch = String(pCharPad).charAt(0);
 	for (; dif>0; dif--) str = ch + str;
 	return (str);
-} //String.lpad
+}; //String.lpad
 
 
 /**
@@ -50,7 +50,7 @@ String.prototype.lpad = function(pSize, pCharPad)
 String.prototype.trim = function()
 {
 	return this.replace(/^\s*/, "").replace(/\s*$/, "");
-} //String.trim
+}; //String.trim
 
 
 /**
