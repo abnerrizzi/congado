@@ -50,7 +50,7 @@ class LoteController extends Zend_Controller_Action
 		/*
 		 * Fields
 		 */
-		$fields[] = new Model_Grid_Fields('fazenda', 'Fazenda', 350);
+		$fields[] = new Model_Grid_Fields('fazenda', 'Fazenda', 320);
 		$fields[] = new Model_Grid_Fields('cod', 'Lote', 35);
 		$fields[] = new Model_Grid_Fields('dsc','Descrição', 200);
 
