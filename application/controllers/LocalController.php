@@ -95,6 +95,7 @@ class LocalController extends Zend_Controller_Action
 
 		$localForm->getElement('fazenda_id')
 			->setAttrib('readonly', 'readonly')
+			->setAttrib('disabled', 'disabled')
 			->setAttrib('class', 'readonly')
 			;
 
