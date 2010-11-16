@@ -20,6 +20,16 @@ $(document).ready(function() {
 	if (checkAddUrl(window.location.href) == true) {
 		$("#fazenda_id").removeAttr('disabled');
 		$("#fazenda_id").removeAttr('readonly');
+		$('#fazenda_id').change(function(){
+			if (this.value > 0) {
+				$('#tabs').show();
+				$('#cod').show();
+			} else {
+				window.alert('Selecione uma das fazendas para prosseguir');
+			}
+		});
+		$('#tabs').hide();
+		$('#cod').hide();
 	}
 	// if fazenda_id changed, local fields be empty
 	$("#fazenda_id").change(function(){
