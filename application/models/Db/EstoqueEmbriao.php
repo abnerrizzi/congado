@@ -124,6 +124,7 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
 
 		$posts = array (
+			'fazenda_id'		=> (int)$post['fazenda_id'],
 			'embriao'			=> utf8_encode($post['embriao']),
 			'dt_coleta'			=> $_dt,
 			'doadora_id'		=> $post['doadora_id'],

@@ -116,7 +116,7 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 //				$values = $doencaForm->getValues(true);
 //				unset($values['submit'], $values['cancel'], $values['delete']);
 //				$doencaModel->updateDoenca($values);
-//				$this->_redirect('/'. $this->getRequest()->getControllerName());
+//				$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 //			}
 
 		} else {
