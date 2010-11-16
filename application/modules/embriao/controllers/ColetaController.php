@@ -11,7 +11,7 @@
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
- * @version $Id: ColetaembController.php 473 2010-10-13 20:40:16Z bacteria_ $
+ * @version $Id$
  */
 class Embriao_ColetaController extends Zend_Controller_Action
 {
@@ -139,7 +139,7 @@ class Embriao_ColetaController extends Zend_Controller_Action
     		if ($coletaForm->isValid($request->getPost())) {
     			$data = $this->adjustFormsValues($coletaForm);
     			$coletaModel->updateColeta($data);
-    			$this->_redirect('/'. $this->getRequest()->getControllerName());
+    			$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
     		}
 
 		} else {
@@ -223,7 +223,7 @@ class Embriao_ColetaController extends Zend_Controller_Action
 					$embriaoModel = new Model_Db_EstoqueEmbriao();
 					if ($coletaModel->addColeta($post)) {
 						if ($embriaoModel->addEmbrioes($embrioes)) {
-							$this->_redirect('/'. $this->getRequest()->getControllerName());
+							$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 						}
 					}
 

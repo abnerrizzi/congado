@@ -96,7 +96,8 @@ class Model_Db_Fichario extends Model_Db
 			$this->_select->where($this->_name.'.sexo = ?', $params['sexo']);
 		}
 
-		if ($fazenda_id != "null" && !$fazenda_id) {
+		if ($fazenda_id == "undefined") {
+		} elseif ($fazenda_id != "null" && !$fazenda_id) {
 			$this->_select->where('fazenda_id = ?', (int)$fazenda_id);
 		}
 

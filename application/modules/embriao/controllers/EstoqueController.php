@@ -11,9 +11,9 @@
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
- * @version $Id$
+ * @version $Id: EstoqueembController.php 473 2010-10-13 20:40:16Z bacteria_ $
  */
-class EstoqueembController extends Zend_Controller_Action
+class Embriao_EstoqueController extends Zend_Controller_Action
 {
 
     public function init()
@@ -65,15 +65,15 @@ class EstoqueembController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'estoqueemb',
+			'module'	=> 'embriao/estoque',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'estoqueemb',
+			'module'	=> 'embriao/estoque',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'estoqueemb',
+			'module'	=> 'embriao/estoque',
 			'action'	=> 'add',
 		));
 
@@ -88,7 +88,7 @@ class EstoqueembController extends Zend_Controller_Action
     	$estoqueId		= $request->getParam('id');
 		$estoqueForm	= new Form_EstoqueEmbriao();
 
-		$estoqueForm->setACtion('/estoqueemb/edit');
+		$estoqueForm->setACtion('/embriao/estoque/edit');
 		$estoqueForm->setMethod('post');
 
 		// Disable form elements
@@ -121,7 +121,7 @@ class EstoqueembController extends Zend_Controller_Action
 
     		if ($estoqueForm->isValid($request->getPost())) {
     			$estoqueModel->updateEstoque($estoqueForm->getValues());
-    			$this->_redirect('/'. $this->getRequest()->getControllerName());
+    			$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
     		}
 
     	} else {
@@ -138,10 +138,11 @@ class EstoqueembController extends Zend_Controller_Action
 	{
 
 		$estoqueForm = new Form_EstoqueEmbriao();
-		$estoqueForm->setAction('/estoqueemb/add');
+		$estoqueForm->setAction('/embriao/estoque/add');
 		$estoqueForm->setMethod('post');
 		$this->view->form = $estoqueForm;
 		$this->view->elements = array(
+			'fazenda_id',
 			'embriao',
     		'dt_coleta',
     		array('doadora'),
@@ -150,12 +151,24 @@ class EstoqueembController extends Zend_Controller_Action
     		array('criador'),
 		);
 
+		/*
+		 * Populando select de fazendas
+		 */
+		$fazendaModel = new Model_Db_Fazenda();
+		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
+		$estoqueForm->getElement('fazenda_id')
+			->addMultiOption(false, '--')
+		;
+		foreach ($fazendas as $fazenda) {
+			$estoqueForm->getElement('fazenda_id')
+				->addMultiOption($fazenda['id'], $fazenda['descricao']);
+		}
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
 			if ($estoqueForm->isValid($formData)) {
 				$estoqueModel = new Model_Db_EstoqueEmbriao();
 				if ($estoqueModel->addEstoque($formData)) {
-					$this->_redirect('/'. $this->getRequest()->getControllerName());
+					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 				}
 			} else {
 				$estoqueForm->populate($formData);
@@ -169,11 +182,11 @@ class EstoqueembController extends Zend_Controller_Action
 
 		$request = $this->getRequest();
 		$estoqueForm = new Form_EstoqueEmbriao();
-		$estoqueForm->setAction('estoqueemb/delete');
+		$estoqueForm->setAction('embriao/estoque/delete');
 		$estoqueForm->setMethod('post');
 		$estoqueModel = new Model_Db_EstoqueEmbriao();
 
-		if ($request->isPost() && $request->getParam('param', false) == 'estoqueemb') {
+		if ($request->isPost() && $request->getParam('param', false) == 'estoque') {
 			$estoqueId = (int)$request->getParam('id');
 			$estoqueModel->deleteEstoque($estoqueId);
 			$this->view->error = false;
@@ -184,7 +197,7 @@ class EstoqueembController extends Zend_Controller_Action
 			$this->view->msg = 'Erro tentando apagar registro('.$estoqueId.')';
 		}
 
-		$this->view->url = 'estoqueemb/index';
+		$this->view->url = 'embriao/estoque/index';
 
 	}
 

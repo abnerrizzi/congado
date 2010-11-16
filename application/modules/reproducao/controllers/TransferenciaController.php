@@ -101,7 +101,7 @@ class Reproducao_TransferenciaController extends Zend_Controller_Action
 				$transferenciaModel->addTransferencia($posts);
 				die('ok');
 				if ($destinoModel->addDestino($cod, $dsc)) {
-					$this->_redirect('/'. $this->getRequest()->getControllerName());
+					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 				}
 			} else {
 				$tranferenciaForm->populate($formData);
@@ -146,7 +146,7 @@ class Reproducao_TransferenciaController extends Zend_Controller_Action
 //				$values = $doencaForm->getValues(true);
 //				unset($values['submit'], $values['cancel'], $values['delete']);
 //				$doencaModel->updateDoenca($values);
-//				$this->_redirect('/'. $this->getRequest()->getControllerName());
+//				$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 //			}
 
 		} else {
