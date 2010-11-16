@@ -3,17 +3,9 @@
 //echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
 //echo $this->form;
 
-if (isset($this->embriao)) {
-	$this->headScript()->appendScript('var jsonEmbrioes = ' . $this->embriao . ';');
-}
-if (isset($this->criadorJson)) {
-	$this->headScript()->appendScript('var criadorJson = ' . $this->criadorJson .';');
-}
-
 $this->javascript();
 
 $this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/jskata.nofreeze.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.core.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.tabs.js')
@@ -22,7 +14,6 @@ $this->headScript()
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.resizable.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.qtip.js')
 	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
-	->appendFile($this->baseUrl() . '/scripts/library/_filters.js')
 	;
 
 $this->headLink()
@@ -33,6 +24,9 @@ $this->headLink()
 	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.tabs.css')
 	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.dialog.css')
 	;
+
+
+$this->form->getElement('delete')->setAttrib('onclick', "check_delete(".$this->form->getElement('id')->getValue().", '".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."', '".$this->baseUrl."/".Zend_Controller_Front::getInstance()->getRequest()->getModuleName()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName()."/delete');return false");
 
 ?>
 
@@ -86,9 +80,6 @@ $this->headLink()
       <?=$this->form->vaca_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->vaca_cod->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->vaca->removeDecorator('tag')->removeDecorator('label');?>
-      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/f','vaca');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -160,9 +151,6 @@ $this->headLink()
               <?=$this->form->touro_id->removeDecorator('tag')->removeDecorator('label');?>
               <?=$this->form->touro_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
               <?=$this->form->touro->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-              <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/m','touro');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
             </td>
           	<td width="30"></td>
           </tr>
@@ -278,7 +266,7 @@ $this->headLink()
 
     </td>
     <td width="20"></td>
-    <td rowspan="7" valign="top" align="center">
+    <td rowspan="5" valign="top" align="center">
 
 
 
@@ -303,8 +291,8 @@ $this->headLink()
 
 
 
-
-<table id="embrioes" cellspacing="0" cellpadding="0" border="0" bgcolor="#f7f6f1" align="center" style="border-right: 1px solid rgb(204, 204, 204); border-left: 1px solid rgb(145, 145, 145); -moz-user-select: none;">
+<div id="divGridEmbriao" style="height: 220px; scroll; overflow-x: hidden;">
+<table id="emb" cellspacing="0" cellpadding="0" border="0" bgcolor="#f7f6f1" align="center" style="border-right: 1px solid rgb(204, 204, 204); border-left: 1px solid rgb(145, 145, 145); -moz-user-select: none;">
 
 <!-- START OF TABLE HEAD -->
 	  <tbody>
@@ -327,7 +315,7 @@ $this->headLink()
 		  <td width="20" height="20" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');">
 		  </td>
 
-		  <td width="200" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');">
+		  <td width="150" style="background: url('<?=$this->baseUrl();?>/images/grid/bg_title.gif');">
 			<b>Criador</b>
 		  </td>
 
@@ -341,6 +329,7 @@ $this->headLink()
 		</tr>
 <!-- END OF TABLE HEAD -->
 
+<?foreach ($this->embrioes as $embriao):?>
 
 		<tr>
 		  <td height="2" bgcolor="#bfbdb3" colspan="12"/>
@@ -357,20 +346,10 @@ $this->headLink()
 
 <tr class="row1" id="id1">
   <td align="center"></td>
-  <td colspan="10" align="center">
-  <span class="UIButton UIButton_Large UIFormButton UIButton_Gray" onclick="checkEmbrioes()">
-  <span class="UIIcon UIIcon_Update">&nbsp;</span>
-    <input
-		style="display: inline-block;" 
-		class="UIButton_Text"
-		type="button"
-		value="Atualizar"
-		name="atualizar"
-		id="atualizar"
-	/>
-</span>
-
-  </td>
+  <td><?=$embriao['embriao'];?></td>
+  <td style="background: url('<?=$this->baseUrl();?>/images/grid/divisor_content.gif');"></td>
+  <td align="center"></td>
+  <td><?=$embriao['criador_cod'];?></td>
 </tr>
 
 
@@ -379,6 +358,7 @@ $this->headLink()
 </tr>
 
 
+<?endforeach;?>
 
 
 
@@ -388,7 +368,7 @@ $this->headLink()
 
 </tbody></table>
 
-
+</div>
 
     </td>
     <td width="20"></td>
@@ -489,48 +469,10 @@ $this->headLink()
   </tr>
 
   <tr>
-    <td height="10" colspan="3"></td>
-  </tr>
-
-
-
-
-
-<tr valign="top">
-    <td></td>
-    <td>
-
-        <fieldset style="width: 400px;">
-            <table
-              align="left"
-              border="0"
-              cellpadding="0"
-              cellspacing="0"
-              bgcolor="#F7F6F4"
-              class="content"
-              style="font-size: 11px;">
-            <tr>
-              <td height="10" colspan="7"></td> 
-            </tr>
-            <tr>
-              <td class="label" width="120">Último Embrião Cadastrado:</td>
-              <td width="10"></td>
-              <td><input type="text" class="input" id="ultimo" name="ultimo" value="<?=$this->ultimo;?>"/></td>
-            </tr>
-            <tr>
-              <td height="10" colspan="7"></td> 
-            </tr>
-          </table>
-        </fieldset>
-
-    </td>
-    <td width="20"></td>
-    <td width="20"></td>
-  </tr>
-
-  <tr>
     <td height="10" colspan="5"></td>
   </tr>
+
+
 
 
 
@@ -557,22 +499,23 @@ $this->headLink()
   <tr>
     <td width="20"></td>
     <td align="center">
+      <span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="<?=$this->form->getElement('delete')->getAttrib('onclick');?>">
+      <span class="UIIcon UIIcon_Delete">&nbsp;</span>
+        <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Excluir" name="<?=$this->form->getElement('delete')->getName();?>" id="<?=$this->form->getElement('delete')->getId();?>"/>
+      </span>
     </td>
     <td width="10"></td>
     <td align="center">
+      <span class="UIButton UIButton_Large UIFormButton  UIButton_Blue" onclick="$('#<?=$this->form->getName();?>').submit();">
+      <span class="UIIcon UIIcon_Save">&nbsp;</span>
+        <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Salvar" name="<?=$this->form->getElement('submit')->getName();?>_" id="<?=$this->form->getElement('submit')->getId();?>_"/>
+      </span>
 
-<span class="UIButton UIButton_Large UIFormButton  UIButton_Blue" onclick="$('#<?=$this->form->getName();?>').submit();">
-<span class="UIIcon UIIcon_Save">&nbsp;</span>
-  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Salvar" name="<?=$this->form->getElement('submit')->getName();?>_" id="<?=$this->form->getElement('submit')->getId();?>_"/>
-</span>
-
-
-<span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = '<?=$this->baseUrl()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName();?>'; return false;">
-<span class="UIIcon UIIcon_Cancel">&nbsp;</span>
-  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="<?=$this->form->getElement('cancel')->getName();?>" id="<?=$this->form->getElement('cancel')->getId();?>"
-  />
-</span>
-
+      <span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = '<?=$this->baseUrl()."/".Zend_Controller_Front::getInstance()->getRequest()->getModuleName() .'/'. Zend_Controller_Front::getInstance()->getRequest()->getControllerName();?>'; return false;">
+      <span class="UIIcon UIIcon_Cancel">&nbsp;</span>
+        <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="<?=$this->form->getElement('cancel')->getName();?>" id="<?=$this->form->getElement('cancel')->getId();?>"
+          />
+      </span>
 
 	</td>
     <td width="50"></td>
@@ -597,5 +540,4 @@ $this->headLink()
 <div id="dlg" style="display: none;">
   <div id="dlg-grid" style="padding: 0px; margin: 0px"></div>
 </div>
-
 

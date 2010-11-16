@@ -750,14 +750,21 @@ function changeSelectAnimalBySexo(field, __sexo, checkField) {
 		qtype	: __qtype,
 		query	: __fieldValue,
 		sexo	: __sexo,
+		fazenda_id: $('#fazenda_id').val(),
 		like	: 'false',
 		ajax	: 'true'
-	}, function(j) {
-		j = j.rows;
-		if (j && j.length == 1) {
+	}, function(jsonReturn) {
+		j = jsonReturn.rows;
+		if (j && jsonReturn.total == 1) {
 			$("#" + __fieldName + "_id").val(j[0].id);
 			$("#" + __fieldName + "_cod").val(j[0].cell[0]);
 			$("#" + __fieldName).val(j[0].cell[1]);
+		} else if (jsonReturn.total > 1) {
+			$('#ajax_loader').html('Foram encontrados mais de um animal com o mesmo Código.<br/>Por favor utilize a pesquisa.').show();
+			setTimeout(function(){
+				$("#ajax_loader").fadeOut(300); }
+			, 6000);
+			return false;
 		} else {
 			$("#ajax_loader").html("Código não encontrado").show();
 			$("#" + __fieldName + "_id").val('');

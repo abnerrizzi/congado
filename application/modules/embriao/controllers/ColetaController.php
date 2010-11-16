@@ -5,15 +5,15 @@
  */
 
 /**
- * ColetaembController
+ * ColetaController
  * 
  * Controla requisições de manipulação das coletas de embrioes.
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
- * @version $Id$
+ * @version $Id: ColetaembController.php 473 2010-10-13 20:40:16Z bacteria_ $
  */
-class ColetaembController extends Zend_Controller_Action
+class Embriao_ColetaController extends Zend_Controller_Action
 {
 
     public function init()
@@ -63,15 +63,15 @@ class ColetaembController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'coletaemb',
+			'module'	=> 'embriao/coleta',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'coletaemb',
+			'module'	=> 'embriao/coleta',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'coletaemb',
+			'module'	=> 'embriao/coleta',
 			'action'	=> 'add',
 		));
 
@@ -86,7 +86,7 @@ class ColetaembController extends Zend_Controller_Action
     	$coletaId		= $request->getParam('id');
 		$coletaForm		= new Form_ColetaEmbriao();
 
-		$coletaForm->setACtion('/coletaemb/edit');
+		$coletaForm->setACtion('/embriao/coleta/edit');
 		$coletaForm->setMethod('post');
 
 	    /*
@@ -256,11 +256,11 @@ class ColetaembController extends Zend_Controller_Action
     {
     	$request = $this->getRequest();
     	$coletaForm = new Form_ColetaEmbriao();
-    	$coletaForm->setAction('coletaemb/delete');
+    	$coletaForm->setAction('embriao/coleta/delete');
 		$coletaForm->setMethod('post');
 		$coletaModel = new Model_Db_ColetaEmbriao();
 
-		if ($request->isPost() && $request->getParam('param', false) == 'coletaemb') {
+		if ($request->isPost() && $request->getParam('param', false) == 'coleta') {
 			$coletaId	= (int)$request->getParam('id');
 			$coletaModel->deleteColeta($coletaId);
 			$this->view->error = false;
@@ -270,7 +270,7 @@ class ColetaembController extends Zend_Controller_Action
 			$this->view->error = true;
 			$this->view->msg = 'Erro tentando apagar registro('.$coletaId.')';
 		}
-		$this->view->url = 'coletaemb/index';
+		$this->view->url = 'embriao/coleta/index';
 
     }
 
