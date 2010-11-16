@@ -8,8 +8,9 @@
  * 
  * Controla requisições de manipulação de doenças.
  *
- * @todo Calculo automatico de Grau de Sangue
- * @todo Link na genealogia, onde mostrar e pra onde apontar (fichario/genealogia)
+ * @TODO Calculo automatico de Grau de Sangue
+ * @TODO Link na genealogia, onde mostrar e pra onde apontar (fichario/genealogia)
+ * @TODO o pai, mae, receptora pode ser de uma outra fazenda diferente da atual.
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
  * @version $Id$
