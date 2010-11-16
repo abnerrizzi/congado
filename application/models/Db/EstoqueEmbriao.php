@@ -56,8 +56,9 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 			->where($this->_name.'.id = ?', (int)$id)
 			;
 		$row = $this->fetchRow($this->_select);
+
 		if (!$row) {
-			throw new Exception("Count not find row $id");
+			throw new Zend_Db_Table_Exception("Count not find row $id");
 		}
 		$array = $row->toArray();
 		$_datas = array(
@@ -290,7 +291,7 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 		if (!$row) {
 			$row['embriao'] = '';
 			return $row;
-//			throw new Exception("Count not find row $id");
+//			throw new Zend_Db_Table_Exception("Count not find row $id");
 		}
 		return $row->toArray();
 	}

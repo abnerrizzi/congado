@@ -53,7 +53,7 @@ class Model_Db_ColetaEmbriao extends Model_Db
 //		die('<pre>'.$this->_select);
 		$row = $this->fetchRow($this->_select);
 		if (!$row) {
-			throw new Exception("Count not find row $id");
+			throw new Zend_Db_Table_Exception("Count not find row $id");
 		}
 		$array = $row->toArray();
 		$_datas = array(

@@ -40,7 +40,7 @@ class Model_Db_Inseminador extends Model_Db
 		$id = (int)$id;
 		$row = $this->fetchRow('id = ' . $id);
 		if (!$row) {
-			throw new Exception("Count not find row $id");
+			throw new Zend_Db_Table_Exception("Count not find row $id");
 		}
 		$array = $row->toArray();
 		foreach ($array as $key => $val) {

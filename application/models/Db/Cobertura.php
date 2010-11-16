@@ -283,7 +283,7 @@ class Model_Db_Cobertura extends Model_Db
 		$row = $this->fetchRow($this->_select);
 
 		if (!$row) {
-			throw new Exception("Count not find row $id");
+			throw new Zend_Db_Table_Exception("Count not find row $id");
 		} elseif (!(($row['tipo_cod'] == 'C') || ($row['tipo_cod'] == 'I') || ($row['tipo_cod'] == 'M'))) {
 			throw new Zend_Db_Exception("Tipo diferente (". $row['tipo'] .")");
 		} 
@@ -342,7 +342,7 @@ class Model_Db_Cobertura extends Model_Db
 
 		$row = $this->fetchRow($this->_select);
 		if (!$row) {
-			throw new Exception("Count not find row $id");
+			throw new Zend_Db_Table_Exception("Count not find row $id");
 		} elseif (!(($row['tipo'] == 'R'))) {
 			throw new Zend_Db_Exception("Tipo diferente (". $row['tipo'] .")");
 		} 
