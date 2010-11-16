@@ -162,7 +162,7 @@ class Model_Db_Lote extends Model_Db
 		;
 		$row = $this->fetchRow($this->_select);
 		if (!$row) {
-			throw new Exception("Could not find row $id");
+			throw new Zend_Db_Table_Exception("Count not find row $id");
 		}
 		$array = $row->toArray();
 		foreach ($array as $key => $val) {

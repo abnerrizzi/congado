@@ -11,7 +11,7 @@
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
- * @version $Id: EstoqueembController.php 473 2010-10-13 20:40:16Z bacteria_ $
+ * @version $Id$
  */
 class Embriao_EstoqueController extends Zend_Controller_Action
 {
@@ -91,9 +91,23 @@ class Embriao_EstoqueController extends Zend_Controller_Action
 		$estoqueForm->setACtion('/embriao/estoque/edit');
 		$estoqueForm->setMethod('post');
 
+		/*
+		 * Populando select de fazendas
+		 */
+		$fazendaModel = new Model_Db_Fazenda();
+		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
+		$estoqueForm->getElement('fazenda_id')
+			->addMultiOption(false, '--')
+		;
+		foreach ($fazendas as $fazenda) {
+			$estoqueForm->getElement('fazenda_id')
+				->addMultiOption($fazenda['id'], $fazenda['descricao']);
+		}
+
 		// Disable form elements
 		$disable_elements = array(
 			'embriao',
+			'fazenda_id',
 		);
 		foreach ($disable_elements as $el) {
 			$estoqueForm->getElement($el)
@@ -106,6 +120,7 @@ class Embriao_EstoqueController extends Zend_Controller_Action
 		$this->view->form = $estoqueForm;
     	$this->view->elements = array(
     		'id',
+    		'fazenda_id',
     		'embriao',
     		'dt_coleta',
     		array('doadora'),
@@ -163,6 +178,7 @@ class Embriao_EstoqueController extends Zend_Controller_Action
 			$estoqueForm->getElement('fazenda_id')
 				->addMultiOption($fazenda['id'], $fazenda['descricao']);
 		}
+
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
 			if ($estoqueForm->isValid($formData)) {
@@ -186,7 +202,7 @@ class Embriao_EstoqueController extends Zend_Controller_Action
 		$estoqueForm->setMethod('post');
 		$estoqueModel = new Model_Db_EstoqueEmbriao();
 
-		if ($request->isPost() && $request->getParam('param', false) == 'estoque') {
+		if ($request->isPost() && $request->getParam('param', false) == 'embriao/estoque') {
 			$estoqueId = (int)$request->getParam('id');
 			$estoqueModel->deleteEstoque($estoqueId);
 			$this->view->error = false;
