@@ -27,6 +27,8 @@ $(document).ready(function() {
 
 	$("#criador_cod").change(changeSelect);
 
+	makeDateField("#dt_coleta");
+	/*
 	$("#dt_coleta").datepicker({
 
 		changeMonth: true,
@@ -54,6 +56,7 @@ $(document).ready(function() {
 	        	$(this).val(val);
 	        }
 	});
+	*/
 
 	// workaround to adjust size in mozilla
 	$.each($.browser, function(i) {

@@ -30,7 +30,7 @@ class Form_Transferencia extends Form_Default
 			'required' => true
 		));
 		$this->addElement('text', 'fichario_cod', array(
-			'label' => 'Vaca',
+			'label' => 'Receptora',
 			'filters' => array('StringTrim', 'Alnum'),
 			'maxlength' => 16,
 			'size' => 10,

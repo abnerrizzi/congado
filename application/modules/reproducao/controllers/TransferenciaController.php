@@ -83,6 +83,7 @@ class Reproducao_TransferenciaController extends Zend_Controller_Action
 		$tranferenciaForm->setMethod('post');
 		$this->view->form = $tranferenciaForm;
 		$this->view->elements = array(
+			'fazenda_id',
 			array('fichario'),
 			'dt_transferencia',
 			array('tecnico'),
@@ -90,6 +91,19 @@ class Reproducao_TransferenciaController extends Zend_Controller_Action
 			'tipo',
 			'tecnica',
 		);
+
+		/*
+		 * Populando select de fazendas
+		 */
+		$fazendaModel = new Model_Db_Fazenda();
+		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
+		$tranferenciaForm->getElement('fazenda_id')
+			->addMultiOption(false, '--')
+		;
+		foreach ($fazendas as $fazenda) {
+			$tranferenciaForm->getElement('fazenda_id')
+				->addMultiOption($fazenda['id'], $fazenda['descricao']);
+		}
 
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
