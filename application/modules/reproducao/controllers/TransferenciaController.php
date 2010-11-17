@@ -108,15 +108,15 @@ class Reproducao_TransferenciaController extends Zend_Controller_Action
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
 			if ($tranferenciaForm->isValid($formData)) {
-				$cod = $destinoForm->getValue('cod');
-				$dsc = $destinoForm->getValue('dsc');
+//				$cod = $destinoForm->getValue('cod');
+//				$dsc = $destinoForm->getValue('dsc');
 				$destinoModel = new Model_Db_Destino();
 				$transferenciaModel = new Model_Db_Transferencia();
-				$transferenciaModel->addTransferencia($posts);
+//				$transferenciaModel->addTransferencia($posts);
 				die('ok');
-				if ($destinoModel->addDestino($cod, $dsc)) {
-					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
-				}
+//				if ($destinoModel->addDestino($cod, $dsc)) {
+//					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
+//				}
 			} else {
 				$tranferenciaForm->populate($formData);
 			}
