@@ -58,8 +58,8 @@ class Form_EstacaoMonta extends Form_Default
 			'validators' => array(
 				new Zend_Validate_Date('dd/MM/YYYY')
 			),
-			'maxlength' => 32,
-			'size' => 32,
+			'maxlength' => 10,
+			'size' => 10,
 			'class'	=> 'input',
 		));
 
