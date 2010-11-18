@@ -13,7 +13,10 @@ $(document).ready(function() {
 	$("#pai_cod, #mae_cod, #receptora_cod").change(changeSelectAnimal);
 	$("#grausangue_manual").click(changeGrauSangue);
 	$("#obs").keyup(function() {this.value = this.value.toUpperCase();});
-	$("#fichario:form").submit(function() { toggleFields(false); });
+	// old jQuery
+	// $("#fichario:form").submit(function() { toggleFields(false); });
+	// new jQuery
+	$("#fichario").submit(function() { toggleFields(false); });
 	toggleFields(true);
 	changeGrauSangue();
 
@@ -108,8 +111,8 @@ $(document).ready(function() {
 	});
 
 	// Remover todos os links da genealogia
-	$("#main #fichario #genealogia a:href[id*='a']").each(function(i){
-		$("#main #fichario #genealogia a:href[id*='a']").attr('href', 'javascript:void(0);');
+	$("#main #fichario #genealogia a[id*='a']").each(function(i){
+		$("#main #fichario #genealogia a[id*='a']").attr('href', 'javascript:void(0);');
 	});
 });
 

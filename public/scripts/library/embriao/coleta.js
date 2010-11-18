@@ -74,7 +74,10 @@ $(document).ready(function() {
 		checkFields();
 	}
 
-	$("#coleta_de_embrioes:form").submit(function(){
+	// old jQuery
+	// $("#coleta_de_embrioes:form").submit(function(){
+	// new jQuery
+	$("#coleta_de_embrioes").submit(function(){
 
 
 		checkInts();

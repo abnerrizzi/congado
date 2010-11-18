@@ -94,6 +94,9 @@ function fichario_search($dialog, _Height){
 function getFichario(row) {
 	__id = row.attr("id").substr(3);
 	url = baseUrl + '/fichario/edit/id/' + __id;
-	$(location).attr('href', url);
+	// old jQuery
+	// $(location).attr('href', url);
+	// new jQuery
+	window.location.href = url;
 	$("#search").dialog('close');
 }
