@@ -144,6 +144,11 @@ table .label {
 	font-size: 11px;
 }
 
+input[type="text"], input {
+	border-color: #9E9E9E;
+}
+
+
 .input_num,.readonly_num {
 	border-color: #9E9E9E #FFFFFF #FFFFFF #9E9E9E;
 	border-width: 1px;
