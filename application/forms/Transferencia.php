@@ -40,6 +40,8 @@ class Form_Transferencia extends Form_Default
 			'class'	=> 'input',
 			'maxlength' => 21,
 			'size' => 21,
+			'readonly' => 'readonly',
+			'disable' =>true,
 		));
 
 		$this->addElement('text', 'dt_transferencia', array(
@@ -69,6 +71,8 @@ class Form_Transferencia extends Form_Default
 			'class'	=> 'input',
 			'maxlength' => 21,
 			'size' => 21,
+			'readonly' => 'readonly',
+			'disable' =>true,
 		));
 
 		$this->addElement('hidden', 'embriao_id', array(
@@ -85,6 +89,8 @@ class Form_Transferencia extends Form_Default
 			'class'	=> 'input',
 			'maxlength' => 21,
 			'size' => 21,
+			'readonly' => 'readonly',
+			'disable' =>true,
 		));
 
 		$this->addElement('select', 'tipo', array(
