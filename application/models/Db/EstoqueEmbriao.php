@@ -274,6 +274,72 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 
 	}
 
+	public function listJsonEmbriao($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
+	{
+
+		if ($orderby == 'data_coleta') {
+			$orderby = 'dt_coleta';
+		} elseif ($orderby == 'embriao') {
+			$orderby = "natsort_canon(`embriao`, 'natural')";
+		}
+
+		$col_id = $this->_name.'.id';
+		$col_id = 'id';
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('e' => $this->_name), array(
+				'id',
+				'embriao',
+			), $this->_schema)
+		;
+
+
+		if ($qtype && $query) {
+			if ($like == 'false' || $like == '') {
+				$this->_select->where($qtype .' = ?', $query);
+			} else {
+				$this->_select->where($qtype .' LIKE ?', '%'.$query.'%');
+			}
+		}
+
+
+//		print '<pre>'.$this->_select;
+//		die();
+		$return = array(
+			'page' => $page,
+			'total' => $this->fetchAll($this->_select)->count(),
+		);
+
+		if ($page && $limit) {
+			$this->_select->limitPage($page, $limit);
+		}
+
+		$array = $this->fetchAll($this->_select)->toArray();
+		for ($i=0; $i < count($array); $i++)
+		{
+			$row = $array[$i];
+
+			$current = array(
+				'id' => $row[$col_id]
+			);
+			foreach ($row as $key => $val)
+			{
+				if ($key == $col_id) {
+					continue;
+				} else {
+					if ($val == null) {
+						$current['cell'][] = '';
+					} else {
+						$current['cell'][] = ($val);
+					}
+				}
+			}
+			$return['rows'][] = $current;
+		}
+		return $return;
+
+	}
+
 	public function listJsonUltimo($id)
 	{
 		$id = (int)$id;

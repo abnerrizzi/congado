@@ -6,7 +6,13 @@ $(document).ready(function(){
 //		$("#inseminador_cod, #lote_cod").change(changeSelect);
 //	}
 
-	addSearchIcon('fichario', baseUrl+'/json/fichario/sexo/m', 'Receptora', 'showfilter_animal', 600, 240);
+	if (checkAddUrl(this.location.href)) {
+//		$("#fichario_cod").change(changeAnimalSexoF);
+		$("#fichario_cod").change(function(){change.animal(this, 'f');});
+		$("#tecnico_cod").change(function(){change.tecnico(this);});
+		$("#embriao_cod").change(function(){change.embriao(this);});
+	}
+	addSearchIcon('fichario', baseUrl+'/json/fichario/sexo/f', 'Receptora', 'showfilter_animal', 600, 240);
 	addSearchIcon('tecnico', baseUrl+'/json/tecnico', 'Técnico', 'showfilter_tecnico', 600, 240);
 	addSearchIcon('embriao', baseUrl+'/json/reproeducao/embriao', 'Embrião', 'showfilter_embriao', 600, 240);
 

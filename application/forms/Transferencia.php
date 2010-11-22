@@ -85,12 +85,7 @@ class Form_Transferencia extends Form_Default
 			'size' => 10,
 			'class'	=> 'input',
 		));
-		$this->addElement('text', 'embriao', array(
-			'class'	=> 'input',
-			'maxlength' => 21,
-			'size' => 21,
-			'readonly' => 'readonly',
-			'disable' =>true,
+		$this->addElement('hidden', 'embriao', array(
 		));
 
 		$this->addElement('select', 'tipo', array(
