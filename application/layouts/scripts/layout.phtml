@@ -35,7 +35,7 @@
 		$__baseUrl = $this->baseUrl();
 	}
 
-    $this->headScript()->appendScript('var baseUrl = "' . $__baseUrl. '";');
+    $this->headScript()->prependScript('var baseUrl = "' . $__baseUrl. '";');
     echo $this->headTitle();
     ?>
 

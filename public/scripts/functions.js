@@ -956,3 +956,108 @@ function makeDateField(field, minDate, maxDate)
 	});
 
 }
+
+
+function changeAnimalSexoF() {
+
+	this.value = this.value.toUpperCase();
+	suffix = '_cod';
+	__fieldName = this.name.substr(0,(this.name.length - suffix.length));
+	__fieldValue = this.value;
+	__json = __fieldName;
+
+	__url = baseUrl + '/json/fichario/sexo/f';
+
+	if (__fieldName == 'vaca') {
+		__sexo = 'f';
+	} else if (__fieldName == 'touro') {
+		__sexo = 'm';
+	} else {
+		__sexo = null;
+	}
+	if (__fieldValue == '') {
+		$("#" + __fieldName + "_id").val(null);
+		$("#" + __fieldName + "_cod").val(null);
+		$("#" + __fieldName).val(null);
+		return false;
+	}
+	$("#ajax_loader").html("Buscando dados...").show();
+	suffix = '_cod';
+	$.post(__url, {
+		fazenda_id: $('#fazenda_id').val(),
+		sexo: __sexo,
+		qtype : 'cod',
+		query : __fieldValue,
+		like : 'false',
+		ajax : 'true'
+	}, function(j) {
+		j = j.rows;
+		if (j && j.length == 1) {
+			$("#" + __fieldName + "_id").val(j[0].id);
+			$("#" + __fieldName + "_cod").val(j[0].cell[0]);
+			$("#" + __fieldName).val(j[0].cell[1]);
+		} else {
+			$("#ajax_loader").html("Código não encontrado").show();
+			$("#" + __fieldName + "_id").val(null);
+//			$("#" + __fieldName + "_cod").val(null);
+			$("#" + __fieldName).val(null);
+			setTimeout(function(){
+				$("#ajax_loader").fadeOut(300); }
+			, 2000);
+			return false;
+		}
+		$("#ajax_loader").fadeOut(30);
+	}, "json");
+}
+
+function changeAnimalSexoM() {
+
+	this.value = this.value.toUpperCase();
+	suffix = '_cod';
+	__fieldName = this.name.substr(0, (this.name.length - suffix.length));
+	__fieldValue = this.value;
+	__json = __fieldName;
+
+	__url = baseUrl + '/json/fichario/sexo/m';
+
+	if (__fieldName == 'vaca') {
+		__sexo = 'f';
+	} else if (__fieldName == 'touro') {
+		__sexo = 'm';
+	} else {
+		__sexo = null;
+	}
+	if (__fieldValue == '') {
+		$("#" + __fieldName + "_id").val(null);
+		$("#" + __fieldName + "_cod").val(null);
+		$("#" + __fieldName).val(null);
+		return false;
+	}
+	$("#ajax_loader").html("Buscando dados...").show();
+	suffix = '_cod';
+	$.post(__url, {
+		fazenda_id: $('#fazenda_id').val(),
+		sexo: __sexo,
+		qtype : 'cod',
+		query : __fieldValue,
+		like : 'false',
+		ajax : 'true'
+	}, function(j) {
+		j = j.rows;
+		if (j && j.length == 1) {
+			$("#" + __fieldName + "_id").val(j[0].id);
+			$("#" + __fieldName + "_cod").val(j[0].cell[0]);
+			$("#" + __fieldName).val(j[0].cell[1]);
+		} else {
+			$("#ajax_loader").html("Código não encontrado").show();
+			$("#" + __fieldName + "_id").val(null);
+//			$("#" + __fieldName + "_cod").val(null);
+			$("#" + __fieldName).val(null);
+			setTimeout(function(){
+				$("#ajax_loader").fadeOut(300); }
+			, 2000);
+			return false;
+		}
+		$("#ajax_loader").fadeOut(30);
+	}, "json");
+}
