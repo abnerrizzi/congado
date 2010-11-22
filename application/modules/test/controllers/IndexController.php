@@ -15,7 +15,7 @@ class Test_IndexController extends Zend_Controller_Action
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Controle Sanitário :: Morte';
+		$this->view->title = 'Area de testes';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
