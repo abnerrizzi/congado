@@ -52,7 +52,7 @@ var filter = {
 		$("#dlg").append('<div id="dlg-grid"></div>');
 	},
 
-	changeField: function (row, input)
+	changeFieldCod: function (row, input)
 	{
 		__id = row.attr("id").substr(3);
 		__cod = $("#row"+__id+" td: div")[0].innerHTML;
@@ -70,16 +70,33 @@ var filter = {
 		this.hide_filter();
 	},
 
+	changeField: function (row, input)
+	{
+		__id = row.attr("id").substr(3);
+		__cod = $("#row"+__id+" td: div")[0].innerHTML;
+		__dsc = $("#row"+__id+" td: div")[1].innerHTML;
+		if (__dsc == '&nbsp;') {
+			__dsc = '';
+		}
+
+		__fId = '#' + input + '_id';
+		__fCod = '#' + input + '_cod';
+		__fSel = '#' + input;
+		$(__fId).val(row.attr("id").substr(3));
+		$(__fCod).val(__cod);
+		$(__fSel).val(__dsc);
+		$("#dlg").dialog('close');
+
+		setTimeout(function(){
+			$(".flexigrid").remove();
+		}, 200);
+		$("#filter").append('<div id="filter-grid"></div>');
+		this.hide_filter();
+	},
+
 	createDialog: function(title, w, h, modal)
 	{
-		$.each($.browser, function(i) {
-			if ($.browser.mozilla) {
-				_Height = parseInt(20);
-			} else {
-				_Height = parseInt(0);
-			}
-		});
-
+		this.init();
 		// Setting default values
 		w = typeof(w) != 'undefined' ? w : 620;
 		h = typeof(h) != 'undefined' ? h : (390 + _Height);
@@ -101,6 +118,34 @@ var filter = {
 		// Workaround to set title forced
 		$('#ui-dialog-title-dlg').html(title);
 
+	},
+
+	searchGrauSangue: function(input)
+	{
+		if ($("#dlg").length) {
+			$("#dlg-grid").flexigrid(
+			{
+				url: this.url,
+				dataType: this.dataType,
+				colModel : this.defaultColModels,
+				searchitems : this.defaultSearchItems,
+				sortname: this.sortName,
+				sortorder: this.sortOrder,
+				usepager: true,
+				title: false,
+				useRp: true,
+				rp: 10,
+				showTableToggleBtn: false,
+				pagestat: 'Mostrando {from} até {to} de {total} itens',
+				width: 600,
+				height: (240 + _Height),
+				onSelect: function(row) {
+					filter.changeField(row, input);
+				},
+				params: [{name: 'fazenda_id', value: $("#fazenda_id").val()}]
+			});
+			$("#dlg").fadeIn(200);
+		};
 	},
 
 	defaultSearch: function(input)
@@ -135,12 +180,20 @@ var filter = {
 
 filter.grauSangue = function(url, input)
 {
-	this.init();
+//	this.init();
 	this.url = baseUrl + '/json/grausangue';
 	this.defaultColModels[0].display = 'Gr. Sangue';
 	this.defaultColModels[0].width = 60;
 	this.createDialog('Grau Sangue');
-	this.defaultSearch(input);
+	this.searchGrauSangue(input);
 };
 
-
+filter.raca = function(url, input)
+{
+//	this.init();
+	this.url = baseUrl + '/json/raca';
+	this.defaultColModels[0].display = 'Raça';
+	this.defaultColModels[0].width = 60;
+	this.createDialog('Raça');
+	this.defaultSearch(input);
+};
