@@ -100,9 +100,6 @@ class CategoriaController extends Zend_Controller_Action
 			->removeValidator('NoRecordExists')
 			;
 
-		$categoriaForm->getElement('sexo')
-			->setSeparator('&nbsp;')
-			;
 		if ($request->isPost()) {
 
 			if ($categoriaForm->isValid($request->getPost())) {
@@ -129,7 +126,7 @@ class CategoriaController extends Zend_Controller_Action
 		$categoriaForm->setAction('/categoria/add');
 		$categoriaForm->setMethod('post');
 		$this->view->form = $categoriaForm;
-		$this->view->elements = array('cod', 'dsc', 'unidade');
+		$this->view->elements = array('cod', 'dsc', 'sexo');
 
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();

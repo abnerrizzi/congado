@@ -10,7 +10,7 @@ $(document).ready(function(){
 		updateField('#fichario_cod', 'animal', 'fichario.cod');
 	}
 
-	campoData("#data", new Date());
+	makeDateField($('#data'), false, new Date());
 
 });
 

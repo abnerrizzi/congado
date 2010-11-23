@@ -1,18 +1,19 @@
 $(document).ready(function() {
 
 	if (checkAddUrl(window.location.href) == true) {
-		addSearchIcon('raca', baseUrl+'/json/raca', 'Raça', 'showfilter_raca', 600, 240);
-		addSearchIcon('pai', baseUrl+'/json/grausangue', 'Matriz Grau Sangue', 'showfilter_grausangue', 600, 240);
-		addSearchIcon('mae', baseUrl+'/json/grausangue', 'Matriz Grau Sangue', 'showfilter_grausangue', 600, 240);
+		addSearchIcon('raca', baseUrl+'/json/raca', 'Raça', 'filter.raca', 600, 240);
+		addSearchIcon('pai', baseUrl+'/json/grausangue', 'Matriz Grau Sangue', 'filter.grauSangue', 600, 240);
+		addSearchIcon('mae', baseUrl+'/json/grausangue', 'Matriz Grau Sangue', 'filter.grauSangue', 600, 240);
 	}
-	addSearchIcon('cria', baseUrl+'/json/grausangue', 'Matriz Grau Sangue', 'showfilter_grausangue', 600, 240);
+	addSearchIcon('cria', baseUrl+'/json/grausangue', 'Matriz Grau Sangue', 'filter.grauSangue', 600, 240);
 
-	$("#pai, #mae, #cria, #raca").change(changeCod);
-	$("#pai_cod, #mae_cod, #cria_cod, #raca_cod").change(changeSelectRaca);
+	$('#pai_cod, #mae_cod, #cria_cod, #raca_cod').change(function(){change.bySelect(this);});
+	$("#pai, #mae, #cria, #raca").change(function(){change.fromSelect(this);});
 
 });
 
 function changeCod() {
+	window.alert('Deprecated');
 	__input = '#' + this.name + '_cod';
 	__hidden = '#' + this.name + '_id';
 	$(__hidden).val(this.value.split(";")[0]);
@@ -20,8 +21,9 @@ function changeCod() {
 }
 
 function changeField(row, input) {
+	window.alert('Deprecated');
 	__id = row.attr("id").substr(3);
-	__cod = $("#row"+__id+" td: div")[0].innerHTML
+	__cod = $("#row"+__id+" td: div")[0].innerHTML;
 	__fId = '#' + input + '_id';
 	__fCod = '#' + input + '_cod';
 	__fSel = '#' + input;

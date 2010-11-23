@@ -1,16 +1,16 @@
 var change = {
 	suffix:	'_cod',
 	qtype:	'cod',
-	url:	baseUrl + '/json/fichario',
+	url:	null,
 	run:	function() {
 		window.alert('Nothing to do!!!');
 	},
+
 	__getFields:	function(__field) {
 		__field.value = __field.value.toUpperCase();
 		this.suffix = '_cod';
 		__fieldName = __field.name.substr(0,(__field.name.length - this.suffix.length));
 		this.fieldValue = __field.value;
-		__json = __fieldName;
 
 		// check field type
 		if (this.sexo == null) {
@@ -62,9 +62,28 @@ var change = {
 	}
 };
 
-change.tecnico = function(field){
+change.select = function(field, jsonUrl) {
+	__fieldName = field.name.substr(0,(field.name.length - this.suffix.length));
+
 	this.run = function(field) {
-		this.url = baseUrl + '/json/tecnico';
+		if (typeof(jsonUrl) != 'undefined' && jsonUrl != '') {
+			this.url = baseUrl + '/json/' + jsonUrl;
+		} else {
+			this.url = baseUrl + '/json/' + __fieldName;
+		}
+		if (__fieldName == 'local') {
+			this.qtype = 'local';
+			if (!$('#fazenda_id').val().length > 0) {
+				if ($("#ajax_loader")) {
+					$("#ajax_loader").html("Por favor selecione uma fazenda.").show();
+					setTimeout(function(){
+						$("#ajax_loader").fadeOut(300);
+					}
+					, 2000);
+				}
+				return false;
+			}
+		}
 		this.__getFields(field);
 		this.__ajaxRequest();
 	};
@@ -99,4 +118,64 @@ change.animal = function(field, sexo) {
 		this.sexo = null;
 	};
 	this.run(field);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// without ajax request
+change.bySelect = function(field) {
+	field.value = field.value.toUpperCase();
+	__select = '#' + field.name.substr(0,(field.name.length - this.suffix.length));
+	__hidden = '#' + field.name.substr(0,(field.name.length - this.suffix.length)) + '_id';
+
+	__currentSelect = $(__select + " option");
+	for (int = 0; int < __currentSelect.length; int++)
+	{
+		if (field.value == __currentSelect[int].value.split(";")[1]) {
+			$(__select).val(__currentSelect[int].value);
+			$(__hidden).val($(__select).val().split(";")[0]);
+			__exists = true;
+			break;
+		} else {
+			$(__hidden).val('');
+			$(__select).val('');
+			__exists = false;
+		}
+
+	};
+
+	if (!__exists) {
+		if ($("#ajax_loader")) {
+			$("#ajax_loader").html("Código inválido encontrado").show();
+			setTimeout(function(){
+				$("#ajax_loader").fadeOut(300); }
+			, 2000);
+		}
+		return false;
+	}
+
+	return false;
+};
+
+
+change.fromSelect = function(field) {
+	__input = '#' + field.name + '_cod';
+	__hidden = '#' + field.name + '_id';
+	$(__hidden).val(field.value.split(";")[0]);
+	$(__input).val(field.value.split(";")[1]);
 };
