@@ -9,8 +9,8 @@ $(document).ready(function() {
 		addSearchIcon('fichario_cod', baseUrl+'/json/animal', 'Doenças', 'showfilter_animalPreventivo', 600, 240);
 	}
 
-	campoData("#data", new Date());
-	campoData("#dataproximo", new Date()+(60*60*24*365*30));
+	makeDateField($('#data'), false, new Date());
+	makeDateField($("#dataproximo"), false, new Date()+(60*60*24*365*30));
 
 	$("#fichario_grid").parent().css('text-align', 'center');
 	$("#fichario_cod").keypress(function(e) {

@@ -9,7 +9,7 @@ $(document).ready(function() {
 		hide_filter();
 	});
 
-	$("#criador_cod, #pelagem_cod, #raca_cod, #rebanho_cod, #categoria_cod, #local_cod, #grausangue_cod").change(changeSelect);
+	$("#criador_cod, #pelagem_cod, #raca_cod, #rebanho_cod, #categoria_cod, #local_cod, #grausangue_cod").change(function(){change.select(this);});
 	$("#pai_cod, #mae_cod, #receptora_cod").change(changeSelectAnimal);
 	$("#grausangue_manual").click(changeGrauSangue);
 	$("#obs").keyup(function() {this.value = this.value.toUpperCase();});

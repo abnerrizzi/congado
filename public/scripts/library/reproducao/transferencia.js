@@ -9,7 +9,7 @@ $(document).ready(function(){
 	if (checkAddUrl(this.location.href)) {
 //		$("#fichario_cod").change(changeAnimalSexoF);
 		$("#fichario_cod").change(function(){change.animal(this, 'f');});
-		$("#tecnico_cod").change(function(){change.tecnico(this);});
+		$("#tecnico_cod").change(function(){change.select(this);});
 		$("#embriao_cod").change(function(){change.embriao(this);});
 	}
 	addSearchIcon('fichario', baseUrl+'/json/fichario/sexo/f', 'Receptora', 'showfilter_animal', 600, 240);

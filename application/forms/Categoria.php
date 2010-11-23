@@ -46,6 +46,7 @@ class Form_Categoria extends Form_Default
 			'maxlength' => 32,
 			'size' => 32,
 			'class'	=> 'input',
+			'separator' => '&nbsp;'
 		));
 		$this->getElement('sexo')
 			->addMultiOptions(array(
