@@ -87,35 +87,6 @@ class MatrizgrController extends Zend_Controller_Action
 		$this->view->elements = array(array('raca'), array('pai'), array('mae'), array('cria'));
 		$this->view->form = $matrizgrForm;
 
-
-
-		$racaModel	= new Model_Db_Raca();
-		$racas = $racaModel->listRacas(array('id', 'dsc', 'cod'));
-		$matrizgrForm->getElement('raca')
-			->addMultiOption(false, '--');
-		foreach ($racas as $raca) {
-			$matrizgrForm->getElement('raca')
-				->addMultiOption($raca['id'].';'.$raca['cod'], $raca['dsc']);
-		}
-
-		$grausangueModel = new Model_Db_Grausangue();
-		$graus = $grausangueModel->listGrauSangue(array('id', 'dsc', 'cod'));
-		$matrizgrForm->getElement('pai')
-			->addMultiOption(false, '--');
-		$matrizgrForm->getElement('mae')
-			->addMultiOption(false, '--');
-		$matrizgrForm->getElement('cria')
-			->addMultiOption(false, '--');
-		foreach ($graus as $grau) {
-			$matrizgrForm->getElement('pai')
-				->addMultiOption($grau['id'].';'.$grau['cod'], $grau['dsc']);
-			$matrizgrForm->getElement('mae')
-				->addMultiOption($grau['id'].';'.$grau['cod'], $grau['dsc']);
-			$matrizgrForm->getElement('cria')
-				->addMultiOption($grau['id'].';'.$grau['cod'], $grau['dsc']);
-		}
-
-
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
 			if ($matrizgrForm->isValid($formData)) {

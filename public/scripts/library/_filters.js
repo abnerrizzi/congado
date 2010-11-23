@@ -336,7 +336,7 @@ function showfilter_local(url, input)
 
 function showfilter_grausangue(url, input)
 {
-
+	window.alert('Deprecated');
 	createDialog('Grau Sangue');
 	if ($("#dlg").length) {
 		$("#dlg-grid").flexigrid(

@@ -29,9 +29,11 @@ class Form_MatrizGr extends Form_Default
 			'size' => 2,
 			'class'	=> 'input',
 		));
-		$this->addElement('select', 'raca', array(
+		$this->addElement('text', 'raca', array(
 			'required' => true,
 			'class'	=> 'input',
+			'readonly' => 'readonly',
+			'disable' => true,
 		));
 
 		$this->addElement('hidden', 'pai_id');
@@ -44,9 +46,11 @@ class Form_MatrizGr extends Form_Default
 			'size' => 2,
 			'class'	=> 'input',
 		));
-		$this->addElement('select', 'pai', array(
+		$this->addElement('text', 'pai', array(
 			'required' => true,
 			'class'	=> 'input',
+			'readonly' => 'readonly',
+			'disable' => true,
 		));
 
 		$this->addElement('hidden', 'mae_id');
@@ -59,9 +63,11 @@ class Form_MatrizGr extends Form_Default
 			'size' => 2,
 			'class'	=> 'input',
 		));
-		$this->addElement('select', 'mae', array(
+		$this->addElement('text', 'mae', array(
 			'required' => true,
 			'class'	=> 'input',
+			'readonly' => 'readonly',
+			'disable' => true,
 		));
 
 		$this->addElement('hidden', 'cria_id');
@@ -74,9 +80,11 @@ class Form_MatrizGr extends Form_Default
 			'size' => 2,
 			'class'	=> 'input',
 		));
-		$this->addElement('select', 'cria', array(
+		$this->addElement('text', 'cria', array(
 			'required' => true,
 			'class'	=> 'input',
+			'readonly' => 'readonly',
+			'disable' => true,
 		));
 
 
