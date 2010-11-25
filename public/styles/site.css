@@ -144,8 +144,8 @@ table .label {
 	font-size: 11px;
 }
 
-input[type="text"], input {
-	border-color: #9E9E9E;
+input[type=text] {
+	border-color: #9E9E9E #DFDFDF #DFDFDF #9E9E9E;
 }
 
 
