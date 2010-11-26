@@ -256,6 +256,7 @@ function DumpObject(obj)
 
 function createDialog(title, w, h, modal)
 {
+	window.alert('Deprecated, function.js->createDialog');
 	$.each($.browser, function(i) {
 		if ($.browser.mozilla) {
 			_Height = parseInt(20);
