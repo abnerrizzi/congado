@@ -100,6 +100,26 @@ change.embriao = function(field){
 	this.run(field);
 };
 
+change.raca = function(field){
+	this.run = function(field) {
+		this.url = baseUrl + '/json/raca';
+		this.__getFields(field);
+		this.__ajaxRequest();
+	};
+	this.run(field);
+};
+
+change.grauSangue = function(field){
+	this.run = function(field) {
+		this.url = baseUrl + '/json/grausangue';
+		this.__getFields(field);
+		this.__ajaxRequest();
+	};
+	this.run(field);
+};
+
+
+
 change.animal = function(field, sexo) {
 	if ($('#fazenda_id').val() == '') {
 		$("#ajax_loader").html("Por favor, selecione uma fazenda!").show();
@@ -127,18 +147,9 @@ change.animal = function(field, sexo) {
 
 
 
-
-
-
-
-
-
-
-
-
-
 // without ajax request
 change.bySelect = function(field) {
+	window.alert('Deprecated function _class.change.js->change.bySelect()');
 	field.value = field.value.toUpperCase();
 	__select = '#' + field.name.substr(0,(field.name.length - this.suffix.length));
 	__hidden = '#' + field.name.substr(0,(field.name.length - this.suffix.length)) + '_id';
