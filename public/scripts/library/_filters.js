@@ -389,6 +389,7 @@ function showfilter_grausangue(url, input)
 function showfilter_animal(url, input)
 {
 
+	window.alert('Deprecated');
 	createDialog('Animal');
 	if ($("#dlg").length) {
 		$("#dlg-grid").flexigrid(

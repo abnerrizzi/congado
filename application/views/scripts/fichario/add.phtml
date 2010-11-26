@@ -143,9 +143,6 @@ $this->headScript()
       <?=$this->form->criador_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->criador_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->criador->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_criador('<?=$this->baseUrl();?>/json/criador','criador');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="20"></td>
     <td class="label"><?=$this->form->pelagem_cod->getLabel();?>:</td>
@@ -154,9 +151,6 @@ $this->headScript()
       <?=$this->form->pelagem_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->pelagem_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->pelagem->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_pelagem('<?=$this->baseUrl();?>/json/pelagem','pelagem');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -172,9 +166,6 @@ $this->headScript()
       <?=$this->form->raca_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->raca_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->raca->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_raca('<?=$this->baseUrl();?>/json/raca','raca');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="20"></td>
     <td class="label"><?=$this->form->rebanho_cod->getLabel();?>:</td>
@@ -183,9 +174,6 @@ $this->headScript()
       <?=$this->form->rebanho_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->rebanho_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->rebanho->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_rebanho('<?=$this->baseUrl();?>/json/rebanho','rebanho');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -201,9 +189,6 @@ $this->headScript()
       <?=$this->form->categoria_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->categoria_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->categoria->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_categoria('<?=$this->baseUrl();?>/json/categoria','categoria');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="20"></td>
     <td class="label"><?=$this->form->local_cod->getLabel();?>:</td>
@@ -212,9 +197,6 @@ $this->headScript()
       <?=$this->form->local_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->local_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->local->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_local('<?=$this->baseUrl();?>/json/local','local');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -232,9 +214,6 @@ $this->headScript()
       <?=$this->form->grausangue_manual->getLabel();?><br/>
       <?=$this->form->grausangue_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->grausangue->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a id="grausangue_search" href="javascript:void(0);" onclick="return filter.grauSangue('<?=$this->baseUrl();?>/json/grausangue','grausangue');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="20"></td>
     <td class="label"><?=$this->form->sexo->getLabel();?>:</td>
