@@ -7,8 +7,9 @@ $(document).ready(function() {
 	}
 	addSearchIcon('cria', baseUrl+'/json/grausangue', 'Matriz Grau Sangue', 'filter.grauSangue', 600, 240);
 
-	$('#pai_cod, #mae_cod, #cria_cod, #raca_cod').change(function(){change.bySelect(this);});
-	$("#pai, #mae, #cria, #raca").change(function(){change.fromSelect(this);});
+	$('#raca_cod').change(function(){change.raca(this);});
+	$('#pai_cod, #mae_cod, #cria_cod').change(function(){change.grauSangue(this);});
+//	$("#pai, #mae, #cria, #raca").change(function(){change.fromSelect(this);});
 
 });
 
