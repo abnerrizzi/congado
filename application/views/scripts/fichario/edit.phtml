@@ -3,15 +3,15 @@
 $this->javascript();
 
 $this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery-ui.core.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.tabs.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.draggable.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.dialog.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.resizable.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery-ui.core.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.tabs.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.draggable.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.dialog.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.resizable.js')
 //	->appendFile($this->baseUrl() . '/scripts/library/genealogia.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.qtip.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.qtip.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
 	->appendFile($this->baseUrl() . '/scripts/library/_filters.js')
 	->appendFile($this->baseUrl() . '/scripts/library/_class.change.js')
 	;
@@ -175,9 +175,6 @@ $this->headLink()
       <?=$this->form->criador_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->criador_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->criador->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_criador('<?=$this->baseUrl();?>/json/criador','criador');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="20"></td>
     <td class="label"><?=$this->form->pelagem_cod->getLabel();?>:</td>
@@ -186,9 +183,6 @@ $this->headLink()
       <?=$this->form->pelagem_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->pelagem_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->pelagem->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_pelagem('<?=$this->baseUrl();?>/json/pelagem','pelagem');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -204,9 +198,6 @@ $this->headLink()
       <?=$this->form->raca_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->raca_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->raca->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_raca('<?=$this->baseUrl();?>/json/raca','raca');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="20"></td>
     <td class="label"><?=$this->form->rebanho_cod->getLabel();?>:</td>
@@ -215,9 +206,6 @@ $this->headLink()
       <?=$this->form->rebanho_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->rebanho_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->rebanho->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_rebanho('<?=$this->baseUrl();?>/json/rebanho','rebanho');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -233,9 +221,6 @@ $this->headLink()
       <?=$this->form->categoria_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->categoria_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->categoria->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_categoria('<?=$this->baseUrl();?>/json/categoria','categoria');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="20"></td>
     <td class="label"><?=$this->form->local_cod->getLabel();?>:</td>
@@ -244,9 +229,6 @@ $this->headLink()
       <?=$this->form->local_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->local_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->local->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_local('<?=$this->baseUrl();?>/json/local','local');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -264,9 +246,6 @@ $this->headLink()
       <?=$this->form->grausangue_manual->getLabel();?><br/>
       <?=$this->form->grausangue_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->grausangue->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a id="grausangue_search" href="javascript:void(0);" onclick="return filter.grauSangue('<?=$this->baseUrl();?>/json/grausangue','grausangue');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="20"></td>
     <td class="label"><?=$this->form->sexo->getLabel();?>:</td>
@@ -322,9 +301,6 @@ $this->headLink()
       <?=$this->form->pai_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->pai_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->pai->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/m','pai');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -340,9 +316,6 @@ $this->headLink()
       <?=$this->form->mae_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->mae_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->mae->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/f','mae');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -358,9 +331,6 @@ $this->headLink()
       <?=$this->form->receptora_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->receptora_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->receptora->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/f','receptora');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -681,8 +651,7 @@ $this->headScript()
 
 <span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = '<?=$this->baseUrl()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName();?>'; return false;">
 <span class="UIIcon UIIcon_Cancel">&nbsp;</span>
-  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="<?=$this->form->getElement('cancel')->getName();?>" id="<?=$this->form->getElement('cancel')->getId();?>"
-  >
+  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="<?=$this->form->getElement('cancel')->getName();?>" id="<?=$this->form->getElement('cancel')->getId();?>"/>
 </span>
 
 

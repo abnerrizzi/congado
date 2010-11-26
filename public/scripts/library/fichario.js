@@ -1,5 +1,22 @@
 $(document).ready(function() {
 
+	addSearchIcon('raca', baseUrl+'/json/raca', 'filter.raca', 600, 240);
+	addSearchIcon('criador', baseUrl+'/json/criador', 'filter.criador', 600, 240);
+	addSearchIcon('pelagem', baseUrl+'/json/pelagem', 'filter.pelagem', 600, 240);
+	addSearchIcon('rebanho', baseUrl+'/json/rebanho', 'filter.rebanho', 600, 240);
+	addSearchIcon('local', baseUrl+'/json/local', 'filter.local', 600, 240);
+	addSearchIcon('grausangue', baseUrl+'/json/grausangue', 'filter.grauSangue', 600, 240);
+
+	addSearchIcon('pai', baseUrl+'/json/fichario/sexo/m', 'filter.animal', 600, 240);
+	addSearchIcon('mae', baseUrl+'/json/fichario/sexo/f', 'filter.animal', 600, 240);
+	addSearchIcon('receptora', baseUrl+'/json/fichario/sexo/f', 'filter.animal', 600, 240);
+
+	$("#criador_cod, #pelagem_cod, #raca_cod, #rebanho_cod, #categoria_cod, #local_cod, #grausangue_cod").change(function(){change.select(this);});
+
+//	$("#pai_cod, #mae_cod, #receptora_cod").change(changeSelectAnimal);
+	$("#pai_cod").change(function(){change.animal(this, 'M');});
+	$("#mae_cod, #receptora_cod").change(function(){change.animal(this, 'F');});
+
 	$('#nome').css('font-size', '16px');
 	$('#nome').css('font-weight', 'bold');
 	$('#nome').css('border', '2px solid #f63');
@@ -9,8 +26,6 @@ $(document).ready(function() {
 		hide_filter();
 	});
 
-	$("#criador_cod, #pelagem_cod, #raca_cod, #rebanho_cod, #categoria_cod, #local_cod, #grausangue_cod").change(function(){change.select(this);});
-	$("#pai_cod, #mae_cod, #receptora_cod").change(changeSelectAnimal);
 	$("#grausangue_manual").click(changeGrauSangue);
 	$("#obs").keyup(function() {this.value = this.value.toUpperCase();});
 	// old jQuery
@@ -21,6 +36,7 @@ $(document).ready(function() {
 	changeGrauSangue();
 
 	if (checkAddUrl(window.location.href) == true) {
+		addSearchIcon('categoria', baseUrl+'/json/categoria', 'Categoria', 'filter.categoria', 600, 240);
 		$("#fazenda_id").removeAttr('disabled');
 		$("#fazenda_id").removeAttr('readonly');
 		$('#fazenda_id').change(function(){

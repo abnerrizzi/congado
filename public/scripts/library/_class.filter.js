@@ -2,6 +2,7 @@ var filter = {
 
 	heigth: null,
 	width: null,
+	like: true,
 	dataType: 'json',
 	sortName: 'cod',
 	sortOrder: 'asc',
@@ -133,6 +134,7 @@ var filter = {
 				searchitems : this.defaultSearchItems,
 				sortname: this.sortName,
 				sortorder: this.sortOrder,
+				like: this.like,
 				usepager: true,
 				title: false,
 				useRp: true,
@@ -161,6 +163,7 @@ var filter = {
 				searchitems : this.defaultSearchItems,
 				sortname: this.sortName,
 				sortorder: this.sortOrder,
+				like: this.like,
 				usepager: true,
 				title: false,
 				useRp: true,
@@ -182,7 +185,6 @@ var filter = {
 
 filter.grauSangue = function(url, input)
 {
-//	this.init();
 	this.url = baseUrl + '/json/grausangue';
 	this.defaultColModels[0].display = 'Gr. Sangue';
 	this.defaultColModels[0].width = 60;
@@ -192,10 +194,114 @@ filter.grauSangue = function(url, input)
 
 filter.raca = function(url, input)
 {
-	this.init();
 	this.url = baseUrl + '/json/raca';
 	this.defaultColModels[0].display = 'Raça';
 	this.defaultColModels[0].width = 60;
-	this.createDialog('Raça', this.width, this.heigth);
+	this.createDialog('Raça');
 	this.defaultSearch(input);
 };
+
+filter.criador = function(url, input)
+{
+	this.url = baseUrl + '/json/criador';
+	this.defaultColModels[0].display = 'Criador';
+	this.defaultColModels[0].width = 60;
+	this.createDialog('Criador');
+	this.defaultSearch(input);
+};
+
+filter.pelagem = function(url, input)
+{
+	this.url = baseUrl + '/json/pelagem';
+	this.defaultColModels[0].display = 'Pelagem';
+	this.defaultColModels[0].width = 60;
+	this.createDialog('Pelagem');
+	this.defaultSearch(input);
+};
+
+filter.rebanho = function(url, input)
+{
+	this.url = baseUrl + '/json/rebanho';
+	this.defaultColModels[0].display = 'Rebanho';
+	this.defaultColModels[0].width = 60;
+	this.createDialog('Rebanho');
+	this.defaultSearch(input);
+};
+
+filter.local = function(url, input)
+{
+	this.url = baseUrl + '/json/local';
+	this.defaultColModels[0].name = this.defaultSearchItems[0].name = this.sortName = 'local';
+	this.defaultColModels[0].display = 'Local';
+	this.defaultColModels[0].width = 60;
+	this.createDialog('Local');
+	this.defaultSearch(input);
+};
+
+filter.categoria = function(url, input)
+{
+	this.url = baseUrl + '/json/categoria';
+	this.defaultColModels[0].name = 'categoria';
+	this.defaultColModels[0].display = 'Categoria';
+	this.defaultColModels[0].width = 60;
+	this.createDialog('Categoria');
+	this.defaultSearch(input);
+};
+
+filter.animal = function(url, input)
+{
+	if (typeof(url) != '') {
+		this.url = url;
+	} else {
+		this.url = baseUrl + '/json/fichario';
+	}
+	this.defaultColModels = [{
+		display: 'Animal',
+		name : 'cod',
+		width : 80,
+		sortable : true,
+		align: 'left'
+	}, {
+		display: 'Nome',
+		name : 'nome',
+		width : 160,
+		sortable : true,
+		align: 'left'
+	}, {
+		display: 'RGN',
+		name : 'rgn',
+		width : 80,
+		sortable : true,
+		align: 'left'
+	}, {
+		display: 'SISBOV',
+		name : 'sisbov',
+		width : 80,
+		sortable : true,
+		align: 'left'
+	}, {
+		display: 'Sexo',
+		name : 'sexo',
+		width : 40,
+		sortable : true,
+		align: 'left'
+	}];
+	this.defaultSearchItems = [{
+		display: 'Animal',
+		name : 'fichario.cod'
+	}, {
+		display: 'Nome',
+		name : 'nome',
+		isdefault: true
+	}, {
+		display: 'RGN',
+		name : 'rgn',
+		isdefault: true
+	}, {
+		display: 'SISBOV',
+		name : 'fichario.sisbov',
+		isdefault: true
+	}];
+	this.createDialog('Fichário');
+	this.defaultSearch(input);
+}

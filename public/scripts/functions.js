@@ -377,8 +377,8 @@ function dump(array, level) {
 })(jQuery);
 
 function changeSelectRaca() {
-	window.alert('Deprecated');
 
+	window.alert('Deprecated: (function.js)->changeSelectRaca()');
 	this.value = this.value.toUpperCase();
 	suffix = '_cod';
 	__select = '#' + this.name.substr(0,(this.name.length - suffix.length));
@@ -420,7 +420,7 @@ function changeSelectRaca() {
  * @param w - largura
  * @param h - altura
  */
-function addSearchIcon(__parent, __jsonUrl, title, function_call, w, h)
+function addSearchIcon(__parent, __jsonUrl, function_call, w, h)
 {
 	__id = __parent+'_search';
 	$('#'+__parent).parent().append(' <a id="'+__id+'"><img alt="" src="'+baseUrl+'/images/search.png"/></a>');
@@ -436,6 +436,7 @@ function addSearchIcon(__parent, __jsonUrl, title, function_call, w, h)
 
 function changeSelectAnimal() {
 
+	window.alert('Deprecated: (function.js)->changeSelectAnimal()');
 	this.value = this.value.toUpperCase();
 	suffix = '_cod';
 	__fieldName = this.name.substr(0,(this.name.length - suffix.length));
@@ -687,6 +688,7 @@ function checkDate(field)
 
 function changeSelectAnimalBySexo(field, __sexo, checkField) {
 
+	window.alert('Deprecated: (function.js)->changeSelectAnimalBySexo()');
 	__sexo = typeof(__sexo) != 'undefined' ? __sexo : '';
 	checkField = typeof(checkField) != 'undefined' ? checkField : false;
 
@@ -761,6 +763,7 @@ function changeSelectAnimalBySexo(field, __sexo, checkField) {
  */
 function changeSelect() {
 
+	window.alert('Deprecated: (function.js)->changeSelect()');
 	this.value = this.value.toUpperCase();
 	suffix = '_cod';
 	__fieldName = this.name.substr(0,(this.name.length - suffix.length));
@@ -822,7 +825,7 @@ function changeSelect() {
  * Busca via ajax os valores de id e descricao dos campos de acordo com o codigo digitado
  */
 function changeAnimal() {
-
+	window.alert('Deprecated: (function.js)->changeAnimal()');
 	this.value = this.value.toUpperCase();
 	suffix = '_cod';
 	__fieldName = this.name.substr(0,(this.name.length - suffix.length));
@@ -923,6 +926,7 @@ function makeDateField(field, minDate, maxDate)
 
 function changeAnimalSexoF() {
 
+	window.alert('Deprecated: (function.js)->changeAnimalSexoF()');
 	this.value = this.value.toUpperCase();
 	suffix = '_cod';
 	__fieldName = this.name.substr(0,(this.name.length - suffix.length));
@@ -975,6 +979,7 @@ function changeAnimalSexoF() {
 
 function changeAnimalSexoM() {
 
+	window.alert('Deprecated: (function.js)->changeAnimalSexoM()');
 	this.value = this.value.toUpperCase();
 	suffix = '_cod';
 	__fieldName = this.name.substr(0, (this.name.length - suffix.length));
