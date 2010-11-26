@@ -1,5 +1,7 @@
 var filter = {
 
+	heigth: null,
+	width: null,
 	dataType: 'json',
 	sortName: 'cod',
 	sortOrder: 'asc',
@@ -34,9 +36,9 @@ var filter = {
 		// workaround to adjust size in mozilla
 		$.each($.browser, function(i) {
 			if ($.browser.mozilla) {
-				var _Height = parseInt(20);
+				this.heigth = parseInt(20);
 			} else {
-				var _Height = parseInt(0);
+				this.heigth = parseInt(0);
 			}
 		});
 	},
@@ -99,7 +101,7 @@ var filter = {
 		this.init();
 		// Setting default values
 		w = typeof(w) != 'undefined' ? w : 620;
-		h = typeof(h) != 'undefined' ? h : (390 + _Height);
+		h = typeof(h) != 'undefined' ? h : (390 + this.heigth);
 
 		modal = typeof(modal) != 'undefined' ? modal : true;
 
@@ -138,7 +140,7 @@ var filter = {
 				showTableToggleBtn: false,
 				pagestat: 'Mostrando {from} até {to} de {total} itens',
 				width: 600,
-				height: (240 + _Height),
+				height: (240 + this.heigth),
 				onSelect: function(row) {
 					filter.changeField(row, input);
 				},
@@ -166,7 +168,7 @@ var filter = {
 				showTableToggleBtn: false,
 				pagestat: 'Mostrando {from} até {to} de {total} itens',
 				width: 600,
-				height: (240 + _Height),
+				height: (240 + this.heigth),
 				onSelect: function(row) {
 					filter.changeField(row, input);
 				},
@@ -190,10 +192,10 @@ filter.grauSangue = function(url, input)
 
 filter.raca = function(url, input)
 {
-//	this.init();
+	this.init();
 	this.url = baseUrl + '/json/raca';
 	this.defaultColModels[0].display = 'Raça';
 	this.defaultColModels[0].width = 60;
-	this.createDialog('Raça');
+	this.createDialog('Raça', this.width, this.heigth);
 	this.defaultSearch(input);
 };
