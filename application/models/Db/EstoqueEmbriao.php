@@ -289,8 +289,16 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 			->setIntegrityCheck(false)
 			->from(array('e' => $this->_name), array(
 				'id',
+				'data_coleta' => new Zend_Db_Expr('date_format(dt_coleta, "%d/%m/%Y")'),
 				'embriao',
+				'doadora' => 'd.cod',
+				'touro' => 't.cod',
+				'criador' => 'c.cod',
 			), $this->_schema)
+			->joinLeft(array('d' => 'fichario'), 'e.doadora_id = d.id',array(),$this->_schema)
+			->joinLeft(array('t' => 'fichario'), 'e.touro_id = t.id',array(),$this->_schema)
+			->joinLeft(array('c' => 'criador'), 'e.criador_id = c.id',array(),$this->_schema)
+			->order($orderby .' '. $order)
 		;
 
 

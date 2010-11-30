@@ -19,19 +19,21 @@ $(document).ready(function() {
 
 	var _Height = checkBrowser();
 
-	var $dialog = $('<div></div>').dialog(
-			{
-				modal: true,
-				draggable: true,
-				closeOnEscape: true,
-				autoOpen: false,
-				resizable: false,
-				title: __title,
-				width: 620,
-				height: parseInt(390 + _Height)
-			}).attr('id', 'search');
-	$dialog.html('<div id="search-default"></div>');
+//	var $dialog = $('<div></div>').dialog(
+//			{
+//				modal: true,
+//				draggable: true,
+//				closeOnEscape: true,
+//				autoOpen: false,
+//				resizable: false,
+//				title: __title,
+//				width: 620,
+//				height: parseInt(390 + _Height)
+//			}).attr('id', 'search');
+//	$dialog.html('<div id="search-default"></div>');
 
+	$('#add a#search').click(function(){search.coletaEmbriao();});
+	/*
 	$('#add a#search').click(function(){
 		$dialog.dialog('open');
 		$("#search-default").flexigrid(
@@ -90,5 +92,6 @@ $(document).ready(function() {
 		});
 		$dialog.fadeIn(200);
 	});
+	*/
 
 });
