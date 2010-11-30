@@ -43,7 +43,7 @@
  * @license http://opensource.org/licenses/mit-license.php MIT License
  * @version 1.1.1 (2008-03-02)
  * @link http://code.google.com/p/jsmin-php/
- * @version $Id: Grid.php 489 2010-10-18 13:51:10Z bacteria_ $
+ * @version $Id$
  */
 
 class JSMin {
