@@ -269,9 +269,6 @@ $this->headScript()
       <?=$this->form->pai_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->pai_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->pai->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/m','pai');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -287,9 +284,6 @@ $this->headScript()
       <?=$this->form->mae_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->mae_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->mae->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/f','mae');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -305,9 +299,6 @@ $this->headScript()
       <?=$this->form->receptora_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->receptora_cod->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
       <?=$this->form->receptora->removeDecorator('tag')->removeDecorator('label')->removeFilter('StringTrim');?>
-      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/f','receptora');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>
@@ -363,8 +354,7 @@ $this->headScript()
     <td width="10"></td>
     <td align="center"><span class="UIButton UIButton_Large UIFormButton  UIButton_Gray" onclick="location.href = '<?=$this->baseUrl()."/".Zend_Controller_Front::getInstance()->getRequest()->getControllerName();?>'; return false;">
 <span class="UIIcon UIIcon_Cancel">&nbsp;</span>
-  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="<?=$this->form->getElement('cancel')->getName();?>" id="<?=$this->form->getElement('cancel')->getId();?>"
-  >
+  <input style="display: inline-block;"  class="UIButton_Text" type="button" value="Cancelar" name="<?=$this->form->getElement('cancel')->getName();?>" id="<?=$this->form->getElement('cancel')->getId();?>"/>
 </span></td>
     <td width="50"></td>
   </tr>

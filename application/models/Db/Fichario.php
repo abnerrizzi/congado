@@ -99,6 +99,8 @@ class Model_Db_Fichario extends Model_Db
 		if ($fazenda_id == "undefined") {
 		} elseif ($fazenda_id != "null" && !$fazenda_id) {
 			$this->_select->where('fazenda_id = ?', (int)$fazenda_id);
+		} elseif ((int)$fazenda_id > 0) {
+			$this->_select->where('fazenda_id = ?', (int)$fazenda_id);
 		}
 
 //		die('<pre>'.$this->_select);
@@ -169,8 +171,8 @@ class Model_Db_Fichario extends Model_Db
 			$this->_select->where($this->_name.'.sexo = ?', $params['sexo']);
 		}
 
-		print '<pre>'.$this->_select;
-		die();
+//		print '<pre>'.$this->_select;
+//		die();
 		$return = array(
 			'page' => $page,
 			'total' => $this->fetchAll($this->_select)->count(),

@@ -4,7 +4,7 @@ var filter = {
 	width: null,
 	like: true,
 	dataType: 'json',
-	sortName: 'cod',
+	defaultSortName: 'cod',
 	sortOrder: 'asc',
 	defaultColModels: [{
 		display: 'Código',
@@ -42,6 +42,9 @@ var filter = {
 				this.heigth = parseInt(0);
 			}
 		});
+		if (typeof(filter.sortName) == 'undefined') {
+			this.sortName = this.defaultSortName;
+		}
 	},
 
 	hide_filter: function()
@@ -159,8 +162,8 @@ var filter = {
 			{
 				url: this.url,
 				dataType: this.dataType,
-				colModel : this.defaultColModels,
-				searchitems : this.defaultSearchItems,
+				colModel : this.defaultColModel,
+				searchitems : this.defaultSearchItem,
 				sortname: this.sortName,
 				sortorder: this.sortOrder,
 				like: this.like,
@@ -186,8 +189,9 @@ var filter = {
 filter.grauSangue = function(url, input)
 {
 	this.url = baseUrl + '/json/grausangue';
-	this.defaultColModels[0].display = 'Gr. Sangue';
-	this.defaultColModels[0].width = 60;
+	this.defaultColModel = this.defaultColModels;
+	this.defaultColModel[0].display = 'Gr. Sangue';
+	this.defaultColModel[0].width = 60;
 	this.createDialog('Grau Sangue');
 	this.searchGrauSangue(input);
 };
@@ -195,8 +199,10 @@ filter.grauSangue = function(url, input)
 filter.raca = function(url, input)
 {
 	this.url = baseUrl + '/json/raca';
-	this.defaultColModels[0].display = 'Raça';
-	this.defaultColModels[0].width = 60;
+	this.defaultColModel = this.defaultColModels;
+	this.defaultSearchItem = this.defaultSearchItems;
+	this.defaultSearchItem[0].display = this.defaultColModel[0].display = 'Raça';
+	this.defaultColModel[0].width = 60;
 	this.createDialog('Raça');
 	this.defaultSearch(input);
 };
@@ -204,8 +210,10 @@ filter.raca = function(url, input)
 filter.criador = function(url, input)
 {
 	this.url = baseUrl + '/json/criador';
-	this.defaultColModels[0].display = 'Criador';
-	this.defaultColModels[0].width = 60;
+	this.defaultColModel = this.defaultColModels;
+	this.defaultSearchItem = this.defaultSearchItems;
+	this.defaultSearchItem[0].display = this.defaultColModel[0].display = 'Criador';
+	this.defaultColModel[0].width = 60;
 	this.createDialog('Criador');
 	this.defaultSearch(input);
 };
@@ -213,8 +221,10 @@ filter.criador = function(url, input)
 filter.pelagem = function(url, input)
 {
 	this.url = baseUrl + '/json/pelagem';
-	this.defaultColModels[0].display = 'Pelagem';
-	this.defaultColModels[0].width = 60;
+	this.defaultColModel = this.defaultColModels;
+	this.defaultSearchItem = this.defaultSearchItems;
+	this.defaultSearchItem[0].display = this.defaultColModel[0].display = 'Pelagem';
+	this.defaultColModel[0].width = 60;
 	this.createDialog('Pelagem');
 	this.defaultSearch(input);
 };
@@ -222,8 +232,10 @@ filter.pelagem = function(url, input)
 filter.rebanho = function(url, input)
 {
 	this.url = baseUrl + '/json/rebanho';
-	this.defaultColModels[0].display = 'Rebanho';
-	this.defaultColModels[0].width = 60;
+	this.defaultColModel = this.defaultColModels;
+	this.defaultSearchItem = this.defaultSearchItems;
+	this.defaultSearchItem[0].display = this.defaultColModel[0].display = 'Rebanho';
+	this.defaultColModel[0].width = 60;
 	this.createDialog('Rebanho');
 	this.defaultSearch(input);
 };
@@ -231,9 +243,12 @@ filter.rebanho = function(url, input)
 filter.local = function(url, input)
 {
 	this.url = baseUrl + '/json/local';
-	this.defaultColModels[0].name = this.defaultSearchItems[0].name = this.sortName = 'local';
-	this.defaultColModels[0].display = 'Local';
-	this.defaultColModels[0].width = 60;
+	this.defaultColModel = this.defaultColModels;
+	this.defaultSearchItem = this.defaultSearchItems;
+	this.defaultSearchItem[0].display = this.defaultColModel[0].display = 'local';
+	this.sortName = 'local';
+	this.defaultColModel[0].display = 'Local';
+	this.defaultColModel[0].width = 60;
 	this.createDialog('Local');
 	this.defaultSearch(input);
 };
@@ -241,9 +256,9 @@ filter.local = function(url, input)
 filter.categoria = function(url, input)
 {
 	this.url = baseUrl + '/json/categoria';
-	this.defaultColModels[0].name = 'categoria';
-	this.defaultColModels[0].display = 'Categoria';
-	this.defaultColModels[0].width = 60;
+	this.defaultColModel = this.defaultColModels;
+	this.defaultSearchItem = this.defaultSearchItems;
+	this.defaultSearchItem[0].display = this.defaultColModel[0].display = 'Categoria';
 	this.createDialog('Categoria');
 	this.defaultSearch(input);
 };
@@ -255,7 +270,8 @@ filter.animal = function(url, input)
 	} else {
 		this.url = baseUrl + '/json/fichario';
 	}
-	this.defaultColModels = [{
+	this.defaultColModel = this.defaultColModels;
+	this.defaultColModel = [{
 		display: 'Animal',
 		name : 'cod',
 		width : 80,
@@ -286,7 +302,8 @@ filter.animal = function(url, input)
 		sortable : true,
 		align: 'left'
 	}];
-	this.defaultSearchItems = [{
+	this.defaultSearchItem = this.defaultSearchItems;
+	this.defaultSearchItem = [{
 		display: 'Animal',
 		name : 'fichario.cod'
 	}, {
@@ -304,4 +321,4 @@ filter.animal = function(url, input)
 	}];
 	this.createDialog('Fichário');
 	this.defaultSearch(input);
-}
+};

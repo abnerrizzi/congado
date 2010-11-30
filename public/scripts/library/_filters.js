@@ -17,6 +17,7 @@ $(document).ready(function() {
 
 
 function hide_filter() {
+	window.alert('Deprecated: (_filters.js)->hide_filter()');
 	$("#dlg").fadeOut(200);
 	setTimeout(function(){
 		$(".flexigrid").remove();
@@ -937,6 +938,7 @@ function showfilter_tecnico(url, input)
 
 function showfilter_embriao(url, input)
 {
+	window.alert('Deprecated');
 	createDialog('Embrião');
 	if ($("#dlg").length) {
 		$("#dlg-grid").flexigrid(

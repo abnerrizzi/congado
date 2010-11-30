@@ -13,7 +13,6 @@ $(document).ready(function() {
 
 	$("#criador_cod, #pelagem_cod, #raca_cod, #rebanho_cod, #categoria_cod, #local_cod, #grausangue_cod").change(function(){change.select(this);});
 
-//	$("#pai_cod, #mae_cod, #receptora_cod").change(changeSelectAnimal);
 	$("#pai_cod").change(function(){change.animal(this, 'M');});
 	$("#mae_cod, #receptora_cod").change(function(){change.animal(this, 'F');});
 
@@ -36,7 +35,7 @@ $(document).ready(function() {
 	changeGrauSangue();
 
 	if (checkAddUrl(window.location.href) == true) {
-		addSearchIcon('categoria', baseUrl+'/json/categoria', 'Categoria', 'filter.categoria', 600, 240);
+		addSearchIcon('categoria', baseUrl+'/json/categoria', 'filter.categoria', 600, 240);
 		$("#fazenda_id").removeAttr('disabled');
 		$("#fazenda_id").removeAttr('readonly');
 		$('#fazenda_id').change(function(){
