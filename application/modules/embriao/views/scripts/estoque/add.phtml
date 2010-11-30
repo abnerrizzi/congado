@@ -2,11 +2,6 @@
 
 $this->javascript();
 
-$this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/library/_filters.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
-	;
-
 echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
 
 ?>
