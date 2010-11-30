@@ -95,6 +95,18 @@ var search = {
 
 	},
 
+	gotoRecord: function(row)
+	{
+		__id = row.attr("id").substr(3);
+		if (typeof(editUrl) == 'undefined') {
+			window.alert('editUrl is not defined');
+			return false;
+		} else {
+			url = editUrl + '/id/'+ __id;
+			window.location.href = url;
+		}
+		$("#search").dialog('close');
+	},
 
 	defaultSearch: function()
 	{
@@ -117,7 +129,7 @@ var search = {
 				width: 600,
 				height: (240 + this.heigth),
 				onSelect: function(row) {
-					getRecord(row);
+					search.gotoRecord(row);
 				},
 				params: [{name: 'fazenda_id', value: $("#fazenda_id").val()}]
 			});
