@@ -29,7 +29,7 @@ class Form_EstoqueEmbriao extends Form_Default
 		$this->addElement('text', 'embriao', array(
 			'label' => 'Embrião',
 			'required' => true,
-			'filters' => array('StringTrim', 'Alnum', 'StringToUpper'),
+			'filters' => array('StringTrim', 'StringToUpper'),
 			'maxlength' => 16,
 			'size' => 10,
 			'class'	=> 'input',
