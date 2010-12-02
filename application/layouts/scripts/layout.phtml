@@ -47,8 +47,6 @@
 
     <?php echo $this->headStyle() ?>
 
-    <?php echo $this->headScript() ?>
-
   </head>
 
 <body>
@@ -60,6 +58,10 @@
 	<?php echo $this->layout()->content ?>
   </div>
   <div id="ajax_loader" class="ajax_loader" style="display: none;"></div>
+
+  <?php echo $this->headScript() ?>
+
 </body>
+
 
 </html>

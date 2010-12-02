@@ -304,15 +304,21 @@
 
 
 <!-- Create Menu Settings: (Menu ID, Is Vertical, Show Timer, Hide Timer, On Click ('all', 'main' or 'lev2'), Right to Left, Horizontal Subs, Flush Left, Flush Top) -->
+<!--
 <script type="text/javascript">qm_create(0,false,0,500,false,false,false,false,false);</script>
+-->
+
+<?php
+$this->headScript()->appendScript('qm_create(0,false,0,500,false,false,false,false,false);');
+?>
+<script type="text/javascript"></script>
+
 </div>
 
 
-
-
 <!-- Add-On Settings -->
-	<script type="text/JavaScript">
-
+<?php
+$this->headScript()->appendScript('
 		/*******  Menu 0 Add-On Settings *******/
 		var a = qmad.qm0 = new Object();
 
@@ -346,5 +352,4 @@
 		a.ritem_apply = "main";
 		a.ritem_main_apply_corners = new Array(true,true,false,false);
 		a.ritem_show_on_actives = true;
-
-	</script>
+');
