@@ -812,6 +812,28 @@ class JsonController extends Zend_Controller_Action
 		$this->view->content = utf8_encode(json_encode($locais));
 		$this->render('index');
 	}
+
+	public function coletaAction()
+	{
+		$localModel = new Model_Db_ColetaEmbriao();
+		$locais = $localModel->listJsonColeta(
+			array(
+				'id',
+				'embriao',
+				'dsc',
+			),
+			$this->getRequest()->getParam('sortname','local'),
+			$this->getRequest()->getParam('sortorder','asc'),
+			$this->getRequest()->getParam('page','1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('fazenda_id'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($locais));
+		$this->render('index');
+	}
 	/**
 	 * _getFlexigrid
 	 * 

@@ -1,8 +1,5 @@
 <?php
 
-//echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
-//echo $this->form;
-
 if (isset($this->embriao)) {
 	$this->headScript()->appendScript('var jsonEmbrioes = ' . $this->embriao . ';');
 }
@@ -11,28 +8,6 @@ if (isset($this->criadorJson)) {
 }
 
 $this->javascript();
-
-$this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/jskata.nofreeze.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery-ui.core.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.datepicker.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.tabs.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.draggable.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.dialog.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ui.resizable.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.qtip.js')
-	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.flexigrid.js')
-	->appendFile($this->baseUrl() . '/scripts/library/_filters.js')
-	;
-
-$this->headLink()
-	->appendStylesheet($this->baseUrl() . '/styles/flexigrid.css')
-	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.core.css')
-	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.datepicker.css')
-	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.theme.css')
-	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.tabs.css')
-	->appendStylesheet($this->baseUrl() . '/styles/jquery/ui.dialog.css')
-	;
 
 ?>
 
@@ -86,9 +61,6 @@ $this->headLink()
       <?=$this->form->vaca_id->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->vaca_cod->removeDecorator('tag')->removeDecorator('label');?>
       <?=$this->form->vaca->removeDecorator('tag')->removeDecorator('label');?>
-      <a href="javascript:void(0);" onclick="return showfilter_animal('<?=$this->baseUrl();?>/json/animal/sexo/f','vaca');">
-        <img alt="" src="<?=$this->baseUrl();?>/images/search.png"/>
-      </a>
     </td>
     <td width="50"></td>
   </tr>

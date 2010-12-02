@@ -40,6 +40,79 @@ class Model_Db_ColetaEmbriao extends Model_Db
 		
 	}
 
+		public function listJsonColeta($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
+	{
+
+		if ($orderby == 'data_coleta') {
+			$orderby = 'dt_coleta';
+		} elseif ($orderby == 'embriao') {
+			$orderby = "natsort_canon(`embriao`, 'natural')";
+		}
+
+		$col_id = $this->_name.'.id';
+		$col_id = 'id';
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('c' => $this->_name), array(
+				'id',
+				'data_coleta' => new Zend_Db_Expr('date_format(dt_coleta, "%d/%m/%Y")'),
+				'vaca' => 'v.cod',
+				'touro' => 't.cod',
+				'fecundada',
+				'viavel',
+			), $this->_schema)
+			->joinLeft(array('v' => 'fichario'), 'c.vaca_id = v.id',array(),$this->_schema)
+			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id',array(),$this->_schema)
+			->order($orderby .' '. $order)
+		;
+
+
+		if ($qtype && $query) {
+			if ($like == 'false' || $like == '') {
+				$this->_select->where($qtype .' = ?', $query);
+			} else {
+				$this->_select->where($qtype .' LIKE ?', '%'.$query.'%');
+			}
+		}
+
+
+//		print '<pre>'.$this->_select;
+//		die();
+		$return = array(
+			'page' => $page,
+			'total' => $this->fetchAll($this->_select)->count(),
+		);
+
+		if ($page && $limit) {
+			$this->_select->limitPage($page, $limit);
+		}
+
+		$array = $this->fetchAll($this->_select)->toArray();
+		for ($i=0; $i < count($array); $i++)
+		{
+			$row = $array[$i];
+
+			$current = array(
+				'id' => $row[$col_id]
+			);
+			foreach ($row as $key => $val)
+			{
+				if ($key == $col_id) {
+					continue;
+				} else {
+					if ($val == null) {
+						$current['cell'][] = '';
+					} else {
+						$current['cell'][] = ($val);
+					}
+				}
+			}
+			$return['rows'][] = $current;
+		}
+		return $return;
+
+	}
+
 	public function getColetaEmbriao($id)
 	{
 		$id = (int)$id;
