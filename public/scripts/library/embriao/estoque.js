@@ -8,7 +8,7 @@ $(document).ready(function() {
 			'</span></a>\n'+
 			'\n'
 	);
-	$('#add a#search').click(function(){search.coletaEmbriao();});
+	$('#add a#search').click(function(){search.estoqueEmbriao();});
 
 	if (checkAddUrl(this.location.href) || checkEditUrl(this.location.href)) {
 
