@@ -139,7 +139,7 @@ var search = {
 
 };
 
-search.coletaEmbriao = function()
+search.estoqueEmbriao = function()
 {
 	this.url = baseUrl + '/json/embriao';
 	this.defaultColModel = [{
@@ -187,6 +187,53 @@ search.coletaEmbriao = function()
 		isdefault: true
 	}];
 	this.createDialog('Embrião');
+	this.defaultSearch();
+
+};
+
+search.coletaEmbriao = function()
+{
+	this.url = baseUrl + '/json/coleta';
+	this.defaultColModel = [{
+		display: 'Coleta',
+		name : 'data_coleta',
+		width : 70,
+		sortable : true,
+		align: 'left'
+	}, {
+		display: 'Vaca',
+		name : 'v.cod',
+		width : 100,
+		sortable : true,
+		align: 'left'
+	}, {
+		display: 'Touro',
+		name : 't.cod',
+		width : 100,
+		sortable : true,
+		align: 'left'
+	}, {
+		display: 'Fecundados',
+		name : 'fecundada',
+		width : 70,
+		sortable : true,
+		align: 'left'
+	}, {
+		display: 'Viaveis',
+		name : 'viavel',
+		width : 70,
+		sortable : true,
+		align: 'left'
+	}];
+	this.defaultSearchItem = [{
+		display: 'Animal',
+		name : 'v.cod',
+		isdefault: true
+	}, {
+		display: 'Touro',
+		name : 't.cod'
+	}];
+	this.createDialog('Coleta');
 	this.defaultSearch();
 
 };

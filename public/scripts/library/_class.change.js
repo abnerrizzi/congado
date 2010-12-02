@@ -1,4 +1,5 @@
 var change = {
+	ajaxRequest:	false,
 	suffix:	'_cod',
 	qtype:	'cod',
 	url:	null,
@@ -32,7 +33,8 @@ var change = {
 	},
 	__ajaxRequest:	function() {
 		$("#ajax_loader").html("Buscando dados...").show();
-		$.post(this.url, {
+		this.ajaxRequest = true;
+		xhr = $.post(this.url, {
 			fazenda_id: $('#fazenda_id').val(),
 			sexo:	this.sexo,
 			qtype:	this.qtype,
@@ -132,7 +134,7 @@ change.animal = function(field, sexo) {
 		this.sexo = sexo;
 	}
 	this.run = function(field) {
-		this.url = baseUrl + '/json/animal/sexo'+sexo;
+		this.url = baseUrl + '/json/animal/';
 		this.__getFields(field);
 		this.__ajaxRequest();
 		this.sexo = null;
