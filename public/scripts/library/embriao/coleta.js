@@ -1,62 +1,71 @@
-var jsonCriador = '';
-var jsonCriado = false;
+var
+	jsonCriado,
+	jsonCriador;
+
 $(document).ready(function() {
 
-	$.post(baseUrl + '/json/criador', {
-		ajax : 'true'
-	}, function(j) {
-		j = j.rows;
-		jsonCriador = '<select name="criador"><option value="">-- Selecione um criador --</option>';
-		for ( var i = 0; i < j.length; i++) {
-			jsonCriador += '<option value="' + j[i].id + '">' + j[i].cell[0] +' - '+ j[i].cell[1]
-					+ '</option>';
-		}
-		jsonCriador += '</select>';
-	}, "json");
+	$("#add>a").before(
+			'<a class="UIButton UIButton_Gray UIActionButton" href="javascript:void(0);" id="search" title="Pesquisar">\n'+
+			'<span class="UIButton_Text">\n'+
+			'<span class="UIButton_Search UIButton_IconNoSpriteMap_Search UIButton_IconSmallMonochromatic""></span>\n'+
+			'Pesquisar\n'+
+			'</span></a>\n'+
+			'\n'
+	);
+	$('#add a#search').click(function(){search.coletaEmbriao();});
 
-	$('#vaca, #vaca_cod')
-		.css('font-size', '16px')
-		.css('font-weight', 'bold')
-		.css('border', '2px solid #f63');
-
-	$('#ultimo').addClass('readonly');
-	$('#ultimo').attr('disabled', 'disabled');
-
-	$('#dlg').bind('dialogbeforeclose', function(event, ui) {
-		hide_filter();
-	});
-
-	$("#vaca_cod").change(function(){
-		changeSelectAnimalBySexo(this, 'F', buscaUltimoEmbriao);
-	});
-	$("#touro_cod").change(function(){
-		changeSelectAnimalBySexo(this, 'M');
-	});
-
-	makeDateField("#dt_coleta, #insemina_dh1d", false, new Date());
+	if (checkEditUrl(this.location.href) || checkAddUrl(this.location.href)) {
 
 
-	$("#tabs").tabs();
+		$.post(baseUrl + '/json/criador', {
+			ajax : 'true'
+		}, function(j) {
+			j = j.rows;
+			jsonCriador = '<select name="criador"><option value="">-- Selecione um criador --</option>';
+			for ( var i = 0; i < j.length; i++) {
+				jsonCriador += '<option value="' + j[i].id + '">' + j[i].cell[0] +' - '+ j[i].cell[1]
+						+ '</option>';
+			}
+			jsonCriador += '</select>';
+		}, "json");
 
 
-	// if obs exists Dialogs appers
-	if ($('#obs').val() != '') {
-		createDialog('Animal com observação', 400, 300);
-		$('#dlg').html($('#obs').val());
-	};
+		$('#vaca, #vaca_cod')
+			.css('font-size', '16px')
+			.css('font-weight', 'bold')
+			.css('border', '2px solid #f63');
 
-	// workaround to adjust size in mozilla
-	$.each($.browser, function(i) {
-		if ($.browser.mozilla) {
-			var _Height = parseInt(20);
-		} else {
-			var _Height = parseInt(0);
-		}
-	});
+		$('#ultimo').addClass('readonly');
+		$('#ultimo').attr('disabled', 'disabled');
+
+		$("#vaca_cod").change(function() {
+			change.animal(this, 'F');
+
+			xhr._onreadystatechange = xhr.onreadystatechange;
+			xhr.onreadystatechange = function() {
+
+			     xhr._onreadystatechange();
+			     if (xhr.readyState == 4) {
+			    	 buscaUltimoEmbriao();
+			     };
+			};
+		});
+		$("#touro_cod").change(function() {change.animal(this, 'M');});
+
+		makeDateField("#dt_coleta, #insemina_dh1d", false, new Date());
+
+		$("#tabs").tabs();
+
+		// if obs exists Dialogs appers
+		if ($('#obs').val() != '') {
+			createDialog('Animal com observação', 400, 300);
+			$('#dlg').html($('#obs').val());
+		};
+	}
+
 
 	// check edit mode and put correct icons
-	__editMode = checkEditUrl(window.location.href);
-	if (__editMode) {
+	if (checkEditUrl(window.location.href)) {
 		$('#touro').next().remove();
 	} else {
 		$('#tabs').hide();
@@ -117,6 +126,7 @@ $(document).ready(function() {
 
 });
 
+// funcao para preencher automaticamente os campos
 function _xf()
 {
 	$('#fazenda_id').val(1);$('#dt_coleta').val('10/09/2010');
@@ -129,7 +139,7 @@ function _xf()
 
 function checkInts()
 {
-	for ( var int = 0; int < $('#tab3 .input_num').length; int++) {
+	for (var int = 0; int < $('#tab3 .input_num').length; int++) {
 		var __el =  $('#tab3 .input_num')[int];
 		if (isNaN(parseInt(__el.value))) {
 			__el.value = 0;
@@ -239,7 +249,7 @@ function toggleFields(opt) {
 
 }
 
-function buscaUltimoEmbriao(el)
+function buscaUltimoEmbriao()
 {
 	$("#ajax_loader").html("Buscando dados...").show();
 
@@ -351,9 +361,11 @@ function createGridData(int, str, size)
 		$(cell).click(function(){
 			CurrentId = $(this).parent().attr('lang');
 			CurrentField = $('[name*=embriao['+CurrentId+']][name*=cod]');
+			CurrentField.show();
 			CurrentField.keyup(function(){$(this).val($(this).val().toUpperCase());});
 			$('#cod'+CurrentId).hide();
-			CurrentField.show().focus().blur(function(){
+			$(CurrentField).show();
+			CurrentField.focus().blur(function(){
 				$('#cod'+CurrentId).html(CurrentField.val()).show();
 				$('#cod'+CurrentId).parent().css('background', '');
 				CurrentField.hide();
@@ -377,12 +389,12 @@ function createGridData(int, str, size)
 			CurrentField = $('[name*=embriao['+CurrentId+']][name*=criador]');
 			if ($('#criador'+CurrentId+' select').length == 0) {
 				$('#criador'+CurrentId).html(jsonCriador);
-				$('#criador'+CurrentId+' select').focus();
 				$('#criador'+CurrentId+' select').val(CurrentField.val());
 			} else {
 				$('#criador'+CurrentId+' select').show();
 				$('#criador'+CurrentId+' select').val(CurrentField.val());
 			}
+
 			$('#criador'+CurrentId + ' select').change(function(){
 				CurrentField.val($('#criador'+CurrentId+' select').val());
 				$('#criador'+CurrentId).html($('#criador'+CurrentId+' select :selected').text().substr(0, strpos($('#criador'+CurrentId+' select :selected').text(), ' - ')));
