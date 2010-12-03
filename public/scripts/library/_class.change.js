@@ -128,7 +128,6 @@ change.animal = function(field, sexo) {
 		return false;
 	} else if (sexo.toUpperCase() != 'M' && sexo.toUpperCase() != 'F') {
 		$("#ajax_loader").html("Erro inesperado, contacte o desenvolvedor!").show();
-		console.log(sexo);
 		return false;
 	} else {
 		this.sexo = sexo;
@@ -140,6 +139,7 @@ change.animal = function(field, sexo) {
 		this.sexo = null;
 	};
 	this.run(field);
+	return xhr;
 };
 
 
