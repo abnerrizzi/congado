@@ -17,7 +17,7 @@ $(document).ready(function() {
 	if (checkEditUrl(this.location.href) || checkAddUrl(this.location.href)) {
 
 		addSearchIcon('vaca', baseUrl+'/json/fichario/sexo/f', 'filter.animal', 600, 240);
-		// addSearchIcon('touro', baseUrl+'/json/fichario/sexo/m', 'filter.animal', 600, 240);
+		addSearchIcon('touro', baseUrl+'/json/fichario/sexo/m', 'filter.animal', 600, 240);
 
 		$.post(baseUrl + '/json/criador', {
 			ajax : 'true'
@@ -39,15 +39,24 @@ $(document).ready(function() {
 		$('#ultimo').attr('disabled', 'disabled');
 
 		$("#vaca_cod").change(function() {
-			change.animal(this, 'F');
+			xhr = change.animal(this, 'F');
+			if (xhr !== false) {
 
-			xhr._onreadystatechange = xhr.onreadystatechange;
-			xhr.onreadystatechange = function() {
+				var temp;
 
-				xhr._onreadystatechange();
-				if (xhr.readyState == 4) {
-					buscaUltimoEmbriao();
-				}
+				temp._onreadystatechange = xhr.onreadystatechange;
+				xhr.onreadystatechange = function() {
+	
+					temp._onreadystatechange();
+					if (xhr.readyState == 4) {
+						buscaUltimoEmbriao();
+					};
+				};
+			} else {
+				$("#ajax_loader").html("Código não encontrado");
+				setTimeout(function(){
+                    $("#ajax_loader").fadeOut(300); }
+                , 5000);
 			};
 		});
 		$("#touro_cod").change(function() {change.animal(this, 'M');});
