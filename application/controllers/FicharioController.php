@@ -96,6 +96,7 @@ class FicharioController extends Zend_Controller_Action
 		$fazendaModel = new Model_Db_Fazenda();
 		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
 		$ficharioForm->getElement('fazenda_id')
+			->setAttrib('skip-data', '1')
 			->addMultiOption(false, '--');
 		foreach ($fazendas as $fazenda) {
 			$ficharioForm->getElement('fazenda_id')

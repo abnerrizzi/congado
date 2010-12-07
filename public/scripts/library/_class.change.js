@@ -33,7 +33,6 @@ var change = {
 	},
 	__ajaxRequest:	function() {
 		$("#ajax_loader").html("Buscando dados...").show();
-		this.ajaxRequest = true;
 		xhr = $.post(this.url, {
 			fazenda_id: $('#fazenda_id').val(),
 			sexo:	this.sexo,
@@ -47,8 +46,10 @@ var change = {
 				$("#" + __fieldName + "_id").val(j[0].id);
 				$("#" + __fieldName + "_cod").val(j[0].cell[0]);
 				$("#" + __fieldName).val(j[0].cell[1]);
+				$("#ajax_loader").fadeOut(30);
 			} else {
-				$("#ajax_loader").html("Código não encontrado").show();
+				$("#ajax_loader").html("Código não encontrado");
+				$("#ajax_loader").show();
 				$("#" + __fieldName + "_id").val(null);
 				$("#" + __fieldName).val(null);
 				if (__fieldName == 'embriao') {
@@ -59,8 +60,8 @@ var change = {
 				, 5000);
 				return false;
 			}
-			$("#ajax_loader").fadeOut(30);
 		}, "json");
+		return xhr;
 	}
 };
 
@@ -135,7 +136,7 @@ change.animal = function(field, sexo) {
 	this.run = function(field) {
 		this.url = baseUrl + '/json/animal/';
 		this.__getFields(field);
-		this.__ajaxRequest();
+		xhr = this.__ajaxRequest();
 		this.sexo = null;
 	};
 	this.run(field);
