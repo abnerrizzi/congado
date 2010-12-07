@@ -32,28 +32,6 @@ class Movimentacao_JsonController extends Zend_Controller_Action
 		));
 	}
 
-	public function examerepAction()
-	{
-
-		$rebanhoModel = new Model_Db_Examerep();
-		$rebanhos = $rebanhoModel->listJson(
-			array(
-				'id',
-				'data',
-			),
-			$this->getRequest()->getParam('sortname','cod'),
-			$this->getRequest()->getParam('sortorder','asc'),
-			$this->getRequest()->getParam('page','1'),
-			$this->getRequest()->getParam('rp'),
-			$this->getRequest()->getParam('qtype'),
-			$this->getRequest()->getParam('query'),
-			$this->getRequest()->getParam('like', false)
-		);
-		$this->view->content = utf8_encode(json_encode($rebanhos));
-		$this->render('index');
-
-	}
-
 	public function animalAction()
 	{
 		$request = $this->getRequest();

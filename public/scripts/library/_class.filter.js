@@ -240,6 +240,19 @@ filter.rebanho = function(url, input)
 	this.defaultSearch(input);
 };
 
+filter.acompanhamento = function(url, input)
+{
+	this.url = baseUrl + '/json/acompanhamento';
+	this.defaultColModel = this.defaultColModels;
+	this.defaultSearchItem = this.defaultSearchItems;
+	this.defaultSearchItem[0].display = this.defaultColModel[0].display = 'Acompanhamento';
+	this.defaultColModel[0].width = 60;
+	this.createDialog('Pelagem');
+	this.defaultSearch(input);
+};
+
+
+
 filter.local = function(url, input)
 {
 	this.url = baseUrl + '/json/local';
