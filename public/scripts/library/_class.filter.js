@@ -265,6 +265,16 @@ filter.categoria = function(url, input)
 
 filter.animal = function(url, input)
 {
+
+	if ($('#fazenda_id').val() == "") {
+		$("#ajax_loader").html("Por favor selecione uma fazenda").fadeIn(100);
+		setTimeout(function(){
+			$("#ajax_loader").fadeOut(300); }
+		, 2000);
+		$('#fazenda_id').focus();
+		return false;
+	}
+
 	if (typeof(url) != '') {
 		this.url = url;
 	} else {

@@ -16,6 +16,8 @@ $(document).ready(function() {
 
 	if (checkEditUrl(this.location.href) || checkAddUrl(this.location.href)) {
 
+		addSearchIcon('vaca', baseUrl+'/json/fichario/sexo/f', 'filter.animal', 600, 240);
+		addSearchIcon('touro', baseUrl+'/json/fichario/sexo/m', 'filter.animal', 600, 240);
 
 		$.post(baseUrl + '/json/criador', {
 			ajax : 'true'
@@ -23,12 +25,10 @@ $(document).ready(function() {
 			j = j.rows;
 			jsonCriador = '<select name="criador"><option value="">-- Selecione um criador --</option>';
 			for ( var i = 0; i < j.length; i++) {
-				jsonCriador += '<option value="' + j[i].id + '">' + j[i].cell[0] +' - '+ j[i].cell[1]
-						+ '</option>';
+				jsonCriador += '<option value="' + j[i].id + '">' + j[i].cell[0] +' - '+ j[i].cell[1] + '</option>';
 			}
 			jsonCriador += '</select>';
 		}, "json");
-
 
 		$('#vaca, #vaca_cod')
 			.css('font-size', '16px')
@@ -39,15 +39,24 @@ $(document).ready(function() {
 		$('#ultimo').attr('disabled', 'disabled');
 
 		$("#vaca_cod").change(function() {
-			change.animal(this, 'F');
+			xhr = change.animal(this, 'F');
+			if (xhr !== false) {
 
-			xhr._onreadystatechange = xhr.onreadystatechange;
-			xhr.onreadystatechange = function() {
+				var temp;
 
-			     xhr._onreadystatechange();
-			     if (xhr.readyState == 4) {
-			    	 buscaUltimoEmbriao();
-			     };
+				temp._onreadystatechange = xhr.onreadystatechange;
+				xhr.onreadystatechange = function() {
+	
+					temp._onreadystatechange();
+					if (xhr.readyState == 4) {
+						buscaUltimoEmbriao();
+					};
+				};
+			} else {
+				$("#ajax_loader").html("Código não encontrado");
+				setTimeout(function(){
+                    $("#ajax_loader").fadeOut(300); }
+                , 5000);
 			};
 		});
 		$("#touro_cod").change(function() {change.animal(this, 'M');});
@@ -57,10 +66,10 @@ $(document).ready(function() {
 		$("#tabs").tabs();
 
 		// if obs exists Dialogs appers
-		if ($('#obs').val() != '') {
+		if ($('#obs').val() !== '') {
 			createDialog('Animal com observação', 400, 300);
 			$('#dlg').html($('#obs').val());
-		};
+		}
 	}
 
 
@@ -79,7 +88,7 @@ $(document).ready(function() {
 	});
 	$("#dt_coleta, #vaca_cod").blur(checkFields);
 
-	if ($("#dt_coleta").val() != "" && $("#vaca_cod").val() != "") {
+	if ($("#dt_coleta").val() !== "" && $("#vaca_cod").val() !== "") {
 		checkFields();
 	}
 
@@ -91,26 +100,26 @@ $(document).ready(function() {
 
 		checkInts();
 
-		if (checkAddUrl(window.location.href) == true) {
-			var avaliadas	= parseInt($('#avalia_od').val()) + parseInt($('#avalia_oe').val());
-			var fecundadas	= parseInt($('#fecundada').val()) + parseInt($('#nao_fecundada').val());
-			var viaveis		= parseInt($('#viavel').val()) + parseInt($('#nao_viavel').val());
+		if (checkAddUrl(window.location.href) === true) {
+			var avaliadas	= parseInt($('#avalia_od').val(), 10) + parseInt($('#avalia_oe').val(), 10);
+			var fecundadas	= parseInt($('#fecundada').val(), 10) + parseInt($('#nao_fecundada').val(), 10);
+			var viaveis		= parseInt($('#viavel').val(), 10) + parseInt($('#nao_viavel').val(), 10);
 
 			if (avaliadas != fecundadas) {
 				window.alert('O total de estruturas fecundadas e não fecundadas deve ser igual ao número de estruturas avaliadas.');
 				return false;
-			} else if (viaveis != parseInt($('#fecundada').val())) {
+			} else if (viaveis != parseInt($('#fecundada').val(), 10)) {
 				window.alert('O total de estruturas viáveis e não viáveis deve ser igual ao número de estruturas fecundadas.');
 				return false;
-			} else if (parseInt($('[name*=embriao][name*=cod]').length) != parseInt($('#viavel').val())) {
+			} else if (parseInt($('[name*=embriao][name*=cod]').length, 10) != parseInt($('#viavel').val(), 10)) {
 				window.alert('Quantidade de embrioes diferente da quantidade de estruturas viaveis.');
 				return false;
-			} else if (viaveis == 0) {
+			} else if (viaveis === 0) {
 				return window.confirm('Deseja realmente cadastrar uma coleta de embriões sem embriões viáveis?');
 			} else {
 				// ta tudo ok
 			}
-			if (verificaEmbrioesExists() == true) {
+			if (verificaEmbrioesExists() === true) {
 				return false;
 			}
 		}
@@ -359,17 +368,24 @@ function createGridData(int, str, size)
 		$(cell).html('<span id="cod'+i+'">'+sequence+'</span>');
 		$('<input type="text" name="embriao['+i+'][cod]" value="'+sequence+'" size="7"/>').appendTo(cell).hide();
 		$(cell).click(function(){
-			CurrentId = $(this).parent().attr('lang');
-			CurrentField = $('[name*=embriao['+CurrentId+']][name*=cod]');
-			CurrentField.show();
-			CurrentField.keyup(function(){$(this).val($(this).val().toUpperCase());});
-			$('#cod'+CurrentId).hide();
-			$(CurrentField).show();
-			CurrentField.focus().blur(function(){
-				$('#cod'+CurrentId).html(CurrentField.val()).show();
-				$('#cod'+CurrentId).parent().css('background', '');
-				CurrentField.hide();
-			});
+
+			currentId = $(this).parent().attr('lang');
+			currentField = $('[name="embriao['+currentId+'][cod]"]');
+
+			$('#cod'+currentId).hide();
+			currentField
+				.show()
+				.keyup(function(){
+					$(this).val($(this).val().toUpperCase());
+				})
+				.focus()
+				.blur(function(){
+					$('#cod'+currentId)
+						.html(currentField.val()).show()
+						.parent().css('background', '')
+					;
+					currentField.hide();
+				});
 		});
 
 		currentCell++;
@@ -384,6 +400,31 @@ function createGridData(int, str, size)
 		cell = _r1.insertCell(currentCell);
 		input = '<input type="hidden" name="embriao['+i+'][criador]" value="" size="7"/>';
 		$(cell).html(input+'<span id="criador'+i+'"> - </span>');
+		$(cell).click(function() {
+
+			currentId = $(this).parent().attr('lang');
+			currentField = $('[name="embriao['+currentId+'][criador]"]');
+			currentVal = '';
+
+			if ($('#criador'+currentId+' select').length === 0) {
+				$('#criador'+currentId).html(jsonCriador);
+				$('#criador'+currentId+' select').focus();
+				$('#criador'+currentId+' select').val(currentField.val());
+				$('#criador'+currentId+' select').change(function(){
+					currentField.val($('#criador'+currentId+' select').val());
+					currentVal = $('#criador'+currentId+' select :selected').text().substr(0, strpos($('#criador'+currentId+' select :selected').text(), ' - '));
+					$('#criador'+currentId+' select').remove();
+					$('#criador'+currentId).html(currentVal);
+				});
+				$('#criador'+currentId+' select').blur(function(){
+					currentVal = $('#criador'+currentId+' select :selected').text().substr(0, strpos($('#criador'+currentId+' select :selected').text(), ' - '));
+					$('#criador'+currentId+' select').remove();
+					$('#criador'+currentId).html(currentVal);
+				});
+			}
+
+		});
+		/*
 		$(cell).click(function(){
 			CurrentId = $(this).parent().attr('lang');
 			CurrentField = $('[name*=embriao['+CurrentId+']][name*=criador]');
@@ -404,6 +445,7 @@ function createGridData(int, str, size)
 				$('#criador'+CurrentId).html($('#criador'+CurrentId+' select :selected').text().substr(0, strpos($('#criador'+CurrentId+' select :selected').text(), ' - ')));
 			});
 		});
+		*/
 
 		if (i < (size-1)) {
 			_r1 = $('#embrioes')[0].insertRow(parseInt($('#embrioes')[0].rows.length-2));
