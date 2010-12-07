@@ -4,30 +4,30 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id$
+ * @version $Id: ExamerepController.php 492 2010-10-18 19:47:09Z bacteria_ $
  * 
  */
 
-class Movimentacao_ExamerepController extends Zend_Controller_Action
+class Reproducao_ExamerepController extends Zend_Controller_Action
 {
 
 	public function init()
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Acompanhamento Reprodutivo';
+		$this->view->title = 'Reprodução :: Acompanhamento Reprodutivo';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
 	public function indexAction()
 	{
 		$gridModel = new Model_Grid($this->view->title);
-		$movimentacaoModel = new Model_Db_Examerep();
+		$exameModel = new Model_Db_Examerep();
 
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $movimentacaoModel->getPaginatorAdapter($_by, $_order, array('id', 'data'));
+		$result	= $exameModel->getPaginatorAdapter($_by, $_order, array('id', 'data'));
 		
 		/*
 		 * Paginator
@@ -55,15 +55,15 @@ class Movimentacao_ExamerepController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'movimentacao/examerep',
+			'module'	=> $this->getRequest()->getModuleName().'/examerep',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'movimentacao/examerep',
+			'module'	=> $this->getRequest()->getModuleName().'/examerep',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'movimentacao/examerep',
+			'module'	=> $this->getRequest()->getModuleName().'/examerep',
 			'action'	=> 'add',
 		));
 
@@ -81,6 +81,15 @@ class Movimentacao_ExamerepController extends Zend_Controller_Action
 		$exameForm->setAction($__action);
 		$exameForm->setMethod('post');
 		$this->view->form = $exameForm;
+
+		$this->view->elements = array(
+			'id',
+			array('fazenda_id'),
+			array('fichario'),
+			'data',
+			array('acompanhamento'),
+			'obs',
+		);
 
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
@@ -153,6 +162,13 @@ class Movimentacao_ExamerepController extends Zend_Controller_Action
 				throw new Zend_Controller_Action_Exception('invalid record number');
 			}
 		}
+
+		$this->view->elements = array(
+			array('fichario'),
+			'data',
+			array('acompanhamento'),
+			'obs',
+		);
 
 		$this->view->form = $exameForm;
 	}
