@@ -57,10 +57,10 @@ class Model_Db_MatrizGrauSangue extends Model_Db
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
 			->from(array('m' => $this->_name), array('id'), $this->_schema)
-			->join(array('raca' => 'raca'), 'm.raca_id = raca.id', array('raca_id' => 'id', 'raca' => new Zend_Db_Expr("concat(`raca`.`id`,';',`raca`.`cod`)"), 'raca_cod' => 'cod'), $this->_schema)
-			->join(array('pai' => 'grausangue'), 'm.pai_id = pai.id', array('pai_id' => 'id', 'pai' => new Zend_Db_Expr("concat(`pai`.`id`,';',`pai`.`cod`)"), 'pai_cod' => 'cod'), $this->_schema)
-			->join(array('mae' => 'grausangue'), 'm.mae_id = mae.id', array('mae_id' => 'id', 'mae' => new Zend_Db_Expr("concat(`mae`.`id`,';',`mae`.`cod`)"), 'mae_cod' => 'cod'), $this->_schema)
-			->join(array('cria' => 'grausangue'), 'm.cria_id = cria.id', array('cria_id' => 'id', 'cria' => new Zend_Db_Expr("concat(`cria`.`id`,';',`cria`.`cod`)"), 'cria_cod' => 'cod'), $this->_schema)
+			->join(array('raca' => 'raca'), 'm.raca_id = raca.id', array('raca_id' => 'id', 'raca' => 'raca.dsc', 'raca_cod' => 'cod'), $this->_schema)
+			->join(array('pai' => 'grausangue'), 'm.pai_id = pai.id', array('pai_id' => 'id', 'pai' => 'pai.dsc', 'pai_cod' => 'cod'), $this->_schema)
+			->join(array('mae' => 'grausangue'), 'm.mae_id = mae.id', array('mae_id' => 'id', 'mae' => 'mae.dsc', 'mae_cod' => 'cod'), $this->_schema)
+			->join(array('cria' => 'grausangue'), 'm.cria_id = cria.id', array('cria_id' => 'id', 'cria' => 'cria.dsc', 'cria_cod' => 'cod'), $this->_schema)
 			->where('m.id = ?', $id)
 		;
 
