@@ -4,7 +4,6 @@ $(document).ready(function() {
 	addSearchIcon('criador', baseUrl+'/json/criador', 'filter.criador', 600, 240);
 	addSearchIcon('pelagem', baseUrl+'/json/pelagem', 'filter.pelagem', 600, 240);
 	addSearchIcon('rebanho', baseUrl+'/json/rebanho', 'filter.rebanho', 600, 240);
-	addSearchIcon('local', baseUrl+'/json/local', 'filter.local', 600, 240);
 	addSearchIcon('grausangue', baseUrl+'/json/grausangue', 'filter.grauSangue', 600, 240);
 
 	addSearchIcon('pai', baseUrl+'/json/fichario/sexo/m', 'filter.animal', 600, 240);
@@ -36,6 +35,8 @@ $(document).ready(function() {
 
 	if (checkAddUrl(window.location.href) == true) {
 		addSearchIcon('categoria', baseUrl+'/json/categoria', 'filter.categoria', 600, 240);
+		addSearchIcon('local', baseUrl+'/json/local', 'filter.local', 600, 240);
+
 		$("#fazenda_id").removeAttr('disabled');
 		$("#fazenda_id").removeAttr('readonly');
 		$('#fazenda_id').change(function(){
@@ -51,9 +52,7 @@ $(document).ready(function() {
 	}
 	// if fazenda_id changed, local fields be empty
 	$("#fazenda_id").change(function(){
-		$("#local_id").val('');
-		$("#local").val('');
-		$("#local_cod").val('');
+		$("#local_id, #local, #local_cod").val('');
 	});
 
 	makeDateField("#dt_nascimento", null, new Date());

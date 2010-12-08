@@ -264,6 +264,7 @@ filter.local = function(url, input)
 	this.defaultColModel[0].width = 60;
 	this.createDialog('Local');
 	this.defaultSearch(input);
+	delete this.sortName;
 };
 
 filter.categoria = function(url, input)
