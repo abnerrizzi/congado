@@ -43,7 +43,7 @@ class Reproducao_ExamerepController extends Zend_Controller_Action
 		/*
 		 * Fields
 		 */
-		$fields[] = new Model_Grid_Fields('data', 'Data', 20);
+		$fields[] = new Model_Grid_Fields('dt', 'Data', 20);
 		$fields[] = new Model_Grid_Fields('nome', 'Animal', 200);
 		$fields[] = new Model_Grid_Fields('acompanhamento', 'Acompanhamento', 200);
 
@@ -168,6 +168,7 @@ class Reproducao_ExamerepController extends Zend_Controller_Action
 			'data',
 			array('acompanhamento'),
 			'obs',
+			'delete',
 		);
 
 		$this->view->form = $exameForm;
@@ -178,7 +179,7 @@ class Reproducao_ExamerepController extends Zend_Controller_Action
 		$request 	= $this->getRequest();
 		$exameModel	= new Model_Db_Examerep();
 
-		if ($request->isPost() && $request->getParam('param', false) == 'examerep') {
+		if ($request->isPost() && $request->getParam('param', false) == 'reproducao/examerep') {
 			$exameId	= (int)$request->getParam('id');
 			$exameModel->deleteExame($exameId);
 			$this->view->error = false;

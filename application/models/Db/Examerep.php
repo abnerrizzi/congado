@@ -20,11 +20,14 @@ class Model_Db_Examerep extends Model_Db
 
 	public function getPaginatorAdapter($orderby = null, $order = null)
 	{
+		if ($orderby == 'dt') {
+			$orderby = 'data';
+		}
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
 			->from(array('e' => $this->_name), array(
 				'id',
-				'data' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')"),
+				'dt' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')"),
 				'obs',
 			), $this->_schema)
 			->joinLeft(array('f' => 'fichario'), 'e.fichario_id = f.id', array('cod', 'nome'), $this->_schema)
