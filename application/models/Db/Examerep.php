@@ -18,6 +18,70 @@ class Model_Db_Examerep extends Model_Db
 	protected $_name = 'examerep';
 	protected $_select = false;
 
+	public function listJson($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false)
+	{
+
+		if ($orderby == 'dt') {
+			$orderby = 'data';
+		}
+
+		$col_id = 'id';
+
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('e' => $this->_name), array(
+				'id',
+				'dt' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')"),
+//				'fichario_id',
+//				'acompanhamento_id'
+			), $this->_schema)
+			->joinLeft(array('f' => 'fichario'), 'e.fichario_id = f.id', array('cod'), $this->_schema)
+			->joinLeft(array('a' => 'acompanhamento'), 'e.acompanhamento_id = a.id', array('acompanhamento' => 'dsc'), $this->_schema)
+		;
+
+		if ($orderby && $order) {
+			$this->_select->order($orderby .' '. $order);
+		}
+
+		if ($qtype && $query) {
+			if ($like == 'false' || $like == false) {
+				$this->_select->where($qtype .' = ?', $query);
+			} else {
+				$this->_select->where($qtype .' LIKE ?', '%'.$query.'%');
+			}
+		}
+
+		$return = array(
+			'page' => $page,
+			'total' => $this->fetchAll($this->_select)->count(),
+		);
+
+		if ($page && $limit) {
+			$this->_select->limitPage($page, $limit);
+		}
+
+		$array = $this->fetchAll($this->_select)->toArray();
+		for ($i=0; $i < count($array); $i++)
+		{
+			$row = $array[$i];
+
+			$current = array(
+				'id' => $row[$col_id]
+			);
+			foreach ($row as $key => $val)
+			{
+				if ($key == $col_id) {
+					continue;
+				} else {
+					$current['cell'][] = ($val);
+				}
+			}
+			$return['rows'][] = $current;
+		}
+		return $return;
+
+	}
+
 	public function getPaginatorAdapter($orderby = null, $order = null)
 	{
 		if ($orderby == 'dt') {
