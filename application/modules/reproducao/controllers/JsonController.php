@@ -86,8 +86,8 @@ class Reproducao_JsonController extends Zend_Controller_Action
 	public function examerepAction()
 	{
 
-		$rebanhoModel = new Model_Db_Examerep();
-		$rebanhos = $rebanhoModel->listJson(
+		$exameModel = new Model_Db_Examerep();
+		$exames = $exameModel->listJson(
 			array(
 				'id',
 				'data',
@@ -100,11 +100,9 @@ class Reproducao_JsonController extends Zend_Controller_Action
 			$this->getRequest()->getParam('query'),
 			$this->getRequest()->getParam('like', false)
 		);
-		print '<pre>';
-		print_r($rebanhos);
-		die();
-		$this->view->content = utf8_encode(json_encode($rebanhos));
+		$this->view->content = utf8_encode(json_encode($exames));
 		$this->render('index');
 
 	}
+
 }
