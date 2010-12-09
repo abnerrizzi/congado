@@ -247,7 +247,7 @@ filter.acompanhamento = function(url, input)
 	this.defaultSearchItem = this.defaultSearchItems;
 	this.defaultSearchItem[0].display = this.defaultColModel[0].display = 'Acompanhamento';
 	this.defaultColModel[0].width = 60;
-	this.createDialog('Pelagem');
+	this.createDialog('Acompanhamento');
 	this.defaultSearch(input);
 };
 
