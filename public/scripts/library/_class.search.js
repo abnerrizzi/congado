@@ -191,6 +191,38 @@ search.estoqueEmbriao = function()
 
 };
 
+search.exameRep = function()
+{
+	this.url = baseUrl + '/reproducao/json/examerep';
+	this.defaultColModel = [{
+		display: 'Coleta',
+		name : 'dt',
+		width : 70,
+		sortable : true,
+		align: 'left'
+	}, {
+		display: 'Animal',
+		name : 'f.cod',
+		width : 120,
+		sortable : true,
+		align: 'left'
+	}, {
+		display: 'Acompanhamento',
+		name : 'd.cod',
+		width : 200,
+		sortable : true,
+		align: 'left'
+	}];
+	this.defaultSearchItem = [{
+		display: 'Animal',
+		name : 'f.cod',
+		isdefault: true
+	}];
+	this.createDialog('Acompanhamento');
+	this.defaultSearch();
+
+};
+
 search.coletaEmbriao = function()
 {
 	this.url = baseUrl + '/json/coleta';
