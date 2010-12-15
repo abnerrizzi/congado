@@ -55,6 +55,18 @@ class Form_Cobertura extends Form_Default
 			'class'	=> 'input',
 		));
 
+		$this->addElement('text', 'dataCio', array(
+			'label' => '',
+			'required' => true,
+			'filters' => array('StringTrim'),
+			'validators' => array(
+				new Zend_Validate_Date('dd/MM/YYYY'),
+			),
+			'maxlength' => 10,
+			'size' => 10,
+			'class'	=> 'input',
+		));
+
 		$this->addElement('radio', 'tipo', array(
 			'label' => 'Tipo da Cobertura',
 			'class'	=> 'input',
