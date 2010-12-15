@@ -35,4 +35,17 @@ class Test_IndexController extends Zend_Controller_Action
 		echo JSMin::minify(file_get_contents('C:\Arquivos de programas\Zend\Apache2\htdocs\congado\public/scripts/functions.js'));
 		die();
 	}
+
+	public function breakAction()
+	{
+		print '<pre>';
+		$z = 10;
+		for ($i=0; $i < $z; $i++)
+		{
+			print  $i . "\n";
+			if ($i == 4)
+				break;
+		}
+		die();
+	}
 }

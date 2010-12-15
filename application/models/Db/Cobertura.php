@@ -325,44 +325,47 @@ class Model_Db_Cobertura extends Model_Db
 
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
-			->from(array('c' => $this->_name), array(
+			->from(array('r' => $this->_name), array(
 				'id',
 				'fazenda_id',
-				'dt_cobertura' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
+				'dt_ini' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
+				'dt_fim' => new Zend_Db_Expr("DATE_FORMAT(dataCio, '%d/%m/%Y')"),
 				'numerocobertura',
-				'tipo',
-			), $this->_schema)
-			->joinLeft(array('v' => 'fichario'), 'c.fichario_id = v.id', array('vaca_id' => 'v.id', 'vaca_cod' => 'v.cod', 'vaca' => 'nome'), $this->_schema)
-			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro_id' => 't.id', 'touro_cod' => 't.cod', 'touro' => 'nome'), $this->_schema)
-			->joinLeft(array('i' => 'inseminador'), 'c.inseminador_id = i.id', array('inseminador_id' => 'i.id', 'inseminador_cod' => 'i.cod', 'inseminador' => 'i.dsc'), $this->_schema)
-			->joinLeft(array('l' => 'lote'), 'c.lote_id = l.id', array('lote_id' => 'l.id', 'lote_cod' => 'l.cod', 'lote' => 'l.dsc'), $this->_schema)
-//			->where('tipo IN (?)', array('C', 'I', 'M'))
-			->where('c.id = ?', $id)
-			;
+				'cdc',
+			))
+			->joinLeft(array('v' => 'fichario'), 'r.fichario_id = v.id', array('vaca_id' => 'v.id', 'vaca_cod' => 'v.cod', 'vaca' => 'nome'), $this->_schema)
+			->joinLeft(array('t' => 'fichario'), 'r.touro_id = t.id', array('touro_id' => 't.id', 'touro_cod' => 't.cod', 'touro' => 'nome'), $this->_schema)
+			->joinLeft(array('l' => 'lote'), 'r.lote_id = l.id', array('lote_id' => 'l.id', 'lote_cod' => 'l.cod', 'lote' => 'l.dsc'), $this->_schema)
+			->joinLeft(array('tc' => 'cobertura_tipo'), 'r.cobertura_tipo_id = tc.id', array('tipo' => 'cod'), $this->_schema)
+			->where('tc.cod = ?', 'R')
+			->where('r.id = ?', $id)
+		;
 
 		$row = $this->fetchRow($this->_select);
+
 		if (!$row) {
 			throw new Zend_Db_Table_Exception("Count not find row $id");
-		} elseif (!(($row['tipo'] == 'R'))) {
-			throw new Zend_Db_Exception("Tipo diferente (". $row['tipo'] .")");
+		} elseif ($row['tipo'] != 'R') {
+			throw new Zend_Db_Exception("Tipo diferente (". $row['tipo'] .")" . Zend_Debug::dump($row));
 		} 
 		$array = $row->toArray();
 
 		if ($array['numerocobertura'] != NULL) {
 			$_last = $this->select()
 				->setIntegrityCheck(false)
-				->from(array('c' => $this->_name), array(
+				->from(array('r' => $this->_name), array(
 					'ultima_cobertura' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
-					'ultima_tipo' => 'tipo',
 				), $this->_schema)
-				->where('c.fichario_id = ?', $array['vaca_id'])
-				->where('c.fazenda_id = ?', $array['fazenda_id'])
-				->where('c.dt_cobertura <= STR_TO_DATE(?, \'%d/%m/%y\')', $array['dt_cobertura'])
-				->where('c.numerocobertura < ?', $array['numerocobertura'])
+				->joinLeft(array('tc' => 'cobertura_tipo'), 'r.cobertura_tipo_id = tc.id', array('ultima_tipo' => 'cod'), $this->_schema)
+				->where('r.fichario_id = ?', $array['vaca_id'])
+				->where('r.fazenda_id = ?', $array['fazenda_id'])
+				->where('r.dt_cobertura <= STR_TO_DATE(?, \'%d/%m/%Y\')', $array['dt_ini'])
+				->where('r.numerocobertura < ?', $array['numerocobertura'])
 				->order('dt_cobertura DESC')
 			;
 
 			$_lastRow = $this->fetchRow($_last);
+
 			if ($_lastRow != NULL) {
 				$_lastRow = $_lastRow->toArray();
 			}
@@ -375,6 +378,7 @@ class Model_Db_Cobertura extends Model_Db
 			$return[$key] = utf8_decode($val);
 		}
 		return $return;
+
 	}
 
 }

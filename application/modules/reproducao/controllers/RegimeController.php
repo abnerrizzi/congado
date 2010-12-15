@@ -28,7 +28,7 @@ class Reproducao_RegimeController extends Zend_Controller_Action
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
 		$result	= $regimeModel->getPaginatorAdapterRegime($_by, $_order);
-		
+
 		/*
 		 * Paginator
 		 */
@@ -79,33 +79,32 @@ class Reproducao_RegimeController extends Zend_Controller_Action
 		throw new Zend_Controller_Action_Exception('Funcionalidade ainda não implementada.');
 	}
 
-	public function _editAction()
+	public function editAction()
 	{
 
 		$request	= $this->getRequest();
-		$coberturaId	= (int)$request->getParam('id');
-		$coberturaForm	= new Form_Cobertura();
+		$regimeId	= (int)$request->getParam('id');
+		$regimeForm	= new Form_Cobertura();
 
 		$__action = 	($this->getRequest()->getBaseUrl())
 				. '/' .	($this->getRequest()->getModuleName())
 				. '/' .	($this->getRequest()->getControllerName())
 				. '/' . 'edit';
 
-		$coberturaForm->setAction($__action);
-		$coberturaForm->setMethod('post');
-		$coberturaModel = new Model_Db_Cobertura();
+		$regimeForm->setAction($__action);
+		$regimeForm->setMethod('post');
+		$regimeModel = new Model_Db_Cobertura();
 
-		$this->populateTipos($coberturaForm);
 		/*
 		 * Populando select de fazendas
 		 */
 		$fazendaModel = new Model_Db_Fazenda();
 		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
-		$coberturaForm->getElement('fazenda_id')
-			->addMultiOption(false, '--')
+		$regimeForm->getElement('fazenda_id')
+//			->addMultiOption(false, '--')
 		;
 		foreach ($fazendas as $fazenda) {
-			$coberturaForm->getElement('fazenda_id')
+			$regimeForm->getElement('fazenda_id')
 				->addMultiOption($fazenda['id'], $fazenda['descricao']);
 		}
 
@@ -121,9 +120,9 @@ class Reproducao_RegimeController extends Zend_Controller_Action
 
 		} else {
 
-			if ($coberturaId > 0) {
-				$result = $coberturaModel->getCobertura($coberturaId);
-				$coberturaForm->populate($result);
+			if ($regimeId > 0) {
+				$result = $regimeModel->getRegime($regimeId);
+				$regimeForm->populate($result);
 			} else {
 				throw new Exception("invalid record number");
 			}
@@ -139,7 +138,7 @@ class Reproducao_RegimeController extends Zend_Controller_Action
 		);
 		if (count($readonly_elements) > 0) {
 			foreach ($readonly_elements as $el) {
-				$coberturaForm->getElement($el)
+				$regimeForm->getElement($el)
 				->setAttrib('readonly', 'readonly')
 				->setAttrib('class', 'readonly');
 			}
@@ -152,7 +151,7 @@ class Reproducao_RegimeController extends Zend_Controller_Action
 		if (count($disabled_elements) > 0) {
 			foreach ($disabled_elements as $el)
 			{
-				$coberturaForm->getElement($el)
+				$regimeForm->getElement($el)
 				->setAttrib('disabled', 'disabled');
 			}
 		}
@@ -162,16 +161,16 @@ class Reproducao_RegimeController extends Zend_Controller_Action
 			'fazenda_id',
 			array('vaca'),
 			'dt_cobertura',
+			'dataCio',
 			'tipo',
 			'numerocobertura',
 			'ultima_cobertura',
 			'ultima_tipo',
 			array('touro'),
-			array('inseminador'),
 			array('lote'),
 			'delete',
 		);
-		$this->view->form = $coberturaForm;
+		$this->view->form = $regimeForm;
 
 	}
 
