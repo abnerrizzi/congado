@@ -100,16 +100,15 @@ class Reproducao_RegimeController extends Zend_Controller_Action
 		 */
 		$fazendaModel = new Model_Db_Fazenda();
 		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
-		$regimeForm->getElement('fazenda_id')
-//			->addMultiOption(false, '--')
-		;
 		foreach ($fazendas as $fazenda) {
 			$regimeForm->getElement('fazenda_id')
 				->addMultiOption($fazenda['id'], $fazenda['descricao']);
 		}
 
+		$regimeForm->getElement('dt_cobertura')->setLabel('Período Inicial');
+		$regimeForm->getElement('dataCio')->setLabel('Período Final');
 		if ($request->isPost()) {
-				throw new Zend_Exception('Implementar validacao e alteracao do registro');
+			throw new Zend_Exception('Implementar validacao e alteracao do registro');
 
 //			if ($doencaForm->isValid($request->getPost())) {
 //				$values = $doencaForm->getValues(true);
