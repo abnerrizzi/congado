@@ -48,4 +48,27 @@ class Test_IndexController extends Zend_Controller_Action
 		}
 		die();
 	}
+
+	public function jsonAction()
+	{
+		$x = "{['000123', '00012345679']}";
+		print Zend_Json::decode($x);
+		die();
+	}
+
+	public function jspkAction()
+	{
+		print md5('1q2w3e');
+		die();
+		$fp = APPLICATION_PATH . '/../public' . '/scripts/functions.js';
+		print '<pre>';
+
+		require_once '../library/JavaScriptPacker.php';
+		$jsPacker = new JavaScriptPacker($fp);
+		echo $jsPacker->pack();
+
+		exit;
+	}
+
+
 }

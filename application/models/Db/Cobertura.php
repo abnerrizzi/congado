@@ -336,7 +336,7 @@ class Model_Db_Cobertura extends Model_Db
 			->joinLeft(array('v' => 'fichario'), 'r.fichario_id = v.id', array('vaca_id' => 'v.id', 'vaca_cod' => 'v.cod', 'vaca' => 'nome'), $this->_schema)
 			->joinLeft(array('t' => 'fichario'), 'r.touro_id = t.id', array('touro_id' => 't.id', 'touro_cod' => 't.cod', 'touro' => 'nome'), $this->_schema)
 			->joinLeft(array('l' => 'lote'), 'r.lote_id = l.id', array('lote_id' => 'l.id', 'lote_cod' => 'l.cod', 'lote' => 'l.dsc'), $this->_schema)
-			->joinLeft(array('tc' => 'cobertura_tipo'), 'r.cobertura_tipo_id = tc.id', array('tipo' => 'cod'), $this->_schema)
+			->joinLeft(array('tc' => 'cobertura_tipo'), 'r.cobertura_tipo_id = tc.id', array('tipo_cod' => 'cod', 'tipo' => 'dsc'), $this->_schema)
 			->where('tc.cod = ?', 'R')
 			->where('r.id = ?', $id)
 		;
@@ -345,7 +345,7 @@ class Model_Db_Cobertura extends Model_Db
 
 		if (!$row) {
 			throw new Zend_Db_Table_Exception("Count not find row $id");
-		} elseif ($row['tipo'] != 'R') {
+		} elseif ($row['tipo_cod'] != 'R') {
 			throw new Zend_Db_Exception("Tipo diferente (". $row['tipo'] .")" . Zend_Debug::dump($row));
 		} 
 		$array = $row->toArray();
@@ -356,7 +356,7 @@ class Model_Db_Cobertura extends Model_Db
 				->from(array('r' => $this->_name), array(
 					'ultima_cobertura' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
 				), $this->_schema)
-				->joinLeft(array('tc' => 'cobertura_tipo'), 'r.cobertura_tipo_id = tc.id', array('ultima_tipo' => 'cod'), $this->_schema)
+				->joinLeft(array('tc' => 'cobertura_tipo'), 'r.cobertura_tipo_id = tc.id', array('ultima_tipo' => 'dsc'), $this->_schema)
 				->where('r.fichario_id = ?', $array['vaca_id'])
 				->where('r.fazenda_id = ?', $array['fazenda_id'])
 				->where('r.dt_cobertura <= STR_TO_DATE(?, \'%d/%m/%Y\')', $array['dt_ini'])
