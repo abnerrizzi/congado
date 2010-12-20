@@ -58,8 +58,6 @@ class Test_IndexController extends Zend_Controller_Action
 
 	public function jspkAction()
 	{
-		print md5('1q2w3e');
-		die();
 		$fp = APPLICATION_PATH . '/../public' . '/scripts/functions.js';
 		print '<pre>';
 

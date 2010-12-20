@@ -55,6 +55,30 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 			'Asteka_View_Helper'
 		);
 
+		/**
+		 * BundlePhu
+		 */
+		$view->addHelperPath(
+			APPLICATION_PATH . '/../library/BundlePhu/View/Helper',
+			'BundlePhu_View_Helper'
+		);
+
+		include_once APPLICATION_PATH . '/../library/JavaScriptPacker.php';
+		$view->getHelper('BundleScript')
+			->setCacheDir(APPLICATION_PATH . '/../public/cache/js')
+			->setDocRoot(APPLICATION_PATH . '/../public')
+            ->setUrlPrefix('cache/js')
+	            ->setMinifyCallback('JavaScriptPacker::minify')
+	            ->setUseMinify(true)
+		;
+
+/*
+		$view->getHelper('BundleLink')
+			->setCacheDir(APPLICATION_PATH . '/../scripts/cache/css')
+			->setDocRoot(APPLICATION_PATH . '/public')
+			->setUrlPrefix('cache/css');
+*/
+
 		$view->doctype('XHTML1_TRANSITIONAL');
 		$view->headTitle('SCBE')
 			->setSeparator(' :: ');
@@ -70,6 +94,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$viewRenderer->setView($view);
 
 		// Return it, so that it can be stored by the bootstrap
+		return $view;
 	}
 
 	protected function _initDatabase()

@@ -1,5 +1,9 @@
 <?php
 
-$this->headScript()
-	->appendFile($this->baseUrl() . '/scripts/library/_class.filters.js')
+$this->bundleScript()
+	->appendFile($this->baseUrl() . '/scripts/auth/login.js')
+	->appendFile($this->baseUrl() . '/scripts/functions.js')
 	;
+
+?>
+Hello BundleScript!
