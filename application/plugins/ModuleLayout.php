@@ -23,6 +23,7 @@ class Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract
 		if ($layout->getMvcEnabled())
 		{
 			switch ($module) {
+				case 'test':
 				case 'admin':
 					$layout->setLayoutPath(APPLICATION_PATH . '/modules/' . $module . '/layouts/scripts');
 					break;
