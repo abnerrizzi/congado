@@ -55,29 +55,32 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 			'Asteka_View_Helper'
 		);
 
-		/**
-		 * BundlePhu
-		 */
-		$view->addHelperPath(
-			APPLICATION_PATH . '/../library/BundlePhu/View/Helper',
-			'BundlePhu_View_Helper'
-		);
+		if ($this->getEnvironment() != 'development') {
+			/**
+			 * BundlePhu
+			 */
+			$view->addHelperPath(
+				APPLICATION_PATH . '/../library/BundlePhu/View/Helper',
+				'BundlePhu_View_Helper'
+			);
+	
+	//		include_once APPLICATION_PATH . '/../library/JavaScriptPacker.php';
+			include_once APPLICATION_PATH . '/../library/JSMin.php';
+			$view->getHelper('BundleScript')
+				->setCacheDir(APPLICATION_PATH . '/../public/cache/js')
+				->setDocRoot(APPLICATION_PATH . '/../public')
+	            ->setUrlPrefix('cache/js')
+//	            ->setMinifyCallback('JavaScriptPacker::minify')
+//	            ->setUseMinify(true)
+				->setMinifyCallback('JSMin::minify')
+				->setUseMinify(true)
+			;
 
-		include_once APPLICATION_PATH . '/../library/JavaScriptPacker.php';
-		$view->getHelper('BundleScript')
-			->setCacheDir(APPLICATION_PATH . '/../public/cache/js')
-			->setDocRoot(APPLICATION_PATH . '/../public')
-            ->setUrlPrefix('cache/js')
-	            ->setMinifyCallback('JavaScriptPacker::minify')
-	            ->setUseMinify(true)
-		;
-
-/*
-		$view->getHelper('BundleLink')
-			->setCacheDir(APPLICATION_PATH . '/../scripts/cache/css')
-			->setDocRoot(APPLICATION_PATH . '/public')
-			->setUrlPrefix('cache/css');
-*/
+//			$view->getHelper('BundleLink')
+//				->setCacheDir(APPLICATION_PATH . '/../scripts/cache/css')
+//				->setDocRoot(APPLICATION_PATH . '/public')
+//				->setUrlPrefix('cache/css');
+		}
 
 		$view->doctype('XHTML1_TRANSITIONAL');
 		$view->headTitle('SCBE')
