@@ -64,7 +64,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				'BundlePhu_View_Helper'
 			);
 	
-	//		include_once APPLICATION_PATH . '/../library/JavaScriptPacker.php';
+			include_once APPLICATION_PATH . '/../library/JavaScriptPacker.php';
 			include_once APPLICATION_PATH . '/../library/JSMin.php';
 			$view->getHelper('BundleScript')
 				->setCacheDir(APPLICATION_PATH . '/../public/cache/js')
