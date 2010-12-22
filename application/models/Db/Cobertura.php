@@ -318,6 +318,16 @@ class Model_Db_Cobertura extends Model_Db
 		return $return;
 	}
 
+	public function updateRegime($values)
+	{
+		$data = array(
+			'touro_id'		=> $values['touro_id'],
+			'lote_id'		=> $values['lote_id'],
+		);
+		$where = 'id = '.(int)$values['id'];
+		$this->update($data, $where );
+	}
+
 	public function getRegime($id)
 	{
 
@@ -328,8 +338,10 @@ class Model_Db_Cobertura extends Model_Db
 			->from(array('r' => $this->_name), array(
 				'id',
 				'fazenda_id',
-				'dt_ini' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
-				'dt_fim' => new Zend_Db_Expr("DATE_FORMAT(dataCio, '%d/%m/%Y')"),
+//				'dt_ini' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
+//				'dt_fim' => new Zend_Db_Expr("DATE_FORMAT(dataCio, '%d/%m/%Y')"),
+				'dt_cobertura' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
+				'dataCio' => new Zend_Db_Expr("DATE_FORMAT(dataCio, '%d/%m/%Y')"),
 				'numerocobertura',
 				'cdc',
 			))
@@ -359,7 +371,7 @@ class Model_Db_Cobertura extends Model_Db
 				->joinLeft(array('tc' => 'cobertura_tipo'), 'r.cobertura_tipo_id = tc.id', array('ultima_tipo' => 'dsc'), $this->_schema)
 				->where('r.fichario_id = ?', $array['vaca_id'])
 				->where('r.fazenda_id = ?', $array['fazenda_id'])
-				->where('r.dt_cobertura <= STR_TO_DATE(?, \'%d/%m/%Y\')', $array['dt_ini'])
+				->where('r.dt_cobertura <= STR_TO_DATE(?, \'%d/%m/%Y\')', $array['dt_cobertura'])
 				->where('r.numerocobertura < ?', $array['numerocobertura'])
 				->order('dt_cobertura DESC')
 			;
