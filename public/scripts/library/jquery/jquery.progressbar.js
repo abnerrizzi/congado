@@ -26,11 +26,11 @@ USAGE:
 				width			: 120,											// Width of the progressbar - don't forget to adjust your image too!!!												// Image to use in the progressbar. Can be a single image too: 'images/progressbg_green.gif'
 				height			: 12,											// Height of the progressbar - don't forget to adjust your image too!!!
 				callback		: null,											// Calls back with the config object that has the current percentage, target percentage, current image, etc
-				boxImage		: '/images/progressbar/progressbar.gif',						// boxImage : image around the progress bar
+				boxImage		: baseUrl+'/images/progressbar/progressbar.gif',// boxImage : image around the progress bar
 				barImage		: {
-									0:	'/images/progressbar/progressbg_red.gif',
-									30: '/images/progressbar/progressbg_orange.gif',
-									70: '/images/progressbar/progressbg_green.gif'
+									0:	baseUrl+'/images/progressbar/progressbg_red.gif',
+									30: baseUrl+'/images/progressbar/progressbg_orange.gif',
+									70: baseUrl+'/images/progressbar/progressbg_green.gif'
 								},
 				
 				
