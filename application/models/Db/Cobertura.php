@@ -275,7 +275,7 @@ class Model_Db_Cobertura extends Model_Db
 			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro_id' => 't.id', 'touro_cod' => 't.cod', 'touro' => 'nome'), $this->_schema)
 			->joinLeft(array('i' => 'inseminador'), 'c.inseminador_id = i.id', array('inseminador_id' => 'i.id', 'inseminador_cod' => 'i.cod', 'inseminador' => 'i.dsc'), $this->_schema)
 			->joinLeft(array('l' => 'lote'), 'c.lote_id = l.id', array('lote_id' => 'l.id', 'lote_cod' => 'l.cod', 'lote' => 'l.dsc'), $this->_schema)
-			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array('tipo' => 'tipo.dsc', 'tipo_cod' => 'tipo.cod'), $this->_schema)
+			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array('tipo' => 'tipo.cod'), $this->_schema)
 			->where('tipo.cod IN (?)', array('C', 'I', 'M'))
 			->where('c.id = ?', $id)
 			;
@@ -284,7 +284,7 @@ class Model_Db_Cobertura extends Model_Db
 
 		if (!$row) {
 			throw new Zend_Db_Table_Exception("Count not find row $id");
-		} elseif (!(($row['tipo_cod'] == 'C') || ($row['tipo_cod'] == 'I') || ($row['tipo_cod'] == 'M'))) {
+		} elseif (!(($row['tipo'] == 'C') || ($row['tipo'] == 'I') || ($row['tipo'] == 'M'))) {
 			throw new Zend_Db_Exception("Tipo diferente (". $row['tipo'] .")");
 		} 
 		$array = $row->toArray();
@@ -325,7 +325,24 @@ class Model_Db_Cobertura extends Model_Db
 			'lote_id'		=> $values['lote_id'],
 		);
 		$where = 'id = '.(int)$values['id'];
-		$this->update($data, $where );
+		$this->update($data, $where);
+	}
+
+	public function updateCobertura($values)
+	{
+		$data = array(
+			'touro_id'			=> $values['touro_id'],
+			'inseminador_id'	=> $values['inseminador_id'],
+			'lote_id'			=> $values['lote_id'],
+		);
+		if ($data['lote_id'] == '') {
+			$data['lote_id'] = null;
+		}
+		if ($data['inseminador_id'] == '') {
+			$data['inseminador_id'] = null;
+		}
+		$where = 'id = '.(int)$values['id'];
+		$this->update($data, $where);
 	}
 
 	public function getRegime($id)
