@@ -44,8 +44,8 @@ class Reproducao_RegimeController extends Zend_Controller_Action
 		 * Fields
 		 */
 		$fields[] = new Model_Grid_Fields('vaca', 'Vaca', 80);
-		$fields[] = new Model_Grid_Fields('dhi', 'Data Cobertura', 1);
-		$fields[] = new Model_Grid_Fields('dhf', 'Data Cobertura', 1);
+		$fields[] = new Model_Grid_Fields('dhi', 'Periodo Inicial', 1);
+		$fields[] = new Model_Grid_Fields('dhf', 'Periodo Final', 1);
 		$fields[] = new Model_Grid_Fields('touro', 'Touro', 80);
 		$fields[] = new Model_Grid_Fields('numerocobertura', 'Conertura N°', 1);
 		$fields[] = new Model_Grid_Fields('vaca_fazenda_id', 'Fazenda', 1);
@@ -74,9 +74,9 @@ class Reproducao_RegimeController extends Zend_Controller_Action
 		$this->view->grid = $gridModel;
 	}
 
-	public function _addAction()
+	public function addAction()
 	{
-		throw new Zend_Controller_Action_Exception('Funcionalidade ainda não implementada.');
+		throw new Zend_Controller_Action_Exception('Funcionalidade não implementada.');
 	}
 
 	public function editAction()
@@ -85,6 +85,12 @@ class Reproducao_RegimeController extends Zend_Controller_Action
 		$request	= $this->getRequest();
 		$regimeId	= (int)$request->getParam('id');
 		$regimeForm	= new Form_Cobertura();
+		$regimeForm->setName('regime_de_pasto');
+		$regimeForm->removeElement('tipo');
+		$regimeForm->addElement('text', 'tipo', array(
+			'label' => 'Tipo da Cobertura',
+			'class'	=> 'input',
+		));
 
 		$__action = 	($this->getRequest()->getBaseUrl())
 				. '/' .	($this->getRequest()->getModuleName())
@@ -107,33 +113,17 @@ class Reproducao_RegimeController extends Zend_Controller_Action
 
 		$regimeForm->getElement('dt_cobertura')->setLabel('Período Inicial');
 		$regimeForm->getElement('dataCio')->setLabel('Período Final');
-		if ($request->isPost()) {
-			throw new Zend_Exception('Implementar validacao e alteracao do registro');
-
-//			if ($doencaForm->isValid($request->getPost())) {
-//				$values = $doencaForm->getValues(true);
-//				unset($values['submit'], $values['cancel'], $values['delete']);
-//				$doencaModel->updateDoenca($values);
-//				$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
-//			}
-
-		} else {
-
-			if ($regimeId > 0) {
-				$result = $regimeModel->getRegime($regimeId);
-				$regimeForm->populate($result);
-			} else {
-				throw new Exception("invalid record number");
-			}
-		}
-
 		// Read Only form elements
 		$readonly_elements = array(
 			'vaca',
-			'touro',
+			'vaca_cod',
+			'dt_cobertura',
+			'dataCio',
 			'inseminador',
+			'touro',
 			'lote',
 			'ultima_tipo',
+			'tipo',
 		);
 		if (count($readonly_elements) > 0) {
 			foreach ($readonly_elements as $el) {
@@ -169,6 +159,31 @@ class Reproducao_RegimeController extends Zend_Controller_Action
 			array('lote'),
 			'delete',
 		);
+		if ($request->isPost()) {
+
+			$regimeForm->getElement('fazenda_id')->setRequired(false);
+			$regimeForm->getElement('inseminador_id')->setRequired(false);
+
+			if ($regimeForm->isValid($request->getPost())) {
+				$formValues = $regimeForm->getValues(true);
+				$values = array(
+					'id'		=> $regimeForm->getValue('id'), 
+					'touro_id'	=> $regimeForm->getValue('touro_id'),
+					'lote_id'	=> $regimeForm->getValue('lote_id'),
+				);
+				$regimeModel->updateRegime($values);
+				$this->_redirect('/'. $this->getRequest()->getModuleName() . '/'. $this->getRequest()->getControllerName());
+			}
+		} else {
+
+			if ($regimeId > 0) {
+				$result = $regimeModel->getRegime($regimeId);
+				$regimeForm->populate($result);
+			} else {
+				throw new Exception("invalid record number");
+			}
+		}
+
 		$this->view->form = $regimeForm;
 
 	}

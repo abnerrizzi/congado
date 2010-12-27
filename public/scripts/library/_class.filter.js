@@ -277,6 +277,16 @@ filter.categoria = function(url, input)
 	this.defaultSearch(input);
 };
 
+filter.lote = function(url, input)
+{
+	this.url = baseUrl + '/json/lote';
+	this.defaultColModel = this.defaultColModels;
+	this.defaultSearchItem = this.defaultSearchItems;
+	this.defaultSearchItem[0].display = this.defaultColModel[0].display = 'Lote';
+	this.createDialog('Lote');
+	this.defaultSearch(input);
+};
+
 filter.animal = function(url, input)
 {
 

@@ -76,7 +76,42 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 
 	public function addAction()
 	{
-		throw new Zend_Controller_Action_Exception('Funcionalidade ainda não implementada.');
+		$coberturaForm = new Form_Cobertura();
+		$coberturaForm->setMethod('post');
+		$this->view->form = $coberturaForm;
+		$this->populateTipos($coberturaForm);
+		$this->populateFazendas($coberturaForm);
+
+		if ($this->getRequest()->isPost()) {
+			$formData = $this->getRequest()->getPost();
+			if ($coberturaForm->isValid($formData)) {
+				new Zend_Exception('implementar validacao');
+//				$cod = $doencaForm->getValue('cod');
+//				$dsc = $doencaForm->getValue('dsc');
+//				$doencaModel = new Model_Db_Doenca();
+//				$values = $doencaForm->getValues(true);
+//				unset($values['id'], $values['submit'], $values['cancel']);
+//				if ($doencaModel->addDoenca($values)) {
+//					$this->_redirect('/'. $this->getRequest()->getControllerName());
+//				}
+			} else {
+				$coberturaForm->populate($formData);
+			}
+		}
+
+		$this->view->elements = array(
+			'id',
+			'fazenda_id',
+			array('vaca'),
+			'dt_cobertura',
+			'tipo',
+			'ultima_cobertura',
+			'ultima_tipo',
+			array('touro'),
+			array('inseminador'),
+			array('lote'),
+			'delete',
+		);
 	}
 
 	public function editAction()
@@ -86,38 +121,34 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		$coberturaId	= (int)$request->getParam('id');
 		$coberturaForm	= new Form_Cobertura();
 
-		$__action = 	($this->getRequest()->getBaseUrl())
-				. '/' .	($this->getRequest()->getModuleName())
-				. '/' .	($this->getRequest()->getControllerName())
-				. '/' . 'edit';
+		$__action = '/' .	($this->getRequest()->getModuleName())
+				  . '/' .	($this->getRequest()->getControllerName())
+				  . '/' .	'edit';
 
 		$coberturaForm->setAction($__action);
 		$coberturaForm->setMethod('post');
 		$coberturaModel = new Model_Db_Cobertura();
 
 		$this->populateTipos($coberturaForm);
-		/*
-		 * Populando select de fazendas
-		 */
-		$fazendaModel = new Model_Db_Fazenda();
-		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
-		$coberturaForm->getElement('fazenda_id')
-			->addMultiOption(false, '--')
-		;
-		foreach ($fazendas as $fazenda) {
-			$coberturaForm->getElement('fazenda_id')
-				->addMultiOption($fazenda['id'], $fazenda['descricao']);
-		}
+		$this->populateFazendas($coberturaForm);
 
 		if ($request->isPost()) {
-				throw new Zend_Exception('Implementar validacao e alteracao do registro');
 
-//			if ($doencaForm->isValid($request->getPost())) {
-//				$values = $doencaForm->getValues(true);
-//				unset($values['submit'], $values['cancel'], $values['delete']);
-//				$doencaModel->updateDoenca($values);
-//				$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
-//			}
+			$coberturaForm->getElement('fazenda_id')->setRequired(false);
+			$coberturaForm->getElement('lote_id')->setRequired(false);
+			$coberturaForm->getElement('dataCio')->setRequired(false);
+
+			if ($coberturaForm->isValid($request->getPost())) {
+				$values = $coberturaForm->getValues(true);
+				$data = array(
+					'id'	=> $values['id'],
+					'touro_id'	=> $values['touro_id'],
+					'inseminador_id'	=> $values['inseminador_id'],
+					'lote_id'	=> $values['lote_id'],
+				);
+				$coberturaModel->updateCobertura($values);
+				$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
+			}
 
 		} else {
 
@@ -187,6 +218,23 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 			if ($tipo['cod'] == 'M' || $tipo['cod'] == 'C' || $tipo['cod'] == 'I')
 			$coberturaForm->getElement('tipo')
 				->addMultiOption($tipo['cod'], $tipo['dsc']);
+		}
+	}
+
+	private function populateFazendas($coberturaForm)
+	{
+		$coberturaForm->getElement('fazenda_id')
+			->addMultiOption(false, '--')
+		;
+		$fazendaModel = new Model_Db_Fazenda();
+		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
+		foreach ($fazendas as $fazenda)
+		{
+			foreach ($fazendas as $fazenda)
+			{
+				$coberturaForm->getElement('fazenda_id')
+					->addMultiOption($fazenda['id'], $fazenda['descricao']);
+			}
 		}
 	}
 }
