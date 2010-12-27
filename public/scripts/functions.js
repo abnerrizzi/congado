@@ -6,7 +6,7 @@ $(document).ready(function(){
 	$('#pb1').progressBar(percentage, {
 		steps: 0,
 		stepDuration: 0,
-		barImage: {0: '/images/progressbar/progressbg_green.gif'}
+		barImage: {0: baseUrl+'/images/progressbar/progressbg_green.gif'}
 	});
 });
 
