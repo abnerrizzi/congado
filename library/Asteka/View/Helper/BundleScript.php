@@ -26,7 +26,7 @@
  * @copyright   Copyright (c) 2010 David Abdemoulaie (http://hobodave.com/)
  * @license     http://hobodave.com/license.txt New BSD License
  **/
-class BundlePhu_View_Helper_BundleScript extends Zend_View_Helper_HeadScript
+class Asteka_View_Helper_BundleScript extends Zend_View_Helper_HeadScript
 {
     /**
      * local Zend_View reference
@@ -67,7 +67,7 @@ class BundlePhu_View_Helper_BundleScript extends Zend_View_Helper_HeadScript
      *
      * @var string
      */
-    protected $_urlPrefix = "cache/js";
+    protected $_urlPrefix = "/javascripts";
 
     /**
      * Use gzencode() ?
@@ -314,7 +314,7 @@ class BundlePhu_View_Helper_BundleScript extends Zend_View_Helper_HeadScript
                     $src =  substr($src, strlen($this->_baseUrl));
                 }
 
-                $mtime = @filemtime($this->_docRoot . $src);
+                $mtime = filemtime($this->_docRoot . $src);
                 if ($mtime > $mostrecent) {
                     $mostrecent = $mtime;
                 }

@@ -6,3 +6,11 @@ RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
+
+Header unset ETag
+FileETag None
+
+ExpiresActive On
+ExpiresDefault "access plus 1 minutes"
+ExpiresByType text/css A172800
+ExpiresByType application/javascript A172800

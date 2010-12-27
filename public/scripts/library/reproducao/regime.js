@@ -12,6 +12,13 @@ $(document).ready(function() {
 			$(this).val($(this).val().toUpperCase());
 		});
 		makeDateField('#data');
+	} else if (checkEditUrl(this.location.href)) {
+
+		addSearchIcon('lote', baseUrl+'/json/lote', 'filter.lote', 600, 240);
+		addSearchIcon('touro', baseUrl+'/json/fichario/sexo/m', 'filter.animal', 600, 240);
+
+		$("#touro_cod").change(function(){change.animal(this, 'M');});
+		$("#lote_cod").change(function(){change.select(this);});
 	}
 
 	$("#add>a").before(
