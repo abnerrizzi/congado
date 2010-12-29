@@ -108,11 +108,20 @@ class AuthController extends Zend_Controller_Action
 
 	public function fazendaAction ()
 	{
-		$this->view->noLayout = true;
 		$fazendaModel = new Model_Db_Fazenda();
 		$user_id = Zend_Auth::getInstance()->getIdentity()->id;
 		$this->view->fazendas = $fazendaModel->getFazendaByUser($user_id);
 		$this->view->action = $this->getRequest()->getControllerName() . '/' . $this->getRequest()->getActionName();
+
+		if ($this->getRequest()->isPost()) {
+			if ($this->getRequest()->getParam('fazenda', false)) {
+				die('selectionou');
+			} else {
+				print 'tem q selecionar';
+			}
+
+		} else {
+		}
 	}
 
 }

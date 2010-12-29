@@ -1,6 +1,9 @@
 $(document).ready(function() {
 
 	$('[name=fazenda]').change(function(){
-		$(this).submit();
+		$('#form_fazenda').submit();
+	});
+	$('span > input').click(function(){
+		$('#form_fazenda').submit();
 	});
 });
