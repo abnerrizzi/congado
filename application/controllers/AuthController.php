@@ -76,6 +76,12 @@ class AuthController extends Zend_Controller_Action
 					} else {
 						$authNamespace->rememberme = 0;
 					}
+
+					// redirect to select fazenda
+					if (!isset($authNamespace->fazenda_id)) {
+						$this->_redirect('/auth/fazenda');
+					}
+
 					if (isset($authNamespace->requestUri)) {
 						$this->_redirect($authNamespace->requestUri);
 					} else {
@@ -98,6 +104,15 @@ class AuthController extends Zend_Controller_Action
 		Zend_Auth::getInstance()->clearIdentity();
 		Zend_Session::forgetMe();
 		$this->_redirect('/');
+	}
+
+	public function fazendaAction ()
+	{
+		$this->view->noLayout = true;
+		$fazendaModel = new Model_Db_Fazenda();
+		$user_id = Zend_Auth::getInstance()->getIdentity()->id;
+		$this->view->fazendas = $fazendaModel->getFazendaByUser($user_id);
+		$this->view->action = $this->getRequest()->getControllerName() . '/' . $this->getRequest()->getActionName();
 	}
 
 }

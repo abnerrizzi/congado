@@ -18,14 +18,13 @@ class Plugin_Auth extends Zend_Controller_Plugin_Abstract
 	{
 		$authNamespace = new Zend_Session_Namespace('Zend_Auth');
 		$gridSession = new Zend_Session_Namespace('gridSession');
+		// Armazena URL requisitada para redirecionamento apos login
+		$requestUri = substr($this->_request->getRequestUri(),
+			strlen(Zend_Controller_Front::getInstance()->getBaseUrl())
+		);
 		if (!Zend_Auth::getInstance()->hasIdentity()) {
 			Zend_Auth::getInstance()->clearIdentity();
 			$gridSession->unsetAll();
-
-			// Armazena URL requisitada para redirecionamento apos login
-			$requestUri = substr($this->_request->getRequestUri(),
-				strlen(Zend_Controller_Front::getInstance()->getBaseUrl())
-			);
 
 			if ($requestUri != '/auth/login') {
 				$authNamespace->requestUri = $requestUri;
@@ -35,6 +34,17 @@ class Plugin_Auth extends Zend_Controller_Plugin_Abstract
 			$request->setActionName('login');
 			
 		} else {
+			if (!isset($authNamespace->fazenda_id)) {
+
+				if ($requestUri != '/auth/fazenda') {
+					$authNamespace->requestUri = $requestUri;
+				}
+
+				$request->setControllerName('auth');
+				$request->setActionName('fazenda');
+
+			}
+
 			// Caso ja esteja logado, apenas atribui novamente o tempo para expirar a sessao.
 			$authNamespace->requestUri = substr($this->_request->getRequestUri(),
 				strlen(Zend_Controller_Front::getInstance()->getBaseUrl()));

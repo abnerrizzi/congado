@@ -1,0 +1,19 @@
+<?php
+
+$this->javascript();
+
+?>
+<br/><br/><br/><br/>
+<fieldset>
+  <legend>Selecione uma fazenda para continuar:</legend>
+  <center><br/>
+  <form method="post" action="<?=$this->baseUrl() .'/'. $this->action;?>">
+    <select name="fazenda" onchange="$(this).parent().submit();">
+      <option value=""> -- </option>
+<?foreach ($this->fazendas as $fazenda):?>
+      <option value="<?=$fazenda['id'];?>"><?=$fazenda['descricao'];?></option>
+<?endforeach;?>
+    </select>
+  </form>
+  </center><br/><br/>
+</fieldset>
