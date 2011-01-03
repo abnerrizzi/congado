@@ -76,6 +76,15 @@ class AuthController extends Zend_Controller_Action
 					} else {
 						$authNamespace->rememberme = 0;
 					}
+
+					$fazendaSession = new Zend_Session_Namespace('fazendaSession');
+					// redirect to select fazenda
+					if (!isset($fazendaSession->fazenda_id)) {
+						$this->_redirect('/auth/fazenda');
+					} else {
+						die('ja tem');
+					}
+
 					if (isset($authNamespace->requestUri)) {
 						$this->_redirect($authNamespace->requestUri);
 					} else {
@@ -98,6 +107,44 @@ class AuthController extends Zend_Controller_Action
 		Zend_Auth::getInstance()->clearIdentity();
 		Zend_Session::forgetMe();
 		$this->_redirect('/');
+	}
+
+	public function fazendaAction ()
+	{
+		$fazendaModel = new Model_Db_Fazenda();
+		$user_id = Zend_Auth::getInstance()->getIdentity()->id;
+
+		$form = new Zend_Form();
+		$fazendaSelect = $form->createElement('select', 'fazenda');
+		$fazendaSelect->setRequired(true);
+
+		$fazendas = $fazendaModel->getFazendaByUser($user_id);
+		$fazendaSelect->addMultiOption(false, '-- FAZENDAS --');
+		foreach ($fazendas as $fazenda) {
+			$fazendaSelect->addMultiOption($fazenda['id'], $fazenda['descricao']);
+		}
+
+		$this->view->fazenda = $fazendaSelect;
+		$this->view->action = $this->getRequest()->getControllerName() . '/' . $this->getRequest()->getActionName();
+
+		if ($this->getRequest()->isPost()) {
+			if ($this->getRequest()->getParam('fazenda', false)) {
+				$auth = Zend_Auth::getInstance();
+				$fazendaSession = new Zend_Session_Namespace('fazendaSession');
+				$fazendaSession->fazenda_id = $this->getRequest()->getParam('fazenda');
+
+				$authNamespace = new Zend_Session_Namespace('Zend_Auth');
+				if (isset($authNamespace->requestUri) && $authNamespace->requestUri != '/auth/fazenda') {
+					$this->_redirect($authNamespace->requestUri);
+				} else {
+					$this->_redirect('/');
+				}
+
+			} else {
+				print 'tem q selecionar';
+			}
+		} else {
+		}
 	}
 
 }

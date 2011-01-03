@@ -15,11 +15,25 @@
 class Model_Db extends Zend_Db_Table_Abstract
 {
 
+	protected $_select = false;
+	protected $_fId;
+
 	public function init()
 	{
 		$db = Zend_Registry::get('database');
 		$db = $db->getConfig();
 		$this->_schema = $db['dbname'];
+
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+		;
+
+		if (in_array('fazenda_id', $this->_cols)) {
+			$fazendaSession	= new Zend_Session_Namespace('fazendaSession');
+			$this->_fId = (int)$fazendaSession->fazenda_id;
+			Zend_Debug::dump('have `fazenda_id`');
+			$this->_select->where($this->_name.'.fazenda_id = ?', $this->_fId);
+		}
 	}
 
 	/**

@@ -16,7 +16,6 @@ class Model_Db_Fichario extends Model_Db
 {
 
 	protected $_name = 'fichario';
-	protected $_select = false;
 	protected $_referenceMap	= array(
         'CoberturaVaca' => array(
             'columns'           => array('id'),
@@ -37,17 +36,16 @@ class Model_Db_Fichario extends Model_Db
 			$orderby = 'dt_nascimento';
 		}
 
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
-			->from(array('f' => $this->_name), array(
+		$this->_select
+			->from(array($this->_name), array(
 				'id',
 				'cod',
 				'nome',
 				'rgn',
 				'data_nascimento' => new Zend_Db_Expr("DATE_FORMAT(dt_nascimento, '%d/%m/%Y')"),
 			), $this->_schema)
-			->joinLeft('local', 'f.local_id = local.id', array('local_dsc' => 'dsc'), $this->_schema)
-			->joinLeft('fazenda', 'f.fazenda_id = fazenda.id', array('fazenda_dsc' => 'descricao'), $this->_schema)
+			->joinLeft('local', $this->_name.'.local_id = local.id', array('local_dsc' => 'dsc'), $this->_schema)
+			->joinLeft('fazenda', $this->_name.'.fazenda_id = fazenda.id', array('fazenda_dsc' => 'descricao'), $this->_schema)
 			->order($orderby .' '. $order)
 			;
 
@@ -75,8 +73,7 @@ class Model_Db_Fichario extends Model_Db
 
 		$col_id = $this->_name.'.id';
 		$col_id = 'id';
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
+		$this->_select
 			->from($this->_name, array('id', 'cod', 'nome', 'rgn', 'sisbov', 'sexo'), $this->_schema)
 		;
 
@@ -147,8 +144,7 @@ class Model_Db_Fichario extends Model_Db
 //		}
 		$col_id = $this->_name.'.id';
 		$col_id = 'id';
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
+		$this->_select
 			->from($this->_name, array('id', 'cod', 'nome', 'rgn', 'sisbov', 'sexo'), $this->_schema)
 			->joinLeft(array('categoria'), 'categoria_id = categoria.id', array('categoria' => 'dsc'), $this->_schema)
 			->joinLeft(array('raca'), 'raca_id = raca.id', array('raca' => 'dsc'), $this->_schema)
@@ -171,8 +167,6 @@ class Model_Db_Fichario extends Model_Db
 			$this->_select->where($this->_name.'.sexo = ?', $params['sexo']);
 		}
 
-//		print '<pre>'.$this->_select;
-//		die();
 		$return = array(
 			'page' => $page,
 			'total' => $this->fetchAll($this->_select)->count(),
@@ -209,9 +203,9 @@ class Model_Db_Fichario extends Model_Db
 
 	public function getFicharios($orderby = null, $order = null)
 	{
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
-			->from(array('f' => $this->_name), array(
+		new Zend_Db_Table_Exception('Deprecated function');
+		$this->_select
+			->from(array($this->_name), array(
 				'id',
 				'cod',
 				'nome',
@@ -232,16 +226,15 @@ class Model_Db_Fichario extends Model_Db
 	public function getFichario($id)
 	{
 		$id = (int)$id;
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
-			->from(array('f' => $this->_name), array(
+		$this->_select
+			->from(array($this->_name), array(
 				'id',
 				'fazenda_id',
 				'cod',
 				'nome',
 				'rgn',
 				'sisbov',
-				'dt_nascimento' => new Zend_Db_Expr("DATE_FORMAT(f.dt_nascimento, '%d/%m/%Y')"),
+				'dt_nascimento' => new Zend_Db_Expr("DATE_FORMAT(".$this->_name.".dt_nascimento, '%d/%m/%Y')"),
 				'criador_id',
 				'pelagem_id',
 				'raca_id',
@@ -257,17 +250,17 @@ class Model_Db_Fichario extends Model_Db
 				'receptora_id',
 				'obs',
 			), $this->_schema)
-			->joinLeft('criador', 'f.criador_id = criador.id', array('criador_cod' => 'cod', 'criador' => 'dsc'), $this->_schema)
-			->joinLeft('pelagem', 'f.pelagem_id = pelagem.id', array('pelagem_cod' => 'cod', 'pelagem' => 'dsc'), $this->_schema)
-			->joinLeft('raca', 'f.raca_id = raca.id', array('raca_cod' => 'cod', 'raca' => 'dsc'), $this->_schema)
-			->joinLeft('rebanho', 'f.rebanho_id = rebanho.id', array('rebanho_cod' => 'cod', 'rebanho' => 'dsc'), $this->_schema)
-			->joinLeft('categoria', 'f.categoria_id = categoria.id', array('categoria_cod' => 'cod', 'categoria' => 'dsc'), $this->_schema)
-			->joinLeft('local', 'f.local_id = local.id', array('local_cod' => 'local', 'local' => 'dsc'), $this->_schema)
-			->joinLeft('grausangue', 'f.grausangue_id = grausangue.id', array('grausangue_cod' => 'cod', 'grausangue' => 'dsc'), $this->_schema)
-			->joinLeft(array('pai' => 'fichario'), 'f.pai_id = pai.id', array('pai_cod' => 'cod', 'pai' => 'nome'), $this->_schema)
-			->joinLeft(array('mae' => 'fichario'), 'f.mae_id = mae.id', array('mae_cod' => 'cod', 'mae' => 'nome'), $this->_schema)
-			->joinLeft(array('receptora' => 'fichario'), 'f.receptora_id = receptora.id', array('receptora_cod' => 'cod', 'receptora' => 'nome'), $this->_schema)
-			->where('f.id = ?', $id)
+			->joinLeft('criador', $this->_name.'.criador_id = criador.id', array('criador_cod' => 'cod', 'criador' => 'dsc'), $this->_schema)
+			->joinLeft('pelagem', $this->_name.'.pelagem_id = pelagem.id', array('pelagem_cod' => 'cod', 'pelagem' => 'dsc'), $this->_schema)
+			->joinLeft('raca', $this->_name.'.raca_id = raca.id', array('raca_cod' => 'cod', 'raca' => 'dsc'), $this->_schema)
+			->joinLeft('rebanho', $this->_name.'.rebanho_id = rebanho.id', array('rebanho_cod' => 'cod', 'rebanho' => 'dsc'), $this->_schema)
+			->joinLeft('categoria', $this->_name.'.categoria_id = categoria.id', array('categoria_cod' => 'cod', 'categoria' => 'dsc'), $this->_schema)
+			->joinLeft('local', $this->_name.'.local_id = local.id', array('local_cod' => 'local', 'local' => 'dsc'), $this->_schema)
+			->joinLeft('grausangue', $this->_name.'.grausangue_id = grausangue.id', array('grausangue_cod' => 'cod', 'grausangue' => 'dsc'), $this->_schema)
+			->joinLeft(array('pai' => 'fichario'), $this->_name.'.pai_id = pai.id', array('pai_cod' => 'cod', 'pai' => 'nome'), $this->_schema)
+			->joinLeft(array('mae' => 'fichario'), $this->_name.'.mae_id = mae.id', array('mae_cod' => 'cod', 'mae' => 'nome'), $this->_schema)
+			->joinLeft(array('receptora' => 'fichario'), $this->_name.'.receptora_id = receptora.id', array('receptora_cod' => 'cod', 'receptora' => 'nome'), $this->_schema)
+			->where($this->_name.'.id = ?', $id)
 		;
 
 //		print '<pre>'.$this->_select.'</pre>';
