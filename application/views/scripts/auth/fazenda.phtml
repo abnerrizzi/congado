@@ -8,15 +8,10 @@ $this->javascript();
   <legend>Selecione uma fazenda para continuar:</legend>
   <center><br/>
   <form name="form_fazenda" id="form_fazenda" method="post" action="<?=$this->baseUrl() .'/'. $this->action;?>">
-    <select name="fazenda">
-      <option value=""> -- </option>
-<?foreach ($this->fazendas as $fazenda):?>
-      <option value="<?=$fazenda['id'];?>"><?=$fazenda['descricao'];?></option>
-<?endforeach;?>
-    </select>
+    <?=$this->fazenda;?>
     <p align="right">
     <span class="UIButton UIButton_Large UIFormButton  UIButton_Blue">
-	  <input style="display: inline-block;" class="UIButton_Text" type="button" value="Continuar" name="submit"/>
+	  <input style="display: inline-block;" class="UIButton_Text" type="submit" value="Continuar" name="submit"/>
 	</span>
 	</p>
   </form>

@@ -16,7 +16,6 @@ class Model_Db_Fichario extends Model_Db
 {
 
 	protected $_name = 'fichario';
-	protected $_select = false;
 	protected $_referenceMap	= array(
         'CoberturaVaca' => array(
             'columns'           => array('id'),
@@ -37,17 +36,16 @@ class Model_Db_Fichario extends Model_Db
 			$orderby = 'dt_nascimento';
 		}
 
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
-			->from(array('f' => $this->_name), array(
+		$this->_select
+			->from(array($this->_name), array(
 				'id',
 				'cod',
 				'nome',
 				'rgn',
 				'data_nascimento' => new Zend_Db_Expr("DATE_FORMAT(dt_nascimento, '%d/%m/%Y')"),
 			), $this->_schema)
-			->joinLeft('local', 'f.local_id = local.id', array('local_dsc' => 'dsc'), $this->_schema)
-			->joinLeft('fazenda', 'f.fazenda_id = fazenda.id', array('fazenda_dsc' => 'descricao'), $this->_schema)
+			->joinLeft('local', $this->_name.'.local_id = local.id', array('local_dsc' => 'dsc'), $this->_schema)
+			->joinLeft('fazenda', $this->_name.'.fazenda_id = fazenda.id', array('fazenda_dsc' => 'descricao'), $this->_schema)
 			->order($orderby .' '. $order)
 			;
 
