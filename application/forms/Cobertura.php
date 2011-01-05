@@ -20,11 +20,7 @@ class Form_Cobertura extends Form_Default
 		$this->setName('cobertura');
 		$this->addElement('hidden', 'id');
 
-		$this->addElement('select', 'fazenda_id', array(
-			'label' => 'Fazenda',
-			'required' => true,
-			'class'	=> 'input',
-		));
+		$this->addElement('hidden', 'fazenda_id');
 
 		$this->addElement('hidden', 'vaca_id', array(
 			'required' => true

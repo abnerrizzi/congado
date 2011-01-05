@@ -263,21 +263,20 @@ class Model_Db_Cobertura extends Model_Db
 
 		$id = (int)$id;
 
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
-			->from(array('c' => $this->_name), array(
+		$this->_select
+			->from(array($this->_name), array(
 				'id',
 				'fazenda_id',
 				'dt_cobertura' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
 				'numerocobertura',
 			), $this->_schema)
-			->joinLeft(array('v' => 'fichario'), 'c.fichario_id = v.id', array('vaca_id' => 'v.id', 'vaca_cod' => 'v.cod', 'vaca' => 'nome'), $this->_schema)
-			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro_id' => 't.id', 'touro_cod' => 't.cod', 'touro' => 'nome'), $this->_schema)
-			->joinLeft(array('i' => 'inseminador'), 'c.inseminador_id = i.id', array('inseminador_id' => 'i.id', 'inseminador_cod' => 'i.cod', 'inseminador' => 'i.dsc'), $this->_schema)
-			->joinLeft(array('l' => 'lote'), 'c.lote_id = l.id', array('lote_id' => 'l.id', 'lote_cod' => 'l.cod', 'lote' => 'l.dsc'), $this->_schema)
-			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array('tipo' => 'tipo.cod'), $this->_schema)
+			->joinLeft(array('v' => 'fichario'), $this->_name.'.fichario_id = v.id', array('vaca_id' => 'v.id', 'vaca_cod' => 'v.cod', 'vaca' => 'nome'), $this->_schema)
+			->joinLeft(array('t' => 'fichario'), $this->_name.'.touro_id = t.id', array('touro_id' => 't.id', 'touro_cod' => 't.cod', 'touro' => 'nome'), $this->_schema)
+			->joinLeft(array('i' => 'inseminador'), $this->_name.'.inseminador_id = i.id', array('inseminador_id' => 'i.id', 'inseminador_cod' => 'i.cod', 'inseminador' => 'i.dsc'), $this->_schema)
+			->joinLeft(array('l' => 'lote'), $this->_name.'.lote_id = l.id', array('lote_id' => 'l.id', 'lote_cod' => 'l.cod', 'lote' => 'l.dsc'), $this->_schema)
+			->joinLeft(array('tipo' => 'cobertura_tipo'), $this->_name.'.cobertura_tipo_id = tipo.id', array('tipo' => 'tipo.cod'), $this->_schema)
 			->where('tipo.cod IN (?)', array('C', 'I', 'M'))
-			->where('c.id = ?', $id)
+			->where($this->_name.'.id = ?', $id)
 			;
 
 		$row = $this->fetchRow($this->_select);

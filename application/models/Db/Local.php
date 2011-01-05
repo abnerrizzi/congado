@@ -20,10 +20,9 @@ class Model_Db_Local extends Model_Db
 
 	public function getPaginatorAdapter($orderby = null, $order = null)
 	{
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
-			->from(array('l' => $this->_name), array('id', 'local', 'dsc', 'area'), $this->_schema)
-			->join(array('f' => 'fazenda'), 'f.id = l.fazenda_id', array('fazenda' => 'descricao'), $this->_schema)
+		$this->_select
+			->from(array($this->_name), array('id', 'local', 'dsc', 'area'), $this->_schema)
+			->join(array('f' => 'fazenda'), 'f.id = '. $this->_name .'.fazenda_id', array('fazenda' => 'descricao'), $this->_schema)
 			->order($orderby .' '. $order)
 			;
 		return $this->_select;
@@ -31,6 +30,7 @@ class Model_Db_Local extends Model_Db
 
 	public function getLocais($orderby = null, $order = null)
 	{
+		new Zend_Exception('Deprecated function');
 		$query = $this->select()
 			->setIntegrityCheck(false)
 			->from(array('l' => $this->_name), array('*'), $this->_schema)
@@ -176,8 +176,6 @@ class Model_Db_Local extends Model_Db
 	{
 
 		$data = array (
-			'fazenda_id' => intval($post['fazenda_id']),
-			'local'		 => utf8_encode($post['local']),
 			'dsc'		 => utf8_encode($post['dsc']),
 			'area'		 => $post['area'],
 		);

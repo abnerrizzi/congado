@@ -27,10 +27,9 @@ class Model_Db_Lote extends Model_Db
 
 	public function getPaginatorAdapter($orderby, $order)
 	{
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
-			->from(array('l' => $this->_name), array('id', 'cod', 'dsc'), $this->_schema)
-			->join(array('f' => 'fazenda'), 'f.id = l.fazenda_id', array('fazenda' => 'descricao'), $this->_schema)
+		$this->_select
+			->from(array($this->_name), array('id', 'cod', 'dsc'), $this->_schema)
+			->join(array('f' => 'fazenda'), $this->_name.'.fazenda_id = f.id', array('fazenda' => 'descricao'), $this->_schema)
 			->order($orderby .' '. $order)
 			;
 //			print '<pre>'.$this->_select;
@@ -71,10 +70,9 @@ class Model_Db_Lote extends Model_Db
 			$cols[] = $col_id;
 		}
 
-		$this->_select = $this->select()
+		$this->_select
 			->from($this->_name, $cols, $this->_schema)
-			->setIntegrityCheck(false)
-			->join(array('f' => 'fazenda'), 'fazenda_id = f.id', array('fazenda_dsc' => 'descricao'), $this->_schema)
+			->join(array('fazenda'), 'fazenda_id = fazenda.id', array('fazenda_dsc' => 'descricao'), $this->_schema)
 		;
 
 		if ($orderby && $order) {
@@ -89,11 +87,11 @@ class Model_Db_Lote extends Model_Db
 			}
 		}
 
-		if ($fazenda_id) {
-			$this->_select->where('f.id = ?', (int)$fazenda_id);
-		} else {
-			$this->_select->where('1 = ?', 2);
-		}
+//		if ($fazenda_id) {
+//			$this->_select->where('fazenda.id = ?', (int)$fazenda_id);
+//		} else {
+//			$this->_select->where('1 = ?', 2);
+//		}
 
 		$return = array(
 			'page' => $page,
@@ -128,6 +126,7 @@ class Model_Db_Lote extends Model_Db
 
 	public function getLotes($orderby = null, $order = null)
 	{
+		new Zend_Exception('Deprecated function');
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
 			->from(array('l' => $this->_name), array('*'), $this->_schema)

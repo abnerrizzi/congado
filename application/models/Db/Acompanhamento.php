@@ -27,6 +27,7 @@ class Model_Db_Acompanhamento extends Model_Db
 	 */
 	public function getAcompanhamentos($orderby = null, $order = null)
 	{
+		new Zend_Exception('Deprecated function');
 		$query = $this->select()
 			->from($this->_name)
 			->order($orderby .' '. $order)

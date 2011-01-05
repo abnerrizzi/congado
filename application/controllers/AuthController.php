@@ -123,6 +123,7 @@ class AuthController extends Zend_Controller_Action
 		foreach ($fazendas as $fazenda) {
 			$fazendaSelect->addMultiOption($fazenda['id'], $fazenda['descricao']);
 		}
+		$fazendaSelect->removeDecorator('Label')->removeDecorator('Tag');
 
 		$this->view->fazenda = $fazendaSelect;
 		$this->view->action = $this->getRequest()->getControllerName() . '/' . $this->getRequest()->getActionName();
@@ -130,8 +131,11 @@ class AuthController extends Zend_Controller_Action
 		if ($this->getRequest()->isPost()) {
 			if ($this->getRequest()->getParam('fazenda', false)) {
 				$auth = Zend_Auth::getInstance();
-				$fazendaSession = new Zend_Session_Namespace('fazendaSession');
-				$fazendaSession->fazenda_id = $this->getRequest()->getParam('fazenda');
+				
+				$_auth = (array) $auth->getIdentity();
+				$_auth['fazenda_id'] = $this->getRequest()->getParam('fazenda');
+
+				$auth->getStorage()->write((object) $_auth);
 
 				$authNamespace = new Zend_Session_Namespace('Zend_Auth');
 				if (isset($authNamespace->requestUri) && $authNamespace->requestUri != '/auth/fazenda') {
