@@ -20,11 +20,7 @@ class Form_Local extends Form_Default
 		$this->setName('local');
 		$this->addElement('hidden', 'id');
 
-		$this->addElement('select', 'fazenda_id', array(
-			'label' => 'Fazenda',
-			'required' => true,
-			'class'	=> 'input',
-		));
+		$this->addElement('hidden', 'fazenda_id');
 
 		$this->addElement('text', 'local', array(
 			'label' => 'Local',

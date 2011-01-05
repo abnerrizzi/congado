@@ -32,7 +32,7 @@ class Model_Db_User extends Model_Db
 
 	public function getLastLogin($user_id)
 	{
-		$this->_select = $this->select()
+		$this->_select
 			->from($this->_name, array('lastlogin'), $this->_schema)
 			->where('id = ?', (int)$user_id)
 		;

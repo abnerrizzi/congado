@@ -50,7 +50,6 @@ class LoteController extends Zend_Controller_Action
 		/*
 		 * Fields
 		 */
-		$fields[] = new Model_Grid_Fields('fazenda', 'Fazenda', 320);
 		$fields[] = new Model_Grid_Fields('cod', 'Lote', 35);
 		$fields[] = new Model_Grid_Fields('dsc','Descrição', 200);
 
@@ -138,20 +137,6 @@ class LoteController extends Zend_Controller_Action
 			->setAttrib('readonly', 'readonly')
 			->setAttrib('class', 'readonly')
 			;
-		$loteForm->getElement('fazenda_id')
-			->setAttrib('readonly', 'readonly')
-			->setAttrib('class', 'readonly')
-			;
-
-		$fazendaModel = new Model_Db_Fazenda();
-		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
-		$loteForm->getElement('fazenda_id')
-			->addMultiOption(false, '--');
-
-		foreach ($fazendas as $fazenda) {
-			$loteForm->getElement('fazenda_id')
-				->addMultiOption($fazenda['id'], $fazenda['descricao']);
-		}
 
 		if ($request->isPost()) {
 
@@ -170,7 +155,7 @@ class LoteController extends Zend_Controller_Action
 			}
 		}
 
-		$this->view->elements = array('id' , 'fazenda_id' , 'cod' , 'dsc', 'delete');
+		$this->view->elements = array('id', 'cod', 'dsc', 'delete');
 		$this->view->form = $loteForm;
 	}
 

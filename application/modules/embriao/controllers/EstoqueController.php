@@ -22,6 +22,8 @@ class Embriao_EstoqueController extends Zend_Controller_Action
 		$this->view->auth = $auth->hasIdentity();
 		$this->view->title = 'Estoque de Embriões';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
+		Zend_Debug::dump($auth->getIdentity());
+		var_dump($auth);
     }
 
     public function indexAction()
@@ -125,7 +127,7 @@ class Embriao_EstoqueController extends Zend_Controller_Action
     		'dt_coleta',
     		array('doadora'),
     		array('touro'),
-    		'sexo',
+//    		'sexo',
     		array('criador'),
     		'delete',
     	);
@@ -162,7 +164,7 @@ class Embriao_EstoqueController extends Zend_Controller_Action
     		'dt_coleta',
     		array('doadora'),
     		array('touro'),
-    		'sexo',
+//    		'sexo',
     		array('criador'),
 		);
 

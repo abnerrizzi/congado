@@ -147,20 +147,6 @@ class FicharioController extends Zend_Controller_Action
 			->removeValidator('NoRecordExists')
 			;
 
-		/*
-		 * Populando select de fazendas
-		 */
-		$fazendaModel = new Model_Db_Fazenda();
-		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
-		$ficharioForm->getElement('fazenda_id')
-			->addMultiOption(false, '--')
-			->setAttrib('disabled', 'disabled')
-		;
-		foreach ($fazendas as $fazenda) {
-			$ficharioForm->getElement('fazenda_id')
-				->addMultiOption($fazenda['id'], $fazenda['descricao']);
-		}
-
 		if ($request->isPost()) {
 
 			if ($ficharioForm->isValid($request->getPost())) {

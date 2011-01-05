@@ -29,9 +29,7 @@ class Model_Db extends Zend_Db_Table_Abstract
 		;
 
 		if (in_array('fazenda_id', $this->_cols)) {
-			$fazendaSession	= new Zend_Session_Namespace('fazendaSession');
-			$this->_fId = (int)$fazendaSession->fazenda_id;
-			Zend_Debug::dump('have `fazenda_id`');
+			$this->_fId = (int)Zend_Auth::getInstance()->getIdentity()->fazenda_id;
 			$this->_select->where($this->_name.'.fazenda_id = ?', $this->_fId);
 		}
 	}
