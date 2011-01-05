@@ -134,6 +134,7 @@ class AuthController extends Zend_Controller_Action
 				
 				$_auth = (array) $auth->getIdentity();
 				$_auth['fazenda_id'] = $this->getRequest()->getParam('fazenda');
+				$_auth['fazenda_dsc'] = $fazendas[$this->getRequest()->getParam('fazenda')]['descricao'];
 
 				$auth->getStorage()->write((object) $_auth);
 
