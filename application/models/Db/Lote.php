@@ -137,11 +137,13 @@ class Model_Db_Lote extends Model_Db
 		return $result->toArray();
 	}
 
-	public function addLote($fazenda_id, $cod, $dsc)
+	public function addLote($cod, $dsc)
 	{
 
+		Zend_Debug::dump(Zend_Auth::getInstance()->getIdentity()->fazenda_id);
+		die();
 		$data = array(
-			'fazenda_id' => utf8_encode($fazenda_id),
+			'fazenda_id' => utf8_encode(Zend_Auth::getInstance()->getIdentity()->fazenda_id),
 			'cod'		=> utf8_encode($cod),
 			'dsc'		=> utf8_encode($dsc),
 		);

@@ -17,6 +17,7 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		$this->view->auth = $auth->hasIdentity();
 		$this->view->title = 'Reprodução :: Cobertura';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
+		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 	}
 
 	public function indexAction()
@@ -130,14 +131,12 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 		$coberturaModel = new Model_Db_Cobertura();
 
 		$this->populateTipos($coberturaForm);
-		$this->populateFazendas($coberturaForm);
 
 		if ($request->isPost()) {
 
 			$coberturaForm->getElement('fazenda_id')->setRequired(false);
 			$coberturaForm->getElement('lote_id')->setRequired(false);
 			$coberturaForm->getElement('dataCio')->setRequired(false);
-
 			if ($coberturaForm->isValid($request->getPost())) {
 				$values = $coberturaForm->getValues(true);
 				$data = array(
@@ -224,17 +223,6 @@ class Reproducao_CoberturaController extends Zend_Controller_Action
 	private function populateFazendas($coberturaForm)
 	{
 		$coberturaForm->getElement('fazenda_id')
-			->addMultiOption(false, '--')
-		;
-		$fazendaModel = new Model_Db_Fazenda();
-		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
-		foreach ($fazendas as $fazenda)
-		{
-			foreach ($fazendas as $fazenda)
-			{
-				$coberturaForm->getElement('fazenda_id')
-					->addMultiOption($fazenda['id'], $fazenda['descricao']);
-			}
-		}
+			->setValue(Zend_Auth::getInstance()->getIdentity()->fazenda_id);
 	}
 }

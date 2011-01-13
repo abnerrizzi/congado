@@ -20,6 +20,7 @@ class BackupController extends Zend_Controller_Action
 	{
 		/* Initialize action controller here */
 		$this->downloadKey = md5('chave de criptografia de download');
+		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 	}
 
 	public function indexAction()
