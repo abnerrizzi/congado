@@ -21,6 +21,7 @@ class AuthController extends Zend_Controller_Action
 		$this->initView();
 		$this->view->baseUrl = $this->_request->getBaseUrl();
 		$this->view->user = Zend_Auth::getInstance()->getIdentity();
+		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 		$this->view->title = 'Login';
 	}
 
@@ -70,6 +71,7 @@ class AuthController extends Zend_Controller_Action
 					$auth->getStorage()->write($data);
 
 					$authNamespace = new Zend_Session_Namespace('Zend_Auth');
+					$authNamespace->user_id = $data->id;
 
 					if ($rememberme) {
 						$authNamespace->rememberme = 1;

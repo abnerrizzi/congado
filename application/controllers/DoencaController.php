@@ -22,6 +22,7 @@
 		$this->view->auth = $auth->hasIdentity();
 		$this->view->title = 'Tipos de Controle Sanitário';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
+		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 	}
 
 	public function indexAction()

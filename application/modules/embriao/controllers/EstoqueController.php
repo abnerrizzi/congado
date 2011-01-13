@@ -22,6 +22,7 @@ class Embriao_EstoqueController extends Zend_Controller_Action
 		$this->view->auth = $auth->hasIdentity();
 		$this->view->title = 'Estoque de Embriões';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
+		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 		Zend_Debug::dump($auth->getIdentity());
 		var_dump($auth);
     }
