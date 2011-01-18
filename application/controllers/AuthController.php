@@ -125,6 +125,10 @@ class AuthController extends Zend_Controller_Action
 		foreach ($fazendas as $fazenda) {
 			$fazendaSelect->addMultiOption($fazenda['id'], $fazenda['descricao']);
 		}
+
+		if (Zend_Auth::getInstance()->getIdentity()->fazenda_id > 0) {
+			$fazendaSelect->setValue(Zend_Auth::getInstance()->getIdentity()->fazenda_id);
+		}
 		$fazendaSelect->removeDecorator('Label')->removeDecorator('Tag');
 
 		$this->view->fazenda = $fazendaSelect;
@@ -133,7 +137,7 @@ class AuthController extends Zend_Controller_Action
 		if ($this->getRequest()->isPost()) {
 			if ($this->getRequest()->getParam('fazenda', false)) {
 				$auth = Zend_Auth::getInstance();
-				
+
 				$_auth = (array) $auth->getIdentity();
 				$_auth['fazenda_id'] = $this->getRequest()->getParam('fazenda');
 				$_auth['fazenda_dsc'] = $fazendas[$this->getRequest()->getParam('fazenda')]['descricao'];
