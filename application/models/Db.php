@@ -49,14 +49,14 @@ class Model_Db extends Zend_Db_Table_Abstract
 			$cols = array($cols);
 		}
 
-		$select = $this->select()
+		$this->_select
 			->from($this->_name, $cols, $this->_schema);
 
 		if ($orderby != null && $order != null) {
-			$select->order($orderby .' '. $order);
+			$this->_select->order($orderby .' '. $order);
 		}
 
-		return $select;
+		return $this->_select;
 
 	}
 

@@ -68,5 +68,16 @@ class Test_IndexController extends Zend_Controller_Action
 		exit;
 	}
 
+	public function menuAction()
+	{
+	}
 
+	public function menufcbkAction()
+	{
+		$x = array(
+			'1'	=> 'Fazenda 3R',
+			'2'	=> 'Fazenda HP',
+		);
+		$this->view->jsonSelect = json_encode($x);
+	}
 }
