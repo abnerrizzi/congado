@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: ExamerepController.php 492 2010-10-18 19:47:09Z bacteria_ $
+ * @version $Id$
  * 
  */
 

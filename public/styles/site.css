@@ -276,4 +276,9 @@ h3, #grid-title {
 	font-size: 12px;
 }
 
-
+select {
+	font-size: 13px;
+	font-weight: bold;
+	border: 1px solid #BDC7D8;
+	padding: 2px;
+}
