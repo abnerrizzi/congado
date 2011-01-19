@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: CoberturaController.php 521 2010-11-16 17:17:32Z bacteria_ $
+ * @version $Id$
  * 
  */
 
@@ -23,12 +23,12 @@ class Reproducao_DiagnosticoController extends Zend_Controller_Action
 	public function indexAction()
 	{
 		$gridModel = new Model_Grid($this->view->title);
-		$coberturaModel = new Model_Db_Cobertura();
+		$diagnosticoModel = new Model_Db_Diagnostico();
 
 		$_page	= $this->_getParam('page', 1);
 		$_by	= $this->_getParam('by', 'id');
 		$_order	= $this->_getParam('sort', 'asc');
-		$result	= $coberturaModel->getPaginatorAdapter($_by, $_order);
+		$result	= $diagnosticoModel->getPaginatorAdapter($_by, $_order);
 		
 		/*
 		 * Paginator
@@ -44,12 +44,10 @@ class Reproducao_DiagnosticoController extends Zend_Controller_Action
 		/*
 		 * Fields
 		 */
-		$fields[] = new Model_Grid_Fields('vaca', 'Vaca', 80);
-		$fields[] = new Model_Grid_Fields('dh', 'Data Cobertura', 100);
-		$fields[] = new Model_Grid_Fields('tipo', 'Tipo', 1);
-		$fields[] = new Model_Grid_Fields('touro', 'Touro', 70);
-		$fields[] = new Model_Grid_Fields('inseminador', 'Inseminador', 90);
-		$fields[] = new Model_Grid_Fields('lote_dsc', 'Lote', 120);
+		$fields[] = new Model_Grid_Fields('vaca_cod', 'Código', 70);
+		$fields[] = new Model_Grid_Fields('vaca', 'Vaca', 240);
+		$fields[] = new Model_Grid_Fields('data', 'Data', 1);
+		$fields[] = new Model_Grid_Fields('diag', 'Diagnóstico', 1);
 
 		/*
 		 * Grid Model
@@ -59,15 +57,15 @@ class Reproducao_DiagnosticoController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'reproducao/cobertura',
+			'module'	=> 'reproducao/diagnostico',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'reproducao/cobertura',
+			'module'	=> 'reproducao/diagnostico',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'reproducao/cobertura',
+			'module'	=> 'reproducao/diagnostico',
 			'action'	=> 'add',
 		));
 

@@ -21,7 +21,7 @@ class AuthController extends Zend_Controller_Action
 		$this->initView();
 		$this->view->baseUrl = $this->_request->getBaseUrl();
 		$this->view->user = Zend_Auth::getInstance()->getIdentity();
-		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
+		$this->view->fazenda_dsc = @Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 		$this->view->title = 'Login';
 	}
 
@@ -126,7 +126,7 @@ class AuthController extends Zend_Controller_Action
 			$fazendaSelect->addMultiOption($fazenda['id'], $fazenda['descricao']);
 		}
 
-		if (Zend_Auth::getInstance()->getIdentity()->fazenda_id > 0) {
+		if (@Zend_Auth::getInstance()->getIdentity()->fazenda_id > 0) {
 			$fazendaSelect->setValue(Zend_Auth::getInstance()->getIdentity()->fazenda_id);
 		}
 		$fazendaSelect->removeDecorator('Label')->removeDecorator('Tag');

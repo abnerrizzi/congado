@@ -9,14 +9,43 @@
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Model
  * @subpackage Db
- * @version $Id: Destino.php 522 2010-11-16 19:57:47Z bacteria_ $
+ * @version $Id$
  * 
  */
 class Model_Db_Diagnostico extends Model_Db
 {
 
-	protected $_name = 'destino';
-	protected $_select = false;
+	protected $_name = 'diagnostico';
+
+	public function getPaginatorAdapter($orderby = null, $order = null, $cols = '*')
+	{
+
+		if ($orderby == 'data') {
+			$orderby = 'dt_diagnostico';
+		} elseif ($orderby == 'diag') {
+			$orderby = 'prenha';
+		}
+
+		if (!is_array($cols)) {
+			$cols = array($cols);
+		}
+
+		$this->_select
+			->from($this->_name, array(
+				'id',
+				'data' => new Zend_Db_Expr("DATE_FORMAT (dt_diagnostico, '%d/%m/%Y')"),
+				'diag' => new Zend_Db_Expr("IF (prenha = 1, 'Prenha', 'Vazia')"),
+			), $this->_schema)
+			->joinLeft('fichario', $this->_name.'.fichario_id = fichario.id', array('vaca_cod' => 'cod', 'vaca' => 'nome'),$this->_schema)
+		;
+
+		if ($orderby != null && $order != null) {
+			$this->_select->order($orderby .' '. $order);
+		}
+
+		return $this->_select;
+
+	}
 
 	public function getDiagnosticos($orderby = null, $order = null)
 	{
@@ -40,37 +69,6 @@ class Model_Db_Diagnostico extends Model_Db
 			$return[$key] = utf8_decode($val);
 		}
 		return $return;
-	}
-
-	public function updateDestino($post)
-	{
-		$data = array(
-			'cod'=> utf8_encode($post['cod']),
-			'dsc'=> utf8_encode($post['dsc'])
-		);
-		$where = 'id = '.(int)$post['id'];
-		$this->update($data , $where );
-	}
-
-	public function addDestino($cod, $dsc)
-	{
-
-		$data = array(
-			'cod' => utf8_encode($cod),
-			'dsc' => utf8_encode($dsc)
-		);
-
-		if ($this->insert($data)) {
-			return true;
-		} else {
-			return false;
-		}
-
-	}
-
-	public function deleteDestino($id)
-	{
-		$this->delete('id = ' . intval($id));
 	}
 
 }
