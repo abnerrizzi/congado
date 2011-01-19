@@ -1,7 +1,11 @@
 <?php
 
-$this->javascript()
-	;
+$this->headScript()
+	->appendScript("\t__title = 'Diagnóstico de Gestação';\n")
+	->appendFile($this->baseUrl() . '/scripts/library/_class.filter.js')
+;
+
+$this->javascript();
 
 echo $this->grid($this->grid);
 

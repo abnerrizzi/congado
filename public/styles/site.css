@@ -277,8 +277,20 @@ h3, #grid-title {
 }
 
 select {
-	font-size: 13px;
-	font-weight: bold;
 	border: 1px solid #BDC7D8;
 	padding: 2px;
 }
+
+select #fazenda {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+
+#search input[type=text], select {
+	border: 1px solid #f00;
+	padding: 2px;
+}
+
+
+

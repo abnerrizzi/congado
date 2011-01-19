@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	window.alert('DEPRECATED: default_search.js');
+
 	if (typeof(__module) == 'undefined') {
 		__action = editUrl.split("/")[1];
 		__module = '';
