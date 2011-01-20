@@ -51,6 +51,9 @@
 
 <body>
 
+  <div id="preloader">Carregando... Por favor espere.</div>
+  <div id="container" style="display: none;">
+
 <?php if (Zend_Auth::getInstance()->hasIdentity()) { include_once ('menu.phtml'); } ?>
 
 
@@ -59,6 +62,7 @@
   </div>
   <div id="ajax_loader" class="ajax_loader" style="display: none;"></div>
 
+  </div>
   <?php echo $this->headScript() ?>
 
 </body>
