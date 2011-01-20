@@ -1,7 +1,13 @@
 $(document).ready(function(){
+
+	if ($('#container').length && $('#preloader').length) {
+		$('#container').show();
+		$('#preloader').fadeOut(100);
+	}
+
 	$('.UIPager_PageResult').prepend('<span class="UIPager_PageResult" id="pb1"></span>');
-	current = parseInt($('span:#page').html(),10);
-	total = parseInt($('span:#pages').html(),10);
+	current = parseInt($('span:#page').html(), 10);
+	total = parseInt($('span:#pages').html(), 10);
 	percentage = parseInt( (current/total)*100, 10);
 	$('#pb1').progressBar(percentage, {
 		steps: 0,
