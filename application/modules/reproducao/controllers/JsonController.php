@@ -105,4 +105,26 @@ class Reproducao_JsonController extends Zend_Controller_Action
 
 	}
 
+	public function diagnosticoAction()
+	{
+
+		$exameModel = new Model_Db_Diagnostico();
+		$exames = $exameModel->listJson(
+			array(
+				'id',
+				'dt_diagnostico',
+				'fichario_id'
+			),
+			$this->getRequest()->getParam('sortname','id'),
+			$this->getRequest()->getParam('sortorder','asc'),
+			$this->getRequest()->getParam('page','1'),
+			$this->getRequest()->getParam('rp'),
+			$this->getRequest()->getParam('qtype'),
+			$this->getRequest()->getParam('query'),
+			$this->getRequest()->getParam('like', false)
+		);
+		$this->view->content = utf8_encode(json_encode($exames));
+		$this->render('index');
+
+	}
 }

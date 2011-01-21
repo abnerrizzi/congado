@@ -287,8 +287,8 @@ select #fazenda {
 }
 
 
-#search input[type=text], select {
-	border: 1px solid #ccc;
+#search input[type="text"], #search select {
+	border: 1px solid #BDC7D8;
 	padding: 2px;
 }
 
