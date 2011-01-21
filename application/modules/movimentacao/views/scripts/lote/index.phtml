@@ -3,6 +3,7 @@
 $this->headScript()
 //	->appendScript("\t__title = 'Pelagem';\n")
 	->appendFile($this->baseUrl() . '/scripts/library/default_search.js')
+	->appendScript("\t__module = '".Zend_Controller_Front::getInstance()->getRequest()->getModuleName()."';\n")
 	;
 
 echo $this->grid($this->grid);
