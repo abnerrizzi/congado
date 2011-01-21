@@ -1,7 +1,9 @@
 <?php 
 
 $this->headLink()->appendStylesheet($this->baseUrl().'/styles/site.css');
-$this->headScript()->appendFile($this->baseUrl().'/scripts/auth/login.js');
+$this->headScript()->appendFile($this->baseUrl().'/scripts/auth/login.js')
+->appendFile($this->baseUrl().'/scripts/functions.js');
+;
 
 ?>
 

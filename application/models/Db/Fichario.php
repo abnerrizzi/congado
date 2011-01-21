@@ -50,7 +50,7 @@ class Model_Db_Fichario extends Model_Db
 			;
 
 		return $this->_select;
-		
+
 	}
 
 	/**

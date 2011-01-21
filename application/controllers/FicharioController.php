@@ -91,18 +91,7 @@ class FicharioController extends Zend_Controller_Action
 		$ficharioForm->setMethod('post');
 		$this->view->form = $ficharioForm;
 
-		/*
-		 * Populando select de fazendas
-		 */
-		$fazendaModel = new Model_Db_Fazenda();
-		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
-		$ficharioForm->getElement('fazenda_id')
-			->setAttrib('skip-data', '1')
-			->addMultiOption(false, '--');
-		foreach ($fazendas as $fazenda) {
-			$ficharioForm->getElement('fazenda_id')
-				->addMultiOption($fazenda['id'], $fazenda['descricao']);
-		}
+		$ficharioForm->getElement('fazenda_id');
 
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();

@@ -1,14 +1,12 @@
 $(document).ready(function() {
 
-	window.alert('DEPRECATED: default_search.js');
-
-	if (typeof(__module) == 'undefined') {
+	if (typeof(__module) == 'undefined' || __module == '') {
 		__action = editUrl.split("/")[1];
 		__module = '';
 	} else {
-//		__baseUrl = baseUrl + '/' + __module;
 		__action = editUrl.split("/")[2];
 	}
+	editUrl = baseUrl + editUrl;
 
 	$("#add>a").before(
 			'<a class="UIButton UIButton_Gray UIActionButton" href="javascript:void(0);" id="search" title="Pesquisar">\n'+
@@ -19,66 +17,33 @@ $(document).ready(function() {
 			'\n'
 	);
 
-	var _Height = checkBrowser();
-
-	var $dialog = $('<div></div>').dialog(
-			{
-				modal: true,
-				draggable: true,
-				closeOnEscape: true,
-				autoOpen: false,
-				resizable: false,
-				title: __title,
-				width: 620,
-				height: parseInt(390 + _Height)
-			}).attr('id', 'search');
-	$dialog.html('<div id="search-default"></div>');
-
 	$('#add a#search').click(function(){
-		$dialog.dialog('open');
-		$("#search-default").flexigrid(
-		{
-			url: baseUrl +'/'+ __module +'/json/'+ __action,
-			dataType: 'json',
-			colModel : [{
-					display: 'Codigo',
-					name : 'cod',
-					width : 80,
-					sortable : true,
-					align: 'left'
-				}, {
-					display: 'Descrição',
-					name : 'dsc',
-					width : 160,
-					sortable : true,
-					align: 'left'
-				}],
-			searchitems : [{
-					display: 'Codigo',
-					name : 'cod'
-				}, {
-					display: 'Descrição',
-					name : 'dsc',
-					isdefault: true
-				}],
-			sortname: "dsc",
-			sortorder: "asc",
-			like: true,
-			usepager: true,
-			title: false,
-			useRp: true,
-			rp: 10,
-			showTableToggleBtn: false,
-			pagestat: 'Mostrando {from} até {to} de {total} itens',
-			width: 600,
-			height: (240 + _Height),
-			onSelect: function(row) {
-				getRecord(row);
-			}
-		});
-		$dialog.fadeIn(200);
+		__url = baseUrl +'/'+ __module +'/json/'+ __action;
+		search.url = __url;
+		search.defaultColModel = [{
+			display: 'Código',
+			name : 'cod',
+			width : 70,
+			sortable : true,
+			align: 'left'
+		}, {
+			display: 'Descrição',
+			name : 'dsc',
+			width : 240,
+			sortable : true,
+			align: 'left'
+		}];
+		search.defaultSearchItem = [{
+			display: 'Código',
+			name : 'cod',
+			isdefault: true
+		}, {
+			display: 'Descrição',
+			name : 'dsc'
+		}];
+		search.createDialog(__title);
+		search.defaultSearch();
 	});
-
 
 });
 
