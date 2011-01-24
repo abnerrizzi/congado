@@ -70,6 +70,14 @@ class Test_IndexController extends Zend_Controller_Action
 
 	public function menuAction()
 	{
+		$fazendaModel = new Model_Db_Fazenda();
+		$fazendas = $fazendaModel->getFazendaByUser(Zend_Auth::getInstance()->getIdentity()->id);
+		foreach ($fazendas as $key) {
+			$x[$key['id']] = $key['descricao'];
+		}
+
+		$this->view->fazendas = $x;
+		$this->view->selected = Zend_Auth::getInstance()->getIdentity()->fazenda_id;
 	}
 
 	public function menufcbkAction()
