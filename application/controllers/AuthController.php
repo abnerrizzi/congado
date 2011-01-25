@@ -116,12 +116,21 @@ class AuthController extends Zend_Controller_Action
 		$fazendaModel = new Model_Db_Fazenda();
 		$user_id = Zend_Auth::getInstance()->getIdentity()->id;
 
+		$__fazendas = $fazendaModel->getFazendaByUser(Zend_Auth::getInstance()->getIdentity()->id);
+		foreach ($__fazendas as $__key) {
+			$x[$__key['id']] = $__key['descricao'];
+		}
+
+		$this->view->fazendas = $x;
+		$this->view->selected = @Zend_Auth::getInstance()->getIdentity()->fazenda_id;
+		unset($__fazendas, $__key);
+
 		$form = new Zend_Form();
 		$fazendaSelect = $form->createElement('select', 'fazenda');
 		$fazendaSelect->setRequired(true);
 
 		$fazendas = $fazendaModel->getFazendaByUser($user_id);
-		$fazendaSelect->addMultiOption(false, '-- FAZENDAS --');
+		$fazendaSelect->addMultiOption(false, '');
 		foreach ($fazendas as $fazenda) {
 			$fazendaSelect->addMultiOption($fazenda['id'], $fazenda['descricao']);
 		}

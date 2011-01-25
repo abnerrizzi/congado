@@ -1,0 +1,62 @@
+<?
+$this->headLink()
+	->appendStylesheet($this->baseUrl() . '/styles/fcbk/eARZq_C-Mf4.css')
+	->appendStylesheet($this->baseUrl() . '/styles/fcbk/DKM6CTLqpIp.css')
+;
+
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/jquery-1.4.4.js')
+
+//	->appendFile($this->baseUrl() . '/scripts/library/fcbk/71qWoI8S5cd.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/fcbk/845Rh0B0Eja.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/fcbk/9GiaWrLK1HF.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/fcbk/ltal48w7Cfq.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/fcbk/PbD_CkDvn44.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/fcbk/JOa9lR4Aorn.js')
+;
+
+$this->javascript();
+
+
+?>
+
+
+<div class="mbm pam uiBoxGray topborder">
+  <div class="clearfix editFriendsSearchHeader">
+    <div class="clearfix">
+      <div class="uiSelector lfloat uiSelectorNormal uiSelectorDynamicLabel" id="u850684_12">
+        <div class="wrap">
+          <a class="uiSelectorButton uiButton" href="#" aria-haspopup="1" data-length="30" rel="toggle">
+            <i class="mrs img sp_epwws3 sx_61e291"></i>
+            <span class="uiButtonText"><?=$this->fazendas[$this->selected];?></span>
+          </a>
+          <div class="uiSelectorMenuWrapper uiToggleFlyout">
+            <ul role="menu" class="uiMenu uiSelectorMenu">
+<?foreach ($this->fazendas as $key => $value):?>
+<? if ($key == $this->selected) { $selected = "checked"; } else { 	$selected = ""; } ?>
+              <li class="uiMenuItem uiMenuItemRadio uiSelectorOption <?=$selected;?>" data-label="<?=$value;?>">
+                <a class="itemAnchor" tabindex="0" href="#" rel="ignore">
+                  <span class="itemLabel fsm"><?=$value;?></span></a></li>
+<?endforeach;?>
+<!--
+	          <li class="uiMenuSeparator"></li>
+-->
+</ul>
+</div>
+</div>
+
+<select id="qwe">
+	<option value=""></option>
+<?foreach ($this->fazendas as $key => $value):?>
+<?if ($key == $this->selected):?>
+    <option value="<?=$key;?>" selected="selected"><?=$value;?></option>
+<?else:?>
+    <option value="<?=$key;?>"><?=$value;?></option>
+<?endif;?>
+<?endforeach;?>
+</select></div>
+</div>
+</div>
+</div>
+
+

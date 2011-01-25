@@ -14,6 +14,22 @@ $(document).ready(function(){
 		stepDuration: 0,
 		barImage: {0: baseUrl+'/images/progressbar/progressbg_green.gif'}
 	});
+
+	url = window.location.href.split('/');
+
+	for (var i = 0; i < url.length; i++)
+	{
+		if (url[i] == 'edit' || url[i] == 'add') {
+			$('input[type=text][class=input], input[type=text][class=input_num], input[type=checkbox], input[type=radio], select[class=input], textarea[class=input]')
+			.change(function(){
+				__changed = true;
+			});
+		}
+	}
+	$("form").submit(function() {
+	      __changed = null;
+	});
+
 });
 
 
@@ -47,25 +63,6 @@ window.onbeforeunload = function(evt) {
 		return msg;
 	}
 };
-
-$(document).ready(function() {
-
-	url = window.location.href.split('/');
-
-	for (var i = 0; i < url.length; i++)
-	{
-		if (url[i] == 'edit' || url[i] == 'add') {
-			$('input[type=text][class=input], input[type=text][class=input_num], input[type=checkbox], input[type=radio], select[class=input], textarea[class=input]')
-			.change(function(){
-				__changed = true;
-			});
-		}
-	}
-	$("form").submit(function() {
-	      __changed = null;
-	});
-
-});
 
 /**
  * Funcao responsavel pela mudanca de paginas atraves do menu
