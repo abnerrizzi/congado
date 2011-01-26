@@ -1,27 +1,12 @@
 $(document).ready(function() {
-	$('.uiSelectorButton,.uiButton').click(function(){
 
-		$(this).parent().toggleClass('openToggler');
-		$(this).toggleClass('selected');
+	$("form.jqtransform").jqTransform();
+	$('p').html('<span class="UIButton UIButton_Large UIFormButton  UIButton_Blue"><input style="display: inline-block;" class="UIButton_Text" type="submit" value="Continuar" name="submit"/></span>');
 
-		if ($('button:.hideToggler').length > 0) {
-			$('button:.hideToggler').remove();
-		} else {
-			$(this).parent().prepend('<button class="hideToggler"></button>');
-			$(this).parent().append('<button class="hideToggler"></button>');
-		}
-
-		$('li:.uiMenuItem:.uiMenuItemRadio:.uiSelectorOption').mouseover(function(){
-			$(this).addClass('selected');
-		});
-
-		$('li:.uiMenuItem:.uiMenuItemRadio:.uiSelectorOption').mouseout(function(){
-			$(this).removeClass('selected');
-		});
-
-		return false;
-
+	$('form #fazenda').change(function(){
+		// do nothing
 	});
+
 });
 
 
