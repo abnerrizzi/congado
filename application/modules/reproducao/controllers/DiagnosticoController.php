@@ -78,6 +78,42 @@ class Reproducao_DiagnosticoController extends Zend_Controller_Action
 		throw new Zend_Controller_Action_Exception('Funcionalidade ainda não implementada.');
 	}
 
+	public function editAction()
+	{
+		$request			= $this->getRequest();
+		$diagnosticoId		= (int)$request->getParam('id');
+		$diagnosticoForm	= new Form_Diagnostico();
+
+		$__action = 	($this->getRequest()->getBaseUrl())
+				. '/' .	($this->getRequest()->getModuleName())
+				. '/' .	($this->getRequest()->getControllerName())
+				. '/' . 'edit';
+
+		$diagnosticoForm->setAction($__action);
+		$diagnosticoForm->setMethod('post');
+		$diagnosticoModel = new Model_Db_Diagnostico();
+
+		if ($request->isPost()) {
+			throw new Zend_Exception('Implementar validacao e alteracao do registro');
+		} else {
+			if ($diagnosticoId > 0) {
+				$result = $diagnosticoModel->getDiagnostico($diagnosticoId);
+				$diagnosticoForm->populate($result);
+			} else {
+				throw new Exception("invalid record number");
+			}
+		}
+
+		$this->view->form = $diagnosticoForm;
+		$this->view->elements = array(
+			'id',
+			'fazenda_id',
+			'dt_diagnostico',
+			array('fichario'),
+			'delete',
+		);
+	}
+
 	public function _editAction()
 	{
 

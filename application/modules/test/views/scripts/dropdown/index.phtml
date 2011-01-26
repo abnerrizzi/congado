@@ -1,0 +1,45 @@
+<?
+$this->headLink()
+//	->appendStylesheet($this->baseUrl() . '/styles/fcbk/eARZq_C-Mf4.css')
+//	->appendStylesheet($this->baseUrl() . '/styles/fcbk/DKM6CTLqpIp.css')
+//	->appendStylesheet($this->baseUrl().'/styles/jquery/jquery.dropdown.css')
+	->appendStylesheet($this->baseUrl() . '/styles/jquery/jquery.jqtransform.css')
+;
+
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/jquery-1.4.4.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/fcbk/71qWoI8S5cd.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/fcbk/845Rh0B0Eja.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/fcbk/9GiaWrLK1HF.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/fcbk/ltal48w7Cfq.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/fcbk/PbD_CkDvn44.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/fcbk/JOa9lR4Aorn.js')
+//	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.simpledropdown.js')
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.jqtransform.js')
+	->appendScript('$("form.jqtransform").jqTransform();');
+;
+//$this->headScript()
+//$this->headScript()->;
+//
+//
+//$this->headLink()
+
+?>
+
+<style type="text/css">
+form {
+	font-family: Verdana;
+	font-size: 20px;	
+}
+</style>
+
+<form  class="jqtransform">
+  <select>
+<?foreach ($this->fazendas as $key => $value):?>
+<? if ($key == $this->selected) { $selected = " checked"; } else { 	$selected = ""; } ?>
+        <option><?=$value;?></option>
+<?endforeach;?>
+  </select>
+</form>
+
+

@@ -1,5 +1,9 @@
 <?php
 
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/jquery/jquery.jqtransform.css');
+
+$this->headScript()->prependFile($this->baseUrl() . '/scripts/library/jquery/jquery.jqtransform.js');
+
 $this->javascript();
 
 if ($this->selected) {
@@ -7,18 +11,30 @@ if ($this->selected) {
 } else {
 	$__selected = ' Selecione uma fazenda ';
 }
+
 ?>
 <br/><br/><br/><br/>
 <fieldset>
   <legend>Selecione uma fazenda para continuar:</legend>
-  <center><br/>
-  <form name="form_fazenda" id="form_fazenda" method="post" action="<?=$this->baseUrl() .'/'. $this->action;?>">
-    <?=$this->fazenda;?>
+  <br/>
+<form class="jqtransform" action="<?=$this->baseUrl() .'/'. $this->action;?>" method="post">
+
+  <select name="fazenda" id="fazenda">
+<?foreach ($this->fazendas as $key => $value):?>
+<?if ($key == $this->selected) { $selected = 'selected="selected"'; } else {  $selected = ""; };?>
+        <option value="<?=$key;?>"<?=$selected;?>><?=$value;?></option>
+<?endforeach;?>
+  </select>
+  <br/><br/>
+
     <p align="right">
     <span class="UIButton UIButton_Large UIFormButton  UIButton_Blue">
 	  <input style="display: inline-block;" class="UIButton_Text" type="submit" value="Continuar" name="submit"/>
 	</span>
 	</p>
-  </form>
-  </center><br/>
+</form>
+  <br/>
 </fieldset>
+
+
+

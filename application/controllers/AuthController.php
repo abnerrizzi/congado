@@ -130,7 +130,7 @@ class AuthController extends Zend_Controller_Action
 		$fazendaSelect->setRequired(true);
 
 		$fazendas = $fazendaModel->getFazendaByUser($user_id);
-		$fazendaSelect->addMultiOption(false, '');
+		$fazendaSelect->addMultiOption(false, ' ');
 		foreach ($fazendas as $fazenda) {
 			$fazendaSelect->addMultiOption($fazenda['id'], $fazenda['descricao']);
 		}
