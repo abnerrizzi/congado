@@ -18,6 +18,8 @@ class Reproducao_DiagnosticoController extends Zend_Controller_Action
 		$this->view->title = 'Reprodução :: Diagnóstico de Gestação';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
+		$this->_action = 	  '/' .	($this->getRequest()->getModuleName())
+						. '/' .	($this->getRequest()->getControllerName());
 	}
 
 	public function indexAction()
@@ -73,28 +75,54 @@ class Reproducao_DiagnosticoController extends Zend_Controller_Action
 		$this->view->grid = $gridModel;
 	}
 
-	public function _addAction()
+	public function addAction()
 	{
-		throw new Zend_Controller_Action_Exception('Funcionalidade ainda não implementada.');
+
+		$diagnosticoForm = new Form_Diagnostico();
+		$diagnosticoForm->setAction($this->_action . '/add');
+		$diagnosticoForm->setMethod('post');
+		$this->view->form = $diagnosticoForm;
+		$this->view->elements = array(
+			'dt_diagnostico',
+			array('fichario'),
+			'prenha',
+		);
+
+		if ($this->getRequest()->isPost()) {
+			$formData = $this->getRequest()->getPost();
+			if ($diagnosticoForm->isValid($formData)) {
+				$diagnosticoModel = new Model_Db_Diagnostico();
+				if ($diagnosticoModel->addDiagnostico($values)) {
+					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
+				}
+			} else {
+				$diagnosticoForm->populate($formData);
+			}
+		}
+
 	}
 
 	public function editAction()
 	{
+
 		$request			= $this->getRequest();
 		$diagnosticoId		= (int)$request->getParam('id');
 		$diagnosticoForm	= new Form_Diagnostico();
 
-		$__action = 	($this->getRequest()->getBaseUrl())
-				. '/' .	($this->getRequest()->getModuleName())
-				. '/' .	($this->getRequest()->getControllerName())
-				. '/' . 'edit';
+//		$__action = 	  '/' .	($this->getRequest()->getModuleName())
+//						. '/' .	($this->getRequest()->getControllerName())
+//						. '/' . 'edit';
 
-		$diagnosticoForm->setAction($__action);
+		$diagnosticoForm->setAction($this->_action . '/edit');
 		$diagnosticoForm->setMethod('post');
 		$diagnosticoModel = new Model_Db_Diagnostico();
 
 		if ($request->isPost()) {
-			throw new Zend_Exception('Implementar validacao e alteracao do registro');
+			$diagnosticoForm->getElement('dt_diagnostico')->setRequired(false);
+			if ($diagnosticoForm->isValid($request->getPost())) {
+				$diagnosticoModel->updateDiagnostico($diagnosticoForm->getValues());
+				$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
+			}
 		} else {
 			if ($diagnosticoId > 0) {
 				$result = $diagnosticoModel->getDiagnostico($diagnosticoId);
@@ -104,113 +132,25 @@ class Reproducao_DiagnosticoController extends Zend_Controller_Action
 			}
 		}
 
+		$disable_elements = array(
+			'dt_diagnostico',
+			'fichario', 'fichario_id', 'fichario_cod',
+		);
+		foreach ($disable_elements as $el) {
+			$diagnosticoForm->getElement($el)
+				->setAttrib('readonly', 'readonly')
+				->setAttrib('disable', true);
+		}
+
 		$this->view->form = $diagnosticoForm;
 		$this->view->elements = array(
 			'id',
 			'fazenda_id',
 			'dt_diagnostico',
 			array('fichario'),
+			'prenha',
 			'delete',
 		);
-	}
-
-	public function _editAction()
-	{
-
-		$request	= $this->getRequest();
-		$coberturaId	= (int)$request->getParam('id');
-		$coberturaForm	= new Form_Cobertura();
-
-		$__action = 	($this->getRequest()->getBaseUrl())
-				. '/' .	($this->getRequest()->getModuleName())
-				. '/' .	($this->getRequest()->getControllerName())
-				. '/' . 'edit';
-
-		$coberturaForm->setAction($__action);
-		$coberturaForm->setMethod('post');
-		$coberturaModel = new Model_Db_Cobertura();
-
-		$this->populateTipos($coberturaForm);
-		/*
-		 * Populando select de fazendas
-		 */
-		$fazendaModel = new Model_Db_Fazenda();
-		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
-		$coberturaForm->getElement('fazenda_id')
-			->addMultiOption(false, '--')
-		;
-		foreach ($fazendas as $fazenda) {
-			$coberturaForm->getElement('fazenda_id')
-				->addMultiOption($fazenda['id'], $fazenda['descricao']);
-		}
-
-		if ($request->isPost()) {
-				throw new Zend_Exception('Implementar validacao e alteracao do registro');
-
-//			if ($doencaForm->isValid($request->getPost())) {
-//				$values = $doencaForm->getValues(true);
-//				unset($values['submit'], $values['cancel'], $values['delete']);
-//				$doencaModel->updateDoenca($values);
-//				$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
-//			}
-
-		} else {
-
-			if ($coberturaId > 0) {
-				$result = $coberturaModel->getCobertura($coberturaId);
-				$coberturaForm->populate($result);
-			} else {
-				throw new Exception("invalid record number");
-			}
-		}
-
-		// Read Only form elements
-		$readonly_elements = array(
-			'vaca',
-			'vaca_cod',
-			'dt_cobertura',
-			'tipo',
-			'touro',
-			'inseminador',
-			'lote',
-			'ultima_tipo',
-		);
-		if (count($readonly_elements) > 0) {
-			foreach ($readonly_elements as $el) {
-				$coberturaForm->getElement($el)
-				->setAttrib('readonly', 'readonly')
-				->setAttrib('class', 'readonly');
-			}
-		}
-		// Disabled form elements
-		$disabled_elements = array(
-			'fazenda_id',
-			'ultima_tipo',
-			'tipo',
-		);
-		if (count($disabled_elements) > 0) {
-			foreach ($disabled_elements as $el)
-			{
-				$coberturaForm->getElement($el)
-				->setAttrib('disabled', 'disabled');
-			}
-		}
-
-		$this->view->elements = array(
-			'id',
-			'fazenda_id',
-			array('vaca'),
-			'dt_cobertura',
-			'tipo',
-			'numerocobertura',
-			'ultima_cobertura',
-			'ultima_tipo',
-			array('touro'),
-			array('inseminador'),
-			array('lote'),
-			'delete',
-		);
-		$this->view->form = $coberturaForm;
 
 	}
 
