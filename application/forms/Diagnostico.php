@@ -50,17 +50,8 @@ class Form_Diagnostico extends Form_Default
 			'class'	=> 'input',
 		));
 
-		$this->addElement('text', 'dsc', array(
-			'label' => 'Descrição',
-			'required' => true,
-			'filters' => array('StringTrim', 'StringToUpper'),
-			'maxlength' => 32,
-			'size' => 32,
-			'class'	=> 'input',
-		));
-
-		$this->addElement('radio', 'sexo', array(
-			'label' => 'Sexo',
+		$this->addElement('radio', 'prenha', array(
+			'label' => 'Diagnóstico',
 			'filters' => array('StringTrim', 'StringToUpper'),
 			'required' => true,
 			'maxlength' => 32,
@@ -68,11 +59,10 @@ class Form_Diagnostico extends Form_Default
 			'class'	=> 'input',
 			'separator' => '&nbsp;'
 		));
-		$this->getElement('sexo')
+		$this->getElement('prenha')
 			->addMultiOptions(array(
-				'M' => 'Macho',
-				'F' => 'Femea',
-				'I' => 'Indiferente'
+				'1' => 'Prenha',
+				'0' => 'Vazia',
 			))
 		;
 			

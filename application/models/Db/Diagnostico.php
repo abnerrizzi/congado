@@ -60,7 +60,18 @@ class Model_Db_Diagnostico extends Model_Db
 	public function getDiagnostico($id)
 	{
 		$id = (int)$id;
-		$row = $this->fetchRow('id = ' . $id);
+
+		$this->_select
+			->from(array($this->_name), array(
+				'id',
+				'dt_diagnostico' => new Zend_Db_Expr("DATE_FORMAT(".$this->_name.".dt_diagnostico, '%d/%m/%Y')"),
+				'prenha',
+			), $this->_schema)
+			->joinLeft(array('fichario'), $this->_name.'.fichario_id = fichario.id', array('fichario_id' => 'id', 'fichario_cod' => 'cod', 'fichario' => 'nome'), $this->_schema)
+			->where($this->_name.'.id = ?', $id)
+			;
+
+		$row = $this->fetchRow($this->_select);
 		if (!$row) {
 			throw new Zend_Db_Table_Exception("Count not find row $id");
 		}
@@ -146,4 +157,19 @@ class Model_Db_Diagnostico extends Model_Db
 
 	}
 
+	public function updateDiagnostico($post)
+	{
+
+		$data = array (
+			'prenha'			=> (int)$post['prenha']
+		);
+
+		$where = array(
+			'id = ?' => (int)$post['id'],
+			'fazenda_id = ?' => (int)$this->_fId,
+			'fichario_id = ?' => (int)$post['fichario_id']
+		);
+
+		$this->update($data, $where);
+	}
 }
