@@ -92,7 +92,7 @@ class Reproducao_DiagnosticoController extends Zend_Controller_Action
 			$formData = $this->getRequest()->getPost();
 			if ($diagnosticoForm->isValid($formData)) {
 				$diagnosticoModel = new Model_Db_Diagnostico();
-				if ($diagnosticoModel->addDiagnostico($values)) {
+				if ($diagnosticoModel->addDiagnostico($diagnosticoForm->getValues())) {
 					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 				}
 			} else {
