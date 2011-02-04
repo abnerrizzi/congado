@@ -172,4 +172,22 @@ class Model_Db_Diagnostico extends Model_Db
 
 		$this->update($data, $where);
 	}
+
+	public function addDiagnostico($post)
+	{
+		$data = array(
+			'fichario_id'		=> (int)($post['fichario_id']),
+			'prenha'			=> (int)($post['prenha']),
+			'dt_diagnostico'	=> new Zend_Db_Expr("STR_TO_DATE('".$post['dt_diagnostico']."','%d/%m/%Y')"),
+			'fazenda_id'		=> (int)$this->_fId,
+		);
+
+		if ($this->insert($data)) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
 }

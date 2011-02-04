@@ -13,8 +13,8 @@ $(document).ready(function() {
 
 	if (checkAddUrl(location.href)) {
 		makeDateField("#dt_diagnostico", null, new Date());
-		addSearchIcon('fichario', baseUrl+'/json/fichario/sexo/m', 'filter.animal', 600, 240);
-		$("#fichario_cod").change(function(){change.animal(this, 'M');});
+		addSearchIcon('fichario', baseUrl+'/json/fichario/sexo/f', 'filter.animal', 600, 240);
+		$("#fichario_cod").change(function(){change.animal(this, 'F');});
 	}
 
 });
