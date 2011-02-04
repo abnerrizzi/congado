@@ -8,6 +8,7 @@
     	$this->headTitle()->append($this->title);
     }
     $this->headLink()
+    	->appendStylesheet($this->baseUrl() . '/styles/jquery/jquery.jqtransform.css')
     	->appendStylesheet($this->baseUrl() . '/styles/jquery/jquery.ui.all.css')
 		->appendStylesheet($this->baseUrl() . '/styles/flexigrid.css')
 		->appendStylesheet($this->baseUrl() . '/styles/menu.css')
@@ -16,6 +17,7 @@
 	;
     
     $this->headScript()
+    	->prependFile($this->baseUrl() . '/scripts/library/jquery/jquery.jqtransform.js')
     	->prependFile($this->baseUrl() . '/scripts/menu.js')
     	->prependFile($this->baseUrl() . '/scripts/functions.js')
     	->prependFile($this->baseUrl() . '/scripts/library/_class.search.js')
@@ -51,6 +53,9 @@
 
 <body>
 
+  <div id="preloader">Carregando... Por favor espere.</div>
+  <div id="container" style="display: none;">
+
 <?php if (Zend_Auth::getInstance()->hasIdentity()) { include_once ('menu.phtml'); } ?>
 
 
@@ -59,6 +64,7 @@
   </div>
   <div id="ajax_loader" class="ajax_loader" style="display: none;"></div>
 
+  </div>
   <?php echo $this->headScript() ?>
 
 </body>

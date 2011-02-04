@@ -17,24 +17,7 @@ class Model_Db_Acompanhamento extends Model_Db
 
 	protected $_name = 'acompanhamento';
 	protected $_select = false;
-
-	/**
-	 * Retorna uma array com todos os resultados
-	 * 
-	 * @param string $orderby
-	 * @param string $order
-	 * @return array
-	 */
-	public function getAcompanhamentos($orderby = null, $order = null)
-	{
-		$query = $this->select()
-			->from($this->_name)
-			->order($orderby .' '. $order)
-			;
-		$result = $this->fetchAll($query);
-		return $result->toArray();
-	}
-
+ 
 	/**
 	 * Retorna uma array com o resultado do id informado
 	 * 

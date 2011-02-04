@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: ExamerepController.php 492 2010-10-18 19:47:09Z bacteria_ $
+ * @version $Id$
  * 
  */
 
@@ -17,6 +17,7 @@ class Reproducao_ExamerepController extends Zend_Controller_Action
 		$this->view->auth = $auth->hasIdentity();
 		$this->view->title = 'Reprodução :: Acompanhamento Reprodutivo';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
+		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 	}
 
 	public function indexAction()

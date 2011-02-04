@@ -35,6 +35,10 @@
 
 		<li><span class="qmdivider qmdividerx" >&nbsp;</span></li>
 
+		<li><a href="javascript:void(0)" onclick="open_page('auth/fazenda');">Trocar Fazenda</a></li>
+
+		<li><span class="qmdivider qmdividerx" >&nbsp;</span></li>
+
 		<li><a href="javascript:void(0)" onclick="open_page('auth/logout');">Sair</a></li>
 		</ul>
 	</li>
@@ -290,6 +294,12 @@
 		<li><a href="javascript:void(0)" onclick="show_map('/map/delivery','filter_placa','400','300','yes','type=vgm');">Visualizar entregas</a>
 		</li></ul></li>
 
+
+	<li><span class="qmdivider qmdividery" >&nbsp;</span></li>
+
+<?if (isset($this->fazenda_dsc)):?>
+	<li><a class="qmparent"><span style="font-size: 11px; font-weight: bolder; color: #000000;">[ <?=$this->fazenda_dsc;?> ]</span></a></li>
+<?endif;?>
 
 
 

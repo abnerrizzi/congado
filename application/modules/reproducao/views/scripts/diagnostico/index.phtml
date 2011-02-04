@@ -1,0 +1,14 @@
+<?php
+
+$this->headScript()
+	->appendScript("\t__title = 'Diagnóstico de Gestação';\n")
+	->appendScript("\t__module = '".Zend_Controller_Front::getInstance()->getRequest()->getModuleName()."';\n")
+	->appendFile($this->baseUrl() . '/scripts/library/_class.filter.js')
+;
+
+$this->javascript();
+
+echo $this->grid($this->grid);
+
+?>
+
