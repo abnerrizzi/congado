@@ -1,0 +1,34 @@
+<?
+$this->headLink()
+	->appendStylesheet($this->baseUrl() . '/styles/fcbk/eARZq_C-Mf4.css')
+	->appendStylesheet($this->baseUrl() . '/styles/fcbk/DKM6CTLqpIp.css')
+;
+
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/library/fcbk/71qWoI8S5cd.js')
+	->appendFile($this->baseUrl() . '/scripts/library/fcbk/845Rh0B0Eja.js')
+	->appendFile($this->baseUrl() . '/scripts/library/fcbk/9GiaWrLK1HF.js')
+	->appendFile($this->baseUrl() . '/scripts/library/fcbk/ltal48w7Cfq.js')
+	->appendFile($this->baseUrl() . '/scripts/library/fcbk/PbD_CkDvn44.js')
+	->appendFile($this->baseUrl() . '/scripts/library/fcbk/JOa9lR4Aorn.js')
+	->appendFile($this->baseUrl() . '/scripts/jquery-1.4.4.js')
+	->appendFile($this->baseUrl() . '/scripts/library/fcbk/index.js')
+	->appendScript('selectOptions = ' . $this->jsonSelect)
+;
+?>
+
+
+
+
+<select id="qwe">
+	<option value=""></option>
+	<option value="all">All Friends</option>
+	<option value="recent" selected="selected">Recently Interacted</option>
+	<option value="new">Recently Added</option>
+	<option value="location_113400028670072">Goiânia</option>
+	<option value="currentcity">Search by Current City</option>
+	<option value="hometown">Search by Hometown</option>
+	<option value="school">Search by School</option>
+	<option value="workplace">Search by Workplace</option>
+	<option value="interest">Search by Interest</option>
+</select>

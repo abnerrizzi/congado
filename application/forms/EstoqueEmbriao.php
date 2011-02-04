@@ -36,7 +36,7 @@ class Form_EstoqueEmbriao extends Form_Default
 		));
 
 		$this->addElement('text', 'dt_coleta', array(
-			'label' => 'Data',
+			'label' => 'Data de Congelamento',
 			'required' => true,
 			'filters' => array('StringTrim'),
 			'validators' => array(

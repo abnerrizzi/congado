@@ -269,3 +269,45 @@ search.coletaEmbriao = function()
 	this.defaultSearch();
 
 };
+
+
+search.diagnostico = function()
+{
+	this.url = baseUrl + '/reproducao/json/diagnostico';
+	this.defaultColModel = [{
+		display: 'Código',
+		name : 'v.cod',
+		width : 70,
+		sortable : true,
+		align: 'left'
+	}, {
+		display: 'Nome',
+		name : 'v.nome',
+		width : 240,
+		sortable : true,
+		align: 'left'
+	}, {
+		display: 'Data',
+		name : 'dt_diagnostico',
+		width : 75,
+		sortable : true,
+		align: 'left'
+	}, {
+		display: 'Diagnostico',
+		name : 'diag',
+		width : 75,
+		sortable : true,
+		align: 'left'
+	}];
+	this.defaultSearchItem = [{
+		display: 'Código',
+		name : 'v.cod'
+	}, {
+		display: 'Animal',
+		name : 'v.nome',
+		isdefault: true
+	}];
+	this.createDialog(__title);
+	this.defaultSearch();
+
+};

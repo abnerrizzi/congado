@@ -45,6 +45,24 @@ class Model_Db_Fazenda extends Model_Db
 		return $result->toArray();
 	}
 
+	public function getFazendaByUser($userid)
+	{
+		$query = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('f' => $this->_name), array('id', 'descricao'), $this->_schema)
+			->joinLeft(array('fu' => 'fazenda_has_user'), 'id = fazenda_id', array(), $this->_schema)
+			->where('fu.user_id = ?', intval($userid))
+		;
+		$rows = $this->fetchAll($query)->toArray();
+		foreach ($rows as $row) {
+			foreach ($row as $key => $value) {
+				$_row[$key] = utf8_decode($value);
+			}
+			$_return[] = $_row;
+		}
+		return $_return;
+	}
+
 	/**
 	 * 
 	 * @param $fields array()

@@ -24,6 +24,7 @@ class FazendaController extends Zend_Controller_Action
 		$this->view->auth = $auth->hasIdentity();
 		$this->view->title = 'Fazenda';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
+		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 	}
 
 	public function indexAction()

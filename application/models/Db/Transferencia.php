@@ -47,17 +47,16 @@ class Model_Db_Transferencia extends Model_Db
 		if ($orderby == 'dh') {
 			$orderby = 'dt_transferencia';
 		}
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
-			->from(array('t' => $this->_name), array(
+		$this->_select
+			->from(array($this->_name), array(
 				'id',
 				'dh' => new Zend_Db_Expr("DATE_FORMAT(dt_transferencia, '%d/%m/%Y')"),
 				'tipo',
 				'tecnica',
 			), $this->_schema)
-			->joinLeft(array('v' => 'fichario'), 't.fichario_id = v.id', array('receptora' => 'cod'), $this->_schema)
-			->joinLeft(array('tec' => 'tecnico'), 't.tecnico_id = tec.id', array('tecnico' => 'cod'), $this->_schema)
-			->joinLeft(array('e' => 'estoqueembriao'), 't.embriao_id = e.id', array('embriao'), $this->_schema)
+			->joinLeft(array('v' => 'fichario'), $this->_name.'.fichario_id = v.id', array('receptora' => 'cod'), $this->_schema)
+			->joinLeft(array('tec' => 'tecnico'), $this->_name.'.tecnico_id = tec.id', array('tecnico' => 'cod'), $this->_schema)
+			->joinLeft(array('e' => 'estoqueembriao'), $this->_name.'.embriao_id = e.id', array('embriao'), $this->_schema)
 			->order($orderby .' '. $order)
 			;
 
@@ -72,9 +71,8 @@ class Model_Db_Transferencia extends Model_Db
 		} elseif ($orderby == 'dhf') {
 			$orderby = 'dataCio';
 		}
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
-			->from(array('c' => $this->_name), array(
+		$this->_select
+			->from(array($this->_name), array(
 				'id',
 				'vaca' => 'vaca.cod',
 				'vaca_fazenda_id' => 'fazenda_id',
@@ -324,8 +322,7 @@ class Model_Db_Transferencia extends Model_Db
 
 		$id = (int)$id;
 
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
+		$this->_select
 			->from(array('c' => $this->_name), array(
 				'id',
 				'fazenda_id',

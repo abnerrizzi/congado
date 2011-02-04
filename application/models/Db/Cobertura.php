@@ -23,6 +23,7 @@ class Model_Db_Cobertura extends Model_Db
 		'Model_Db_Fichario',
 		'Model_Db_Fazenda',
 	);
+
 	/*
 	protected $_referenceMap	= array(
 		'fazenda' => array(
@@ -48,17 +49,15 @@ class Model_Db_Cobertura extends Model_Db
 		if ($orderby == 'dh') {
 			$orderby = 'dt_cobertura';
 		}
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
-			->from(array('c' => $this->_name), array(
+		$this->_select->from(array($this->_name), array(
 				'id',
 				'dh' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
 			), $this->_schema)
-			->joinLeft(array('v' => 'fichario'), 'c.fichario_id = v.id', array('vaca' => 'cod'), $this->_schema)
-			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro' => 'cod'), $this->_schema)
-			->joinLeft(array('i' => 'inseminador'), 'c.inseminador_id = i.id', array('inseminador' => 'dsc'), $this->_schema)
-			->joinLeft(array('l' => 'lote'), 'c.lote_id = l.id', array('lote_dsc' => 'dsc'), $this->_schema)
-			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array('tipo' => 'tipo.cod'), $this->_schema)
+			->joinLeft(array('v' => 'fichario'), $this->_name.'.fichario_id = v.id', array('vaca' => 'cod'), $this->_schema)
+			->joinLeft(array('t' => 'fichario'), $this->_name.'.touro_id = t.id', array('touro' => 'cod'), $this->_schema)
+			->joinLeft(array('i' => 'inseminador'), $this->_name.'.inseminador_id = i.id', array('inseminador' => 'dsc'), $this->_schema)
+			->joinLeft(array('l' => 'lote'), $this->_name.'.lote_id = l.id', array('lote_dsc' => 'dsc'), $this->_schema)
+			->joinLeft(array('tipo' => 'cobertura_tipo'), $this->_name.'.cobertura_tipo_id = tipo.id', array('tipo' => 'tipo.cod'), $this->_schema)
 			->where('tipo.cod IN (?)', array('C', 'I', 'M'))
 			->order($orderby .' '. $order)
 			;
@@ -74,9 +73,8 @@ class Model_Db_Cobertura extends Model_Db
 		} elseif ($orderby == 'dhf') {
 			$orderby = 'dataCio';
 		}
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
-			->from(array('c' => $this->_name), array(
+		$this->_select
+			->from(array($this->_name), array(
 				'id',
 				'vaca' => 'vaca.cod',
 				'vaca_fazenda_id' => 'fazenda_id',
@@ -111,8 +109,7 @@ class Model_Db_Cobertura extends Model_Db
 
 		$col_id = $this->_name.'.id';
 		$col_id = 'id';
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
+		$this->_select
 			->from($this->_name, array(
 				'id',
 				'dh' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
@@ -189,8 +186,7 @@ class Model_Db_Cobertura extends Model_Db
 
 		$col_id = $this->_name.'.id';
 		$col_id = 'id';
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
+		$this->_select
 			->from($this->_name, array(
 				'id',
 				'vaca' => 'vaca.cod',
@@ -263,21 +259,20 @@ class Model_Db_Cobertura extends Model_Db
 
 		$id = (int)$id;
 
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
-			->from(array('c' => $this->_name), array(
+		$this->_select
+			->from(array($this->_name), array(
 				'id',
 				'fazenda_id',
 				'dt_cobertura' => new Zend_Db_Expr("DATE_FORMAT(dt_cobertura, '%d/%m/%Y')"),
 				'numerocobertura',
 			), $this->_schema)
-			->joinLeft(array('v' => 'fichario'), 'c.fichario_id = v.id', array('vaca_id' => 'v.id', 'vaca_cod' => 'v.cod', 'vaca' => 'nome'), $this->_schema)
-			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id', array('touro_id' => 't.id', 'touro_cod' => 't.cod', 'touro' => 'nome'), $this->_schema)
-			->joinLeft(array('i' => 'inseminador'), 'c.inseminador_id = i.id', array('inseminador_id' => 'i.id', 'inseminador_cod' => 'i.cod', 'inseminador' => 'i.dsc'), $this->_schema)
-			->joinLeft(array('l' => 'lote'), 'c.lote_id = l.id', array('lote_id' => 'l.id', 'lote_cod' => 'l.cod', 'lote' => 'l.dsc'), $this->_schema)
-			->joinLeft(array('tipo' => 'cobertura_tipo'), 'c.cobertura_tipo_id = tipo.id', array('tipo' => 'tipo.cod'), $this->_schema)
+			->joinLeft(array('v' => 'fichario'), $this->_name.'.fichario_id = v.id', array('vaca_id' => 'v.id', 'vaca_cod' => 'v.cod', 'vaca' => 'nome'), $this->_schema)
+			->joinLeft(array('t' => 'fichario'), $this->_name.'.touro_id = t.id', array('touro_id' => 't.id', 'touro_cod' => 't.cod', 'touro' => 'nome'), $this->_schema)
+			->joinLeft(array('i' => 'inseminador'), $this->_name.'.inseminador_id = i.id', array('inseminador_id' => 'i.id', 'inseminador_cod' => 'i.cod', 'inseminador' => 'i.dsc'), $this->_schema)
+			->joinLeft(array('l' => 'lote'), $this->_name.'.lote_id = l.id', array('lote_id' => 'l.id', 'lote_cod' => 'l.cod', 'lote' => 'l.dsc'), $this->_schema)
+			->joinLeft(array('tipo' => 'cobertura_tipo'), $this->_name.'.cobertura_tipo_id = tipo.id', array('tipo' => 'tipo.cod'), $this->_schema)
 			->where('tipo.cod IN (?)', array('C', 'I', 'M'))
-			->where('c.id = ?', $id)
+			->where($this->_name.'.id = ?', $id)
 			;
 
 		$row = $this->fetchRow($this->_select);
@@ -350,8 +345,7 @@ class Model_Db_Cobertura extends Model_Db
 
 		$id = (int)$id;
 
-		$this->_select = $this->select()
-			->setIntegrityCheck(false)
+		$this->_select
 			->from(array('r' => $this->_name), array(
 				'id',
 				'fazenda_id',

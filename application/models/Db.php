@@ -15,11 +15,23 @@
 class Model_Db extends Zend_Db_Table_Abstract
 {
 
+	protected $_select = false;
+	protected $_fId;
+
 	public function init()
 	{
 		$db = Zend_Registry::get('database');
 		$db = $db->getConfig();
 		$this->_schema = $db['dbname'];
+
+		$this->_select = $this->select()
+			->setIntegrityCheck(false)
+		;
+
+		if (in_array('fazenda_id', $this->_cols)) {
+			$this->_fId = (int)Zend_Auth::getInstance()->getIdentity()->fazenda_id;
+			$this->_select->where($this->_name.'.fazenda_id = ?', $this->_fId);
+		}
 	}
 
 	/**
@@ -37,14 +49,14 @@ class Model_Db extends Zend_Db_Table_Abstract
 			$cols = array($cols);
 		}
 
-		$select = $this->select()
+		$this->_select
 			->from($this->_name, $cols, $this->_schema);
 
 		if ($orderby != null && $order != null) {
-			$select->order($orderby .' '. $order);
+			$this->_select->order($orderby .' '. $order);
 		}
 
-		return $select;
+		return $this->_select;
 
 	}
 

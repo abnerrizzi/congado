@@ -36,24 +36,7 @@ $(document).ready(function() {
 	if (checkAddUrl(window.location.href) == true) {
 		addSearchIcon('categoria', baseUrl+'/json/categoria', 'filter.categoria', 600, 240);
 		addSearchIcon('local', baseUrl+'/json/local', 'filter.local', 600, 240);
-
-		$("#fazenda_id").removeAttr('disabled');
-		$("#fazenda_id").removeAttr('readonly');
-		$('#fazenda_id').change(function(){
-			if (this.value > 0) {
-				$('#tabs').show();
-				$('#cod').show();
-			} else {
-				window.alert('Selecione uma das fazendas para prosseguir');
-			}
-		});
-		$('#tabs').hide();
-		$('#cod').hide();
 	}
-	// if fazenda_id changed, local fields be empty
-	$("#fazenda_id").change(function(){
-		$("#local_id, #local, #local_cod").val('');
-	});
 
 	makeDateField("#dt_nascimento", null, new Date());
 

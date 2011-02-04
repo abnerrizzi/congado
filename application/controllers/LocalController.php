@@ -20,9 +20,11 @@ class LocalController extends Zend_Controller_Action
 	public function init()
 	{
 		$auth = Zend_Auth::getInstance();
+		$this->view->fazenda_id = Zend_Auth::getInstance()->getIdentity()->fazenda_id;
 		$this->view->auth = $auth->hasIdentity();
 		$this->view->title = 'Locais';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
+		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 	}
 
 	public function indexAction()
@@ -49,7 +51,6 @@ class LocalController extends Zend_Controller_Action
 		/*
 		 * Fields
 		 */
-		$fields[] = new Model_Grid_Fields('fazenda', 'Fazenda', 350);
 		$fields[] = new Model_Grid_Fields('local', 'Local', 35);
 		$fields[] = new Model_Grid_Fields('dsc','Descrição', 200);
 		$fields[] = new Model_Grid_Fields('area','Área', 35);
@@ -93,22 +94,6 @@ class LocalController extends Zend_Controller_Action
 			->setAttrib('class', 'readonly')
 			;
 
-		$localForm->getElement('fazenda_id')
-			->setAttrib('readonly', 'readonly')
-			->setAttrib('disabled', 'disabled')
-			->setAttrib('class', 'readonly')
-			;
-
-		$fazendaModel = new Model_Db_Fazenda();
-		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
-		$localForm->getElement('fazenda_id')
-			->addMultiOption(false, '--');
-
-		foreach ($fazendas as $fazenda) {
-			$localForm->getElement('fazenda_id')
-				->addMultiOption($fazenda['id'], $fazenda['descricao']);
-		}
-
 		if ($request->isPost()) {
 
 			if ($localForm->isValid($request->getPost())) {
@@ -126,7 +111,7 @@ class LocalController extends Zend_Controller_Action
 			}
 		}
 
-		$this->view->elements = array('id' , 'fazenda_id' , 'local' , 'dsc' , 'area', 'delete');
+		$this->view->elements = array('id', 'local', 'dsc', 'area', 'delete');
 		$this->view->form = $localForm;
 	}
 
@@ -137,17 +122,7 @@ class LocalController extends Zend_Controller_Action
 		$localForm->setAction('/local/add');
 		$localForm->setMethod('post');
 		$this->view->form = $localForm;
-		$this->view->elements = array('fazenda_id' , 'local' , 'dsc' , 'area');
-
-		$fazendaModel = new Model_Db_Fazenda();
-		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
-		$localForm->getElement('fazenda_id')
-			->addMultiOption(false, '--');
-
-		foreach ($fazendas as $fazenda) {
-			$localForm->getElement('fazenda_id')
-				->addMultiOption($fazenda['id'], $fazenda['descricao']);
-		}
+		$this->view->elements = array('local', 'dsc', 'area');
 
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
@@ -156,20 +131,18 @@ class LocalController extends Zend_Controller_Action
 				$localForm->getElement('local')->addValidator(
 					new Zend_Validate_Db_NoRecordExists(
 						'local',
-						'local',
-						'fazenda_id = '.$formData['fazenda_id']
+						'local'
 					)
 				);
 			}
 
 
 			if ($localForm->isValid($formData)) {
-				$fazenda_id = $localForm->getValue('fazenda_id');
 				$local = $localForm->getValue('local');
 				$dsc = $localForm->getValue('dsc');
 				$area = $localForm->getValue('area');
 				$localModel = new Model_Db_Local();
-				if ($localModel->addLocal($fazenda_id, $local, $dsc, $area)) {
+				if ($localModel->addLocal($this->view->fazenda_id, $local, $dsc, $area)) {
 					$this->_redirect('/'. $this->getRequest()->getControllerName());
 				} else {
 					die('erro no insert');

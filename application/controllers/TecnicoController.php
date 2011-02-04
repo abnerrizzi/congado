@@ -22,6 +22,7 @@ class TecnicoController extends Zend_Controller_Action
 		$this->view->auth = $auth->hasIdentity();
 		$this->view->title = 'Técnico de Transferência';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
+		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 	}
 
 	public function indexAction()

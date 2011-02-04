@@ -2,6 +2,7 @@
 
 $this->headScript()
 	->appendScript("\t__title = 'Coleta de Embriões';\n")
+	->appendScript("\t__module = '".Zend_Controller_Front::getInstance()->getRequest()->getModuleName()."';\n")
 	;
 
 $this->javascript();

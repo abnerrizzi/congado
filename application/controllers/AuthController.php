@@ -21,6 +21,7 @@ class AuthController extends Zend_Controller_Action
 		$this->initView();
 		$this->view->baseUrl = $this->_request->getBaseUrl();
 		$this->view->user = Zend_Auth::getInstance()->getIdentity();
+		$this->view->fazenda_dsc = @Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 		$this->view->title = 'Login';
 	}
 
@@ -70,12 +71,22 @@ class AuthController extends Zend_Controller_Action
 					$auth->getStorage()->write($data);
 
 					$authNamespace = new Zend_Session_Namespace('Zend_Auth');
+					$authNamespace->user_id = $data->id;
 
 					if ($rememberme) {
 						$authNamespace->rememberme = 1;
 					} else {
 						$authNamespace->rememberme = 0;
 					}
+
+					$fazendaSession = new Zend_Session_Namespace('fazendaSession');
+					// redirect to select fazenda
+					if (!isset($fazendaSession->fazenda_id)) {
+						$this->_redirect('/auth/fazenda');
+					} else {
+						die('ja tem');
+					}
+
 					if (isset($authNamespace->requestUri)) {
 						$this->_redirect($authNamespace->requestUri);
 					} else {
@@ -98,6 +109,67 @@ class AuthController extends Zend_Controller_Action
 		Zend_Auth::getInstance()->clearIdentity();
 		Zend_Session::forgetMe();
 		$this->_redirect('/');
+	}
+
+	public function fazendaAction ()
+	{
+		$fazendaModel = new Model_Db_Fazenda();
+		$user_id = Zend_Auth::getInstance()->getIdentity()->id;
+
+		$__fazendas = $fazendaModel->getFazendaByUser(Zend_Auth::getInstance()->getIdentity()->id);
+		foreach ($__fazendas as $__key) {
+			$x[$__key['id']] = $__key['descricao'];
+		}
+
+		$this->view->fazendas = $x;
+		$this->view->selected = @Zend_Auth::getInstance()->getIdentity()->fazenda_id;
+		unset($__fazendas, $__key);
+
+		$form = new Zend_Form();
+		$fazendaSelect = $form->createElement('select', 'fazenda');
+		$fazendaSelect->setRequired(true);
+
+		$fazendas = $fazendaModel->getFazendaByUser($user_id);
+		$fazendaSelect->addMultiOption(false, ' ');
+		foreach ($fazendas as $fazenda) {
+			$fazendaSelect->addMultiOption($fazenda['id'], $fazenda['descricao']);
+		}
+
+		if (@Zend_Auth::getInstance()->getIdentity()->fazenda_id > 0) {
+			$fazendaSelect->setValue(Zend_Auth::getInstance()->getIdentity()->fazenda_id);
+		}
+		$fazendaSelect->removeDecorator('Label')->removeDecorator('Tag');
+
+		$this->view->fazenda = $fazendaSelect;
+		$this->view->action = $this->getRequest()->getControllerName() . '/' . $this->getRequest()->getActionName();
+
+		if ($this->getRequest()->isPost()) {
+			if ($this->getRequest()->getParam('fazenda', false)) {
+				$auth = Zend_Auth::getInstance();
+
+				$_auth = (array) $auth->getIdentity();
+				$_auth['fazenda_id'] = $this->getRequest()->getParam('fazenda');
+				$_auth['fazenda_dsc'] = $fazendas[$this->getRequest()->getParam('fazenda')]['descricao'];
+				foreach ($fazendas as $val) {
+					if ($val['id'] == $_auth['fazenda_id']) {
+						$_auth['fazenda_dsc'] = $val['descricao'];
+					}
+				}
+
+				$auth->getStorage()->write((object) $_auth);
+
+				$authNamespace = new Zend_Session_Namespace('Zend_Auth');
+				if (isset($authNamespace->requestUri) && $authNamespace->requestUri != '/auth/fazenda') {
+					$this->_redirect($authNamespace->requestUri);
+				} else {
+					$this->_redirect('/');
+				}
+
+			} else {
+				print 'tem q selecionar';
+			}
+		} else {
+		}
 	}
 
 }
