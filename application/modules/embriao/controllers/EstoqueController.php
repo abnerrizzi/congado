@@ -23,8 +23,6 @@ class Embriao_EstoqueController extends Zend_Controller_Action
 		$this->view->title = 'Estoque de Embriões';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
-		Zend_Debug::dump($auth->getIdentity());
-		var_dump($auth);
     }
 
     public function indexAction()
@@ -94,19 +92,6 @@ class Embriao_EstoqueController extends Zend_Controller_Action
 		$estoqueForm->setACtion('/embriao/estoque/edit');
 		$estoqueForm->setMethod('post');
 
-		/*
-		 * Populando select de fazendas
-		 */
-		$fazendaModel = new Model_Db_Fazenda();
-		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
-		$estoqueForm->getElement('fazenda_id')
-			->addMultiOption(false, '--')
-		;
-		foreach ($fazendas as $fazenda) {
-			$estoqueForm->getElement('fazenda_id')
-				->addMultiOption($fazenda['id'], $fazenda['descricao']);
-		}
-
 		// Disable form elements
 		$disable_elements = array(
 			'embriao',
@@ -158,6 +143,8 @@ class Embriao_EstoqueController extends Zend_Controller_Action
 		$estoqueForm = new Form_EstoqueEmbriao();
 		$estoqueForm->setAction('/embriao/estoque/add');
 		$estoqueForm->setMethod('post');
+		$estoqueModel = new Model_Db_EstoqueEmbriao();
+		$estoqueForm->getElement('fazenda_id')->setValue($estoqueModel->getfId());
 		$this->view->form = $estoqueForm;
 		$this->view->elements = array(
 			'fazenda_id',
@@ -169,23 +156,10 @@ class Embriao_EstoqueController extends Zend_Controller_Action
     		array('criador'),
 		);
 
-		/*
-		 * Populando select de fazendas
-		 */
-		$fazendaModel = new Model_Db_Fazenda();
-		$fazendas = $fazendaModel->listFazendas(array('id', 'descricao'));
-		$estoqueForm->getElement('fazenda_id')
-			->addMultiOption(false, '--')
-		;
-		foreach ($fazendas as $fazenda) {
-			$estoqueForm->getElement('fazenda_id')
-				->addMultiOption($fazenda['id'], $fazenda['descricao']);
-		}
 
 		if ($this->getRequest()->isPost()) {
 			$formData = $this->getRequest()->getPost();
 			if ($estoqueForm->isValid($formData)) {
-				$estoqueModel = new Model_Db_EstoqueEmbriao();
 				if ($estoqueModel->addEstoque($formData)) {
 					$this->_redirect('/' . $this->getRequest()->getModuleName() . '/' . $this->getRequest()->getControllerName());
 				}

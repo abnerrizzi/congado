@@ -28,26 +28,26 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 //			$orderby = "natsort_canon(`embriao`, 'natural')";
 		}
 
-		$this->_select = $this->select()
+		$this->_select
 			->setIntegrityCheck(false)
-			->from(array('e' => $this->_name), array(
+			->from(array($this->_name), array(
 				'id',
 				'embriao',
 				'data_coleta' => new Zend_Db_Expr("DATE_FORMAT(dt_coleta, '%d/%m/%Y')"),
 			), $this->_schema)
-			->joinLeft(array('fv' => 'fichario'), 'e.doadora_id = fv.id', array('vaca_cod' => 'cod', 'vaca_nome' => 'nome'), $this->_schema)
-			->joinLeft(array('ft' => 'fichario'), 'e.touro_id = ft.id', array('touro_cod' => 'cod', 'touro_nome' => 'nome'), $this->_schema)
+			->joinLeft(array('fv' => 'fichario'), $this->_name.'.doadora_id = fv.id', array('vaca_cod' => 'cod', 'vaca_nome' => 'nome'), $this->_schema)
+			->joinLeft(array('ft' => 'fichario'), $this->_name.'.touro_id = ft.id', array('touro_cod' => 'cod', 'touro_nome' => 'nome'), $this->_schema)
 			->order($orderby .' '. $order)
 			;
 
 		return $this->_select;
-		
+
 	}
 
 	public function getEstoqueEmbriao($id)
 	{
 		$id = (int)$id;
-		$this->_select = $this->select()
+		$this->_select
 			->setIntegrityCheck(false)
 			->from($this->_name, '*', $this->_schema)
 			->joinLeft(array('doadora' => 'fichario'), $this->_name.'.doadora_id = doadora.id',array('doadora_id' => 'id', 'doadora_cod' => 'cod', 'doadora' => 'nome'),$this->_schema)
@@ -125,7 +125,7 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
 
 		$posts = array (
-			'fazenda_id'		=> (int)$post['fazenda_id'],
+			'fazenda_id'		=> (int)$this->_fId,
 			'embriao'			=> utf8_encode($post['embriao']),
 			'dt_coleta'			=> $_dt,
 			'doadora_id'		=> $post['doadora_id'],
@@ -207,17 +207,17 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 
 		$col_id = $this->_name.'.id';
 		$col_id = 'id';
-		$this->_select = $this->select()
+		$this->_select
 			->setIntegrityCheck(false)
-			->from(array('e' => $this->_name), array(
+			->from(array($this->_name), array(
 				'id',
 				'embriao',
 				'doadora_cod' => 'fv.cod',
 				'data_coleta' => new Zend_Db_Expr("DATE_FORMAT(dt_coleta, '%d/%m/%Y')"),
 				'touro_cod' => 'ft.cod',
 			), $this->_schema)
-			->joinLeft(array('fv' => 'fichario'), 'e.doadora_id = fv.id', array(), $this->_schema)
-			->joinLeft(array('ft' => 'fichario'), 'e.touro_id = ft.id', array(), $this->_schema)
+			->joinLeft(array('fv' => 'fichario'), $this->_name.'.doadora_id = fv.id', array(), $this->_schema)
+			->joinLeft(array('ft' => 'fichario'), $this->_name.'.touro_id = ft.id', array(), $this->_schema)
 			->order($orderby .' '. $order)
 		;
 
@@ -285,9 +285,9 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 
 		$col_id = $this->_name.'.id';
 		$col_id = 'id';
-		$this->_select = $this->select()
+		$this->_select
 			->setIntegrityCheck(false)
-			->from(array('e' => $this->_name), array(
+			->from(array($this->_name), array(
 				'id',
 				'data_coleta' => new Zend_Db_Expr('date_format(dt_coleta, "%d/%m/%Y")'),
 				'embriao',
@@ -295,9 +295,9 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 				'touro' => 't.cod',
 				'criador' => 'c.cod',
 			), $this->_schema)
-			->joinLeft(array('d' => 'fichario'), 'e.doadora_id = d.id',array(),$this->_schema)
-			->joinLeft(array('t' => 'fichario'), 'e.touro_id = t.id',array(),$this->_schema)
-			->joinLeft(array('c' => 'criador'), 'e.criador_id = c.id',array(),$this->_schema)
+			->joinLeft(array('d' => 'fichario'), $this->_name.'.doadora_id = d.id',array(),$this->_schema)
+			->joinLeft(array('t' => 'fichario'), $this->_name.'.touro_id = t.id',array(),$this->_schema)
+			->joinLeft(array('c' => 'criador'), $this->_name.'.criador_id = c.id',array(),$this->_schema)
 			->order($orderby .' '. $order)
 		;
 
@@ -351,7 +351,7 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 	public function listJsonUltimo($id)
 	{
 		$id = (int)$id;
-		$this->_select = $this->select()
+		$this->_select
 			->setIntegrityCheck(false)
 			->from($this->_name, array('embriao'), $this->_schema)
 			->joinLeft(array('doadora' => 'fichario'), $this->_name.'.doadora_id = doadora.id',array(),$this->_schema)
@@ -376,13 +376,13 @@ class Model_Db_EstoqueEmbriao extends Model_Db
 			'embriao',
 		);
 		$id = (int)$coletaId;
-		$this->_select = $this->select()
+		$this->_select
 			->setIntegrityCheck(false)
-			->from(array('e' => $this->_name), $_cols, $this->_schema)
+			->from(array($this->_name), $_cols, $this->_schema)
 			->joinRight(array('c' => 'coletaembriao'),
-				'e.doadora_id = c.vaca_id and e.touro_id = c.touro_id and e.dt_coleta = c.dt_coleta',
+				$this->_name.'.doadora_id = c.vaca_id and e.touro_id = c.touro_id and e.dt_coleta = c.dt_coleta',
 				array(), $this->_schema)
-			->joinLeft('criador', 'e.criador_id = criador.id', array('criador_cod' => 'cod'),$this->_schema)
+			->joinLeft('criador', $this->_name.'.criador_id = criador.id', array('criador_cod' => 'cod'),$this->_schema)
 			->where('c.id = ?', $id)
 			->order("natsort_canon(`embriao`, 'natural')")
 			;

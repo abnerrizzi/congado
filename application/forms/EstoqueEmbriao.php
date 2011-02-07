@@ -20,11 +20,7 @@ class Form_EstoqueEmbriao extends Form_Default
 		$this->setName('estoque_de_embrioes');
 		$this->addElement('hidden', 'id');
 
-		$this->addElement('select', 'fazenda_id', array(
-			'label' => 'Fazenda',
-//			'required' => true,
-			'class'	=> 'input',
-		));
+		$this->addElement('hidden', 'fazenda_id');
 
 		$this->addElement('text', 'embriao', array(
 			'label' => 'Embrião',

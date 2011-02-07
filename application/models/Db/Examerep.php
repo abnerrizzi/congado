@@ -87,15 +87,15 @@ class Model_Db_Examerep extends Model_Db
 		if ($orderby == 'dt') {
 			$orderby = 'data';
 		}
-		$this->_select = $this->select()
+		$this->_select
 			->setIntegrityCheck(false)
-			->from(array('e' => $this->_name), array(
+			->from(array($this->_name), array(
 				'id',
 				'dt' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')"),
 				'obs',
 			), $this->_schema)
-			->joinLeft(array('f' => 'fichario'), 'e.fichario_id = f.id', array('cod', 'nome'), $this->_schema)
-			->joinLeft(array('a' => 'acompanhamento'), 'e.acompanhamento_id = a.id', array('acompanhamento' => 'dsc'), $this->_schema)
+			->joinLeft(array('f' => 'fichario'), $this->_name.'.fichario_id = f.id', array('cod', 'nome'), $this->_schema)
+			->joinLeft(array('a' => 'acompanhamento'), $this->_name.'.acompanhamento_id = a.id', array('acompanhamento' => 'dsc'), $this->_schema)
 			->order($orderby .' '. $order)
 			;
 
@@ -119,7 +119,7 @@ class Model_Db_Examerep extends Model_Db
 
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
-			->from(array('e' => $this->_name), array(
+			->from(array($this->_name), array(
 				'id',
 				'fazenda_id',
 				'fichario_id',
@@ -127,11 +127,11 @@ class Model_Db_Examerep extends Model_Db
 				'acompanhamento_id',
 				'obs',
 			), $this->_schema)
-			->joinLeft('fichario', 'e.fichario_id = fichario.id', array('fichario_cod' => 'cod', 'fichario' => 'nome'), $this->_schema)
-			->joinLeft('acompanhamento', 'e.acompanhamento_id = acompanhamento.id', array('acompanhamento_cod' => 'cod', 'acompanhamento' => 'dsc'), $this->_schema)
-			->where('e.id = ?', $id)
+			->joinLeft('fichario', $this->_name.'.fichario_id = fichario.id', array('fichario_cod' => 'cod', 'fichario' => 'nome'), $this->_schema)
+			->joinLeft('acompanhamento', $this->_name.'.acompanhamento_id = acompanhamento.id', array('acompanhamento_cod' => 'cod', 'acompanhamento' => 'dsc'), $this->_schema)
+			->where($this->_name.'.id = ?', $id)
 		;
-			
+
 		$row = $this->fetchRow($this->_select);
 
 		if (!$row) {

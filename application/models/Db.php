@@ -141,4 +141,8 @@ class Model_Db extends Zend_Db_Table_Abstract
 
 	}
 
+	public final function getfId()
+	{
+		return $this->_fId;
+	}
 }

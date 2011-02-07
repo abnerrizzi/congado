@@ -44,7 +44,7 @@ class Model_Db_Sanitario extends Model_Db
 			'id',
 			'dt' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')"),
 		);
-		$select = $this->select()
+		$this->_select
 			->setIntegrityCheck(false)
 			->from($this->_name, $cols, $this->_schema)
 			->joinLeft(array('t' => 'sanitario_tipo'), 'tipo_id = t.id', array(), $this->_schema)
@@ -53,21 +53,21 @@ class Model_Db_Sanitario extends Model_Db
 		;
 
 		if ($this->getTipo() == 0) {
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('s' => 'morte'),
 				'sequencia_id = s.id',
 				array('old' => 's.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 1) {
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('s' => 'destino'),
 				'sequencia_id = s.id',
 				array('old' => 's.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 2) {
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('s' => 'destino'),
 				'sequencia_id = s.id',
 				array('old' => 's.dsc'),
@@ -76,13 +76,13 @@ class Model_Db_Sanitario extends Model_Db
 		} else {
 			throw new Zend_Db_Table_Exception('Tipo de movimentação não definido: (' . $this->getTipo() . ')');
 		}
-		$select->where("tipo_id = ?", $this->getTipo());
+		$this->_select->where("tipo_id = ?", $this->getTipo());
 
 		if ($orderby != null && $order != null) {
-			$select->order($orderby .' '. $order);
+			$this->_select->order($orderby .' '. $order);
 		}
 
-		return $select;
+		return $this->_select;
 
 	}
 
@@ -91,7 +91,7 @@ class Model_Db_Sanitario extends Model_Db
 
 		$id = (int)$id;
 
-		$select = $this->select()
+		$this->_select
 			->setIntegrityCheck(false)
 			->from($this->_name, array('id', 'fazenda_id', 'fichario_id', 'tipo_id', 'sequencial',
 			'data' => new Zend_Db_Expr("DATE_FORMAT(data, '%d/%m/%Y')"),
@@ -104,21 +104,21 @@ class Model_Db_Sanitario extends Model_Db
 		;
 
 		if ($this->getTipo() == 0) {
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('s' => 'morte'),
 				'sequencia_id = s.id',
 				array('sequencia_id'  => 's.id', 'sequencia_cod' => 's.cod', 'sequencia'  => 's.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 1) {
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('s' => 'destino'),
 				'sequencia_id = s.id',
 				array('sequencia_id'  => 's.id', 'sequencia_cod' => 's.cod', 'sequencia'  => 's.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 2) {
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('s' => 'destino'),
 				'sequencia_id = s.id',
 				array('sequencia_id'  => 's.id', 'sequencia_cod' => 's.cod', 'sequencia'  => 's.dsc'),
@@ -127,10 +127,10 @@ class Model_Db_Sanitario extends Model_Db
 		} else {
 			throw new Zend_Db_Table_Exception('Tipo de movimentação não definido: (' . $this->getTipo() . ')');
 		}
-		$select->where("tipo_id = ?", $this->getTipo());
-		$select->where("$this->_name.id = ?", $id);
+		$this->_select->where("tipo_id = ?", $this->getTipo());
+		$this->_select->where("$this->_name.id = ?", $id);
 		
-		$row = $this->fetchRow($select);
+		$row = $this->fetchRow($this->_select);
 		if (!$row) {
 			throw new Zend_Db_Table_Exception("Count not find row $id");
 		}
@@ -307,7 +307,7 @@ class Model_Db_Sanitario extends Model_Db
 
 		$col_id = $this->_name.'.id';
 		$col_id = 'id';
-		$this->_select = $this->select()
+		$this->_select
 			->setIntegrityCheck(false)
 			->from($this->_name, array(
 				'id',

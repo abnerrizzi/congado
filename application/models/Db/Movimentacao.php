@@ -44,7 +44,7 @@ class Model_Db_Movimentacao extends Model_Db
 			}
 		}
 
-		$select = $this->select()
+		$this->_select
 			->setIntegrityCheck(false)
 			->from($this->_name, $cols, $this->_schema)
 			->joinLeft(array('t' => 'movimentacao_tipo'), 'tipo_id = t.id', array(), $this->_schema)
@@ -52,78 +52,78 @@ class Model_Db_Movimentacao extends Model_Db
 		;
 
 		if ($this->getTipo() == 0) {
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('o' => 'categoria'),
 				'old = o.id',
 				array('old' => 'o.dsc'),
 				$this->_schema
 			);
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('n' => 'categoria'),
 				'new = n.id',
 				array('new' => 'n.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 1) {
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('o' => 'categoria'),
 				'old = o.id',
 				array('old' => 'o.dsc'),
 				$this->_schema
 			);
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('n' => 'categoria'),
 				'new = n.id',
 				array('new' => 'n.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 4) {
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('o' => 'local'),
 				'old = o.id',
 				array('old' => 'o.dsc'),
 				$this->_schema
 			);
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('n' => 'local'),
 				'new = n.id',
 				array('new' => 'n.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 5) {
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('o' => 'lote'),
 				'old = o.id',
 				array('old' => 'o.dsc'),
 				$this->_schema
 			);
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('n' => 'lote'),
 				'new = n.id',
 				array('new' => 'n.dsc'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 7) {
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('o' => 'fazenda'),
 				'old = o.id',
 				array('old' => 'o.descricao'),
 				$this->_schema
 			);
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('n' => 'fazenda'),
 				'new = n.id',
 				array('new' => 'n.descricao'),
 				$this->_schema
 			);
 		} elseif ($this->getTipo() == 8) {
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('o' => 'rebanho'),
 				'old = o.id',
 				array('old' => 'o.dsc'),
 				$this->_schema
 			);
-			$select->joinLeft(
+			$this->_select->joinLeft(
 				array('n' => 'rebanho'),
 				'new = n.id',
 				array('new' => 'n.dsc'),
@@ -132,13 +132,13 @@ class Model_Db_Movimentacao extends Model_Db
 		} else {
 			throw new Zend_Db_Table_Exception('Tipo de movimentação não definido: (' . $this->getTipo() . ')');
 		}
-		$select->where("tipo_id = ?", $this->getTipo());
+		$this->_select->where("tipo_id = ?", $this->getTipo());
 
 		if ($orderby != null && $order != null) {
-			$select->order($orderby .' '. $order);
+			$this->_select->order($orderby .' '. $order);
 		}
 
-		return $select;
+		return $this->_select;
 
 	}
 

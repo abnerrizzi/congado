@@ -315,8 +315,6 @@ class Model_Db_Fichario extends Model_Db
 		$_dt = explode('/', $post['dt_nascimento']);
 		$_dt = $_dt[2] .'/'. $_dt[1] .'/'. $_dt[0];
 
-		Zend_Debug::dump($this->_fId);
-		die();
 		$posts = array (
 			'fazenda_id'		=> $this->_fId,
 			'cod'				=> utf8_encode($post['cod']),
