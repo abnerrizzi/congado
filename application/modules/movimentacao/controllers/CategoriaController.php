@@ -15,7 +15,7 @@ class Movimentacao_CategoriaController extends Zend_Controller_Action
 	{
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Movimentação :: Local';
+		$this->view->title = 'Movimentação :: Mudança de Categoria';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 	}

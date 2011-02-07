@@ -16,7 +16,6 @@ class Model_Db_ColetaEmbriao extends Model_Db
 {
 
 	protected $_name = 'coletaembriao';
-	protected $_select = false;
 
 	public function getPaginatorAdapter($orderby = null, $order = null)
 	{
@@ -25,14 +24,14 @@ class Model_Db_ColetaEmbriao extends Model_Db
 			$orderby = 'dt_coleta';
 		}
 
-		$this->_select = $this->select()
+		$this->_select
 			->setIntegrityCheck(false)
-			->from(array('c' => $this->_name), array(
+			->from(array($this->_name), array(
 				'id',
 				'data_coleta' => new Zend_Db_Expr("DATE_FORMAT(dt_coleta, '%d/%m/%Y')"),
 			), $this->_schema)
-			->joinLeft(array('fv' => 'fichario'), 'c.vaca_id = fv.id', array('vaca_cod' => 'cod', 'vaca_nome' => 'nome'), $this->_schema)
-			->joinLeft(array('ft' => 'fichario'), 'c.touro_id = ft.id', array('touro_cod' => 'cod', 'touro_nome' => 'nome'), $this->_schema)
+			->joinLeft(array('fv' => 'fichario'), $this->_name.'.vaca_id = fv.id', array('vaca_cod' => 'cod', 'vaca_nome' => 'nome'), $this->_schema)
+			->joinLeft(array('ft' => 'fichario'), $this->_name.'.touro_id = ft.id', array('touro_cod' => 'cod', 'touro_nome' => 'nome'), $this->_schema)
 			->order($orderby .' '. $order)
 			;
 
@@ -40,7 +39,7 @@ class Model_Db_ColetaEmbriao extends Model_Db
 		
 	}
 
-		public function listJsonColeta($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
+	public function listJsonColeta($cols = '*', $orderby = false, $order = false, $page = false, $limit = false, $qtype = false, $query = false, $like = false, $params = array())
 	{
 
 		if ($orderby == 'data_coleta') {
@@ -53,7 +52,7 @@ class Model_Db_ColetaEmbriao extends Model_Db
 		$col_id = 'id';
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
-			->from(array('c' => $this->_name), array(
+			->from(array($this->_name), array(
 				'id',
 				'data_coleta' => new Zend_Db_Expr('date_format(dt_coleta, "%d/%m/%Y")'),
 				'vaca' => 'v.cod',
@@ -61,8 +60,8 @@ class Model_Db_ColetaEmbriao extends Model_Db
 				'fecundada',
 				'viavel',
 			), $this->_schema)
-			->joinLeft(array('v' => 'fichario'), 'c.vaca_id = v.id',array(),$this->_schema)
-			->joinLeft(array('t' => 'fichario'), 'c.touro_id = t.id',array(),$this->_schema)
+			->joinLeft(array('v' => 'fichario'), $this->_name.'.vaca_id = v.id',array(),$this->_schema)
+			->joinLeft(array('t' => 'fichario'), $this->_name.'.touro_id = t.id',array(),$this->_schema)
 			->order($orderby .' '. $order)
 		;
 
@@ -194,7 +193,7 @@ class Model_Db_ColetaEmbriao extends Model_Db
 		$col_id = 'id';
 		$this->_select = $this->select()
 			->setIntegrityCheck(false)
-			->from(array('c' => $this->_name), array(
+			->from(array($this->_name), array(
 				'id',
 				'vaca_cod' => 'fv.cod',
 				'data_coleta' => new Zend_Db_Expr("DATE_FORMAT(dt_coleta, '%d/%m/%Y')"),
@@ -202,8 +201,8 @@ class Model_Db_ColetaEmbriao extends Model_Db
 				'fecundada',
 				'nao_viavel',
 			), $this->_schema)
-			->joinLeft(array('fv' => 'fichario'), 'c.vaca_id = fv.id', array(), $this->_schema)
-			->joinLeft(array('ft' => 'fichario'), 'c.touro_id = ft.id', array(), $this->_schema)
+			->joinLeft(array('fv' => 'fichario'), $this->_name.'.vaca_id = fv.id', array(), $this->_schema)
+			->joinLeft(array('ft' => 'fichario'), $this->_name.'.touro_id = ft.id', array(), $this->_schema)
 		;
 
 		if ($orderby && $order) {
