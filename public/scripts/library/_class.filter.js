@@ -89,8 +89,11 @@ var filter = {
 		__fCod = '#' + input + '_cod';
 		__fSel = '#' + input;
 		$(__fId).val(row.attr("id").substr(3));
+		$(__fId).trigger('change');
 		$(__fCod).val(__cod);
+		$(__fCod).trigger('change');
 		$(__fSel).val(__dsc);
+		$(__fSel).trigger('change');
 		$("#dlg").dialog('close');
 
 		setTimeout(function(){

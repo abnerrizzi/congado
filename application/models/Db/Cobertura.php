@@ -313,6 +313,12 @@ class Model_Db_Cobertura extends Model_Db
 		return $return;
 	}
 
+	public function getLastCoberturaByFicharioId($id)
+	{
+		print $this->_select;
+		die();
+	}
+
 	public function updateRegime($values)
 	{
 		$data = array(
