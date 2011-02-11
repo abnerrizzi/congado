@@ -32,6 +32,11 @@ class Reproducao_JsonController extends Zend_Controller_Action
 		));
 	}
 
+	public function postDispatch()
+	{
+		$this->render('index');
+	}
+
 	public function coberturaAction()
 	{
 		$coberturaModel = new Model_Db_Cobertura();
@@ -46,7 +51,6 @@ class Reproducao_JsonController extends Zend_Controller_Action
 			$this->getRequest()->getParam('like', false)
 		);
 		$this->view->content = utf8_encode(json_encode($coberturas));
-		$this->render('index');
 	}
 
 	public function transferenciaAction()
@@ -63,7 +67,6 @@ class Reproducao_JsonController extends Zend_Controller_Action
 			$this->getRequest()->getParam('like', false)
 		);
 		$this->view->content = utf8_encode(json_encode($transferencias));
-		$this->render('index');
 	}
 
 	public function regimeAction()
@@ -80,7 +83,6 @@ class Reproducao_JsonController extends Zend_Controller_Action
 			$this->getRequest()->getParam('like', false)
 		);
 		$this->view->content = utf8_encode(json_encode($coberturas));
-		$this->render('index');
 	}
 
 	public function examerepAction()
@@ -101,30 +103,54 @@ class Reproducao_JsonController extends Zend_Controller_Action
 			$this->getRequest()->getParam('like', false)
 		);
 		$this->view->content = utf8_encode(json_encode($exames));
-		$this->render('index');
 
 	}
 
 	public function diagnosticoAction()
 	{
 
-		$exameModel = new Model_Db_Diagnostico();
-		$exames = $exameModel->listJson(
-			array(
-				'id',
-				'dt_diagnostico',
-				'fichario_id'
-			),
-			$this->getRequest()->getParam('sortname','id'),
-			$this->getRequest()->getParam('sortorder','asc'),
-			$this->getRequest()->getParam('page','1'),
-			$this->getRequest()->getParam('rp'),
-			$this->getRequest()->getParam('qtype'),
-			$this->getRequest()->getParam('query'),
-			$this->getRequest()->getParam('like', false)
-		);
-		$this->view->content = utf8_encode(json_encode($exames));
-		$this->render('index');
+		print '<pre>';
+
+		$_return['error'] = false;
+		$request = $this->getRequest();
+		$animalId = $request->getParam('id', false);
+		if (!$animalId) {
+			$_return['error'] = 'Animal nao encontrado';
+		}
+		$ficharioModel = new Model_Db_Fichario();
+		$coberturaModel = new Model_Db_Cobertura();
+
+		// Verificano origem do animal
+		$ficharioModel->disableExceptions();
+		$animal = $ficharioModel->getFichario($request->getParam('id', false));
+		if (strtolower($animal['origem']) == 'e') {
+			$_return['error'] = 'Animal de origem externa';
+		} elseif ($animal['categoria_id'] == 18) {
+			$_return['error'] = 'Animal Vendido';
+		}
+
+		// Buscar ultima cobertura
+		$coberturaModel->getLastCoberturaByFicharioId($animalId);
+		if ($_return['error'] != false) {
+			print_r($_return);
+		}
+		print_r($animal);
+		die('ok');
+
+
+		/*
+         * verificar sexo
+         * verificar movimentacoes para encontrar possiveis vendas.
+         * verificar origem no fichario se animal eh externo ou nao
+         * verificar coberturas ...
+         * * verificar se existem coberturas sem diagnostico
+         * * verificar se essas coberturas sem diagnosticos estao dentro do prazo
+         * * e confirmar se serao automaticamente inseridas no banco de dados como vazia ou sei la como
+         */
+
+		die();
+		$this->view->content = utf8_encode(json_encode($_return));
 
 	}
+
 }
