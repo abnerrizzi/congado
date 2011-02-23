@@ -24,7 +24,6 @@ class Model_Db_Cobertura extends Model_Db
 		'Model_Db_Fazenda',
 	);
 
-	/*
 	protected $_referenceMap	= array(
 		'fazenda' => array(
             'columns'           => array('fazenda_id'),
@@ -42,7 +41,6 @@ class Model_Db_Cobertura extends Model_Db
             'refColumns'        => array('id')
         ),
 	);
-	*/
 
 	public function getPaginatorAdapter($orderby = null, $order = null)
 	{

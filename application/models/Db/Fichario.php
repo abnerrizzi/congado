@@ -16,6 +16,7 @@ class Model_Db_Fichario extends Model_Db
 {
 
 	protected $_name = 'fichario';
+	protected $_primary  = 'id'; //primary key
 	protected $_referenceMap	= array(
         'CoberturaVaca' => array(
             'columns'           => array('id'),
@@ -486,4 +487,15 @@ class Model_Db_Fichario extends Model_Db
 		return $return;
 	}
 
+	public function checkMovimentacaoVenda($id)
+	{
+		$id = (int)$id;
+		$row = $this->find($id)->current();
+		$movimentos = $row->findDependentRowset('Model_Db_Movimentacao')->toArray();
+		foreach ($movimentos as $movimento) {
+			if ($movimento['tipo_id'] == 6)
+				return false;
+		}
+		return true;
+	}
 }

@@ -109,8 +109,6 @@ class Reproducao_JsonController extends Zend_Controller_Action
 	public function diagnosticoAction()
 	{
 
-		print '<pre>';
-
 		$_return['error'] = false;
 		$request = $this->getRequest();
 		$animalId = $request->getParam('id', false);
@@ -123,19 +121,20 @@ class Reproducao_JsonController extends Zend_Controller_Action
 		// Verificano origem do animal
 		$ficharioModel->disableExceptions();
 		$animal = $ficharioModel->getFichario($request->getParam('id', false));
+		$venda = $ficharioModel->checkMovimentacaoVenda($animal['id']);
 		if (strtolower($animal['origem']) == 'e') {
 			$_return['error'] = 'Animal de origem externa';
-		} elseif ($animal['categoria_id'] == 18) {
+		} elseif ($animal['categoria_id'] == 18 || $venda == false) {
 			$_return['error'] = 'Animal Vendido';
 		}
 
 		// Buscar ultima cobertura
-		$coberturaModel->getLastCoberturaByFicharioId($animalId);
-		if ($_return['error'] != false) {
-			print_r($_return);
-		}
-		print_r($animal);
-		die('ok');
+//		$coberturaModel->getLastCoberturaByFicharioId($animalId);
+//		if ($_return['error'] != false) {
+//			print_r($_return);
+//		}
+//		print_r($animal);
+//		die('ok');
 
 
 		/*
@@ -148,7 +147,6 @@ class Reproducao_JsonController extends Zend_Controller_Action
          * * e confirmar se serao automaticamente inseridas no banco de dados como vazia ou sei la como
          */
 
-		die();
 		$this->view->content = utf8_encode(json_encode($_return));
 
 	}

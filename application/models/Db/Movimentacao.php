@@ -19,6 +19,15 @@ class Model_Db_Movimentacao extends Model_Db
 	protected $_select = false;
 	protected $_tipo = false;
 
+	protected $_referenceMap	= array(
+	'fichario' => array(
+	            'columns'           => array('fichario_id'),
+	            'refTableClass'     => 'Model_Db_Fichario',
+	            'refColumns'        => array('id')
+	        ),
+	);
+
+
 	public function setTipo($tipo)
 	{
 		$this->_tipo = intval($tipo);
@@ -99,6 +108,19 @@ class Model_Db_Movimentacao extends Model_Db
 			);
 			$this->_select->joinLeft(
 				array('n' => 'lote'),
+				'new = n.id',
+				array('new' => 'n.dsc'),
+				$this->_schema
+			);
+		} elseif ($this->getTipo() == 6) {
+			$this->_select->joinLeft(
+				array('o' => 'categoria'),
+				'old = o.id',
+				array('old' => 'o.dsc'),
+				$this->_schema
+			);
+			$this->_select->joinLeft(
+				array('n' => 'categoria'),
 				'new = n.id',
 				array('new' => 'n.dsc'),
 				$this->_schema
