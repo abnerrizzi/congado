@@ -1,6 +1,9 @@
 <?php
 
 $this->javascript();
+$this->headScript()
+	->appendFile($this->baseUrl() . '/scripts/library/jquery/jquery.ajaxmanager.js')
+	;
 
 echo $this->FormEdit($this->form, $this->baseUrl(), $this->elements);
 

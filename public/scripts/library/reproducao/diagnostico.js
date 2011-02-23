@@ -15,50 +15,43 @@ $(document).ready(function() {
 		makeDateField("#dt_diagnostico", null, new Date());
 		addSearchIcon('fichario', baseUrl+'/json/fichario/sexo/f', 'filter.animal', 600, 240);
 		$("#fichario_cod").change(function(){
-			verifyConditions(change.animal(this, 'F'));
+			change.animal_diagnostico(this, 'F');
 		});
-		$('#dt_diagnostico').change(function(){
-			if ($('#dt_diagnostico').length > 0 && $('#fichario_id').length > 0) {
-//				console.log('alterou a data');
-			}
-		});
+//		$('#dt_diagnostico').change(function(){
+//			if ($('#dt_diagnostico').length > 0 && $('#fichario_id').length > 0) {
+//			}
+//		});
+//		$('#ajax_loader').bind('change.done', verifyDiagnostico());
 	}
 
 });
 
 
-
-
-
-
-function verifyConditions(xhr)
+function verifyDiagnostico()
 {
 
-	if ($.browser.mozilla == true) {
-	    xhr.onload = xhr.onerror = xhr.onabort = function(){
-	        processResponse(xhr);
-	    };
-	} else {
-		xhr_handler = xhr.onreadystatechange;
-	    xhr.onreadystatechange = function(){
-	        if (xhr.readyState == 4){
-	        	xhr_handler();
-	        	// $('#fichario_id').val()
-	        	/*
-	        	 * verificar movimentacoes para encontrar possiveis vendas.
-	        	 * verificar origem no fichario se animal eh externo ou nao
-	        	 * verificar sexo
-	        	 * verificar coberturas ...
-	        	 * * verificar se existem coberturas sem diagnostico
-	        	 * * verificar se essas coberturas sem diagnosticos estao dentro do prazo
-	        	 * * e confirmar se serao automaticamente inseridas no banco de dados como vazia ou sei la como
-	        	 */
-	        }
-	    };
-	}
+	__url = baseUrl + '/reproducao/json/diagnostico';
 
+	$("#ajax_loader").html("Processando");
+	$("#ajax_loader").show();
 
+	$.post(__url, {
+		fazenda_id:	$('#fazenda_id').val(),
+		id:			$('#fichario_id').val()
+	}, function(j) {
+		$('ajax_loader').unbind("change.done");
+		console.log(j);
+		if (j.error) {
+			window.alert(j.error);
+			$("#ajax_loader").fadeOut(30);
+			return;
+		}
+		$('#ajax_loader').trigger('change.done');
+	}, "json");
 }
+
+
+
 
 
 

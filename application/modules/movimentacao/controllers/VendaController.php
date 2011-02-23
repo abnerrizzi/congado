@@ -13,13 +13,69 @@ class Movimentacao_VendaController extends Zend_Controller_Action
 
 	public function init()
 	{
-		throw new Zend_Controller_Action_Exception('Funcionalidade não implementada.');
+//		throw new Zend_Controller_Action_Exception('Funcionalidade não implementada.');
 
 		$auth = Zend_Auth::getInstance();
 		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Movimentação :: Encerramento de Lactação';
+		$this->view->title = 'Movimentação :: Venda';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
 		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
+
 	}
 
+	public function indexAction()
+	{
+
+		$movimentacaoModel = new Model_Db_Movimentacao();
+		$movimentacaoModel->setTipo(6);
+
+		$gridModel = new Model_Grid($this->view->title);
+
+		$_page	= $this->_getParam('page', 1);
+		$_by	= $this->_getParam('by', 'id');
+		$_order	= $this->_getParam('sort', 'asc');
+		$result	= $movimentacaoModel->getPaginatorAdapter($_by, $_order, array('id', 'data'));
+		
+		/*
+		 * Paginator
+		 */
+		$paginator = Zend_Paginator::factory($result);
+		if (intval(Zend_Auth::getInstance()->getIdentity()->perpage) > 0) {
+			$paginator->setItemCountPerPage(intval(Zend_Auth::getInstance()->getIdentity()->perpage));
+		} else {
+			$paginator->setItemCountPerPage(Zend_Registry::get('configuration')->pagination->itemCoutPerPage);
+		}
+		$paginator->setCurrentPageNumber($_page);
+
+		/*
+		 * Fields
+		 */
+		$fields[] = new Model_Grid_Fields('data', 'Data', 20);
+		$fields[] = new Model_Grid_Fields('nome', 'Animal', 150);
+		$fields[] = new Model_Grid_Fields('old', 'Antigo', 200);
+		$fields[] = new Model_Grid_Fields('new', 'Novo', 200);
+
+		/*
+		 * Grid Model
+		 */
+		$gridModel->setBaseUrl($this->view->baseUrl);
+		$gridModel->setSorting(true);
+		$gridModel->setPaginator($paginator);
+		$gridModel->setFields($fields);
+		$gridModel->setEdit(array(
+			'module'	=> 'movimentacao/desmama',
+			'action'	=> 'edit',
+		));
+		$gridModel->setDelete(array(
+			'module'	=> 'movimentacao/desmama',
+			'action'	=> 'delete',
+		));
+		$gridModel->setAdd(array(
+			'module'	=> 'movimentacao/desmama',
+			'action'	=> 'add',
+		));
+
+		$this->view->sort = $_order;
+		$this->view->grid = $gridModel;
+	}
 }
