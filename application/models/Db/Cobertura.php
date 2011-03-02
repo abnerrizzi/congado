@@ -24,7 +24,6 @@ class Model_Db_Cobertura extends Model_Db
 		'Model_Db_Fazenda',
 	);
 
-	/*
 	protected $_referenceMap	= array(
 		'fazenda' => array(
             'columns'           => array('fazenda_id'),
@@ -42,7 +41,6 @@ class Model_Db_Cobertura extends Model_Db
             'refColumns'        => array('id')
         ),
 	);
-	*/
 
 	public function getPaginatorAdapter($orderby = null, $order = null)
 	{
@@ -311,6 +309,12 @@ class Model_Db_Cobertura extends Model_Db
 			$return[$key] = utf8_decode($val);
 		}
 		return $return;
+	}
+
+	public function getLastCoberturaByFicharioId($id)
+	{
+		print $this->_select;
+		die();
 	}
 
 	public function updateRegime($values)

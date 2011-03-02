@@ -17,6 +17,11 @@ class Model_Db extends Zend_Db_Table_Abstract
 
 	protected $_select = false;
 	protected $_fId;
+	/**
+     * Are throw exceptions enabled?
+     * @var bool
+     */
+	protected $_exceptions = true;
 
 	public function init()
 	{
@@ -145,4 +150,20 @@ class Model_Db extends Zend_Db_Table_Abstract
 	{
 		return $this->_fId;
 	}
+
+	public final function disableExceptions()
+    {
+        $this->_exceptions = false;
+        return $this;
+    }
+
+    public function Exception($msg)
+    {
+    	if ($this->_exceptions) {
+    		throw new Zend_Db_Exception($msg);
+    	} else {
+    		return $msg;
+    	}
+    }
+	
 }

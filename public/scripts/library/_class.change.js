@@ -1,4 +1,6 @@
 var change = {
+	// async .... faz a busca em background
+	async:	true,
 	ajaxRequest:	false,
 	suffix:	'_cod',
 	qtype:	'cod',
@@ -31,8 +33,15 @@ var change = {
 			return false;
 		}
 	},
+
 	__ajaxRequest:	function() {
+
 		$("#ajax_loader").html("Buscando dados...").show();
+
+		$.ajaxSetup({
+			async: this.async,
+		});
+
 		xhr = $.post(this.url, {
 			fazenda_id: $('#fazenda_id').val(),
 			sexo:	this.sexo,
@@ -60,6 +69,7 @@ var change = {
 				, 5000);
 				return false;
 			}
+			$('#ajax_loader').trigger('change.done');
 		}, "json");
 		return xhr;
 	}
@@ -193,3 +203,45 @@ change.fromSelect = function(field) {
 	$(__hidden).val(field.value.split(";")[0]);
 	$(__input).val(field.value.split(";")[1]);
 };
+
+
+
+
+change.animal_diagnostico = function(field, sexo) {
+	if ($('#fazenda_id').val() == '') {
+		$("#ajax_loader").html("Por favor, selecione uma fazenda!").show();
+		return false;
+	} else if (sexo.toUpperCase() != 'M' && sexo.toUpperCase() != 'F') {
+		$("#ajax_loader").html("Erro inesperado, contacte o desenvolvedor!").show();
+		return false;
+	} else {
+		this.sexo = sexo;
+	}
+	this.run = function(field) {
+		this.url = baseUrl + '/json/animal/';
+		this.__getFields(field);
+		xhr = this.__ajaxRequest();
+		this.sexo = null;
+	};
+	this.run(field);
+
+	/*
+     * verificar sexo
+     * verificar movimentacoes para encontrar possiveis vendas.
+     * verificar origem no fichario se animal eh externo ou nao
+     * verificar coberturas ...
+     * * verificar se existem coberturas sem diagnostico
+     * * verificar se essas coberturas sem diagnosticos estao dentro do prazo
+     * * e confirmar se serao automaticamente inseridas no banco de dados como vazia ou sei la como
+     */
+
+
+
+
+	return xhr;
+};
+
+
+
+
+
