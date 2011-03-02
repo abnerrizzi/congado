@@ -110,10 +110,14 @@ class Model_Db_Diagnostico extends Model_Db
 
 	public function addDiagnostico($post)
 	{
+
+		$d = explode("/", $post['dt_diagnostico']);
+		$rstData = "$d[2]-$d[1]-$d[0]";
+
 		$data = array(
 			'fichario_id'		=> (int)($post['fichario_id']),
 			'prenha'			=> (int)($post['prenha']),
-			'dt_diagnostico'	=> new Zend_Db_Expr("STR_TO_DATE('".$post['dt_diagnostico']."','%d/%m/%Y')"),
+			'dt_diagnostico'	=> $rstData,
 			'fazenda_id'		=> (int)$this->_fId,
 		);
 

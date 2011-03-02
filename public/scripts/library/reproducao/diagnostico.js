@@ -16,6 +16,14 @@ $(document).ready(function() {
 		addSearchIcon('fichario', baseUrl+'/json/fichario/sexo/f', 'filter.animal', 600, 240);
 		$("#fichario_cod").change(function(){
 			change.animal_diagnostico(this, 'F');
+			$('#ajax_loader').one('change.done', function()
+			{
+				console.log('change.done ok');
+
+				// gera um field pra mostrar a ultima cobertura
+				// pega a ultima cobertura
+
+			});
 		});
 //		$('#dt_diagnostico').change(function(){
 //			if ($('#dt_diagnostico').length > 0 && $('#fichario_id').length > 0) {
