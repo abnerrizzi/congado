@@ -76,7 +76,7 @@ var filter = {
 		this.hide_filter();
 	},
 
-	changeField: function (row, input)
+	changeField: function (row, input, reverse)
 	{
 		__id = row.attr("id").substr(3);
 		__cod = $("#row"+__id+" td: div")[0].innerHTML;
@@ -88,9 +88,19 @@ var filter = {
 		__fId = '#' + input + '_id';
 		__fCod = '#' + input + '_cod';
 		__fSel = '#' + input;
-		$(__fId).val(row.attr("id").substr(3));
-		$(__fCod).val(__cod);
-		$(__fSel).val(__dsc);
+
+		if (typeof(reverse) == "boolean" && typeof(reverse) == true) {
+			$(__fCod).val(__cod);
+			$(__fCod).trigger('change');
+		} else {
+			$(__fId).val(row.attr("id").substr(3));
+			$(__fId).trigger('change');
+			$(__fCod).val(__cod);
+			$(__fCod).trigger('change');
+			$(__fSel).val(__dsc);
+			$(__fSel, __fCod).trigger('change');
+		}
+
 		$("#dlg").dialog('close');
 
 		setTimeout(function(){

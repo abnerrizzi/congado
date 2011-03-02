@@ -83,8 +83,8 @@ class Reproducao_DiagnosticoController extends Zend_Controller_Action
 		$diagnosticoForm->setMethod('post');
 		$this->view->form = $diagnosticoForm;
 		$this->view->elements = array(
-			'dt_diagnostico',
 			array('fichario'),
+			'dt_diagnostico',
 			'prenha',
 		);
 
