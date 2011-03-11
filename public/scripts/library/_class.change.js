@@ -56,6 +56,7 @@ var change = {
 				$("#" + __fieldName + "_cod").val(j[0].cell[0]);
 				$("#" + __fieldName).val(j[0].cell[1]);
 				$("#ajax_loader").fadeOut(30);
+				$('#ajax_loader').trigger('change.done.true');
 			} else {
 				$("#ajax_loader").html("Código não encontrado");
 				$("#ajax_loader").show();
@@ -67,9 +68,9 @@ var change = {
 				setTimeout(function(){
 					$("#ajax_loader").fadeOut(300); }
 				, 5000);
+				$('#ajax_loader').trigger('change.done.false');
 				return false;
 			}
-			$('#ajax_loader').trigger('change.done');
 		}, "json");
 		return xhr;
 	}
@@ -221,7 +222,7 @@ change.animal_diagnostico = function(field, sexo) {
 		this.url = baseUrl + '/json/animal/';
 		this.__getFields(field);
 		xhr = this.__ajaxRequest();
-		this.sexo = null;
+		this.sexo = sexo;
 	};
 	this.run(field);
 

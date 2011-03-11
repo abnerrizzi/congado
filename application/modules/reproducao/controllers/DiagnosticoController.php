@@ -81,6 +81,13 @@ class Reproducao_DiagnosticoController extends Zend_Controller_Action
 		$diagnosticoForm = new Form_Diagnostico();
 		$diagnosticoForm->setAction($this->_action . '/add');
 		$diagnosticoForm->setMethod('post');
+
+		$group = new Zend_Form_Element_Text('group');
+		$diagnosticoForm->addElement($group);
+		$group->setLabel('Group');
+
+		$diagnosticoForm->addDisplayGroup(array('group'), 'groups', array("legend" => "Group Add"));
+
 		$this->view->form = $diagnosticoForm;
 		$this->view->elements = array(
 			array('fichario'),
