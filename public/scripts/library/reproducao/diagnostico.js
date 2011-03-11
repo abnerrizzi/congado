@@ -16,9 +16,12 @@ $(document).ready(function() {
 		addSearchIcon('fichario', baseUrl+'/json/fichario/sexo/f', 'filter.animal', 600, 240);
 		$("#fichario_cod").change(function(){
 			change.animal_diagnostico(this, 'F');
-			$('#ajax_loader').one('change.done', function()
+			$('#fichario_cod').unbind('change.done.true', function(){});
+			$('#ajax_loader').one('change.done.true', function()
 			{
-				console.log('change.done ok');
+				__id = $('#fichario_id').val();
+				console.log('change.done ok: (' + __id + ')');
+				verify = verifyDiagnostico();
 
 				// gera um field pra mostrar a ultima cobertura
 				// pega a ultima cobertura
@@ -32,6 +35,10 @@ $(document).ready(function() {
 //		$('#ajax_loader').bind('change.done', verifyDiagnostico());
 	}
 
+	$('#ajax_loader').bind('change.done.false', function(){
+		console.log('error');
+		$('#ajax_loader').unbind('change.done.true');
+	});
 });
 
 
@@ -48,11 +55,19 @@ function verifyDiagnostico()
 		id:			$('#fichario_id').val()
 	}, function(j) {
 		$('ajax_loader').unbind("change.done");
-		console.log(j);
-		if (j.error) {
-			window.alert(j.error);
-			$("#ajax_loader").fadeOut(30);
-			return;
+		if (typeof(j.error) == 'boolean' && j.error == false) {
+			return true;
+		} else if (j.error) {
+			$("#fichario_cod, #fichario").css('border-color', '#f00');
+			$("#ajax_loader").hide();
+			$("#ajax_loader").show();
+			$("#ajax_loader").html(j.error).show();
+			$("#fichario_cod").focus(function(){
+				$("#fichario_cod, #fichario_id, #fichario").val('');
+				$("#fichario_cod, #fichario").css('border-color', '#9E9E9E #DFDFDF #DFDFDF #9E9E9E');
+				$("#ajax_loader").fadeOut(300);
+			});
+			return false;
 		}
 		$('#ajax_loader').trigger('change.done');
 	}, "json");
@@ -110,7 +125,8 @@ where
   
   
   
-  
+
+
   
   
   

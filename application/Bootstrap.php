@@ -25,6 +25,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		return $moduleLoader;
 	}
 
+	protected function _initCheckVersion()
+	{
+		if (Zend_Version::VERSION < '1.11') {
+			throw new Zend_Exception('Zend Framework version incompatible, required 1.11 or prior');
+		}
+	}
+
 	protected function _initEnviroment()
 	{
 		self::$root = dirname(dirname(__FILE__));

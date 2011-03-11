@@ -110,6 +110,7 @@ class Reproducao_JsonController extends Zend_Controller_Action
 	{
 
 		$_return['error'] = false;
+
 		$request = $this->getRequest();
 		$animalId = $request->getParam('id', false);
 		if (!$animalId) {
@@ -126,6 +127,10 @@ class Reproducao_JsonController extends Zend_Controller_Action
 			$_return['error'] = 'Animal de origem externa';
 		} elseif ($animal['categoria_id'] == 18 || $venda == false) {
 			$_return['error'] = 'Animal Vendido';
+
+		// Verificando Sexo
+		} elseif (strtoupper($animal['sexo']) != "F") {
+			$_return['error'] = 'Permitido apenas animais do sexo feminino';
 		}
 
 		// Buscar ultima cobertura
@@ -138,9 +143,9 @@ class Reproducao_JsonController extends Zend_Controller_Action
 
 
 		/*
-         * verificar sexo
-         * verificar movimentacoes para encontrar possiveis vendas.
-         * verificar origem no fichario se animal eh externo ou nao
+-         * verificar sexo
+-         * verificar movimentacoes para encontrar possiveis vendas.
+-         * verificar origem no fichario se animal eh externo ou nao
          * verificar coberturas ...
          * * verificar se existem coberturas sem diagnostico
          * * verificar se essas coberturas sem diagnosticos estao dentro do prazo
