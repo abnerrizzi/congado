@@ -33,7 +33,7 @@ class Model_Db_Diagnostico extends Model_Db
 		$this->_select
 			->from($this->_name, array(
 				'id',
-				'data' => new Zend_Db_Expr("DATE_FORMAT (dt_diagnostico, '%d/%m/%Y')"),
+				'data' => new Zend_Db_Expr("DATE_FORMAT(dt_diagnostico, '%d/%m/%Y')"),
 				'diag' => new Zend_Db_Expr("IF (prenha = 1, 'Prenha', 'Vazia')"),
 			), $this->_schema)
 			->joinLeft('fichario', $this->_name.'.fichario_id = fichario.id', array('vaca_cod' => 'cod', 'vaca' => 'nome'),$this->_schema)
