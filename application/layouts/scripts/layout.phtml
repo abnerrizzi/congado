@@ -15,7 +15,7 @@
 		->appendStylesheet($this->baseUrl() . '/styles/site.css')
 		->appendStylesheet($this->baseUrl() . '/styles/fb.css')
 	;
-    
+
     $this->headScript()
     	->prependFile($this->baseUrl() . '/scripts/library/jquery/jquery.jqtransform.js')
     	->prependFile($this->baseUrl() . '/scripts/menu.js')
@@ -56,11 +56,41 @@
   <div id="preloader">Carregando... Por favor espere.</div>
   <div id="container" style="display: none;">
 
-<?php if (Zend_Auth::getInstance()->hasIdentity()) { include_once ('menu.phtml'); } ?>
+<?php if (Zend_Auth::getInstance()->hasIdentity()) {
+//	include_once ('menu.phtml');
+
+	ob_start(); # start buffer
+    include_once ('menu.phtml');
+    # we pass the output to a variable
+    $menu_html = ob_get_contents();
+    ob_end_clean(); # end buffer
+    # and here's our variable filled up with the html
+//    echo $menu_html;
+
+    if (APPLICATION_ENV == 'development') {
+       $menu_html = preg_replace("/\n\r|\r\n|\n|\r/", "", $menu_html);
+       $menu_html = preg_replace("/\t/", " ", $menu_html);
+       $menu_html = preg_replace('/>\s+</', "><", $menu_html);
+       echo $menu_html;
+    } else {
+       echo $menu_html;
+    }
+
+} ?>
 
 
   <div id="main">
-	<?php echo $this->layout()->content ?>
+	<?
+	if (APPLICATION_ENV == 'development') {
+	   $__content = $this->layout()->content;
+	   $__content = preg_replace("/\n\r|\r\n|\n|\r/", "", $__content);
+	   $__content = preg_replace("/\t/", " ", $__content);
+	   $__content = preg_replace('/>\s+</', "><", $__content);
+	   echo $__content;
+	} else {
+	   echo $this->layout()->content;
+	}
+    ?>
   </div>
   <div id="ajax_loader" class="ajax_loader" style="display: none;"></div>
 

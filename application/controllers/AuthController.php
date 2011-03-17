@@ -117,6 +117,13 @@ class AuthController extends Zend_Controller_Action
 		$user_id = Zend_Auth::getInstance()->getIdentity()->id;
 
 		$__fazendas = $fazendaModel->getFazendaByUser(Zend_Auth::getInstance()->getIdentity()->id);
+		if (!$__fazendas) {
+			throw new Zend_Exception('Erro de acesso');
+			$this->_redirect($this->baseUrl . '/auth/logout');
+			exit;
+		}
+
+
 		foreach ($__fazendas as $__key) {
 			$x[$__key['id']] = $__key['descricao'];
 		}

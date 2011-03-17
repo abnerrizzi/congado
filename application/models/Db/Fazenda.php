@@ -54,6 +54,7 @@ class Model_Db_Fazenda extends Model_Db
 			->where('fu.user_id = ?', intval($userid))
 		;
 		$rows = $this->fetchAll($query)->toArray();
+		$_return = false;
 		foreach ($rows as $row) {
 			foreach ($row as $key => $value) {
 				$_row[$key] = utf8_decode($value);

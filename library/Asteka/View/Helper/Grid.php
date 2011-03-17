@@ -65,8 +65,8 @@ class Asteka_View_Helper_Grid extends Zend_View_Helper_Abstract
 <table id="null" border="0" width="800" cellpadding="5" style="border:0px; background-color: #fff;">
 
 	<tr>
-	  <td align="left" width="480"><div id="grid-title" style="margin-left: 10px;">'.$grid->getName().'</div></td>
-	  <td align="right" colspan="1">';
+      <td align="left" width="480"><div id="grid-title" style="margin-left: 10px;">'.$grid->getName().'</div></td>
+      <td align="right" colspan="1">';
 		if ($grid->getAdd()) {
 			$add = $grid->getAdd();
 			$addModule = $add['module'];
@@ -81,17 +81,17 @@ class Asteka_View_Helper_Grid extends Zend_View_Helper_Abstract
             </span>
           </a>
         </div>
-			'."\n";
+            '."\n";
 		}
 $output .= '</td>
-	</tr>
+    </tr>
 
   <tr>
-	<td align="center" colspan="3">
-	  <table border="0" align="center" cellpadding="0" cellspacing="0" style="border-right: 1px solid #CCCCCC; border-left: 1px solid #919191;" bgcolor="#F7F6F1">
+    <td align="center" colspan="3">
+      <table border="0" align="center" cellpadding="0" cellspacing="0" style="border-right: 1px solid #CCCCCC; border-left: 1px solid #919191;" bgcolor="#F7F6F1">
 
 <!-- START OF TABLE HEAD -->
-	  <tr class="head">
+      <tr class="head">
 '."\n"
 		;
 
@@ -115,34 +115,34 @@ $output .= '</td>
 				$title = $__fields[$i]['title'];
 			}
 			$output .= ' 
-		  <td width="20" height="20" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');">
-			<img src="'.$arrow.'" alt=""/>
-		  </td>
+          <td width="20" height="20" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');">
+            <img src="'.$arrow.'" alt=""/>
+          </td>
 
-		  <td width="'.$__fields->getSize().'" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');">
-			'.$title.'
-		  </td>
+          <td width="'.$__fields->getSize().'" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');">
+            '.$title.'
+          </td>
 
-		  <td width="0" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');">
-			<img src="'.$grid->getBaseUrl().'/images/grid/divisor_title.gif" alt=""/>
-		  </td>
+          <td width="0" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');">
+            <img src="'.$grid->getBaseUrl().'/images/grid/divisor_title.gif" alt=""/>
+          </td>
 
 '."\n";
 		}
 		if ($grid->getAction()) {
 			$output .= '
-		  <td align="center" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');" width="65" >
-			A&ccedil;&otilde;es
-		  </td>
+          <td align="center" style="background: url(\''.$grid->getBaseUrl().'/images/grid/bg_title.gif\');" width="65" >
+            A&ccedil;&otilde;es
+          </td>
 ';
 		}
 		$output .= '
 
-		</tr>
+        </tr>
 <!-- END OF TABLE HEAD -->
 
 
-		<tr>'."\n";
+        <tr>'."\n";
 
 
 		for($i=0; $i < count($grid->getFields()); $i++ ) {
@@ -150,21 +150,21 @@ $output .= '</td>
 			$__fields = $__fields[$i];
 			if ($_by == $__fields->getColum()) {
 				$output .= '
-		  <td height="2" bgcolor="#FF7015"></td>
-		  <td bgcolor="#FF7015"></td>
-		  <td bgcolor="#FF7015"></td>
-				';
+          <td height="2" bgcolor="#FF7015"></td>
+          <td bgcolor="#FF7015"></td>
+          <td bgcolor="#FF7015"></td>
+                ';
 			} else {
 				$output .= '
-		  <td height="2" bgcolor="#BFBDB3"></td>
-		  <td bgcolor="#BFBDB3"></td>
-		  <td bgcolor="#BFBDB3"></td>
+          <td height="2" bgcolor="#BFBDB3"></td>
+          <td bgcolor="#BFBDB3"></td>
+          <td bgcolor="#BFBDB3"></td>
 				';
 			}
 		}
 		$output .= '
-		</tr>
-		';
+        </tr>
+        ';
 
 		if (!$grid->getPaginator()->getTotalItemCount()) {
 			$output .= '<tr class="row0">
@@ -187,14 +187,12 @@ $output .= '</td>
 				$_colum = $grid->getFields();
 				$_colum = $_colum[$x]->getColum();
 				$output .= '
-  <td align="center">
-	</td>
-	';
+  <td align="center"/>
+';
 				if ($x != count($grid->getFields())-1) { 
 					$output .='
-  <td
-	>'.utf8_decode($post[$_colum]).'</td>
-  <td style="background: url(\''.$grid->getBaseUrl().'/images/grid/divisor_content.gif\');"></td>
+  <td>'.utf8_decode($post[$_colum]).'</td>
+  <td style="background: url(\''.$grid->getBaseUrl().'/images/grid/divisor_content.gif\');"/>
 ';
 				} else {
 					$output .='
@@ -233,7 +231,7 @@ $output .= '</td>
 ';
 			}
 			$output .= '</tr>
-			';
+            ';
 
 
 
@@ -277,7 +275,7 @@ $output .= '</td>
 </div>
 <script type="text/javascript">
 function highligth(cell, className) {
-	cell.parentNode.className = className;
+    cell.parentNode.className = className;
 }
 </script>
 ';

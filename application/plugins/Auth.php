@@ -35,8 +35,13 @@ class Plugin_Auth extends Zend_Controller_Plugin_Abstract
 			$request->setActionName('login');
 
 		} elseif (!isset(Zend_Auth::getInstance()->getIdentity()->fazenda_id)) {
-			$request->setControllerName('auth');
-			$request->setActionName('fazenda');
+			if ($requestUri == '/auth/logout') {
+				$request->setControllerName('auth');
+				$request->setActionName('logout');
+			} else {
+				$request->setControllerName('auth');
+				$request->setActionName('fazenda');
+			}
 		} else {
 
 			// Caso ja esteja logado, apenas atribui novamente o tempo para expirar a sessao.
