@@ -4,7 +4,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  *
- * @version $Id: CategoriaController.php 595 2011-01-13 17:01:24Z bacteria_ $
+ * @version $Id$
  * 
  */
 

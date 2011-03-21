@@ -8,7 +8,7 @@
  * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Form
- * @version $Id: Categoria.php 535 2010-11-23 12:31:04Z bacteria_ $
+ * @version $Id$
  * 
  */
 class Form_Diagnostico extends Form_Default

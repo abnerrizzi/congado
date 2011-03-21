@@ -14,7 +14,7 @@
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
- * @version $Id: JsonController.php 558 2010-12-02 13:17:49Z bacteria_ $
+ * @version $Id$
  */
 
 class Controlesanitario_JsonController extends Zend_Controller_Action
