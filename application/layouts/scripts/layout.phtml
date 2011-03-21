@@ -67,7 +67,7 @@
     # and here's our variable filled up with the html
 //    echo $menu_html;
 
-    if (APPLICATION_ENV == 'development') {
+    if (APPLICATION_ENV != 'development') {
        $menu_html = preg_replace("/\n\r|\r\n|\n|\r/", "", $menu_html);
        $menu_html = preg_replace("/\t/", " ", $menu_html);
        $menu_html = preg_replace('/>\s+</', "><", $menu_html);
@@ -81,7 +81,7 @@
 
   <div id="main">
 	<?
-	if (APPLICATION_ENV == 'development') {
+	if (APPLICATION_ENV != 'development') {
 	   $__content = $this->layout()->content;
 	   $__content = preg_replace("/\n\r|\r\n|\n|\r/", "", $__content);
 	   $__content = preg_replace("/\t/", " ", $__content);
