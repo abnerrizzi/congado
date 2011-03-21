@@ -41,7 +41,7 @@ class CategoriaController extends Zend_Controller_Action
     when 'F' then 'FEMEA'
     else 'INDIFERENTE'
     end as sexo");
-		
+
 		$result	= $categoriaModel->getPaginatorAdapter($_by, $_order, array('id', 'cod', 'dsc', $sexo));
 
 		/*
