@@ -4,7 +4,6 @@ $this->javascript()
 	;
 
 $this->headScript()
-	->appendScript("\t__module = '".Zend_Controller_Front::getInstance()->getRequest()->getModuleName()."';\n")
 	;
 
 echo $this->grid($this->grid);
