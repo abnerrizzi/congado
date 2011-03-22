@@ -6,7 +6,6 @@ $(document).ready(function() {
 	} else {
 		__action = editUrl.split("/")[2];
 	}
-	editUrl = baseUrl + editUrl;
 
 	$("#add>a").before(
 			'<a class="UIButton UIButton_Gray UIActionButton" href="javascript:void(0);" id="search" title="Pesquisar">\n'+
