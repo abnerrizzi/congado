@@ -193,7 +193,7 @@ class Model_Db_Local extends Model_Db
 	{
 
 		$data = array(
-			'fazenda_id' => utf8_encode($fazenda_id),
+			'fazenda_id' => Zend_Auth::getInstance()->getIdentity()->fazenda_id,
 			'local'		 => utf8_encode($local),
 			'dsc'		=> utf8_encode($dsc),
 			'area'		 => $area,

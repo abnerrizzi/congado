@@ -34,6 +34,14 @@ class Plugin_DefaultController  extends Zend_Controller_Action
             var _Controller = \"".$this->getRequest()->getControllerName()."\";
             var _Action = \"".$this->getRequest()->getActionName()."\";
         ");
+
+    	if ($this->getRequest()->getActionName() == 'index') {
+    		$this->renderScript('default/index.phtml');
+    	} elseif ($this->getRequest()->getActionName() == 'edit' || $this->getRequest()->getActionName() == 'add') {
+    		$this->renderScript('default/form.phtml');
+        } elseif ($this->getRequest()->getActionName() == 'edit' || $this->getRequest()->getActionName() == 'add') {
+        	$this->renderScript('default/delete.phtml');
+    	}
     }
 
 }

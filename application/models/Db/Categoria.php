@@ -6,7 +6,8 @@
 
 /**
  * 
- * @TODO: Criar validador ao associar ao animal
+ * @TODO: Criar validador ao associar ao animal referente ao sexo e retirar a opcao unidade
+ * 
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Model
  * @subpackage Db
@@ -95,6 +96,8 @@ class Model_Db_Categoria extends Model_Db
 			$unidade = floatval($unidade);
 		}
 
+		var_dump($unidade);
+		die();
 		if ($this->checkCodPelagem($cod)) {
 			$data = array(
 				'cod' => utf8_encode($cod),
