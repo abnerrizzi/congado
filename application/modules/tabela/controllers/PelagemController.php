@@ -124,7 +124,7 @@ class Tabela_PelagemController extends Plugin_DefaultController
 				$dsc = $pelagemForm->getValue('dsc');
 				$pelagemModel = new Model_Db_Pelagem();
 				if ($pelagemModel->addPelagem($cod, $dsc)) {
-					$this->_redirect('/'. $this->getRequest()->getControllerName());
+					$this->_redirect('/'.$this->getRequest()->getModuleName() .'/'. $this->getRequest()->getControllerName());
 				}
 			} else {
 				$pelagemForm->populate($formData);
@@ -141,7 +141,7 @@ class Tabela_PelagemController extends Plugin_DefaultController
 		$pelagemForm->setMethod('post');
 		$pelagemModel = new Model_Db_Pelagem();
 
-		if ($request->isPost() && $request->getParam('param', false) == 'pelagem') {
+		if ($request->isPost() && $request->getParam('param', false) == $this->getRequest()->getModuleName().'/'.$this->getRequest()->getControllerName()) {
 			$pelagemId	= (int)$request->getParam('id');
 			$pelagemModel->deletePelagem($pelagemId);
 			$this->view->error = false;
@@ -152,6 +152,8 @@ class Tabela_PelagemController extends Plugin_DefaultController
 			$this->view->msg = 'Erro tentando apagar registro ('.$pelagemId.')';
 		}
 		$this->view->url = $request->getModuleName() .'/'. $request->getControllerName();
+
+		$this->renderScript('default/delete.phtml');
 
 	}
 
