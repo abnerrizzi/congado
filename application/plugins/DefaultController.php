@@ -35,6 +35,10 @@ class Plugin_DefaultController  extends Zend_Controller_Action
             var _Action = \"".$this->getRequest()->getActionName()."\";
         ");
 
+    	$req = $this->getRequest();
+    	var_dump(file_exists('default/delete.phtml'));
+    	die();
+
     	if ($this->getRequest()->getActionName() == 'index') {
     		$this->renderScript('default/index.phtml');
     	} elseif ($this->getRequest()->getActionName() == 'edit' || $this->getRequest()->getActionName() == 'add') {
