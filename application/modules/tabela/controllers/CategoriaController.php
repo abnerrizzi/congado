@@ -12,18 +12,16 @@
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
- * @version $Id$
+ * @version $Id: CategoriaController.php 627 2011-03-21 13:09:57Z bacteria_ $
  */
-class CategoriaController extends Zend_Controller_Action
+class Tabela_CategoriaController extends Plugin_DefaultController
 {
 
 	public function init()
 	{
-		$auth = Zend_Auth::getInstance();
-		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Categoria';
+		parent::init();
+		$this->view->title = 'Tabela :: Categoria';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
-		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 	}
 
 	public function indexAction()
@@ -70,15 +68,15 @@ class CategoriaController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'categoria',
+			'module'	=> 'tabela/categoria',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'categoria',
+			'module'	=> 'tabela/categoria',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'categoria',
+			'module'	=> 'tabela/categoria',
 			'action'	=> 'add',
 		));
 
@@ -92,7 +90,7 @@ class CategoriaController extends Zend_Controller_Action
 		$request		 = $this->getRequest();
 		$categoriaId	= (int)$request->getParam('id');
 		$categoriaForm	= new Form_Categoria();
-		$categoriaForm->setAction('/categoria/edit');
+		$categoriaForm->setAction('/tabela/categoria/edit');
 		$categoriaForm->setMethod('post');
 		$categoriaModel = new Model_Db_Categoria();
 		$categoriaForm->getElement('cod')
@@ -124,7 +122,7 @@ class CategoriaController extends Zend_Controller_Action
 	{
 
 		$categoriaForm = new Form_Categoria();
-		$categoriaForm->setAction('/categoria/add');
+		$categoriaForm->setAction('/tabela/categoria/add');
 		$categoriaForm->setMethod('post');
 		$this->view->form = $categoriaForm;
 		$this->view->elements = array('cod', 'dsc', 'sexo');
@@ -154,7 +152,7 @@ class CategoriaController extends Zend_Controller_Action
 		$categoriaForm->setMethod('post');
 		$categoriaModel = new Model_Db_Categoria();
 
-		if ($request->isPost() && $request->getParam('param', false) == 'categoria') {
+		if ($request->isPost() && $request->getParam('param', false) == 'tabela/categoria') {
 			$categoriaId = (int)$request->getParam('id');
 			$categoriaModel->deleteCategoria($categoriaId);
 			$this->view->error = false;

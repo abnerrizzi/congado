@@ -28,6 +28,7 @@ class Model_Grid
 	private $orderby	= false;
 	private $order		= false;
 	private $action		= false;
+	private $module     = false;
 
 	public function __construct($name)
 	{
@@ -161,6 +162,20 @@ class Model_Grid
 	{
 		$this->action = $action;
 	}
+
+	/**
+	 * @param $module the $module to set
+	 */
+	public function setModule($module) {
+		$this->module = $module;
+	}
+
+    /**
+     * @return the $module
+     */
+    public function getModule() {
+        return $this->module;
+    }
 
 	public function getAction()
 	{
