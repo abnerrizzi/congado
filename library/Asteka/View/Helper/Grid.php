@@ -42,7 +42,7 @@ class Asteka_View_Helper_Grid extends Zend_View_Helper_Abstract
 			$edit = $grid->getEdit();
 			$editModule = $edit['module'];
 			$editAction = $edit['action'];
-			$this->view->headScript()->prependScript("var editUrl = '/$editModule/$editAction';");
+			$this->view->headScript()->prependScript("var editUrl = '/$editModule/$editAction';\nvar __module = '$editModule';");
 		}
 
 		if (isset($this->view->title)) {

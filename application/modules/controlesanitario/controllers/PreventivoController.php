@@ -189,6 +189,8 @@ class Controlesanitario_PreventivoController extends Zend_Controller_Action
 
 		$morteForm->getElement('fazenda_id')
 			->setAttrib('class', 'readonly')
+			->setAttrib('readonly', 'readonly')
+			->setAttrib('disabled', 'disabled')
 			;
 
 		$morteForm->getElement('fichario')

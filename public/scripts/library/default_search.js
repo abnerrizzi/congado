@@ -17,7 +17,9 @@ $(document).ready(function() {
 	);
 
 	$('#add a#search').click(function(){
-		__url = baseUrl +'/'+ __module +'/json/'+ __action;
+//		__url = baseUrl +'/'+ __module +'/json/'+ __action;
+		__url = baseUrl +'/json/'+ __action;
+		console.log(__action);
 		search.url = __url;
 		search.defaultColModel = [{
 			display: 'Código',
