@@ -11,9 +11,9 @@
  *
  * @author Abner S. A. Rizzi <abner.rizzi@gmail.com>
  * @package Controller
- * @version $Id$
+ * @version $Id: CriadorController.php 595 2011-01-13 17:01:24Z bacteria_ $
  */
-class CriadorController extends Zend_Controller_Action
+class Tabela_CriadorController extends Zend_Controller_Action
 {
 
 	public function init()
