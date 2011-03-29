@@ -102,7 +102,7 @@ var search = {
 			window.alert('editUrl is not defined');
 			return false;
 		} else {
-			url = editUrl + '/id/'+ __id;
+			url = baseUrl + editUrl + '/id/'+ __id;
 			window.location.href = url;
 		}
 		$("#search").dialog('close');

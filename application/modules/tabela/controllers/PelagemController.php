@@ -13,16 +13,13 @@
  * @version $Id$
  */
 
-class PelagemController extends Zend_Controller_Action
+class Tabela_PelagemController extends Plugin_DefaultController
 {
 
 	public function init()
 	{
-		$auth = Zend_Auth::getInstance();
-		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Pelagem';
-		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
-		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
+        $this->view->title = 'Tabela :: Pelagem';
+        $this->view->baseUrl = $this->getRequest()->getBaseUrl();
 	}
 
 	public function indexAction()
@@ -60,20 +57,22 @@ class PelagemController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'pelagem',
+			'module'	=> 'tabela/pelagem',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'pelagem',
+			'module'	=> 'tabela/pelagem',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'pelagem',
+			'module'	=> 'tabela/pelagem',
 			'action'	=> 'add',
 		));
 
 		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
+
+		$this->renderScript('default/index.phtml');
 	}
 
 	public function editAction()
@@ -81,7 +80,7 @@ class PelagemController extends Zend_Controller_Action
 		$request		= $this->getRequest();
 		$pelagemId		= (int)$request->getParam('id');
 		$pelagemForm	= new Form_Pelagem();
-		$pelagemForm->setAction('/pelagem/edit');
+		$pelagemForm->setAction('/'.$this->getRequest()->getModuleName().'/'.$this->getRequest()->getControllerName().'/edit');
 		$pelagemForm->setMethod('post');
 		$pelagemModel = new Model_Db_Pelagem();
 		$pelagemForm->getElement('cod')
@@ -94,7 +93,7 @@ class PelagemController extends Zend_Controller_Action
 
 			if ($pelagemForm->isValid($request->getPost())) {
 				$pelagemModel->updatePelagem($pelagemForm->getValues());
-				$this->_redirect('/'. $this->getRequest()->getControllerName());
+				$this->_redirect('/'. $request->getModuleName() .'/'. $request->getControllerName());
 			}
 		} else {
 			if ($pelagemId > 0) {
@@ -106,13 +105,14 @@ class PelagemController extends Zend_Controller_Action
 		}
 		$this->view->elements = array('id', 'cod', 'dsc', 'delete');
 		$this->view->form = $pelagemForm;
+		$this->renderScript('default/form.phtml');
 	}
 
 	public function addAction()
 	{
 
 		$pelagemForm = new Form_Pelagem();
-		$pelagemForm->setAction('/pelagem/add');
+		$pelagemForm->setAction('/'.$this->getRequest()->getModuleName().'/'.$this->getRequest()->getControllerName().'/add');
 		$pelagemForm->setMethod('post');
 		$this->view->form = $pelagemForm;
 		$this->view->elements = array('cod', 'dsc');
@@ -130,13 +130,14 @@ class PelagemController extends Zend_Controller_Action
 				$pelagemForm->populate($formData);
 			}
 		}
+		$this->renderScript('default/form.phtml');
 	}
 
 	public function deleteAction()
 	{
 		$request		= $this->getRequest();
 		$pelagemForm	= new Form_Pelagem();
-		$pelagemForm->setAction('/pelagem/delete');
+		$pelagemForm->setAction('/'.$this->getRequest()->getModuleName().'/'.$this->getRequest()->getControllerName().'/delete');
 		$pelagemForm->setMethod('post');
 		$pelagemModel = new Model_Db_Pelagem();
 
@@ -150,14 +151,8 @@ class PelagemController extends Zend_Controller_Action
 			$this->view->error = true;
 			$this->view->msg = 'Erro tentando apagar registro ('.$pelagemId.')';
 		}
-		$this->view->url = 'pelagem/index';
+		$this->view->url = $request->getModuleName() .'/'. $request->getControllerName();
 
-	}
-
-	public function printAction()
-	{
-		$model = new Model_Db_Pelagem();
-		$this->view->data = $model->listPelagens();
 	}
 
 }

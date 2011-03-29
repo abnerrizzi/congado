@@ -24,6 +24,7 @@ class Plugin_GridSession extends Zend_Controller_Plugin_Abstract
 		if (!Zend_Auth::getInstance()->hasIdentity()) {
 			return;
 		}
+  
 		$_gridSession = new Zend_Session_Namespace('gridSession');
 
 		// talking value of sort using Front controller getRequest() method.
