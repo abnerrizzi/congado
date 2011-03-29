@@ -1,0 +1,37 @@
+<?php
+
+if ($this->error) {
+    $bgcolor = '#ffdddd';
+} else {
+    $bgcolor = '#ddffdd';
+}
+
+?>
+<br/><br/>
+<center>
+<div
+	align="center"
+	style="
+		border: 1px solid;
+		background-color: <?=$bgcolor;?>;
+		padding: 32px;
+		font-size: 12px;
+		font-weight: bold;
+		width: 300px;
+		text-align: center;
+		-webkit-border-radius: 20px;
+		-moz-border-radius: 20px;
+		border-radius: 20px;
+		"
+	>
+<?php if (!$this->error):?>
+<img alt="" src="<?php echo $this->baseUrl() ."/images/ok.gif";?>"/>
+<?php else:?>
+<img alt="" src="<?php echo $this->baseUrl() ."/images/exclamation.gif";?>"/>
+<?php endif;?>
+<br/><br/>
+<?php echo $this->msg?>
+</div>
+<br/>
+<a href="<?php echo $this->baseUrl() ."/". $this->url;?>" style="font-size: 13px;">Continuar</a>
+</center>
