@@ -62,7 +62,7 @@ class Tabela_GrausangueController extends Plugin_DefaultController
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> tabela/'grausangue',
+			'module'	=> 'tabela/grausangue',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
