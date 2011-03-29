@@ -13,16 +13,13 @@
  * @package Controller
  * @version $Id: CriadorController.php 595 2011-01-13 17:01:24Z bacteria_ $
  */
-class Tabela_CriadorController extends Zend_Controller_Action
+class Tabela_CriadorController extends Plugin_DefaultController
 {
 
 	public function init()
 	{
-		$auth = Zend_Auth::getInstance();
-		$this->view->auth = $auth->hasIdentity();
-		$this->view->title = 'Criadores / Proprietários / Compradores';
+		$this->view->title = 'Tabela :: Criadores / Proprietários / Compradores';
 		$this->view->baseUrl = $this->getRequest()->getBaseUrl();
-		$this->view->fazenda_dsc = Zend_Auth::getInstance()->getIdentity()->fazenda_dsc;
 	}
 
 	public function indexAction()
@@ -61,15 +58,15 @@ class Tabela_CriadorController extends Zend_Controller_Action
 		$gridModel->setPaginator($paginator);
 		$gridModel->setFields($fields);
 		$gridModel->setEdit(array(
-			'module'	=> 'criador',
+			'module'	=> 'tabela/criador',
 			'action'	=> 'edit',
 		));
 		$gridModel->setDelete(array(
-			'module'	=> 'criador',
+			'module'	=> 'tabela/criador',
 			'action'	=> 'delete',
 		));
 		$gridModel->setAdd(array(
-			'module'	=> 'criador',
+			'module'	=> 'tabela/criador',
 			'action'	=> 'add',
 		));
 
@@ -84,7 +81,7 @@ class Tabela_CriadorController extends Zend_Controller_Action
 		$request		= $this->getRequest();
 		$criadorId		= (int)$request->getParam('id');
 		$criadorForm	= new Form_Criador();
-		$criadorForm->setAction('/criador/edit');
+		$criadorForm->setAction('/tabela/criador/edit');
 		$criadorForm->setMethod('post');
 		$criadorForm->getElement('cod')->removeValidator('NoRecordExists');
 		$criadorModel = new Model_Db_Criador();
@@ -198,7 +195,7 @@ class Tabela_CriadorController extends Zend_Controller_Action
 	{
 		
 		$criadorForm = new Form_Criador();
-		$criadorForm->setAction('/criador/add');
+		$criadorForm->setAction('/tabela/criador/add');
 		$criadorForm->setMethod('post');
 		$this->view->form = $criadorForm;
 		$this->view->elements = array(
@@ -292,7 +289,7 @@ class Tabela_CriadorController extends Zend_Controller_Action
 
 		$request		= $this->getRequest();
 		$criadorForm	= new Form_Criador();
-		$criadorForm->setAction('/criador/delete');
+		$criadorForm->setAction('/tabela/criador/delete');
 		$criadorForm->setMethod('post');
 		$criadorModel = new Model_Db_Criador();
 
@@ -306,7 +303,7 @@ class Tabela_CriadorController extends Zend_Controller_Action
 			$this->view->error = true;
 			$this->view->msg = 'Erro tentando apagar registro('.$criadorId.')';
 		}
-		$this->view->url = 'criador/index';
+		$this->view->url = 'tabela/criador/index';
 	}
 
 }
