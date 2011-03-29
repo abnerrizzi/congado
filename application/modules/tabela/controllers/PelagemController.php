@@ -72,7 +72,6 @@ class Tabela_PelagemController extends Plugin_DefaultController
 		$this->view->sort = $_order;
 		$this->view->grid = $gridModel;
 
-		$this->renderScript('default/index.phtml');
 	}
 
 	public function editAction()
@@ -93,7 +92,7 @@ class Tabela_PelagemController extends Plugin_DefaultController
 
 			if ($pelagemForm->isValid($request->getPost())) {
 				$pelagemModel->updatePelagem($pelagemForm->getValues());
-				$this->_redirect('/'. $request->getModuleName() .'/'. $request->getControllerName());
+				$this->_redirect('/'.$this->getRequest()->getModuleName() .'/'. $this->getRequest()->getControllerName());
 			}
 		} else {
 			if ($pelagemId > 0) {
@@ -105,7 +104,6 @@ class Tabela_PelagemController extends Plugin_DefaultController
 		}
 		$this->view->elements = array('id', 'cod', 'dsc', 'delete');
 		$this->view->form = $pelagemForm;
-		$this->renderScript('default/form.phtml');
 	}
 
 	public function addAction()
@@ -130,7 +128,6 @@ class Tabela_PelagemController extends Plugin_DefaultController
 				$pelagemForm->populate($formData);
 			}
 		}
-		$this->renderScript('default/form.phtml');
 	}
 
 	public function deleteAction()
@@ -153,7 +150,6 @@ class Tabela_PelagemController extends Plugin_DefaultController
 		}
 		$this->view->url = $request->getModuleName() .'/'. $request->getControllerName();
 
-		$this->renderScript('default/delete.phtml');
 
 	}
 

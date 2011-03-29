@@ -103,7 +103,7 @@ class Tabela_CategoriaController extends Plugin_DefaultController
 
 			if ($categoriaForm->isValid($request->getPost())) {
 				$categoriaModel->updateCategoria($categoriaForm->getValues());
-				$this->_redirect('/'. $this->getRequest()->getControllerName());
+				$this->_redirect('/'.$this->getRequest()->getModuleName() .'/'. $this->getRequest()->getControllerName());
 			}
 		} else {
 			if ($categoriaId > 0) {
@@ -135,7 +135,7 @@ class Tabela_CategoriaController extends Plugin_DefaultController
 				$unidade = floatval($categoriaForm->getValue('unidade'));
 				$categoriaModel = new Model_Db_Categoria();
 				if ($categoriaModel->addCategoria($cod, $dsc, $unidade)) {
-					$this->_redirect('/'. $this->getRequest()->getControllerName());
+					$this->_redirect('/'.$this->getRequest()->getModuleName() .'/'. $this->getRequest()->getControllerName());
 				}
 			} else {
 				$categoriaForm->populate($formData);
