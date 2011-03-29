@@ -94,7 +94,7 @@ class Tabela_LocalController extends Plugin_DefaultController
 
 			if ($localForm->isValid($request->getPost())) {
 				$localModel->updateLocal($localForm->getValues());
-				$this->_redirect('/'. $this->getRequest()->getControllerName());
+				$this->_redirect('/'.$this->getRequest()->getModuleName() .'/'. $this->getRequest()->getControllerName());
 			}
 
 		} else {
@@ -139,7 +139,7 @@ class Tabela_LocalController extends Plugin_DefaultController
 				$area = $localForm->getValue('area');
 				$localModel = new Model_Db_Local();
 				if ($localModel->addLocal($this->view->fazenda_id, $local, $dsc, $area)) {
-					$this->_redirect('/'. $this->getRequest()->getControllerName());
+					$this->_redirect('/'.$this->getRequest()->getModuleName() .'/'. $this->getRequest()->getControllerName());
 				} else {
 					die('erro no insert');
 				}
